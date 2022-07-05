@@ -14,6 +14,7 @@ import AnyCodable
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case sandbox = "sandbox"
+        case production = "production"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

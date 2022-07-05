@@ -123,8 +123,8 @@ Retrieves a list of accounts.  Required scope: **accounts:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int | The page index to retrieve. (optional) (default to 0)
-let perPage = 987 // Int | The number of entities per page to return. (optional) (default to 10)
+let page = 987 // Int | The page index to retrieve. (optional)
+let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated account_guids to list accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list accounts for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list accounts for. (optional)
@@ -146,8 +146,8 @@ AccountsAPI.listAccounts(page: page, perPage: perPage, guid: guid, bankGuid: ban
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** | The page index to retrieve. | [optional] [default to 0]
- **perPage** | **Int** | The number of entities per page to return. | [optional] [default to 10]
+ **page** | **Int** | The page index to retrieve. | [optional] 
+ **perPage** | **Int** | The number of entities per page to return. | [optional] 
  **guid** | **String** | Comma separated account_guids to list accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list accounts for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list accounts for. | [optional] 

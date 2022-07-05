@@ -118,8 +118,8 @@ import AnyCodable
     /**
      List Accounts
      
-     - parameter page: (query) The page index to retrieve. (optional, default to 0)
-     - parameter perPage: (query) The number of entities per page to return. (optional, default to 10)
+     - parameter page: (query) The page index to retrieve. (optional)
+     - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter guid: (query) Comma separated account_guids to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list accounts for. (optional)
@@ -148,8 +148,8 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter page: (query) The page index to retrieve. (optional, default to 0)
-     - parameter perPage: (query) The number of entities per page to return. (optional, default to 10)
+     - parameter page: (query) The page index to retrieve. (optional)
+     - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter guid: (query) Comma separated account_guids to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list accounts for. (optional)

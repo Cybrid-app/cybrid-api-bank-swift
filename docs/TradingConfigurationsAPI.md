@@ -123,8 +123,8 @@ Retrieves a listing of trading configurations for a bank.  Required scope: **ban
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 
 // List trading configurations
 TradingConfigurationsAPI.listTradingConfigurations(page: page, perPage: perPage) { (response, error) in
@@ -143,8 +143,8 @@ TradingConfigurationsAPI.listTradingConfigurations(page: page, perPage: perPage)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
 
 ### Return type
 

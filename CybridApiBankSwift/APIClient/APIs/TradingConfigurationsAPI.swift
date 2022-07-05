@@ -118,8 +118,8 @@ import AnyCodable
     /**
      List trading configurations
      
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -145,8 +145,8 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<TradingConfigurationListBankModel> 
      */
     open class func listTradingConfigurationsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<TradingConfigurationListBankModel> {

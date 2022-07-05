@@ -118,8 +118,8 @@ import AnyCodable
     /**
      Get quotes list
      
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - parameter guid: (query) Comma separated quote_guids to list quotes for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list quotes for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list quotes for. (optional)
@@ -148,8 +148,8 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - parameter guid: (query) Comma separated quote_guids to list quotes for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list quotes for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list quotes for. (optional)

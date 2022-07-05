@@ -118,8 +118,8 @@ import AnyCodable
     /**
      Get customers list
      
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list customers for. (optional)
      - parameter guid: (query) Comma separated customer_guids to list customers for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
@@ -147,8 +147,8 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list customers for. (optional)
      - parameter guid: (query) Comma separated customer_guids to list customers for. (optional)
      - returns: RequestBuilder<CustomerListBankModel> 
