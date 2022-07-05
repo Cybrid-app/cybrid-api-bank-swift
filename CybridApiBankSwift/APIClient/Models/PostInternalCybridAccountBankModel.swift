@@ -27,7 +27,7 @@ import AnyCodable
     public var asset: String
     /** The name of the account. */
     public var name: String
-    /** The name of the account. */
+    /** The environment. */
     public var environment: EnvironmentBankModel
 
     public init(type: TypeBankModel, asset: String, name: String, environment: EnvironmentBankModel) {

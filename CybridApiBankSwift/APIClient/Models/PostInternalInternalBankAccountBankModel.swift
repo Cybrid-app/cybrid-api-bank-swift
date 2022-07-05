@@ -13,8 +13,9 @@ import AnyCodable
 @objc public class PostInternalInternalBankAccountBankModel: NSObject, Codable, JSONEncodable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case walletId = "zum_rails_wallet_id"
-        case fundingSource = "zum_rails_funding_source"
+        case zumRailsWalletId = "zum_rails_wallet_id"
+        case zumRailsFundingSource = "zum_rails_funding_source"
+        case modernTreasuryInternalAccount = "modern_treasury_internal_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The name of the account. */

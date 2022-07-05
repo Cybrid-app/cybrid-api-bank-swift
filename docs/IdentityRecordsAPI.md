@@ -124,8 +124,8 @@ Retrieves a listing of identity records for a bank.  Required scope: **customers
 import CybridApiBankSwift
 
 let customerGuid = "customerGuid_example" // String | Comma separated customer identifier to list identity records for. (optional)
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 
 // List Identity Records
 IdentityRecordsAPI.listIdentityRecords(customerGuid: customerGuid, page: page, perPage: perPage) { (response, error) in
@@ -145,8 +145,8 @@ IdentityRecordsAPI.listIdentityRecords(customerGuid: customerGuid, page: page, p
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customerGuid** | **String** | Comma separated customer identifier to list identity records for. | [optional] 
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
 
 ### Return type
 

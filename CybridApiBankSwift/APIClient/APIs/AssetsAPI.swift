@@ -15,8 +15,8 @@ import AnyCodable
     /**
      Get assets list
      
-     - parameter page: (query) The page index to retrieve. (optional, default to 0)
-     - parameter perPage: (query) The number of entities per page to return. (optional, default to 10)
+     - parameter page: (query) The page index to retrieve. (optional)
+     - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -42,8 +42,8 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter page: (query) The page index to retrieve. (optional, default to 0)
-     - parameter perPage: (query) The number of entities per page to return. (optional, default to 10)
+     - parameter page: (query) The page index to retrieve. (optional)
+     - parameter perPage: (query) The number of entities per page to return. (optional)
      - returns: RequestBuilder<AssetListBankModel> 
      */
     open class func listAssetsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<AssetListBankModel> {

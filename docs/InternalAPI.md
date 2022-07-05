@@ -4,10 +4,17 @@ All URIs are relative to *http://api-bank.cybrid.local*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**internalClaimExchangeSettlementExpectedPayment**](InternalAPI.md#internalclaimexchangesettlementexpectedpayment) | **POST** /api/internal/exchange_settlement_expected_payments/{guid}/claim | Claim Exchange Settlement Expected Payment
+[**internalClaimExchangeSettlementPaymentOrder**](InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
 [**internalCreateAccount**](InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
 [**internalCreateCybridAccount**](InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 [**internalCreateExchange**](InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
 [**internalCreateExchangeAccount**](InternalAPI.md#internalcreateexchangeaccount) | **POST** /api/internal/exchange_accounts | Create ExchangeAccount
+[**internalCreateExchangeSettlement**](InternalAPI.md#internalcreateexchangesettlement) | **POST** /api/internal/exchange_settlements | Create Exchange Settlement
+[**internalCreateExchangeSettlementApproval**](InternalAPI.md#internalcreateexchangesettlementapproval) | **POST** /api/internal/exchange_settlements/{guid}/approval | Create Exchange Settlement Approval
+[**internalCreateExchangeSettlementCompletion**](InternalAPI.md#internalcreateexchangesettlementcompletion) | **POST** /api/internal/exchange_settlements/{guid}/completion | Create Exchange Settlement Completion
+[**internalCreateExchangeSettlementExpectedPayment**](InternalAPI.md#internalcreateexchangesettlementexpectedpayment) | **POST** /api/internal/exchange_settlement_expected_payments | Create Exchange Settlement Expected Payment
+[**internalCreateExchangeSettlementPaymentOrder**](InternalAPI.md#internalcreateexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders | Create Exchange Settlement Payment Order
 [**internalCreateExternalBankAccount**](InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 [**internalCreateExternalWallet**](InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
 [**internalCreateInternalBankAccount**](InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
@@ -17,12 +24,121 @@ Method | HTTP request | Description
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 [**internalGetExchange**](InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 [**internalGetExchangeAccount**](InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
+[**internalGetExchangeSettlement**](InternalAPI.md#internalgetexchangesettlement) | **GET** /api/internal/exchange_settlements/{guid} | Get Exchange Settlement
+[**internalGetExchangeSettlementExpectedPayment**](InternalAPI.md#internalgetexchangesettlementexpectedpayment) | **GET** /api/internal/exchange_settlement_expected_payments/{guid} | Get Exchange Settlement Expected Payment
+[**internalGetExchangeSettlementObligation**](InternalAPI.md#internalgetexchangesettlementobligation) | **GET** /api/internal/exchange_settlement_obligations/{guid} | Get Exchange Settlement Obligation
+[**internalGetExchangeSettlementPaymentOrder**](InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
 [**internalListExchanges**](InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 [**internalListExternalBankAccounts**](InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 [**internalListExternalWallets**](InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
 [**internalListInternalBankAccounts**](InternalAPI.md#internallistinternalbankaccounts) | **GET** /api/internal/internal_bank_accounts | List InternalBankAccounts
 [**internalListInternalWallets**](InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
+[**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 
+
+# **internalClaimExchangeSettlementExpectedPayment**
+```swift
+    open class func internalClaimExchangeSettlementExpectedPayment(guid: String, postInternalClaimExchangeSettlementExpectedPaymentBankModel: PostInternalClaimExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: ExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
+```
+
+Claim Exchange Settlement Expected Payment
+
+Claim an Exchange Settlement Expected Payments.  Required scope: **internal:exchange_settlements:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement expected payment.
+let postInternalClaimExchangeSettlementExpectedPaymentBankModel = PostInternalClaimExchangeSettlementExpectedPayment(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: 123, assetCode: "assetCode_example", direction: "direction_example", _description: "_description_example")) // PostInternalClaimExchangeSettlementExpectedPaymentBankModel | 
+
+// Claim Exchange Settlement Expected Payment
+InternalAPI.internalClaimExchangeSettlementExpectedPayment(guid: guid, postInternalClaimExchangeSettlementExpectedPaymentBankModel: postInternalClaimExchangeSettlementExpectedPaymentBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement expected payment. | 
+ **postInternalClaimExchangeSettlementExpectedPaymentBankModel** | [**PostInternalClaimExchangeSettlementExpectedPaymentBankModel**](PostInternalClaimExchangeSettlementExpectedPaymentBankModel.md) |  | 
+
+### Return type
+
+[**ExchangeSettlementExpectedPaymentBankModel**](ExchangeSettlementExpectedPaymentBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalClaimExchangeSettlementPaymentOrder**
+```swift
+    open class func internalClaimExchangeSettlementPaymentOrder(guid: String, postInternalClaimExchangeSettlementPaymentOrderBankModel: PostInternalClaimExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: ExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
+```
+
+Claim Exchange Settlement Payment Order
+
+Claim an Exchange Settlement Payment Order.  Required scope: **internal:exchange_settlements:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement expected payment.
+let postInternalClaimExchangeSettlementPaymentOrderBankModel = PostInternalClaimExchangeSettlementPaymentOrder(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: 123, assetCode: "assetCode_example", direction: "direction_example", _description: "_description_example")) // PostInternalClaimExchangeSettlementPaymentOrderBankModel | 
+
+// Claim Exchange Settlement Payment Order
+InternalAPI.internalClaimExchangeSettlementPaymentOrder(guid: guid, postInternalClaimExchangeSettlementPaymentOrderBankModel: postInternalClaimExchangeSettlementPaymentOrderBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement expected payment. | 
+ **postInternalClaimExchangeSettlementPaymentOrderBankModel** | [**PostInternalClaimExchangeSettlementPaymentOrderBankModel**](PostInternalClaimExchangeSettlementPaymentOrderBankModel.md) |  | 
+
+### Return type
+
+[**ExchangeSettlementPaymentOrderBankModel**](ExchangeSettlementPaymentOrderBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **internalCreateAccount**
 ```swift
@@ -31,7 +147,7 @@ Method | HTTP request | Description
 
 Create Account
 
-Create a Account.  Required scope: **internal:accounts:execute**
+Create an Account.  Required scope: **internal:accounts:execute**
 
 ### Example
 ```swift
@@ -131,7 +247,7 @@ Name | Type | Description  | Notes
 
 Create Exchange
 
-Create a Exchanges.  Required scope: **internal:exchanges:execute**
+Create an Exchanges.  Required scope: **internal:exchanges:execute**
 
 ### Example
 ```swift
@@ -181,7 +297,7 @@ Name | Type | Description  | Notes
 
 Create ExchangeAccount
 
-Create a ExchangeAccount.  Required scope: **internal:exchange_accounts:execute**
+Create an ExchangeAccount.  Required scope: **internal:exchange_accounts:execute**
 
 ### Example
 ```swift
@@ -212,6 +328,256 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ExchangeAccountBankModel**](ExchangeAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateExchangeSettlement**
+```swift
+    open class func internalCreateExchangeSettlement(postInternalExchangeSettlementBankModel: PostInternalExchangeSettlementBankModel, completion: @escaping (_ data: ExchangeSettlementBankModel?, _ error: Error?) -> Void)
+```
+
+Create Exchange Settlement
+
+Create an Exchange Settlements.  Required scope: **internal:exchange_settlements:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalExchangeSettlementBankModel = PostInternalExchangeSettlement(exchangeGuid: "exchangeGuid_example", name: "name_example", tradeGuids: ["tradeGuids_example"]) // PostInternalExchangeSettlementBankModel | 
+
+// Create Exchange Settlement
+InternalAPI.internalCreateExchangeSettlement(postInternalExchangeSettlementBankModel: postInternalExchangeSettlementBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalExchangeSettlementBankModel** | [**PostInternalExchangeSettlementBankModel**](PostInternalExchangeSettlementBankModel.md) |  | 
+
+### Return type
+
+[**ExchangeSettlementBankModel**](ExchangeSettlementBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateExchangeSettlementApproval**
+```swift
+    open class func internalCreateExchangeSettlementApproval(guid: String, completion: @escaping (_ data: InternalCreateExchangeSettlementApproval202ResponseBankModel?, _ error: Error?) -> Void)
+```
+
+Create Exchange Settlement Approval
+
+Queue an Exchange Settlement Approval.  Required scope: **internal:exchange_settlements:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement.
+
+// Create Exchange Settlement Approval
+InternalAPI.internalCreateExchangeSettlementApproval(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement. | 
+
+### Return type
+
+[**InternalCreateExchangeSettlementApproval202ResponseBankModel**](InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateExchangeSettlementCompletion**
+```swift
+    open class func internalCreateExchangeSettlementCompletion(guid: String, completion: @escaping (_ data: InternalCreateExchangeSettlementApproval202ResponseBankModel?, _ error: Error?) -> Void)
+```
+
+Create Exchange Settlement Completion
+
+Queue an Exchange Settlement Completion.  Required scope: **internal:exchange_settlements:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement.
+
+// Create Exchange Settlement Completion
+InternalAPI.internalCreateExchangeSettlementCompletion(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement. | 
+
+### Return type
+
+[**InternalCreateExchangeSettlementApproval202ResponseBankModel**](InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateExchangeSettlementExpectedPayment**
+```swift
+    open class func internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: PostInternalExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: ExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
+```
+
+Create Exchange Settlement Expected Payment
+
+Create an Exchange Settlement Expected Payments.  Required scope: **internal:exchange_settlements:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalExchangeSettlementExpectedPaymentBankModel = PostInternalExchangeSettlementExpectedPayment(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: 123, paymentAmount: 123, internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example") // PostInternalExchangeSettlementExpectedPaymentBankModel | 
+
+// Create Exchange Settlement Expected Payment
+InternalAPI.internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: postInternalExchangeSettlementExpectedPaymentBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalExchangeSettlementExpectedPaymentBankModel** | [**PostInternalExchangeSettlementExpectedPaymentBankModel**](PostInternalExchangeSettlementExpectedPaymentBankModel.md) |  | 
+
+### Return type
+
+[**ExchangeSettlementExpectedPaymentBankModel**](ExchangeSettlementExpectedPaymentBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateExchangeSettlementPaymentOrder**
+```swift
+    open class func internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: PostInternalExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: ExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
+```
+
+Create Exchange Settlement Payment Order
+
+Create an Exchange Settlement Payment Orders.  Required scope: **internal:exchange_settlements:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalExchangeSettlementPaymentOrderBankModel = PostInternalExchangeSettlementPaymentOrder(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: 123, paymentAmount: 123, internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", externalAccountGuid: "externalAccountGuid_example", externalAccountType: "externalAccountType_example") // PostInternalExchangeSettlementPaymentOrderBankModel | 
+
+// Create Exchange Settlement Payment Order
+InternalAPI.internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: postInternalExchangeSettlementPaymentOrderBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalExchangeSettlementPaymentOrderBankModel** | [**PostInternalExchangeSettlementPaymentOrderBankModel**](PostInternalExchangeSettlementPaymentOrderBankModel.md) |  | 
+
+### Return type
+
+[**ExchangeSettlementPaymentOrderBankModel**](ExchangeSettlementPaymentOrderBankModel.md)
 
 ### Authorization
 
@@ -674,6 +1040,206 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalGetExchangeSettlement**
+```swift
+    open class func internalGetExchangeSettlement(guid: String, completion: @escaping (_ data: ExchangeSettlementBankModel?, _ error: Error?) -> Void)
+```
+
+Get Exchange Settlement
+
+Get an Exchange Settlement.  Required scope: **internal:exchange_settlements:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement.
+
+// Get Exchange Settlement
+InternalAPI.internalGetExchangeSettlement(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement. | 
+
+### Return type
+
+[**ExchangeSettlementBankModel**](ExchangeSettlementBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetExchangeSettlementExpectedPayment**
+```swift
+    open class func internalGetExchangeSettlementExpectedPayment(guid: String, completion: @escaping (_ data: ExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
+```
+
+Get Exchange Settlement Expected Payment
+
+Get an Exchange Settlement Expected Payment.  Required scope: **internal:exchange_settlements:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement expected payment.
+
+// Get Exchange Settlement Expected Payment
+InternalAPI.internalGetExchangeSettlementExpectedPayment(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement expected payment. | 
+
+### Return type
+
+[**ExchangeSettlementExpectedPaymentBankModel**](ExchangeSettlementExpectedPaymentBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetExchangeSettlementObligation**
+```swift
+    open class func internalGetExchangeSettlementObligation(guid: String, completion: @escaping (_ data: ExchangeSettlementObligationBankModel?, _ error: Error?) -> Void)
+```
+
+Get Exchange Settlement Obligation
+
+Get an Exchange Settlement Obligation.  Required scope: **internal:exchange_settlements:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement obligation.
+
+// Get Exchange Settlement Obligation
+InternalAPI.internalGetExchangeSettlementObligation(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement obligation. | 
+
+### Return type
+
+[**ExchangeSettlementObligationBankModel**](ExchangeSettlementObligationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetExchangeSettlementPaymentOrder**
+```swift
+    open class func internalGetExchangeSettlementPaymentOrder(guid: String, completion: @escaping (_ data: ExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
+```
+
+Get Exchange Settlement Payment Order
+
+Get an Exchange Settlement Payment Order.  Required scope: **internal:exchange_settlements:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the exchange settlement payment order.
+
+// Get Exchange Settlement Payment Order
+InternalAPI.internalGetExchangeSettlementPaymentOrder(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the exchange settlement payment order. | 
+
+### Return type
+
+[**ExchangeSettlementPaymentOrderBankModel**](ExchangeSettlementPaymentOrderBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalListExchanges**
 ```swift
     open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: ExchangeListBankModel?, _ error: Error?) -> Void)
@@ -688,8 +1254,8 @@ Retrieves a listing of exchanges.  Required scope: **internal:exchanges:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 
 // List Exchanges
 InternalAPI.internalListExchanges(page: page, perPage: perPage) { (response, error) in
@@ -708,8 +1274,8 @@ InternalAPI.internalListExchanges(page: page, perPage: perPage) { (response, err
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
 
 ### Return type
 
@@ -728,7 +1294,7 @@ Name | Type | Description  | Notes
 
 # **internalListExternalBankAccounts**
 ```swift
-    open class func internalListExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalExternalBankAccountListBankModel?, _ error: Error?) -> Void)
+    open class func internalListExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil, completion: @escaping (_ data: InternalExternalBankAccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List ExternalBankAccounts
@@ -740,11 +1306,14 @@ Retrieves a listing of external bank accounts.  Required scope: **internal:accou
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
+let asset = "asset_example" // String | Comma separated assets to list bank accounts for. (optional)
+let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list bank accounts for. (optional)
+let exchangeGuid = "exchangeGuid_example" // String | Comma separated exchange_guids to list bank accounts for. (optional)
 
 // List ExternalBankAccounts
-InternalAPI.internalListExternalBankAccounts(page: page, perPage: perPage) { (response, error) in
+InternalAPI.internalListExternalBankAccounts(page: page, perPage: perPage, asset: asset, bankGuid: bankGuid, exchangeGuid: exchangeGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -760,8 +1329,11 @@ InternalAPI.internalListExternalBankAccounts(page: page, perPage: perPage) { (re
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
+ **asset** | **String** | Comma separated assets to list bank accounts for. | [optional] 
+ **bankGuid** | **String** | Comma separated bank_guids to list bank accounts for. | [optional] 
+ **exchangeGuid** | **String** | Comma separated exchange_guids to list bank accounts for. | [optional] 
 
 ### Return type
 
@@ -780,7 +1352,7 @@ Name | Type | Description  | Notes
 
 # **internalListExternalWallets**
 ```swift
-    open class func internalListExternalWallets(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalExternalWalletListBankModel?, _ error: Error?) -> Void)
+    open class func internalListExternalWallets(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, exchangeGuid: String? = nil, completion: @escaping (_ data: InternalExternalWalletListBankModel?, _ error: Error?) -> Void)
 ```
 
 List ExternalWallets
@@ -792,11 +1364,13 @@ Retrieves a listing of external wallets.  Required scope: **internal:accounts:re
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
+let asset = "asset_example" // String | Comma separated assets to list wallets for. (optional)
+let exchangeGuid = "exchangeGuid_example" // String | Comma separated exchange_guids to list wallets for. (optional)
 
 // List ExternalWallets
-InternalAPI.internalListExternalWallets(page: page, perPage: perPage) { (response, error) in
+InternalAPI.internalListExternalWallets(page: page, perPage: perPage, asset: asset, exchangeGuid: exchangeGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -812,8 +1386,10 @@ InternalAPI.internalListExternalWallets(page: page, perPage: perPage) { (respons
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
+ **asset** | **String** | Comma separated assets to list wallets for. | [optional] 
+ **exchangeGuid** | **String** | Comma separated exchange_guids to list wallets for. | [optional] 
 
 ### Return type
 
@@ -832,7 +1408,7 @@ Name | Type | Description  | Notes
 
 # **internalListInternalBankAccounts**
 ```swift
-    open class func internalListInternalBankAccounts(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalInternalBankAccountListBankModel?, _ error: Error?) -> Void)
+    open class func internalListInternalBankAccounts(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, accountKind: String? = nil, completion: @escaping (_ data: InternalInternalBankAccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List InternalBankAccounts
@@ -844,11 +1420,13 @@ Retrieves a listing of internal bank accounts.  Required scope: **internal:accou
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
+let asset = "asset_example" // String | Comma separated assets to list bank accounts for. (optional)
+let accountKind = "accountKind_example" // String | Comma separated account kinds to list bank accounts for. (optional)
 
 // List InternalBankAccounts
-InternalAPI.internalListInternalBankAccounts(page: page, perPage: perPage) { (response, error) in
+InternalAPI.internalListInternalBankAccounts(page: page, perPage: perPage, asset: asset, accountKind: accountKind) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -864,8 +1442,10 @@ InternalAPI.internalListInternalBankAccounts(page: page, perPage: perPage) { (re
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
+ **asset** | **String** | Comma separated assets to list bank accounts for. | [optional] 
+ **accountKind** | **String** | Comma separated account kinds to list bank accounts for. | [optional] 
 
 ### Return type
 
@@ -884,7 +1464,7 @@ Name | Type | Description  | Notes
 
 # **internalListInternalWallets**
 ```swift
-    open class func internalListInternalWallets(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalInternalWalletListBankModel?, _ error: Error?) -> Void)
+    open class func internalListInternalWallets(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, completion: @escaping (_ data: InternalInternalWalletListBankModel?, _ error: Error?) -> Void)
 ```
 
 List InternalWallets
@@ -896,11 +1476,12 @@ Retrieves a listing of internal wallets.  Required scope: **internal:accounts:re
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
+let asset = "asset_example" // String | Comma separated assets to list wallets for. (optional)
 
 // List InternalWallets
-InternalAPI.internalListInternalWallets(page: page, perPage: perPage) { (response, error) in
+InternalAPI.internalListInternalWallets(page: page, perPage: perPage, asset: asset) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -916,12 +1497,71 @@ InternalAPI.internalListInternalWallets(page: page, perPage: perPage) { (respons
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
+ **asset** | **String** | Comma separated assets to list wallets for. | [optional] 
 
 ### Return type
 
 [**InternalInternalWalletListBankModel**](InternalInternalWalletListBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalListTransactions**
+```swift
+    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: [InternalTransactionBankModel]?, _ error: Error?) -> Void)
+```
+
+List Transactions
+
+Retrieves a listing of transactions.  Required scope: **internal:transfers:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let environment = "environment_example" // String | 
+let accountGuid = "accountGuid_example" // String | 
+let accountType = "accountType_example" // String | 
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
+
+// List Transactions
+InternalAPI.internalListTransactions(environment: environment, accountGuid: accountGuid, accountType: accountType, page: page, perPage: perPage) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **environment** | **String** |  | 
+ **accountGuid** | **String** |  | 
+ **accountType** | **String** |  | 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
+
+### Return type
+
+[**[InternalTransactionBankModel]**](InternalTransactionBankModel.md)
 
 ### Authorization
 

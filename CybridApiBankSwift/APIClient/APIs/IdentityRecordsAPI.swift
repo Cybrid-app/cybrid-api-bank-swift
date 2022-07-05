@@ -119,8 +119,8 @@ import AnyCodable
      List Identity Records
      
      - parameter customerGuid: (query) Comma separated customer identifier to list identity records for. (optional)
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -147,8 +147,8 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter customerGuid: (query) Comma separated customer identifier to list identity records for. (optional)
-     - parameter page: (query)  (optional, default to 0)
-     - parameter perPage: (query)  (optional, default to 10)
+     - parameter page: (query)  (optional)
+     - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<IdentityRecordListBankModel> 
      */
     open class func listIdentityRecordsWithRequestBuilder(customerGuid: String? = nil, page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<IdentityRecordListBankModel> {

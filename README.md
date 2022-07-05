@@ -114,10 +114,17 @@ Class | Method | HTTP request | Description
 *IdentityRecordsAPI* | [**createIdentityRecord**](docs/IdentityRecordsAPI.md#createidentityrecord) | **POST** /api/identity_records | Create Identity Record
 *IdentityRecordsAPI* | [**getIdentityRecord**](docs/IdentityRecordsAPI.md#getidentityrecord) | **GET** /api/identity_records/{identity_record_guid} | Get Identity Record
 *IdentityRecordsAPI* | [**listIdentityRecords**](docs/IdentityRecordsAPI.md#listidentityrecords) | **GET** /api/identity_records | List Identity Records
+*InternalAPI* | [**internalClaimExchangeSettlementExpectedPayment**](docs/InternalAPI.md#internalclaimexchangesettlementexpectedpayment) | **POST** /api/internal/exchange_settlement_expected_payments/{guid}/claim | Claim Exchange Settlement Expected Payment
+*InternalAPI* | [**internalClaimExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
 *InternalAPI* | [**internalCreateAccount**](docs/InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
 *InternalAPI* | [**internalCreateCybridAccount**](docs/InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 *InternalAPI* | [**internalCreateExchange**](docs/InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
 *InternalAPI* | [**internalCreateExchangeAccount**](docs/InternalAPI.md#internalcreateexchangeaccount) | **POST** /api/internal/exchange_accounts | Create ExchangeAccount
+*InternalAPI* | [**internalCreateExchangeSettlement**](docs/InternalAPI.md#internalcreateexchangesettlement) | **POST** /api/internal/exchange_settlements | Create Exchange Settlement
+*InternalAPI* | [**internalCreateExchangeSettlementApproval**](docs/InternalAPI.md#internalcreateexchangesettlementapproval) | **POST** /api/internal/exchange_settlements/{guid}/approval | Create Exchange Settlement Approval
+*InternalAPI* | [**internalCreateExchangeSettlementCompletion**](docs/InternalAPI.md#internalcreateexchangesettlementcompletion) | **POST** /api/internal/exchange_settlements/{guid}/completion | Create Exchange Settlement Completion
+*InternalAPI* | [**internalCreateExchangeSettlementExpectedPayment**](docs/InternalAPI.md#internalcreateexchangesettlementexpectedpayment) | **POST** /api/internal/exchange_settlement_expected_payments | Create Exchange Settlement Expected Payment
+*InternalAPI* | [**internalCreateExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalcreateexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders | Create Exchange Settlement Payment Order
 *InternalAPI* | [**internalCreateExternalBankAccount**](docs/InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 *InternalAPI* | [**internalCreateExternalWallet**](docs/InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
 *InternalAPI* | [**internalCreateInternalBankAccount**](docs/InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
@@ -127,11 +134,16 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 *InternalAPI* | [**internalGetExchange**](docs/InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 *InternalAPI* | [**internalGetExchangeAccount**](docs/InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
+*InternalAPI* | [**internalGetExchangeSettlement**](docs/InternalAPI.md#internalgetexchangesettlement) | **GET** /api/internal/exchange_settlements/{guid} | Get Exchange Settlement
+*InternalAPI* | [**internalGetExchangeSettlementExpectedPayment**](docs/InternalAPI.md#internalgetexchangesettlementexpectedpayment) | **GET** /api/internal/exchange_settlement_expected_payments/{guid} | Get Exchange Settlement Expected Payment
+*InternalAPI* | [**internalGetExchangeSettlementObligation**](docs/InternalAPI.md#internalgetexchangesettlementobligation) | **GET** /api/internal/exchange_settlement_obligations/{guid} | Get Exchange Settlement Obligation
+*InternalAPI* | [**internalGetExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
 *InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 *InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 *InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
 *InternalAPI* | [**internalListInternalBankAccounts**](docs/InternalAPI.md#internallistinternalbankaccounts) | **GET** /api/internal/internal_bank_accounts | List InternalBankAccounts
 *InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
+*InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
@@ -164,9 +176,14 @@ Class | Method | HTTP request | Description
  - [ExchangeAccountBankModel](docs/ExchangeAccountBankModel.md)
  - [ExchangeBankModel](docs/ExchangeBankModel.md)
  - [ExchangeListBankModel](docs/ExchangeListBankModel.md)
+ - [ExchangeSettlementBankModel](docs/ExchangeSettlementBankModel.md)
+ - [ExchangeSettlementExpectedPaymentBankModel](docs/ExchangeSettlementExpectedPaymentBankModel.md)
+ - [ExchangeSettlementObligationBankModel](docs/ExchangeSettlementObligationBankModel.md)
+ - [ExchangeSettlementPaymentOrderBankModel](docs/ExchangeSettlementPaymentOrderBankModel.md)
  - [FeeBankModel](docs/FeeBankModel.md)
  - [IdentityRecordBankModel](docs/IdentityRecordBankModel.md)
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
+ - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
  - [InternalExternalBankAccountBankModel](docs/InternalExternalBankAccountBankModel.md)
  - [InternalExternalBankAccountListBankModel](docs/InternalExternalBankAccountListBankModel.md)
  - [InternalExternalWalletBankModel](docs/InternalExternalWalletBankModel.md)
@@ -175,6 +192,7 @@ Class | Method | HTTP request | Description
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
  - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
  - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
+ - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
@@ -182,14 +200,20 @@ Class | Method | HTTP request | Description
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
  - [PostInternalAccountBankModel](docs/PostInternalAccountBankModel.md)
+ - [PostInternalClaimExchangeSettlementExpectedPaymentBankModel](docs/PostInternalClaimExchangeSettlementExpectedPaymentBankModel.md)
+ - [PostInternalClaimExchangeSettlementPaymentOrderBankModel](docs/PostInternalClaimExchangeSettlementPaymentOrderBankModel.md)
  - [PostInternalCybridAccountBankModel](docs/PostInternalCybridAccountBankModel.md)
  - [PostInternalExchangeAccountBankModel](docs/PostInternalExchangeAccountBankModel.md)
  - [PostInternalExchangeBankModel](docs/PostInternalExchangeBankModel.md)
+ - [PostInternalExchangeSettlementBankModel](docs/PostInternalExchangeSettlementBankModel.md)
+ - [PostInternalExchangeSettlementExpectedPaymentBankModel](docs/PostInternalExchangeSettlementExpectedPaymentBankModel.md)
+ - [PostInternalExchangeSettlementPaymentOrderBankModel](docs/PostInternalExchangeSettlementPaymentOrderBankModel.md)
  - [PostInternalExternalBankAccountBankModel](docs/PostInternalExternalBankAccountBankModel.md)
  - [PostInternalExternalWalletBankModel](docs/PostInternalExternalWalletBankModel.md)
  - [PostInternalInternalBankAccountBankModel](docs/PostInternalInternalBankAccountBankModel.md)
  - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
  - [PostInternalSystemAccountBankModel](docs/PostInternalSystemAccountBankModel.md)
+ - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)
  - [PostTradingConfigurationBankModel](docs/PostTradingConfigurationBankModel.md)

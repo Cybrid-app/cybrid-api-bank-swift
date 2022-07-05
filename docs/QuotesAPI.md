@@ -123,8 +123,8 @@ Retrieves a listing of quotes for all customers of a bank.  Required scope: **qu
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional) (default to 0)
-let perPage = 987 // Int |  (optional) (default to 10)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 let guid = "guid_example" // String | Comma separated quote_guids to list quotes for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list quotes for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list quotes for. (optional)
@@ -146,8 +146,8 @@ QuotesAPI.listQuotes(page: page, perPage: perPage, guid: guid, bankGuid: bankGui
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] [default to 0]
- **perPage** | **Int** |  | [optional] [default to 10]
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
  **guid** | **String** | Comma separated quote_guids to list quotes for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list quotes for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list quotes for. | [optional] 
