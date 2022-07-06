@@ -554,7 +554,7 @@ Create an Exchange Settlement Payment Orders.  Required scope: **internal:exchan
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInternalExchangeSettlementPaymentOrderBankModel = PostInternalExchangeSettlementPaymentOrder(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: 123, paymentAmount: 123, internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", externalAccountGuid: "externalAccountGuid_example", externalAccountType: "externalAccountType_example") // PostInternalExchangeSettlementPaymentOrderBankModel | 
+let postInternalExchangeSettlementPaymentOrderBankModel = PostInternalExchangeSettlementPaymentOrder(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: 123, paymentAmount: 123, expectedState: "expectedState_example", internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", externalAccountGuid: "externalAccountGuid_example", externalAccountType: "externalAccountType_example") // PostInternalExchangeSettlementPaymentOrderBankModel | 
 
 // Create Exchange Settlement Payment Order
 InternalAPI.internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: postInternalExchangeSettlementPaymentOrderBankModel) { (response, error) in

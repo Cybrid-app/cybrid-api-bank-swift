@@ -12,6 +12,15 @@ import AnyCodable
 
 @objc public class PostInternalExchangeSettlementPaymentOrderBankModel: NSObject, Codable, JSONEncodable {
 
+    public enum ExpectedStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case pending = "pending"
+        case inProgress = "in_progress"
+        case completed = "completed"
+        case failed = "failed"
+        case cancelled = "cancelled"
+        case manualIntervention = "manual_intervention"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum InternalAccountTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case wallet = "internal_wallet"
         case bankAccount = "internal_bank_account"
@@ -30,6 +39,8 @@ import AnyCodable
     public var sequenceNumber: Int
     /** The amount expected to be received as part of this payment. */
     public var paymentAmount: Int
+    /** The expected state of the underlying money transfer for the payment order (sandbox only) */
+    public var expectedState: ExpectedStateBankModel?
     /** The identifier of the internal account that is expected to originate the payment. */
     public var internalAccountGuid: String
     /** The type of the internal account that is expected to originate the payment. */
@@ -39,11 +50,12 @@ import AnyCodable
     /** The type of the external account that is expected to receive the payment. */
     public var externalAccountType: ExternalAccountTypeBankModel
 
-    public init(exchangeSettlementGuid: String, exchangeSettlementObligationGuid: String, sequenceNumber: Int, paymentAmount: Int, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, externalAccountGuid: String, externalAccountType: ExternalAccountTypeBankModel) {
+    public init(exchangeSettlementGuid: String, exchangeSettlementObligationGuid: String, sequenceNumber: Int, paymentAmount: Int, expectedState: ExpectedStateBankModel? = nil, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, externalAccountGuid: String, externalAccountType: ExternalAccountTypeBankModel) {
         self.exchangeSettlementGuid = exchangeSettlementGuid
         self.exchangeSettlementObligationGuid = exchangeSettlementObligationGuid
         self.sequenceNumber = sequenceNumber
         self.paymentAmount = paymentAmount
+        self.expectedState = expectedState
         self.internalAccountGuid = internalAccountGuid
         self.internalAccountType = internalAccountType
         self.externalAccountGuid = externalAccountGuid
@@ -55,6 +67,7 @@ import AnyCodable
         case exchangeSettlementObligationGuid = "exchange_settlement_obligation_guid"
         case sequenceNumber = "sequence_number"
         case paymentAmount = "payment_amount"
+        case expectedState = "expected_state"
         case internalAccountGuid = "internal_account_guid"
         case internalAccountType = "internal_account_type"
         case externalAccountGuid = "external_account_guid"
@@ -69,6 +82,7 @@ import AnyCodable
         try container.encode(exchangeSettlementObligationGuid, forKey: .exchangeSettlementObligationGuid)
         try container.encode(sequenceNumber, forKey: .sequenceNumber)
         try container.encode(paymentAmount, forKey: .paymentAmount)
+        try container.encodeIfPresent(expectedState, forKey: .expectedState)
         try container.encode(internalAccountGuid, forKey: .internalAccountGuid)
         try container.encode(internalAccountType, forKey: .internalAccountType)
         try container.encode(externalAccountGuid, forKey: .externalAccountGuid)
