@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **organizationGuid** | **String** | The organization&#39;s identifier. | 
 **name** | **String** | The bank&#39;s name. | 
 **type** | **String** | The bank&#39;s type. | 
-**supportedFiatAssets** | **[String]** | The bank&#39;s list of supported fiat assets. | [optional] 
+**supportedTradingSymbols** | **[String]** | The bank&#39;s list of supported trading symbols. | [optional] 
 **features** | **[String]** | The bank&#39;s enabled features. | 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | 
 
