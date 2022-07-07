@@ -26,22 +26,22 @@ import AnyCodable
     public var name: String
     /** The bank's type. At present, only **sandbox** is supported. */
     public var type: TypeBankModel
-    /** The bank's list of supported fiat assets. */
-    public var supportedFiatAssets: [String]
+    /** The bank's list of supported trading symbols. */
+    public var supportedTradingSymbols: [String]
     /** The bank's enabled features. At present, both **attestation_identity_records** and **backstopped_funding_source** must be set. */
     public var features: [FeaturesBankModel]
 
-    public init(name: String, type: TypeBankModel, supportedFiatAssets: [String], features: [FeaturesBankModel]) {
+    public init(name: String, type: TypeBankModel, supportedTradingSymbols: [String], features: [FeaturesBankModel]) {
         self.name = name
         self.type = type
-        self.supportedFiatAssets = supportedFiatAssets
+        self.supportedTradingSymbols = supportedTradingSymbols
         self.features = features
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case type
-        case supportedFiatAssets = "supported_fiat_assets"
+        case supportedTradingSymbols = "supported_trading_symbols"
         case features
     }
 
@@ -51,7 +51,7 @@ import AnyCodable
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
-        try container.encode(supportedFiatAssets, forKey: .supportedFiatAssets)
+        try container.encode(supportedTradingSymbols, forKey: .supportedTradingSymbols)
         try container.encode(features, forKey: .features)
     }
 }

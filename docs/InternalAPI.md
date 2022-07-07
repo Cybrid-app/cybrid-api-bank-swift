@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 [**internalCreateSystemAccount**](InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 [**internalCreateTradingConfiguration**](InternalAPI.md#internalcreatetradingconfiguration) | **POST** /api/internal/trading_configurations | Create TradingConfiguration
+[**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 [**internalGetExchange**](InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 [**internalGetExchangeAccount**](InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
@@ -878,6 +879,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TradingConfigurationBankModel**](TradingConfigurationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateTradingSymbolConfiguration**
+```swift
+    open class func internalCreateTradingSymbolConfiguration(postInternalTradingSymbolConfigurationBankModel: PostInternalTradingSymbolConfigurationBankModel, completion: @escaping (_ data: InternalTradingSymbolConfigurationBankModel?, _ error: Error?) -> Void)
+```
+
+Create TradingSymbolConfiguration
+
+Creates a trading symbol configuration.  Required scope: **internal:banks:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalTradingSymbolConfigurationBankModel = PostInternalTradingSymbolConfiguration(type: "type_example", environment: "environment_example", bankGuid: "bankGuid_example", enabled: false, symbol: "symbol_example") // PostInternalTradingSymbolConfigurationBankModel | 
+
+// Create TradingSymbolConfiguration
+InternalAPI.internalCreateTradingSymbolConfiguration(postInternalTradingSymbolConfigurationBankModel: postInternalTradingSymbolConfigurationBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalTradingSymbolConfigurationBankModel** | [**PostInternalTradingSymbolConfigurationBankModel**](PostInternalTradingSymbolConfigurationBankModel.md) |  | 
+
+### Return type
+
+[**InternalTradingSymbolConfigurationBankModel**](InternalTradingSymbolConfigurationBankModel.md)
 
 ### Authorization
 

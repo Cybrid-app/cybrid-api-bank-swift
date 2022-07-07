@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 *BanksAPI* | [**createBank**](docs/BanksAPI.md#createbank) | **POST** /api/banks | Create Bank
 *BanksAPI* | [**getBank**](docs/BanksAPI.md#getbank) | **GET** /api/banks/{bank_guid} | Get Bank
 *BanksAPI* | [**listBanks**](docs/BanksAPI.md#listbanks) | **GET** /api/banks | Get banks list
+*BanksAPI* | [**updateBank**](docs/BanksAPI.md#updatebank) | **PATCH** /api/banks/{bank_guid} | Patch Bank
 *CustomersAPI* | [**createCustomer**](docs/CustomersAPI.md#createcustomer) | **POST** /api/customers | Create Customer
 *CustomersAPI* | [**getCustomer**](docs/CustomersAPI.md#getcustomer) | **GET** /api/customers/{customer_guid} | Get Customer
 *CustomersAPI* | [**listCustomers**](docs/CustomersAPI.md#listcustomers) | **GET** /api/customers | Get customers list
@@ -131,6 +132,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 *InternalAPI* | [**internalCreateSystemAccount**](docs/InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 *InternalAPI* | [**internalCreateTradingConfiguration**](docs/InternalAPI.md#internalcreatetradingconfiguration) | **POST** /api/internal/trading_configurations | Create TradingConfiguration
+*InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 *InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 *InternalAPI* | [**internalGetExchange**](docs/InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 *InternalAPI* | [**internalGetExchangeAccount**](docs/InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
@@ -192,7 +194,9 @@ Class | Method | HTTP request | Description
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
  - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
  - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
+ - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
+ - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
@@ -214,6 +218,7 @@ Class | Method | HTTP request | Description
  - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
  - [PostInternalSystemAccountBankModel](docs/PostInternalSystemAccountBankModel.md)
  - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
+ - [PostInternalTradingSymbolConfigurationBankModel](docs/PostInternalTradingSymbolConfigurationBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)
  - [PostTradingConfigurationBankModel](docs/PostTradingConfigurationBankModel.md)

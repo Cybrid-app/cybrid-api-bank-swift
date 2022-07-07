@@ -879,6 +879,56 @@ import AnyCodable
     }
 
     /**
+     Create TradingSymbolConfiguration
+     
+     - parameter postInternalTradingSymbolConfigurationBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateTradingSymbolConfiguration(postInternalTradingSymbolConfigurationBankModel: PostInternalTradingSymbolConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalTradingSymbolConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateTradingSymbolConfigurationWithRequestBuilder(postInternalTradingSymbolConfigurationBankModel: postInternalTradingSymbolConfigurationBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create TradingSymbolConfiguration
+     - POST /api/internal/trading_symbol_configurations
+     - Creates a trading symbol configuration.  Required scope: **internal:banks:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalTradingSymbolConfigurationBankModel: (body)  
+     - returns: RequestBuilder<InternalTradingSymbolConfigurationBankModel> 
+     */
+    open class func internalCreateTradingSymbolConfigurationWithRequestBuilder(postInternalTradingSymbolConfigurationBankModel: PostInternalTradingSymbolConfigurationBankModel) -> RequestBuilder<InternalTradingSymbolConfigurationBankModel> {
+        let localVariablePath = "/api/internal/trading_symbol_configurations"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalTradingSymbolConfigurationBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalTradingSymbolConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get CybridAccount
      
      - parameter accountGuid: (path) Identifier for the Cybrid account. 

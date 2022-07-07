@@ -30,19 +30,19 @@ import AnyCodable
     public var name: String
     /** The bank's type. */
     public var type: TypeBankModel
-    /** The bank's list of supported fiat assets. */
-    public var supportedFiatAssets: [String]?
+    /** The bank's list of supported trading symbols. */
+    public var supportedTradingSymbols: [String]?
     /** The bank's enabled features. */
     public var features: [FeaturesBankModel]
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date
 
-    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedFiatAssets: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
+    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
         self.type = type
-        self.supportedFiatAssets = supportedFiatAssets
+        self.supportedTradingSymbols = supportedTradingSymbols
         self.features = features
         self.createdAt = createdAt
     }
@@ -52,7 +52,7 @@ import AnyCodable
         case organizationGuid = "organization_guid"
         case name
         case type
-        case supportedFiatAssets = "supported_fiat_assets"
+        case supportedTradingSymbols = "supported_trading_symbols"
         case features
         case createdAt = "created_at"
     }
@@ -65,7 +65,7 @@ import AnyCodable
         try container.encode(organizationGuid, forKey: .organizationGuid)
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(supportedFiatAssets, forKey: .supportedFiatAssets)
+        try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
         try container.encode(features, forKey: .features)
         try container.encode(createdAt, forKey: .createdAt)
     }
