@@ -1,4 +1,4 @@
-# CybridAccountBankModel
+# InternalCybridAccountBankModel
 
 ## Properties
 Name | Type | Description | Notes

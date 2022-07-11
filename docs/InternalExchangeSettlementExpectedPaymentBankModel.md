@@ -1,4 +1,4 @@
-# ExchangeSettlementExpectedPaymentBankModel
+# InternalExchangeSettlementExpectedPaymentBankModel
 
 ## Properties
 Name | Type | Description | Notes

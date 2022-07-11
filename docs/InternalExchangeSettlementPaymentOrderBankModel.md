@@ -1,4 +1,4 @@
-# ExchangeSettlementPaymentOrderBankModel
+# InternalExchangeSettlementPaymentOrderBankModel
 
 ## Properties
 Name | Type | Description | Notes

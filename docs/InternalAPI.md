@@ -39,7 +39,7 @@ Method | HTTP request | Description
 
 # **internalClaimExchangeSettlementExpectedPayment**
 ```swift
-    open class func internalClaimExchangeSettlementExpectedPayment(guid: String, postInternalClaimExchangeSettlementExpectedPaymentBankModel: PostInternalClaimExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: ExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
+    open class func internalClaimExchangeSettlementExpectedPayment(guid: String, postInternalClaimExchangeSettlementExpectedPaymentBankModel: PostInternalClaimExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: InternalExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
 ```
 
 Claim Exchange Settlement Expected Payment
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementExpectedPaymentBankModel**](ExchangeSettlementExpectedPaymentBankModel.md)
+[**InternalExchangeSettlementExpectedPaymentBankModel**](InternalExchangeSettlementExpectedPaymentBankModel.md)
 
 ### Authorization
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 # **internalClaimExchangeSettlementPaymentOrder**
 ```swift
-    open class func internalClaimExchangeSettlementPaymentOrder(guid: String, postInternalClaimExchangeSettlementPaymentOrderBankModel: PostInternalClaimExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: ExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
+    open class func internalClaimExchangeSettlementPaymentOrder(guid: String, postInternalClaimExchangeSettlementPaymentOrderBankModel: PostInternalClaimExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: InternalExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
 ```
 
 Claim Exchange Settlement Payment Order
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementPaymentOrderBankModel**](ExchangeSettlementPaymentOrderBankModel.md)
+[**InternalExchangeSettlementPaymentOrderBankModel**](InternalExchangeSettlementPaymentOrderBankModel.md)
 
 ### Authorization
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateCybridAccount**
 ```swift
-    open class func internalCreateCybridAccount(postInternalCybridAccountBankModel: PostInternalCybridAccountBankModel, completion: @escaping (_ data: CybridAccountBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateCybridAccount(postInternalCybridAccountBankModel: PostInternalCybridAccountBankModel, completion: @escaping (_ data: InternalCybridAccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Create CybridAccount
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CybridAccountBankModel**](CybridAccountBankModel.md)
+[**InternalCybridAccountBankModel**](InternalCybridAccountBankModel.md)
 
 ### Authorization
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateExchange**
 ```swift
-    open class func internalCreateExchange(postInternalExchangeBankModel: PostInternalExchangeBankModel, completion: @escaping (_ data: ExchangeBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateExchange(postInternalExchangeBankModel: PostInternalExchangeBankModel, completion: @escaping (_ data: InternalExchangeBankModel?, _ error: Error?) -> Void)
 ```
 
 Create Exchange
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeBankModel**](ExchangeBankModel.md)
+[**InternalExchangeBankModel**](InternalExchangeBankModel.md)
 
 ### Authorization
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateExchangeAccount**
 ```swift
-    open class func internalCreateExchangeAccount(postInternalExchangeAccountBankModel: PostInternalExchangeAccountBankModel, completion: @escaping (_ data: ExchangeAccountBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateExchangeAccount(postInternalExchangeAccountBankModel: PostInternalExchangeAccountBankModel, completion: @escaping (_ data: InternalExchangeAccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Create ExchangeAccount
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeAccountBankModel**](ExchangeAccountBankModel.md)
+[**InternalExchangeAccountBankModel**](InternalExchangeAccountBankModel.md)
 
 ### Authorization
 
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateExchangeSettlement**
 ```swift
-    open class func internalCreateExchangeSettlement(postInternalExchangeSettlementBankModel: PostInternalExchangeSettlementBankModel, completion: @escaping (_ data: ExchangeSettlementBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateExchangeSettlement(postInternalExchangeSettlementBankModel: PostInternalExchangeSettlementBankModel, completion: @escaping (_ data: InternalExchangeSettlementBankModel?, _ error: Error?) -> Void)
 ```
 
 Create Exchange Settlement
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementBankModel**](ExchangeSettlementBankModel.md)
+[**InternalExchangeSettlementBankModel**](InternalExchangeSettlementBankModel.md)
 
 ### Authorization
 
@@ -493,7 +493,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateExchangeSettlementExpectedPayment**
 ```swift
-    open class func internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: PostInternalExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: ExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: PostInternalExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: InternalExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
 ```
 
 Create Exchange Settlement Expected Payment
@@ -528,7 +528,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementExpectedPaymentBankModel**](ExchangeSettlementExpectedPaymentBankModel.md)
+[**InternalExchangeSettlementExpectedPaymentBankModel**](InternalExchangeSettlementExpectedPaymentBankModel.md)
 
 ### Authorization
 
@@ -543,7 +543,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateExchangeSettlementPaymentOrder**
 ```swift
-    open class func internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: PostInternalExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: ExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: PostInternalExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: InternalExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
 ```
 
 Create Exchange Settlement Payment Order
@@ -578,7 +578,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementPaymentOrderBankModel**](ExchangeSettlementPaymentOrderBankModel.md)
+[**InternalExchangeSettlementPaymentOrderBankModel**](InternalExchangeSettlementPaymentOrderBankModel.md)
 
 ### Authorization
 
@@ -793,7 +793,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateSystemAccount**
 ```swift
-    open class func internalCreateSystemAccount(postInternalSystemAccountBankModel: PostInternalSystemAccountBankModel, completion: @escaping (_ data: SystemAccountBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateSystemAccount(postInternalSystemAccountBankModel: PostInternalSystemAccountBankModel, completion: @escaping (_ data: InternalSystemAccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Create SystemAccount
@@ -828,7 +828,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SystemAccountBankModel**](SystemAccountBankModel.md)
+[**InternalSystemAccountBankModel**](InternalSystemAccountBankModel.md)
 
 ### Authorization
 
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 
 # **internalGetCybridAccount**
 ```swift
-    open class func internalGetCybridAccount(accountGuid: String, completion: @escaping (_ data: CybridAccountBankModel?, _ error: Error?) -> Void)
+    open class func internalGetCybridAccount(accountGuid: String, completion: @escaping (_ data: InternalCybridAccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Get CybridAccount
@@ -978,7 +978,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CybridAccountBankModel**](CybridAccountBankModel.md)
+[**InternalCybridAccountBankModel**](InternalCybridAccountBankModel.md)
 
 ### Authorization
 
@@ -993,7 +993,7 @@ Name | Type | Description  | Notes
 
 # **internalGetExchange**
 ```swift
-    open class func internalGetExchange(exchangeGuid: String, completion: @escaping (_ data: ExchangeBankModel?, _ error: Error?) -> Void)
+    open class func internalGetExchange(exchangeGuid: String, completion: @escaping (_ data: InternalExchangeBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Exchange
@@ -1028,7 +1028,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeBankModel**](ExchangeBankModel.md)
+[**InternalExchangeBankModel**](InternalExchangeBankModel.md)
 
 ### Authorization
 
@@ -1043,7 +1043,7 @@ Name | Type | Description  | Notes
 
 # **internalGetExchangeAccount**
 ```swift
-    open class func internalGetExchangeAccount(accountGuid: String, completion: @escaping (_ data: ExchangeAccountBankModel?, _ error: Error?) -> Void)
+    open class func internalGetExchangeAccount(accountGuid: String, completion: @escaping (_ data: InternalExchangeAccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Get ExchangeAccount
@@ -1078,7 +1078,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeAccountBankModel**](ExchangeAccountBankModel.md)
+[**InternalExchangeAccountBankModel**](InternalExchangeAccountBankModel.md)
 
 ### Authorization
 
@@ -1093,7 +1093,7 @@ Name | Type | Description  | Notes
 
 # **internalGetExchangeSettlement**
 ```swift
-    open class func internalGetExchangeSettlement(guid: String, completion: @escaping (_ data: ExchangeSettlementBankModel?, _ error: Error?) -> Void)
+    open class func internalGetExchangeSettlement(guid: String, completion: @escaping (_ data: InternalExchangeSettlementBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Exchange Settlement
@@ -1128,7 +1128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementBankModel**](ExchangeSettlementBankModel.md)
+[**InternalExchangeSettlementBankModel**](InternalExchangeSettlementBankModel.md)
 
 ### Authorization
 
@@ -1143,7 +1143,7 @@ Name | Type | Description  | Notes
 
 # **internalGetExchangeSettlementExpectedPayment**
 ```swift
-    open class func internalGetExchangeSettlementExpectedPayment(guid: String, completion: @escaping (_ data: ExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
+    open class func internalGetExchangeSettlementExpectedPayment(guid: String, completion: @escaping (_ data: InternalExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Exchange Settlement Expected Payment
@@ -1178,7 +1178,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementExpectedPaymentBankModel**](ExchangeSettlementExpectedPaymentBankModel.md)
+[**InternalExchangeSettlementExpectedPaymentBankModel**](InternalExchangeSettlementExpectedPaymentBankModel.md)
 
 ### Authorization
 
@@ -1193,7 +1193,7 @@ Name | Type | Description  | Notes
 
 # **internalGetExchangeSettlementObligation**
 ```swift
-    open class func internalGetExchangeSettlementObligation(guid: String, completion: @escaping (_ data: ExchangeSettlementObligationBankModel?, _ error: Error?) -> Void)
+    open class func internalGetExchangeSettlementObligation(guid: String, completion: @escaping (_ data: InternalExchangeSettlementObligationBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Exchange Settlement Obligation
@@ -1228,7 +1228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementObligationBankModel**](ExchangeSettlementObligationBankModel.md)
+[**InternalExchangeSettlementObligationBankModel**](InternalExchangeSettlementObligationBankModel.md)
 
 ### Authorization
 
@@ -1243,7 +1243,7 @@ Name | Type | Description  | Notes
 
 # **internalGetExchangeSettlementPaymentOrder**
 ```swift
-    open class func internalGetExchangeSettlementPaymentOrder(guid: String, completion: @escaping (_ data: ExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
+    open class func internalGetExchangeSettlementPaymentOrder(guid: String, completion: @escaping (_ data: InternalExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Exchange Settlement Payment Order
@@ -1278,7 +1278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeSettlementPaymentOrderBankModel**](ExchangeSettlementPaymentOrderBankModel.md)
+[**InternalExchangeSettlementPaymentOrderBankModel**](InternalExchangeSettlementPaymentOrderBankModel.md)
 
 ### Authorization
 
@@ -1293,7 +1293,7 @@ Name | Type | Description  | Notes
 
 # **internalListExchanges**
 ```swift
-    open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: ExchangeListBankModel?, _ error: Error?) -> Void)
+    open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalExchangeListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Exchanges
@@ -1330,7 +1330,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExchangeListBankModel**](ExchangeListBankModel.md)
+[**InternalExchangeListBankModel**](InternalExchangeListBankModel.md)
 
 ### Authorization
 

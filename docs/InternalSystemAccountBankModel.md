@@ -1,4 +1,4 @@
-# SystemAccountBankModel
+# InternalSystemAccountBankModel
 
 ## Properties
 Name | Type | Description | Notes

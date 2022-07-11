@@ -1,4 +1,4 @@
-# ExchangeSettlementObligationBankModel
+# InternalExchangeSettlementObligationBankModel
 
 ## Properties
 Name | Type | Description | Notes

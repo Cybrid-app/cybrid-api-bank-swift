@@ -1,4 +1,4 @@
-# ExchangeAccountBankModel
+# InternalExchangeAccountBankModel
 
 ## Properties
 Name | Type | Description | Notes
