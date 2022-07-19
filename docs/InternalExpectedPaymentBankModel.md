@@ -1,11 +1,14 @@
-# InternalExchangeSettlementExpectedPaymentBankModel
+# InternalExpectedPaymentBankModel
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the exchange settlement expected payment. | [optional] 
+**paymentKind** | **String** | The kind of expected payment. | [optional] 
+**environment** | **String** | The environment that the payment is expected in. | [optional] 
 **exchangeSettlementObligationGuid** | **String** | The identifier of the exchange settlement obligation that this payment is associated with. | [optional] 
-**sequenceNumber** | **Int** | The sequence number of the expected payment | [optional] 
+**creditAccountGuid** | **String** | The identifier of the platform account that this payment is associated with. | [optional] 
+**nonce** | **Int** | The nonce of the expected payment | [optional] 
 **paymentAmount** | **Int** | The amount expected to be received as part of this payment. | [optional] 
 **internalAccountGuid** | **String** | The identifier of the internal account that is expected to originate the payment. | [optional] 
 **internalAccountType** | **String** | The type of the internal account that is expected to originate the payment. | [optional] 

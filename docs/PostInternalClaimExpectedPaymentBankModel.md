@@ -1,4 +1,4 @@
-# PostInternalClaimExchangeSettlementExpectedPaymentBankModel
+# PostInternalClaimExpectedPaymentBankModel
 
 ## Properties
 Name | Type | Description | Notes

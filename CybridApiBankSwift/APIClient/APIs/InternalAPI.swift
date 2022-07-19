@@ -13,61 +13,6 @@ import AnyCodable
 @objc open class InternalAPI : NSObject {
 
     /**
-     Claim Exchange Settlement Expected Payment
-     
-     - parameter guid: (path) Identifier for the exchange settlement expected payment. 
-     - parameter postInternalClaimExchangeSettlementExpectedPaymentBankModel: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func internalClaimExchangeSettlementExpectedPayment(guid: String, postInternalClaimExchangeSettlementExpectedPaymentBankModel: PostInternalClaimExchangeSettlementExpectedPaymentBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExchangeSettlementExpectedPaymentBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return internalClaimExchangeSettlementExpectedPaymentWithRequestBuilder(guid: guid, postInternalClaimExchangeSettlementExpectedPaymentBankModel: postInternalClaimExchangeSettlementExpectedPaymentBankModel).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Claim Exchange Settlement Expected Payment
-     - POST /api/internal/exchange_settlement_expected_payments/{guid}/claim
-     - Claim an Exchange Settlement Expected Payments.  Required scope: **internal:exchange_settlements:write**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
-     - parameter guid: (path) Identifier for the exchange settlement expected payment. 
-     - parameter postInternalClaimExchangeSettlementExpectedPaymentBankModel: (body)  
-     - returns: RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel> 
-     */
-    open class func internalClaimExchangeSettlementExpectedPaymentWithRequestBuilder(guid: String, postInternalClaimExchangeSettlementExpectedPaymentBankModel: PostInternalClaimExchangeSettlementExpectedPaymentBankModel) -> RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel> {
-        var localVariablePath = "/api/internal/exchange_settlement_expected_payments/{guid}/claim"
-        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
-        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
-        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalClaimExchangeSettlementExpectedPaymentBankModel)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Claim Exchange Settlement Payment Order
      
      - parameter guid: (path) Identifier for the exchange settlement expected payment. 
@@ -118,6 +63,61 @@ import AnyCodable
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<InternalExchangeSettlementPaymentOrderBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Claim Expected Payment
+     
+     - parameter guid: (path) Identifier for the expected payment. 
+     - parameter postInternalClaimExpectedPaymentBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalClaimExpectedPayment(guid: String, postInternalClaimExpectedPaymentBankModel: PostInternalClaimExpectedPaymentBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExpectedPaymentBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalClaimExpectedPaymentWithRequestBuilder(guid: guid, postInternalClaimExpectedPaymentBankModel: postInternalClaimExpectedPaymentBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Claim Expected Payment
+     - POST /api/internal/expected_payments/{guid}/claim
+     - Claim an Expected Payments.  Required scope: **internal:exchange_settlements:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter guid: (path) Identifier for the expected payment. 
+     - parameter postInternalClaimExpectedPaymentBankModel: (body)  
+     - returns: RequestBuilder<InternalExpectedPaymentBankModel> 
+     */
+    open class func internalClaimExpectedPaymentWithRequestBuilder(guid: String, postInternalClaimExpectedPaymentBankModel: PostInternalClaimExpectedPaymentBankModel) -> RequestBuilder<InternalExpectedPaymentBankModel> {
+        var localVariablePath = "/api/internal/expected_payments/{guid}/claim"
+        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
+        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalClaimExpectedPaymentBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalExpectedPaymentBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -479,56 +479,6 @@ import AnyCodable
     }
 
     /**
-     Create Exchange Settlement Expected Payment
-     
-     - parameter postInternalExchangeSettlementExpectedPaymentBankModel: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: PostInternalExchangeSettlementExpectedPaymentBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExchangeSettlementExpectedPaymentBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return internalCreateExchangeSettlementExpectedPaymentWithRequestBuilder(postInternalExchangeSettlementExpectedPaymentBankModel: postInternalExchangeSettlementExpectedPaymentBankModel).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Create Exchange Settlement Expected Payment
-     - POST /api/internal/exchange_settlement_expected_payments
-     - Create an Exchange Settlement Expected Payments.  Required scope: **internal:exchange_settlements:execute**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
-     - parameter postInternalExchangeSettlementExpectedPaymentBankModel: (body)  
-     - returns: RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel> 
-     */
-    open class func internalCreateExchangeSettlementExpectedPaymentWithRequestBuilder(postInternalExchangeSettlementExpectedPaymentBankModel: PostInternalExchangeSettlementExpectedPaymentBankModel) -> RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel> {
-        let localVariablePath = "/api/internal/exchange_settlement_expected_payments"
-        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalExchangeSettlementExpectedPaymentBankModel)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Create Exchange Settlement Payment Order
      
      - parameter postInternalExchangeSettlementPaymentOrderBankModel: (body)  
@@ -574,6 +524,56 @@ import AnyCodable
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<InternalExchangeSettlementPaymentOrderBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Create Expected Payment
+     
+     - parameter postInternalExpectedPaymentBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateExpectedPayment(postInternalExpectedPaymentBankModel: PostInternalExpectedPaymentBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExpectedPaymentBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateExpectedPaymentWithRequestBuilder(postInternalExpectedPaymentBankModel: postInternalExpectedPaymentBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create Expected Payment
+     - POST /api/internal/expected_payments
+     - Create an Expected Payments.  Required scope: **internal:exchange_settlements:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalExpectedPaymentBankModel: (body)  
+     - returns: RequestBuilder<InternalExpectedPaymentBankModel> 
+     */
+    open class func internalCreateExpectedPaymentWithRequestBuilder(postInternalExpectedPaymentBankModel: PostInternalExpectedPaymentBankModel) -> RequestBuilder<InternalExpectedPaymentBankModel> {
+        let localVariablePath = "/api/internal/expected_payments"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalExpectedPaymentBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalExpectedPaymentBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -1141,59 +1141,6 @@ import AnyCodable
     }
 
     /**
-     Get Exchange Settlement Expected Payment
-     
-     - parameter guid: (path) Identifier for the exchange settlement expected payment. 
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func internalGetExchangeSettlementExpectedPayment(guid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExchangeSettlementExpectedPaymentBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return internalGetExchangeSettlementExpectedPaymentWithRequestBuilder(guid: guid).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Get Exchange Settlement Expected Payment
-     - GET /api/internal/exchange_settlement_expected_payments/{guid}
-     - Get an Exchange Settlement Expected Payment.  Required scope: **internal:exchange_settlements:read**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
-     - parameter guid: (path) Identifier for the exchange settlement expected payment. 
-     - returns: RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel> 
-     */
-    open class func internalGetExchangeSettlementExpectedPaymentWithRequestBuilder(guid: String) -> RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel> {
-        var localVariablePath = "/api/internal/exchange_settlement_expected_payments/{guid}"
-        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
-        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
-        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<InternalExchangeSettlementExpectedPaymentBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Get Exchange Settlement Obligation
      
      - parameter guid: (path) Identifier for the exchange settlement obligation. 
@@ -1295,6 +1242,59 @@ import AnyCodable
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<InternalExchangeSettlementPaymentOrderBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Get Expected Payment
+     
+     - parameter guid: (path) Identifier for the expected payment. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalGetExpectedPayment(guid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExpectedPaymentBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalGetExpectedPaymentWithRequestBuilder(guid: guid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get Expected Payment
+     - GET /api/internal/expected_payments/{guid}
+     - Get an Expected Payment.  Required scope: **internal:exchange_settlements:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter guid: (path) Identifier for the expected payment. 
+     - returns: RequestBuilder<InternalExpectedPaymentBankModel> 
+     */
+    open class func internalGetExpectedPaymentWithRequestBuilder(guid: String) -> RequestBuilder<InternalExpectedPaymentBankModel> {
+        var localVariablePath = "/api/internal/expected_payments/{guid}"
+        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
+        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalExpectedPaymentBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

@@ -4,8 +4,8 @@ All URIs are relative to *http://api-bank.cybrid.local*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**internalClaimExchangeSettlementExpectedPayment**](InternalAPI.md#internalclaimexchangesettlementexpectedpayment) | **POST** /api/internal/exchange_settlement_expected_payments/{guid}/claim | Claim Exchange Settlement Expected Payment
 [**internalClaimExchangeSettlementPaymentOrder**](InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
+[**internalClaimExpectedPayment**](InternalAPI.md#internalclaimexpectedpayment) | **POST** /api/internal/expected_payments/{guid}/claim | Claim Expected Payment
 [**internalCreateAccount**](InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
 [**internalCreateCybridAccount**](InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 [**internalCreateExchange**](InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
@@ -13,8 +13,8 @@ Method | HTTP request | Description
 [**internalCreateExchangeSettlement**](InternalAPI.md#internalcreateexchangesettlement) | **POST** /api/internal/exchange_settlements | Create Exchange Settlement
 [**internalCreateExchangeSettlementApproval**](InternalAPI.md#internalcreateexchangesettlementapproval) | **POST** /api/internal/exchange_settlements/{guid}/approval | Create Exchange Settlement Approval
 [**internalCreateExchangeSettlementCompletion**](InternalAPI.md#internalcreateexchangesettlementcompletion) | **POST** /api/internal/exchange_settlements/{guid}/completion | Create Exchange Settlement Completion
-[**internalCreateExchangeSettlementExpectedPayment**](InternalAPI.md#internalcreateexchangesettlementexpectedpayment) | **POST** /api/internal/exchange_settlement_expected_payments | Create Exchange Settlement Expected Payment
 [**internalCreateExchangeSettlementPaymentOrder**](InternalAPI.md#internalcreateexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders | Create Exchange Settlement Payment Order
+[**internalCreateExpectedPayment**](InternalAPI.md#internalcreateexpectedpayment) | **POST** /api/internal/expected_payments | Create Expected Payment
 [**internalCreateExternalBankAccount**](InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 [**internalCreateExternalWallet**](InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
 [**internalCreateInternalBankAccount**](InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
@@ -26,9 +26,9 @@ Method | HTTP request | Description
 [**internalGetExchange**](InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 [**internalGetExchangeAccount**](InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
 [**internalGetExchangeSettlement**](InternalAPI.md#internalgetexchangesettlement) | **GET** /api/internal/exchange_settlements/{guid} | Get Exchange Settlement
-[**internalGetExchangeSettlementExpectedPayment**](InternalAPI.md#internalgetexchangesettlementexpectedpayment) | **GET** /api/internal/exchange_settlement_expected_payments/{guid} | Get Exchange Settlement Expected Payment
 [**internalGetExchangeSettlementObligation**](InternalAPI.md#internalgetexchangesettlementobligation) | **GET** /api/internal/exchange_settlement_obligations/{guid} | Get Exchange Settlement Obligation
 [**internalGetExchangeSettlementPaymentOrder**](InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
+[**internalGetExpectedPayment**](InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
 [**internalListExchanges**](InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 [**internalListExternalBankAccounts**](InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 [**internalListExternalWallets**](InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -36,58 +36,6 @@ Method | HTTP request | Description
 [**internalListInternalWallets**](InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 
-
-# **internalClaimExchangeSettlementExpectedPayment**
-```swift
-    open class func internalClaimExchangeSettlementExpectedPayment(guid: String, postInternalClaimExchangeSettlementExpectedPaymentBankModel: PostInternalClaimExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: InternalExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
-```
-
-Claim Exchange Settlement Expected Payment
-
-Claim an Exchange Settlement Expected Payments.  Required scope: **internal:exchange_settlements:write**
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import CybridApiBankSwift
-
-let guid = "guid_example" // String | Identifier for the exchange settlement expected payment.
-let postInternalClaimExchangeSettlementExpectedPaymentBankModel = PostInternalClaimExchangeSettlementExpectedPayment(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: 123, assetCode: "assetCode_example", direction: "direction_example", _description: "_description_example")) // PostInternalClaimExchangeSettlementExpectedPaymentBankModel | 
-
-// Claim Exchange Settlement Expected Payment
-InternalAPI.internalClaimExchangeSettlementExpectedPayment(guid: guid, postInternalClaimExchangeSettlementExpectedPaymentBankModel: postInternalClaimExchangeSettlementExpectedPaymentBankModel) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **guid** | **String** | Identifier for the exchange settlement expected payment. | 
- **postInternalClaimExchangeSettlementExpectedPaymentBankModel** | [**PostInternalClaimExchangeSettlementExpectedPaymentBankModel**](PostInternalClaimExchangeSettlementExpectedPaymentBankModel.md) |  | 
-
-### Return type
-
-[**InternalExchangeSettlementExpectedPaymentBankModel**](InternalExchangeSettlementExpectedPaymentBankModel.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **internalClaimExchangeSettlementPaymentOrder**
 ```swift
@@ -129,6 +77,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalExchangeSettlementPaymentOrderBankModel**](InternalExchangeSettlementPaymentOrderBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalClaimExpectedPayment**
+```swift
+    open class func internalClaimExpectedPayment(guid: String, postInternalClaimExpectedPaymentBankModel: PostInternalClaimExpectedPaymentBankModel, completion: @escaping (_ data: InternalExpectedPaymentBankModel?, _ error: Error?) -> Void)
+```
+
+Claim Expected Payment
+
+Claim an Expected Payments.  Required scope: **internal:exchange_settlements:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the expected payment.
+let postInternalClaimExpectedPaymentBankModel = PostInternalClaimExpectedPayment(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: 123, assetCode: "assetCode_example", direction: "direction_example", _description: "_description_example")) // PostInternalClaimExpectedPaymentBankModel | 
+
+// Claim Expected Payment
+InternalAPI.internalClaimExpectedPayment(guid: guid, postInternalClaimExpectedPaymentBankModel: postInternalClaimExpectedPaymentBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the expected payment. | 
+ **postInternalClaimExpectedPaymentBankModel** | [**PostInternalClaimExpectedPaymentBankModel**](PostInternalClaimExpectedPaymentBankModel.md) |  | 
+
+### Return type
+
+[**InternalExpectedPaymentBankModel**](InternalExpectedPaymentBankModel.md)
 
 ### Authorization
 
@@ -491,56 +491,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **internalCreateExchangeSettlementExpectedPayment**
-```swift
-    open class func internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: PostInternalExchangeSettlementExpectedPaymentBankModel, completion: @escaping (_ data: InternalExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
-```
-
-Create Exchange Settlement Expected Payment
-
-Create an Exchange Settlement Expected Payments.  Required scope: **internal:exchange_settlements:execute**
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import CybridApiBankSwift
-
-let postInternalExchangeSettlementExpectedPaymentBankModel = PostInternalExchangeSettlementExpectedPayment(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: 123, paymentAmount: 123, internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example") // PostInternalExchangeSettlementExpectedPaymentBankModel | 
-
-// Create Exchange Settlement Expected Payment
-InternalAPI.internalCreateExchangeSettlementExpectedPayment(postInternalExchangeSettlementExpectedPaymentBankModel: postInternalExchangeSettlementExpectedPaymentBankModel) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **postInternalExchangeSettlementExpectedPaymentBankModel** | [**PostInternalExchangeSettlementExpectedPaymentBankModel**](PostInternalExchangeSettlementExpectedPaymentBankModel.md) |  | 
-
-### Return type
-
-[**InternalExchangeSettlementExpectedPaymentBankModel**](InternalExchangeSettlementExpectedPaymentBankModel.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **internalCreateExchangeSettlementPaymentOrder**
 ```swift
     open class func internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: PostInternalExchangeSettlementPaymentOrderBankModel, completion: @escaping (_ data: InternalExchangeSettlementPaymentOrderBankModel?, _ error: Error?) -> Void)
@@ -579,6 +529,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalExchangeSettlementPaymentOrderBankModel**](InternalExchangeSettlementPaymentOrderBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateExpectedPayment**
+```swift
+    open class func internalCreateExpectedPayment(postInternalExpectedPaymentBankModel: PostInternalExpectedPaymentBankModel, completion: @escaping (_ data: InternalExpectedPaymentBankModel?, _ error: Error?) -> Void)
+```
+
+Create Expected Payment
+
+Create an Expected Payments.  Required scope: **internal:exchange_settlements:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalExpectedPaymentBankModel = PostInternalExpectedPayment(paymentKind: "paymentKind_example", nonce: 123, paymentAmount: 123, internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", environment: "environment_example", creditAccountGuid: "creditAccountGuid_example") // PostInternalExpectedPaymentBankModel | 
+
+// Create Expected Payment
+InternalAPI.internalCreateExpectedPayment(postInternalExpectedPaymentBankModel: postInternalExpectedPaymentBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalExpectedPaymentBankModel** | [**PostInternalExpectedPaymentBankModel**](PostInternalExpectedPaymentBankModel.md) |  | 
+
+### Return type
+
+[**InternalExpectedPaymentBankModel**](InternalExpectedPaymentBankModel.md)
 
 ### Authorization
 
@@ -1141,56 +1141,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **internalGetExchangeSettlementExpectedPayment**
-```swift
-    open class func internalGetExchangeSettlementExpectedPayment(guid: String, completion: @escaping (_ data: InternalExchangeSettlementExpectedPaymentBankModel?, _ error: Error?) -> Void)
-```
-
-Get Exchange Settlement Expected Payment
-
-Get an Exchange Settlement Expected Payment.  Required scope: **internal:exchange_settlements:read**
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import CybridApiBankSwift
-
-let guid = "guid_example" // String | Identifier for the exchange settlement expected payment.
-
-// Get Exchange Settlement Expected Payment
-InternalAPI.internalGetExchangeSettlementExpectedPayment(guid: guid) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **guid** | **String** | Identifier for the exchange settlement expected payment. | 
-
-### Return type
-
-[**InternalExchangeSettlementExpectedPaymentBankModel**](InternalExchangeSettlementExpectedPaymentBankModel.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **internalGetExchangeSettlementObligation**
 ```swift
     open class func internalGetExchangeSettlementObligation(guid: String, completion: @escaping (_ data: InternalExchangeSettlementObligationBankModel?, _ error: Error?) -> Void)
@@ -1279,6 +1229,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalExchangeSettlementPaymentOrderBankModel**](InternalExchangeSettlementPaymentOrderBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetExpectedPayment**
+```swift
+    open class func internalGetExpectedPayment(guid: String, completion: @escaping (_ data: InternalExpectedPaymentBankModel?, _ error: Error?) -> Void)
+```
+
+Get Expected Payment
+
+Get an Expected Payment.  Required scope: **internal:exchange_settlements:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the expected payment.
+
+// Get Expected Payment
+InternalAPI.internalGetExpectedPayment(guid: guid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the expected payment. | 
+
+### Return type
+
+[**InternalExpectedPaymentBankModel**](InternalExpectedPaymentBankModel.md)
 
 ### Authorization
 
