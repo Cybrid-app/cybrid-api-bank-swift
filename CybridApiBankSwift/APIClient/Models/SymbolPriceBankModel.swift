@@ -10,30 +10,20 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class SymbolPriceBankModel: NSObject, Codable, JSONEncodable {
+public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
 
     /** The trade symbol the pricing is related to. Format is asset-counter_asset, e.g., BTC-USD. */
     public var symbol: String?
     /** The purchase price (in base units) for the asset denominated in the counter asset currency. */
-    public var buyPrice: Int?
-    public var buyPriceNum: NSNumber? {
-        get {
-            return buyPrice as NSNumber?
-        }
-    }
+    public var buyPrice: String?
     /** The sale price (in base units) for the asset denominated in the counter asset currency. */
-    public var sellPrice: Int?
-    public var sellPriceNum: NSNumber? {
-        get {
-            return sellPrice as NSNumber?
-        }
-    }
+    public var sellPrice: String?
     /** ISO8601 datetime the purchase price was generated at. */
     public var buyPriceLastUpdatedAt: Date?
     /** ISO8601 datetime the sale price was generated at. */
     public var sellPriceLastUpdatedAt: Date?
 
-    public init(symbol: String? = nil, buyPrice: Int? = nil, sellPrice: Int? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
+    public init(symbol: String? = nil, buyPrice: String? = nil, sellPrice: String? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
         self.symbol = symbol
         self.buyPrice = buyPrice
         self.sellPrice = sellPrice

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class SymbolsAPI : NSObject {
+open class SymbolsAPI {
 
     /**
      Get Symbols list

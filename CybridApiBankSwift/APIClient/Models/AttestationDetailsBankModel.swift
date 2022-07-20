@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class AttestationDetailsBankModel: NSObject, Codable, JSONEncodable {
+public struct AttestationDetailsBankModel: Codable, JSONEncodable, Hashable {
 
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"

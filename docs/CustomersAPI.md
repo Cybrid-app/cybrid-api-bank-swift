@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listCustomers**
 ```swift
-    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, guid: String? = nil, completion: @escaping (_ data: CustomerListBankModel?, _ error: Error?) -> Void)
+    open class func listCustomers(page: String? = nil, perPage: String? = nil, bankGuid: String? = nil, guid: String? = nil, completion: @escaping (_ data: CustomerListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get customers list
@@ -123,8 +123,8 @@ Retrieves a listing of customers.  Required scope: **customers:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional)
-let perPage = 987 // Int |  (optional)
+let page = "page_example" // String |  (optional)
+let perPage = "perPage_example" // String |  (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list customers for. (optional)
 let guid = "guid_example" // String | Comma separated customer_guids to list customers for. (optional)
 
@@ -145,8 +145,8 @@ CustomersAPI.listCustomers(page: page, perPage: perPage, bankGuid: bankGuid, gui
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] 
- **perPage** | **Int** |  | [optional] 
+ **page** | **String** |  | [optional] 
+ **perPage** | **String** |  | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list customers for. | [optional] 
  **guid** | **String** | Comma separated customer_guids to list customers for. | [optional] 
 

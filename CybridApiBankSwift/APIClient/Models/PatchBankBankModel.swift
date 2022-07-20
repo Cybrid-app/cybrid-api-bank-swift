@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PatchBankBankModel: NSObject, Codable, JSONEncodable {
+public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
 
     /** The bank's name. */
     public var name: String?

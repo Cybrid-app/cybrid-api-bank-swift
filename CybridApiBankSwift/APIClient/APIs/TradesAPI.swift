@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class TradesAPI : NSObject {
+open class TradesAPI {
 
     /**
      Create Trade
@@ -128,7 +128,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradeListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listTrades(page: String? = nil, perPage: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradeListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listTradesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -157,7 +157,7 @@ import AnyCodable
      - parameter accountGuid: (query) Comma separated account_guids to list trades for. (optional)
      - returns: RequestBuilder<TradeListBankModel> 
      */
-    open class func listTradesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil) -> RequestBuilder<TradeListBankModel> {
+    open class func listTradesWithRequestBuilder(page: String? = nil, perPage: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil) -> RequestBuilder<TradeListBankModel> {
         let localVariablePath = "/api/trades"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

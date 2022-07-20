@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class PricesAPI : NSObject {
+open class PricesAPI {
 
     /**
      Get Price

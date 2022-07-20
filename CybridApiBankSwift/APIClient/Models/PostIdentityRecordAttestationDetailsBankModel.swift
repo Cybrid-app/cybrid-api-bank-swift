@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostIdentityRecordAttestationDetailsBankModel: NSObject, Codable, JSONEncodable {
+public struct PostIdentityRecordAttestationDetailsBankModel: Codable, JSONEncodable, Hashable {
 
     /** Customer attestation token. */
     public var token: String?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class CustomersAPI : NSObject {
+open class CustomersAPI {
 
     /**
      Create Customer
@@ -126,7 +126,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listCustomers(page: String? = nil, perPage: String? = nil, bankGuid: String? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listCustomersWithRequestBuilder(page: page, perPage: perPage, bankGuid: bankGuid, guid: guid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -153,7 +153,7 @@ import AnyCodable
      - parameter guid: (query) Comma separated customer_guids to list customers for. (optional)
      - returns: RequestBuilder<CustomerListBankModel> 
      */
-    open class func listCustomersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, guid: String? = nil) -> RequestBuilder<CustomerListBankModel> {
+    open class func listCustomersWithRequestBuilder(page: String? = nil, perPage: String? = nil, bankGuid: String? = nil, guid: String? = nil) -> RequestBuilder<CustomerListBankModel> {
         let localVariablePath = "/api/customers"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

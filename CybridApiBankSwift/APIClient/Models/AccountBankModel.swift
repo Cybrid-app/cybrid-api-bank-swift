@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class AccountBankModel: NSObject, Codable, JSONEncodable {
+public struct AccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case backstopped = "backstopped"
@@ -33,21 +33,11 @@ import AnyCodable
     /** The customer identifier associated with the account. */
     public var customerGuid: String?
     /** The amount of funds that are in the account, in base units of the asset. */
-    public var platformBalance: Int?
-    public var platformBalanceNum: NSNumber? {
-        get {
-            return platformBalance as NSNumber?
-        }
-    }
+    public var platformBalance: String?
     /** The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. */
-    public var platformAvailable: Int?
-    public var platformAvailableNum: NSNumber? {
-        get {
-            return platformAvailable as NSNumber?
-        }
-    }
+    public var platformAvailable: String?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: Int? = nil, platformAvailable: Int? = nil) {
+    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
