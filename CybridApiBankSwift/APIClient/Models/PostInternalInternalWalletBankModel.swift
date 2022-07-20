@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalInternalWalletBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalInternalWalletBankModel: Codable, JSONEncodable, Hashable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fireblocksVault = "fireblocks_vault"

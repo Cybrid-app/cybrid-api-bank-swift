@@ -23,7 +23,7 @@ Creates a trading configuration.  Required scope: **banks:write**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTradingConfigurationBankModel = PostTradingConfiguration(asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostTradingConfigurationBankModel | 
+let postTradingConfigurationBankModel = PostTradingConfiguration(asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: "spreadFee_example", fixedFee: "fixedFee_example")]) // PostTradingConfigurationBankModel | 
 
 // Create TradingConfiguration
 TradingConfigurationsAPI.createTradingConfiguration(postTradingConfigurationBankModel: postTradingConfigurationBankModel) { (response, error) in
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTradingConfigurations**
 ```swift
-    open class func listTradingConfigurations(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: TradingConfigurationListBankModel?, _ error: Error?) -> Void)
+    open class func listTradingConfigurations(page: String? = nil, perPage: String? = nil, completion: @escaping (_ data: TradingConfigurationListBankModel?, _ error: Error?) -> Void)
 ```
 
 List trading configurations
@@ -123,8 +123,8 @@ Retrieves a listing of trading configurations for a bank.  Required scope: **ban
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional)
-let perPage = 987 // Int |  (optional)
+let page = "page_example" // String |  (optional)
+let perPage = "perPage_example" // String |  (optional)
 
 // List trading configurations
 TradingConfigurationsAPI.listTradingConfigurations(page: page, perPage: perPage) { (response, error) in
@@ -143,8 +143,8 @@ TradingConfigurationsAPI.listTradingConfigurations(page: page, perPage: perPage)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] 
- **perPage** | **Int** |  | [optional] 
+ **page** | **String** |  | [optional] 
+ **perPage** | **String** |  | [optional] 
 
 ### Return type
 

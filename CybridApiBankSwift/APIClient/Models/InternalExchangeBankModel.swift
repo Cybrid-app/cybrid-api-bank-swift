@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalExchangeBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalExchangeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case aquanow = "aquanow"

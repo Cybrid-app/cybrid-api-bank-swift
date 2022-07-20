@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalSystemTransactionBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalSystemTransactionBankModel: Codable, JSONEncodable, Hashable {
 
     public enum DirectionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case credit = "credit"
@@ -24,22 +24,22 @@ import AnyCodable
     /** The identifier of the account the transaction is associated to. */
     public var systemAccountGuid: String
     /** The amount in the transaction. */
-    public var amount: Int
+    public var amount: String
     /** The asset code. */
     public var assetCode: String
     /** The direction of the transaction: debit or credit. */
     public var direction: DirectionBankModel
     /** The description for the transaction. */
-    public var _description: String?
+    public var description: String?
 
-    public init(guid: String, providerId: String, systemAccountGuid: String, amount: Int, assetCode: String, direction: DirectionBankModel, _description: String? = nil) {
+    public init(guid: String, providerId: String, systemAccountGuid: String, amount: String, assetCode: String, direction: DirectionBankModel, description: String? = nil) {
         self.guid = guid
         self.providerId = providerId
         self.systemAccountGuid = systemAccountGuid
         self.amount = amount
         self.assetCode = assetCode
         self.direction = direction
-        self._description = _description
+        self.description = description
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -49,7 +49,7 @@ import AnyCodable
         case amount
         case assetCode = "asset_code"
         case direction
-        case _description = "description"
+        case description
     }
 
     // Encodable protocol methods
@@ -62,7 +62,7 @@ import AnyCodable
         try container.encode(amount, forKey: .amount)
         try container.encode(assetCode, forKey: .assetCode)
         try container.encode(direction, forKey: .direction)
-        try container.encodeIfPresent(_description, forKey: ._description)
+        try container.encodeIfPresent(description, forKey: .description)
     }
 }
 

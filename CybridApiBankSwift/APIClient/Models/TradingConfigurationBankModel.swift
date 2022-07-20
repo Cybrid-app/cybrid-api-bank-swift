@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class TradingConfigurationBankModel: NSObject, Codable, JSONEncodable {
+public struct TradingConfigurationBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the exchange. */
     public var guid: String?

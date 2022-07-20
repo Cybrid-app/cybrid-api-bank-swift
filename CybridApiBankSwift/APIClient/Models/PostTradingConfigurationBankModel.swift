@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostTradingConfigurationBankModel: NSObject, Codable, JSONEncodable {
+public struct PostTradingConfigurationBankModel: Codable, JSONEncodable, Hashable {
 
     /** The asset code. */
     public var asset: String

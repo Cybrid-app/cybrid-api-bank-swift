@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalTradingSymbolConfigurationBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalTradingSymbolConfigurationBankModel: Codable, JSONEncodable, Hashable {
 
     public enum EnvironmentBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case sandbox = "sandbox"
@@ -25,11 +25,6 @@ import AnyCodable
     public var bankGuid: String?
     /** Flag indicating if the symbol is enabled for trading on the platform. */
     public var enabled: Bool?
-    public var enabledNum: NSNumber? {
-        get {
-            return enabled as NSNumber?
-        }
-    }
     /** The symbol code of the configuration. */
     public var symbol: String?
     /** ISO8601 datetime the bank was created at. */

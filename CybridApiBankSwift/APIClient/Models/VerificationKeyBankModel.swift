@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class VerificationKeyBankModel: NSObject, Codable, JSONEncodable {
+public struct VerificationKeyBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case attestation = "attestation"

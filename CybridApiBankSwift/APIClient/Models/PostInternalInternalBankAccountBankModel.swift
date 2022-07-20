@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalInternalBankAccountBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalInternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case zumRailsWalletId = "zum_rails_wallet_id"

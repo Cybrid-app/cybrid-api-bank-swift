@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listAccounts**
 ```swift
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
+    open class func listAccounts(page: String? = nil, perPage: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Accounts
@@ -123,8 +123,8 @@ Retrieves a list of accounts.  Required scope: **accounts:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int | The page index to retrieve. (optional)
-let perPage = 987 // Int | The number of entities per page to return. (optional)
+let page = "page_example" // String | The page index to retrieve. (optional)
+let perPage = "perPage_example" // String | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated account_guids to list accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list accounts for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list accounts for. (optional)
@@ -146,8 +146,8 @@ AccountsAPI.listAccounts(page: page, perPage: perPage, guid: guid, bankGuid: ban
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** | The page index to retrieve. | [optional] 
- **perPage** | **Int** | The number of entities per page to return. | [optional] 
+ **page** | **String** | The page index to retrieve. | [optional] 
+ **perPage** | **String** | The number of entities per page to return. | [optional] 
  **guid** | **String** | Comma separated account_guids to list accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list accounts for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list accounts for. | [optional] 

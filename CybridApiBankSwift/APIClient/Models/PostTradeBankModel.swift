@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostTradeBankModel: NSObject, Codable, JSONEncodable {
+public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case unexpectedError = "unexpected_error"

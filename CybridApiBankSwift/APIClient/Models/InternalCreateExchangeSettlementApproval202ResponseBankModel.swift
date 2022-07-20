@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalCreateExchangeSettlementApproval202ResponseBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalCreateExchangeSettlementApproval202ResponseBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the exchange settlement. */
     public var guid: String?

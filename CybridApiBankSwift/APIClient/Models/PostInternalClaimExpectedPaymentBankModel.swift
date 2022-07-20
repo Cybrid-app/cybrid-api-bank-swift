@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalClaimExpectedPaymentBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalClaimExpectedPaymentBankModel: Codable, JSONEncodable, Hashable {
 
     public var systemTransaction: PostInternalSystemTransactionBankModel
 

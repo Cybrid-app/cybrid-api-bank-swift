@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostQuoteBankModel: NSObject, Codable, JSONEncodable {
+public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
 
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case buy = "buy"
@@ -24,21 +24,11 @@ import AnyCodable
     /** The direction of the quote: either 'buy' or 'sell'. */
     public var side: SideBankModel
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
-    public var receiveAmount: Int?
-    public var receiveAmountNum: NSNumber? {
-        get {
-            return receiveAmount as NSNumber?
-        }
-    }
+    public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
-    public var deliverAmount: Int?
-    public var deliverAmountNum: NSNumber? {
-        get {
-            return deliverAmount as NSNumber?
-        }
-    }
+    public var deliverAmount: String?
 
-    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: Int? = nil, deliverAmount: Int? = nil) {
+    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
         self.customerGuid = customerGuid
         self.symbol = symbol
         self.side = side

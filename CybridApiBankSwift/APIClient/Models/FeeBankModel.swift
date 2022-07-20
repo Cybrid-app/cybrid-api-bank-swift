@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class FeeBankModel: NSObject, Codable, JSONEncodable {
+public struct FeeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case spread = "spread"
@@ -20,21 +20,11 @@ import AnyCodable
     /** The fee's type */
     public var type: TypeBankModel?
     /** The percentage amount, in basis points, to apply when charging a fee. */
-    public var spreadFee: Int?
-    public var spreadFeeNum: NSNumber? {
-        get {
-            return spreadFee as NSNumber?
-        }
-    }
+    public var spreadFee: String?
     /** The fixed amount, in the currency of the parent trading configuration, to apply when charging a fee. */
-    public var fixedFee: Int?
-    public var fixedFeeNum: NSNumber? {
-        get {
-            return fixedFee as NSNumber?
-        }
-    }
+    public var fixedFee: String?
 
-    public init(type: TypeBankModel? = nil, spreadFee: Int? = nil, fixedFee: Int? = nil) {
+    public init(type: TypeBankModel? = nil, spreadFee: String? = nil, fixedFee: String? = nil) {
         self.type = type
         self.spreadFee = spreadFee
         self.fixedFee = fixedFee

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalExchangeAccountBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalExchangeAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fiat = "fiat"

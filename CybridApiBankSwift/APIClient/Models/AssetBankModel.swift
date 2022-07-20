@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class AssetBankModel: NSObject, Codable, JSONEncodable {
+public struct AssetBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fiat = "fiat"
@@ -26,9 +26,9 @@ import AnyCodable
     /** The currency symbol for the asset. */
     public var symbol: String
     /** The number of decimals for the default unit of the asset. */
-    public var decimals: Int
+    public var decimals: String
 
-    public init(type: TypeBankModel, code: String, name: String, symbol: String, decimals: Int) {
+    public init(type: TypeBankModel, code: String, name: String, symbol: String, decimals: String) {
         self.type = type
         self.code = code
         self.name = name

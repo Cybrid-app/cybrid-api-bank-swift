@@ -10,18 +10,18 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class AccountListBankModel: NSObject, Codable, JSONEncodable {
+public struct AccountListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: Int
+    public var total: String
     /** The page index to retrieve. */
-    public var page: Int
+    public var page: String
     /** The number of entities per page to return. */
-    public var perPage: Int
+    public var perPage: String
     /** Array of account entities */
     public var objects: [AccountBankModel]
 
-    public init(total: Int, page: Int, perPage: Int, objects: [AccountBankModel]) {
+    public init(total: String, page: String, perPage: String, objects: [AccountBankModel]) {
         self.total = total
         self.page = page
         self.perPage = perPage

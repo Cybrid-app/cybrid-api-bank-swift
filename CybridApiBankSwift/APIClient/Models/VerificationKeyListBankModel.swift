@@ -10,18 +10,18 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class VerificationKeyListBankModel: NSObject, Codable, JSONEncodable {
+public struct VerificationKeyListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: Int
+    public var total: String
     /** The page index to retrieve. */
-    public var page: Int
+    public var page: String
     /** The number of entities per page to return. */
-    public var perPage: Int
+    public var perPage: String
     /** Array of VerificationKey entities */
     public var objects: [VerificationKeyBankModel]
 
-    public init(total: Int, page: Int, perPage: Int, objects: [VerificationKeyBankModel]) {
+    public init(total: String, page: String, perPage: String, objects: [VerificationKeyBankModel]) {
         self.total = total
         self.page = page
         self.perPage = perPage

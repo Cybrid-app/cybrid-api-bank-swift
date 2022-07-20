@@ -10,32 +10,17 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class TradingConfigurationListBankModel: NSObject, Codable, JSONEncodable {
+public struct TradingConfigurationListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: Int?
-    public var totalNum: NSNumber? {
-        get {
-            return total as NSNumber?
-        }
-    }
+    public var total: String?
     /** The page index to retrieve. */
-    public var page: Int?
-    public var pageNum: NSNumber? {
-        get {
-            return page as NSNumber?
-        }
-    }
+    public var page: String?
     /** The number of entities per page to return. */
-    public var perPage: Int?
-    public var perPageNum: NSNumber? {
-        get {
-            return perPage as NSNumber?
-        }
-    }
+    public var perPage: String?
     public var objects: [TradingConfigurationBankModel]?
 
-    public init(total: Int? = nil, page: Int? = nil, perPage: Int? = nil, objects: [TradingConfigurationBankModel]? = nil) {
+    public init(total: String? = nil, page: String? = nil, perPage: String? = nil, objects: [TradingConfigurationBankModel]? = nil) {
         self.total = total
         self.page = page
         self.perPage = perPage

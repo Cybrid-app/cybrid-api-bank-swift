@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalTransactionBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalTransactionBankModel: Codable, JSONEncodable, Hashable {
 
     public enum DirectionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case credit = "credit"
@@ -20,12 +20,7 @@ import AnyCodable
     /** The provider supplied identifier for the transaction */
     public var providerId: String?
     /** The transaction amount in base units of the asset */
-    public var amount: Int?
-    public var amountNum: NSNumber? {
-        get {
-            return amount as NSNumber?
-        }
-    }
+    public var amount: String?
     /** The asset the transaction is denominated in */
     public var asset: String?
     /** The direction of the transaction: \"debit\" or \"credit\" */
@@ -33,15 +28,15 @@ import AnyCodable
     /** The timestamp of the transaction */
     public var timestamp: Date?
     /** The description of the transaction */
-    public var _description: String?
+    public var description: String?
 
-    public init(providerId: String? = nil, amount: Int? = nil, asset: String? = nil, direction: DirectionBankModel? = nil, timestamp: Date? = nil, _description: String? = nil) {
+    public init(providerId: String? = nil, amount: String? = nil, asset: String? = nil, direction: DirectionBankModel? = nil, timestamp: Date? = nil, description: String? = nil) {
         self.providerId = providerId
         self.amount = amount
         self.asset = asset
         self.direction = direction
         self.timestamp = timestamp
-        self._description = _description
+        self.description = description
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,7 +45,7 @@ import AnyCodable
         case asset
         case direction
         case timestamp
-        case _description = "description"
+        case description
     }
 
     // Encodable protocol methods
@@ -62,7 +57,7 @@ import AnyCodable
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(direction, forKey: .direction)
         try container.encodeIfPresent(timestamp, forKey: .timestamp)
-        try container.encodeIfPresent(_description, forKey: ._description)
+        try container.encodeIfPresent(description, forKey: .description)
     }
 }
 

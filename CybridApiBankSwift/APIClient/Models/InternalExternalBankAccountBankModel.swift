@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalExternalBankAccountBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case zumRailsUser = "zum_rails_user"

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalExchangeSettlementBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalExchangeSettlementBankModel: Codable, JSONEncodable, Hashable {
 
     /** The identifier of the exchange that corresponds to this settlement. */
     public var exchangeGuid: String

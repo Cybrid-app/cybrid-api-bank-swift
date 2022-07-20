@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalExchangeSettlementPaymentOrderBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalExchangeSettlementPaymentOrderBankModel: Codable, JSONEncodable, Hashable {
 
     public enum InternalAccountTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case wallet = "internal_wallet"
@@ -42,19 +42,9 @@ import AnyCodable
     /** The identifier of the exchange settlement obligation that this payment is associated with. */
     public var exchangeSettlementObligationGuid: String?
     /** The sequence number of the payment order */
-    public var sequenceNumber: Int?
-    public var sequenceNumberNum: NSNumber? {
-        get {
-            return sequenceNumber as NSNumber?
-        }
-    }
+    public var sequenceNumber: String?
     /** The amount expected to be received as part of this payment. */
-    public var paymentAmount: Int?
-    public var paymentAmountNum: NSNumber? {
-        get {
-            return paymentAmount as NSNumber?
-        }
-    }
+    public var paymentAmount: String?
     /** The identifier of the internal account that is expected to originate the payment. */
     public var internalAccountGuid: String?
     /** The type of the internal account that is expected to originate the payment. */
@@ -68,7 +58,7 @@ import AnyCodable
     /** ISO8601 datetime the exchange settlement payment order was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, exchangeSettlementObligationGuid: String? = nil, sequenceNumber: Int? = nil, paymentAmount: Int? = nil, internalAccountGuid: String? = nil, internalAccountType: InternalAccountTypeBankModel? = nil, externalAccountGuid: String? = nil, externalAccountType: ExternalAccountTypeBankModel? = nil, state: StateBankModel? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, exchangeSettlementObligationGuid: String? = nil, sequenceNumber: String? = nil, paymentAmount: String? = nil, internalAccountGuid: String? = nil, internalAccountType: InternalAccountTypeBankModel? = nil, externalAccountGuid: String? = nil, externalAccountType: ExternalAccountTypeBankModel? = nil, state: StateBankModel? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.exchangeSettlementObligationGuid = exchangeSettlementObligationGuid
         self.sequenceNumber = sequenceNumber

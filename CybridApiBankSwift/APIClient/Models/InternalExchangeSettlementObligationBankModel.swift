@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class InternalExchangeSettlementObligationBankModel: NSObject, Codable, JSONEncodable {
+public struct InternalExchangeSettlementObligationBankModel: Codable, JSONEncodable, Hashable {
 
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
@@ -29,21 +29,11 @@ import AnyCodable
     /** The exchange settlement's state */
     public var state: StateBankModel?
     /** The account's payable estimate for this obligation. */
-    public var payableAmountEstimate: Int?
-    public var payableAmountEstimateNum: NSNumber? {
-        get {
-            return payableAmountEstimate as NSNumber?
-        }
-    }
+    public var payableAmountEstimate: String?
     /** The account's receivable estimate for this obligation. */
-    public var receivableAmountEstimate: Int?
-    public var receivableAmountEstimateNum: NSNumber? {
-        get {
-            return receivableAmountEstimate as NSNumber?
-        }
-    }
+    public var receivableAmountEstimate: String?
 
-    public init(guid: String? = nil, exchangeSettlementGuid: String? = nil, asset: String? = nil, state: StateBankModel? = nil, payableAmountEstimate: Int? = nil, receivableAmountEstimate: Int? = nil) {
+    public init(guid: String? = nil, exchangeSettlementGuid: String? = nil, asset: String? = nil, state: StateBankModel? = nil, payableAmountEstimate: String? = nil, receivableAmountEstimate: String? = nil) {
         self.guid = guid
         self.exchangeSettlementGuid = exchangeSettlementGuid
         self.asset = asset

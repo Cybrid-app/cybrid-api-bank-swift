@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class VerificationKeysAPI : NSObject {
+open class VerificationKeysAPI {
 
     /**
      Create VerificationKey
@@ -124,7 +124,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listVerificationKeys(page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<VerificationKeyListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listVerificationKeys(page: String? = nil, perPage: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<VerificationKeyListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listVerificationKeysWithRequestBuilder(page: page, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -149,7 +149,7 @@ import AnyCodable
      - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<VerificationKeyListBankModel> 
      */
-    open class func listVerificationKeysWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<VerificationKeyListBankModel> {
+    open class func listVerificationKeysWithRequestBuilder(page: String? = nil, perPage: String? = nil) -> RequestBuilder<VerificationKeyListBankModel> {
         let localVariablePath = "/api/bank_verification_keys"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

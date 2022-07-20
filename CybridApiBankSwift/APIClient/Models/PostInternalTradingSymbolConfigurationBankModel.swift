@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalTradingSymbolConfigurationBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalTradingSymbolConfigurationBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case platform = "platform"

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class IdentityRecordsAPI : NSObject {
+open class IdentityRecordsAPI {
 
     /**
      Create Identity Record
@@ -125,7 +125,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listIdentityRecords(customerGuid: String? = nil, page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityRecordListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listIdentityRecords(customerGuid: String? = nil, page: String? = nil, perPage: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityRecordListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listIdentityRecordsWithRequestBuilder(customerGuid: customerGuid, page: page, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -151,7 +151,7 @@ import AnyCodable
      - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<IdentityRecordListBankModel> 
      */
-    open class func listIdentityRecordsWithRequestBuilder(customerGuid: String? = nil, page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<IdentityRecordListBankModel> {
+    open class func listIdentityRecordsWithRequestBuilder(customerGuid: String? = nil, page: String? = nil, perPage: String? = nil) -> RequestBuilder<IdentityRecordListBankModel> {
         let localVariablePath = "/api/identity_records"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

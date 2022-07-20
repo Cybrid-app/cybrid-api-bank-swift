@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listVerificationKeys**
 ```swift
-    open class func listVerificationKeys(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: VerificationKeyListBankModel?, _ error: Error?) -> Void)
+    open class func listVerificationKeys(page: String? = nil, perPage: String? = nil, completion: @escaping (_ data: VerificationKeyListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Verification Keys list
@@ -123,8 +123,8 @@ Retrieves a listing of verification keys of a bank.  Required scope: **banks:rea
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = 987 // Int |  (optional)
-let perPage = 987 // Int |  (optional)
+let page = "page_example" // String |  (optional)
+let perPage = "perPage_example" // String |  (optional)
 
 // Get Verification Keys list
 VerificationKeysAPI.listVerificationKeys(page: page, perPage: perPage) { (response, error) in
@@ -143,8 +143,8 @@ VerificationKeysAPI.listVerificationKeys(page: page, perPage: perPage) { (respon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Int** |  | [optional] 
- **perPage** | **Int** |  | [optional] 
+ **page** | **String** |  | [optional] 
+ **perPage** | **String** |  | [optional] 
 
 ### Return type
 

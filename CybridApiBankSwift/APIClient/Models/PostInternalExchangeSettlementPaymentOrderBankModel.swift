@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class PostInternalExchangeSettlementPaymentOrderBankModel: NSObject, Codable, JSONEncodable {
+public struct PostInternalExchangeSettlementPaymentOrderBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ExpectedStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case pending = "pending"
@@ -36,9 +36,9 @@ import AnyCodable
     /** The identifier of the exchange settlement obligation that this payment is associated with. */
     public var exchangeSettlementObligationGuid: String
     /** The sequence number of the payment order */
-    public var sequenceNumber: Int
+    public var sequenceNumber: String
     /** The amount expected to be received as part of this payment. */
-    public var paymentAmount: Int
+    public var paymentAmount: String
     /** The expected state of the underlying money transfer for the payment order (sandbox only) */
     public var expectedState: ExpectedStateBankModel?
     /** The identifier of the internal account that is expected to originate the payment. */
@@ -50,7 +50,7 @@ import AnyCodable
     /** The type of the external account that is expected to receive the payment. */
     public var externalAccountType: ExternalAccountTypeBankModel
 
-    public init(exchangeSettlementGuid: String, exchangeSettlementObligationGuid: String, sequenceNumber: Int, paymentAmount: Int, expectedState: ExpectedStateBankModel? = nil, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, externalAccountGuid: String, externalAccountType: ExternalAccountTypeBankModel) {
+    public init(exchangeSettlementGuid: String, exchangeSettlementObligationGuid: String, sequenceNumber: String, paymentAmount: String, expectedState: ExpectedStateBankModel? = nil, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, externalAccountGuid: String, externalAccountType: ExternalAccountTypeBankModel) {
         self.exchangeSettlementGuid = exchangeSettlementGuid
         self.exchangeSettlementObligationGuid = exchangeSettlementObligationGuid
         self.sequenceNumber = sequenceNumber
