@@ -1683,4 +1683,59 @@ open class InternalAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch Account
+     
+     - parameter accountGuid: (path) Identifier for the account. 
+     - parameter patchInternalAccountBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchAccount(accountGuid: String, patchInternalAccountBankModel: PatchInternalAccountBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchAccountWithRequestBuilder(accountGuid: accountGuid, patchInternalAccountBankModel: patchInternalAccountBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Account
+     - PATCH /api/internal/accounts/{account_guid}
+     - Patch an account.  Required scope: **internal:accounts:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter accountGuid: (path) Identifier for the account. 
+     - parameter patchInternalAccountBankModel: (body)  
+     - returns: RequestBuilder<AccountBankModel> 
+     */
+    open class func internalPatchAccountWithRequestBuilder(accountGuid: String, patchInternalAccountBankModel: PatchInternalAccountBankModel) -> RequestBuilder<AccountBankModel> {
+        var localVariablePath = "/api/internal/accounts/{account_guid}"
+        let accountGuidPreEscape = "\(APIHelper.mapValueToPathItem(accountGuid))"
+        let accountGuidPostEscape = accountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{account_guid}", with: accountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalAccountBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }

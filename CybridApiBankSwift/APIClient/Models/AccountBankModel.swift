@@ -18,6 +18,11 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case fee = "fee"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case storing = "storing"
+        case created = "created"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The account type. */
     public var type: TypeBankModel?
     /** Auto-generated unique identifier for the account. */
@@ -36,8 +41,10 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     public var platformBalance: String?
     /** The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. */
     public var platformAvailable: String?
+    /** The account's state. */
+    public var state: StateBankModel?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil) {
+    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
@@ -47,6 +54,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         self.customerGuid = customerGuid
         self.platformBalance = platformBalance
         self.platformAvailable = platformAvailable
+        self.state = state
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -59,6 +67,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case customerGuid = "customer_guid"
         case platformBalance = "platform_balance"
         case platformAvailable = "platform_available"
+        case state
     }
 
     // Encodable protocol methods
@@ -74,6 +83,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(platformBalance, forKey: .platformBalance)
         try container.encodeIfPresent(platformAvailable, forKey: .platformAvailable)
+        try container.encodeIfPresent(state, forKey: .state)
     }
 }
 
