@@ -13,13 +13,13 @@ import AnyCodable
 public struct ErrorResponseBankModel: Codable, JSONEncodable, Hashable {
 
     /** Status code for Http Request */
-    public var status: String
+    public var status: Int
     /** Error message */
     public var errorMessage: String
     /** Message code for Error */
     public var messageCode: String
 
-    public init(status: String, errorMessage: String, messageCode: String) {
+    public init(status: Int, errorMessage: String, messageCode: String) {
         self.status = status
         self.errorMessage = errorMessage
         self.messageCode = messageCode

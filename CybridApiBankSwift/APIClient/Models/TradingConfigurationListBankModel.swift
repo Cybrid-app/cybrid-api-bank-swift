@@ -13,14 +13,14 @@ import AnyCodable
 public struct TradingConfigurationListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: String?
+    public var total: Int?
     /** The page index to retrieve. */
-    public var page: String?
+    public var page: Int?
     /** The number of entities per page to return. */
-    public var perPage: String?
+    public var perPage: Int?
     public var objects: [TradingConfigurationBankModel]?
 
-    public init(total: String? = nil, page: String? = nil, perPage: String? = nil, objects: [TradingConfigurationBankModel]? = nil) {
+    public init(total: Int? = nil, page: Int? = nil, perPage: Int? = nil, objects: [TradingConfigurationBankModel]? = nil) {
         self.total = total
         self.page = page
         self.perPage = perPage

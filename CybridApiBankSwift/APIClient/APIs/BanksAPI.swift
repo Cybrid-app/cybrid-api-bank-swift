@@ -125,7 +125,7 @@ open class BanksAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listBanks(page: String? = nil, perPage: String? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BankListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listBanks(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BankListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listBanksWithRequestBuilder(page: page, perPage: perPage, guid: guid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -151,7 +151,7 @@ open class BanksAPI {
      - parameter guid: (query) Comma separated bank_guids to list banks for. (optional)
      - returns: RequestBuilder<BankListBankModel> 
      */
-    open class func listBanksWithRequestBuilder(page: String? = nil, perPage: String? = nil, guid: String? = nil) -> RequestBuilder<BankListBankModel> {
+    open class func listBanksWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil) -> RequestBuilder<BankListBankModel> {
         let localVariablePath = "/api/banks"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

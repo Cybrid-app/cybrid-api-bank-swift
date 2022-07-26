@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTrades**
 ```swift
-    open class func listTrades(page: String? = nil, perPage: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, completion: @escaping (_ data: TradeListBankModel?, _ error: Error?) -> Void)
+    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, completion: @escaping (_ data: TradeListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get trades list
@@ -123,8 +123,8 @@ Retrieves a listing of trades.  Required scope: **trades:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String | The page index to retrieve. (optional)
-let perPage = "perPage_example" // String | The number of entities per page to return. (optional)
+let page = 987 // Int | The page index to retrieve. (optional)
+let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated trade_guids to list trades for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list trades for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list trades for. (optional)
@@ -147,8 +147,8 @@ TradesAPI.listTrades(page: page, perPage: perPage, guid: guid, bankGuid: bankGui
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** | The page index to retrieve. | [optional] 
- **perPage** | **String** | The number of entities per page to return. | [optional] 
+ **page** | **Int** | The page index to retrieve. | [optional] 
+ **perPage** | **Int** | The number of entities per page to return. | [optional] 
  **guid** | **String** | Comma separated trade_guids to list trades for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list trades for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list trades for. | [optional] 

@@ -21,7 +21,7 @@ open class AssetsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listAssets(page: String? = nil, perPage: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AssetListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listAssets(page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AssetListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listAssetsWithRequestBuilder(page: page, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -46,7 +46,7 @@ open class AssetsAPI {
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - returns: RequestBuilder<AssetListBankModel> 
      */
-    open class func listAssetsWithRequestBuilder(page: String? = nil, perPage: String? = nil) -> RequestBuilder<AssetListBankModel> {
+    open class func listAssetsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<AssetListBankModel> {
         let localVariablePath = "/api/assets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

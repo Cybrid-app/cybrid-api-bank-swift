@@ -20,11 +20,11 @@ public struct FeeBankModel: Codable, JSONEncodable, Hashable {
     /** The fee's type */
     public var type: TypeBankModel?
     /** The percentage amount, in basis points, to apply when charging a fee. */
-    public var spreadFee: String?
+    public var spreadFee: Int?
     /** The fixed amount, in the currency of the parent trading configuration, to apply when charging a fee. */
-    public var fixedFee: String?
+    public var fixedFee: Int?
 
-    public init(type: TypeBankModel? = nil, spreadFee: String? = nil, fixedFee: String? = nil) {
+    public init(type: TypeBankModel? = nil, spreadFee: Int? = nil, fixedFee: Int? = nil) {
         self.type = type
         self.spreadFee = spreadFee
         self.fixedFee = fixedFee

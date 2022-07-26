@@ -127,7 +127,7 @@ open class QuotesAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listQuotes(page: String? = nil, perPage: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuoteListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listQuotes(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuoteListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listQuotesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -155,7 +155,7 @@ open class QuotesAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list quotes for. (optional)
      - returns: RequestBuilder<QuoteListBankModel> 
      */
-    open class func listQuotesWithRequestBuilder(page: String? = nil, perPage: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) -> RequestBuilder<QuoteListBankModel> {
+    open class func listQuotesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) -> RequestBuilder<QuoteListBankModel> {
         let localVariablePath = "/api/quotes"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

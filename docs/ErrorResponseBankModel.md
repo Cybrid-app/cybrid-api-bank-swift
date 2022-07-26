@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **String** | Status code for Http Request | 
+**status** | **Int** | Status code for Http Request | 
 **errorMessage** | **String** | Error message | 
 **messageCode** | **String** | Message code for Error | 
 
