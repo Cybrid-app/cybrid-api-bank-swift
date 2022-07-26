@@ -50,9 +50,9 @@ public struct InternalExpectedPaymentBankModel: Codable, JSONEncodable, Hashable
     /** The identifier of the platform account that this payment is associated with. */
     public var creditAccountGuid: String?
     /** The nonce of the expected payment */
-    public var nonce: String?
+    public var nonce: Int?
     /** The amount expected to be received as part of this payment. */
-    public var paymentAmount: String?
+    public var paymentAmount: Int?
     /** The identifier of the internal account that is expected to originate the payment. */
     public var internalAccountGuid: String?
     /** The type of the internal account that is expected to originate the payment. */
@@ -62,7 +62,7 @@ public struct InternalExpectedPaymentBankModel: Codable, JSONEncodable, Hashable
     /** ISO8601 datetime the exchange settlement expected payment was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, paymentKind: PaymentKindBankModel? = nil, environment: EnvironmentBankModel? = nil, exchangeSettlementObligationGuid: String? = nil, creditAccountGuid: String? = nil, nonce: String? = nil, paymentAmount: String? = nil, internalAccountGuid: String? = nil, internalAccountType: InternalAccountTypeBankModel? = nil, state: StateBankModel? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, paymentKind: PaymentKindBankModel? = nil, environment: EnvironmentBankModel? = nil, exchangeSettlementObligationGuid: String? = nil, creditAccountGuid: String? = nil, nonce: Int? = nil, paymentAmount: Int? = nil, internalAccountGuid: String? = nil, internalAccountType: InternalAccountTypeBankModel? = nil, state: StateBankModel? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.paymentKind = paymentKind
         self.environment = environment

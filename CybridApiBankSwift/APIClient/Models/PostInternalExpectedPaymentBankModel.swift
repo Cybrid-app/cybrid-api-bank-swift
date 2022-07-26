@@ -30,9 +30,9 @@ public struct PostInternalExpectedPaymentBankModel: Codable, JSONEncodable, Hash
     /** The kind of expected payment. */
     public var paymentKind: PaymentKindBankModel
     /** The sequence number of the expected payment */
-    public var nonce: String
+    public var nonce: Int
     /** The amount expected to be received as part of this payment. */
-    public var paymentAmount: String
+    public var paymentAmount: Int
     /** The identifier of the internal account that is expected to originate the payment. */
     public var internalAccountGuid: String
     /** The type of the internal account that is expected to originate the payment. */
@@ -46,7 +46,7 @@ public struct PostInternalExpectedPaymentBankModel: Codable, JSONEncodable, Hash
     /** The identifier of the credit platform account the payment should be credited to. */
     public var creditAccountGuid: String?
 
-    public init(paymentKind: PaymentKindBankModel, nonce: String, paymentAmount: String, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, exchangeSettlementGuid: String? = nil, exchangeSettlementObligationGuid: String? = nil, environment: EnvironmentBankModel? = nil, creditAccountGuid: String? = nil) {
+    public init(paymentKind: PaymentKindBankModel, nonce: Int, paymentAmount: Int, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, exchangeSettlementGuid: String? = nil, exchangeSettlementObligationGuid: String? = nil, environment: EnvironmentBankModel? = nil, creditAccountGuid: String? = nil) {
         self.paymentKind = paymentKind
         self.nonce = nonce
         self.paymentAmount = paymentAmount

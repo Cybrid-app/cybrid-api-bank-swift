@@ -20,7 +20,7 @@ public struct InternalTransactionBankModel: Codable, JSONEncodable, Hashable {
     /** The provider supplied identifier for the transaction */
     public var providerId: String?
     /** The transaction amount in base units of the asset */
-    public var amount: String?
+    public var amount: Int?
     /** The asset the transaction is denominated in */
     public var asset: String?
     /** The direction of the transaction: \"debit\" or \"credit\" */
@@ -30,7 +30,7 @@ public struct InternalTransactionBankModel: Codable, JSONEncodable, Hashable {
     /** The description of the transaction */
     public var description: String?
 
-    public init(providerId: String? = nil, amount: String? = nil, asset: String? = nil, direction: DirectionBankModel? = nil, timestamp: Date? = nil, description: String? = nil) {
+    public init(providerId: String? = nil, amount: Int? = nil, asset: String? = nil, direction: DirectionBankModel? = nil, timestamp: Date? = nil, description: String? = nil) {
         self.providerId = providerId
         self.amount = amount
         self.asset = asset

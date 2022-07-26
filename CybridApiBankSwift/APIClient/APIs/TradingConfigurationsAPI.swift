@@ -124,7 +124,7 @@ open class TradingConfigurationsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTradingConfigurations(page: String? = nil, perPage: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradingConfigurationListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listTradingConfigurations(page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradingConfigurationListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listTradingConfigurationsWithRequestBuilder(page: page, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -149,7 +149,7 @@ open class TradingConfigurationsAPI {
      - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<TradingConfigurationListBankModel> 
      */
-    open class func listTradingConfigurationsWithRequestBuilder(page: String? = nil, perPage: String? = nil) -> RequestBuilder<TradingConfigurationListBankModel> {
+    open class func listTradingConfigurationsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<TradingConfigurationListBankModel> {
         let localVariablePath = "/api/trading_configurations"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

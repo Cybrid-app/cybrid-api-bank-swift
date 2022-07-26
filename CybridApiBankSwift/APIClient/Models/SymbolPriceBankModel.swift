@@ -15,15 +15,15 @@ public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
     /** The trade symbol the pricing is related to. Format is asset-counter_asset, e.g., BTC-USD. */
     public var symbol: String?
     /** The purchase price (in base units) for the asset denominated in the counter asset currency. */
-    public var buyPrice: String?
+    public var buyPrice: AnyCodable?
     /** The sale price (in base units) for the asset denominated in the counter asset currency. */
-    public var sellPrice: String?
+    public var sellPrice: AnyCodable?
     /** ISO8601 datetime the purchase price was generated at. */
     public var buyPriceLastUpdatedAt: Date?
     /** ISO8601 datetime the sale price was generated at. */
     public var sellPriceLastUpdatedAt: Date?
 
-    public init(symbol: String? = nil, buyPrice: String? = nil, sellPrice: String? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
+    public init(symbol: String? = nil, buyPrice: AnyCodable? = nil, sellPrice: AnyCodable? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
         self.symbol = symbol
         self.buyPrice = buyPrice
         self.sellPrice = sellPrice

@@ -53,7 +53,7 @@ Claim an Exchange Settlement Payment Order.  Required scope: **internal:exchange
 import CybridApiBankSwift
 
 let guid = "guid_example" // String | Identifier for the exchange settlement expected payment.
-let postInternalClaimExchangeSettlementPaymentOrderBankModel = PostInternalClaimExchangeSettlementPaymentOrder(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: "amount_example", assetCode: "assetCode_example", direction: "direction_example", description: "description_example")) // PostInternalClaimExchangeSettlementPaymentOrderBankModel | 
+let postInternalClaimExchangeSettlementPaymentOrderBankModel = PostInternalClaimExchangeSettlementPaymentOrder(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: 123, assetCode: "assetCode_example", direction: "direction_example", description: "description_example")) // PostInternalClaimExchangeSettlementPaymentOrderBankModel | 
 
 // Claim Exchange Settlement Payment Order
 InternalAPI.internalClaimExchangeSettlementPaymentOrder(guid: guid, postInternalClaimExchangeSettlementPaymentOrderBankModel: postInternalClaimExchangeSettlementPaymentOrderBankModel) { (response, error) in
@@ -105,7 +105,7 @@ Claim an Expected Payments.  Required scope: **internal:exchange_settlements:wri
 import CybridApiBankSwift
 
 let guid = "guid_example" // String | Identifier for the expected payment.
-let postInternalClaimExpectedPaymentBankModel = PostInternalClaimExpectedPayment(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: "amount_example", assetCode: "assetCode_example", direction: "direction_example", description: "description_example")) // PostInternalClaimExpectedPaymentBankModel | 
+let postInternalClaimExpectedPaymentBankModel = PostInternalClaimExpectedPayment(systemTransaction: PostInternalSystemTransaction(guid: "guid_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example", amount: 123, assetCode: "assetCode_example", direction: "direction_example", description: "description_example")) // PostInternalClaimExpectedPaymentBankModel | 
 
 // Claim Expected Payment
 InternalAPI.internalClaimExpectedPayment(guid: guid, postInternalClaimExpectedPaymentBankModel: postInternalClaimExpectedPaymentBankModel) { (response, error) in
@@ -506,7 +506,7 @@ Create an Exchange Settlement Payment Orders.  Required scope: **internal:exchan
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInternalExchangeSettlementPaymentOrderBankModel = PostInternalExchangeSettlementPaymentOrder(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: "sequenceNumber_example", paymentAmount: "paymentAmount_example", expectedState: "expectedState_example", internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", externalAccountGuid: "externalAccountGuid_example", externalAccountType: "externalAccountType_example") // PostInternalExchangeSettlementPaymentOrderBankModel | 
+let postInternalExchangeSettlementPaymentOrderBankModel = PostInternalExchangeSettlementPaymentOrder(exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", sequenceNumber: 123, paymentAmount: 123, expectedState: "expectedState_example", internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", externalAccountGuid: "externalAccountGuid_example", externalAccountType: "externalAccountType_example") // PostInternalExchangeSettlementPaymentOrderBankModel | 
 
 // Create Exchange Settlement Payment Order
 InternalAPI.internalCreateExchangeSettlementPaymentOrder(postInternalExchangeSettlementPaymentOrderBankModel: postInternalExchangeSettlementPaymentOrderBankModel) { (response, error) in
@@ -556,7 +556,7 @@ Create an Expected Payments.  Required scope: **internal:exchange_settlements:ex
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInternalExpectedPaymentBankModel = PostInternalExpectedPayment(paymentKind: "paymentKind_example", nonce: "nonce_example", paymentAmount: "paymentAmount_example", internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", environment: "environment_example", creditAccountGuid: "creditAccountGuid_example") // PostInternalExpectedPaymentBankModel | 
+let postInternalExpectedPaymentBankModel = PostInternalExpectedPayment(paymentKind: "paymentKind_example", nonce: 123, paymentAmount: 123, internalAccountGuid: "internalAccountGuid_example", internalAccountType: "internalAccountType_example", exchangeSettlementGuid: "exchangeSettlementGuid_example", exchangeSettlementObligationGuid: "exchangeSettlementObligationGuid_example", environment: "environment_example", creditAccountGuid: "creditAccountGuid_example") // PostInternalExpectedPaymentBankModel | 
 
 // Create Expected Payment
 InternalAPI.internalCreateExpectedPayment(postInternalExpectedPaymentBankModel: postInternalExpectedPaymentBankModel) { (response, error) in
@@ -856,7 +856,7 @@ Creates a trading configuration.  Required scope: **internal:banks:write**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTradingConfigurationBankModel = PostTradingConfiguration(asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: "spreadFee_example", fixedFee: "fixedFee_example")]) // PostTradingConfigurationBankModel | 
+let postTradingConfigurationBankModel = PostTradingConfiguration(asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostTradingConfigurationBankModel | 
 
 // Create TradingConfiguration
 InternalAPI.internalCreateTradingConfiguration(postTradingConfigurationBankModel: postTradingConfigurationBankModel) { (response, error) in
@@ -1294,7 +1294,7 @@ Name | Type | Description  | Notes
 
 # **internalListExchanges**
 ```swift
-    open class func internalListExchanges(page: String? = nil, perPage: String? = nil, completion: @escaping (_ data: InternalExchangeListBankModel?, _ error: Error?) -> Void)
+    open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalExchangeListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Exchanges
@@ -1306,8 +1306,8 @@ Retrieves a listing of exchanges.  Required scope: **internal:exchanges:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 
 // List Exchanges
 InternalAPI.internalListExchanges(page: page, perPage: perPage) { (response, error) in
@@ -1326,8 +1326,8 @@ InternalAPI.internalListExchanges(page: page, perPage: perPage) { (response, err
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
 
 ### Return type
 
@@ -1346,7 +1346,7 @@ Name | Type | Description  | Notes
 
 # **internalListExternalBankAccounts**
 ```swift
-    open class func internalListExternalBankAccounts(page: String? = nil, perPage: String? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil, completion: @escaping (_ data: InternalExternalBankAccountListBankModel?, _ error: Error?) -> Void)
+    open class func internalListExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil, completion: @escaping (_ data: InternalExternalBankAccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List ExternalBankAccounts
@@ -1358,8 +1358,8 @@ Retrieves a listing of external bank accounts.  Required scope: **internal:accou
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 let asset = "asset_example" // String | Comma separated assets to list bank accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list bank accounts for. (optional)
 let exchangeGuid = "exchangeGuid_example" // String | Comma separated exchange_guids to list bank accounts for. (optional)
@@ -1381,8 +1381,8 @@ InternalAPI.internalListExternalBankAccounts(page: page, perPage: perPage, asset
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
  **asset** | **String** | Comma separated assets to list bank accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list bank accounts for. | [optional] 
  **exchangeGuid** | **String** | Comma separated exchange_guids to list bank accounts for. | [optional] 
@@ -1404,7 +1404,7 @@ Name | Type | Description  | Notes
 
 # **internalListExternalWallets**
 ```swift
-    open class func internalListExternalWallets(page: String? = nil, perPage: String? = nil, asset: String? = nil, exchangeGuid: String? = nil, completion: @escaping (_ data: InternalExternalWalletListBankModel?, _ error: Error?) -> Void)
+    open class func internalListExternalWallets(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, exchangeGuid: String? = nil, completion: @escaping (_ data: InternalExternalWalletListBankModel?, _ error: Error?) -> Void)
 ```
 
 List ExternalWallets
@@ -1416,8 +1416,8 @@ Retrieves a listing of external wallets.  Required scope: **internal:accounts:re
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 let asset = "asset_example" // String | Comma separated assets to list wallets for. (optional)
 let exchangeGuid = "exchangeGuid_example" // String | Comma separated exchange_guids to list wallets for. (optional)
 
@@ -1438,8 +1438,8 @@ InternalAPI.internalListExternalWallets(page: page, perPage: perPage, asset: ass
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
  **asset** | **String** | Comma separated assets to list wallets for. | [optional] 
  **exchangeGuid** | **String** | Comma separated exchange_guids to list wallets for. | [optional] 
 
@@ -1460,7 +1460,7 @@ Name | Type | Description  | Notes
 
 # **internalListInternalBankAccounts**
 ```swift
-    open class func internalListInternalBankAccounts(page: String? = nil, perPage: String? = nil, asset: String? = nil, accountKind: String? = nil, completion: @escaping (_ data: InternalInternalBankAccountListBankModel?, _ error: Error?) -> Void)
+    open class func internalListInternalBankAccounts(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, accountKind: String? = nil, completion: @escaping (_ data: InternalInternalBankAccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List InternalBankAccounts
@@ -1472,8 +1472,8 @@ Retrieves a listing of internal bank accounts.  Required scope: **internal:accou
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 let asset = "asset_example" // String | Comma separated assets to list bank accounts for. (optional)
 let accountKind = "accountKind_example" // String | Comma separated account kinds to list bank accounts for. (optional)
 
@@ -1494,8 +1494,8 @@ InternalAPI.internalListInternalBankAccounts(page: page, perPage: perPage, asset
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
  **asset** | **String** | Comma separated assets to list bank accounts for. | [optional] 
  **accountKind** | **String** | Comma separated account kinds to list bank accounts for. | [optional] 
 
@@ -1516,7 +1516,7 @@ Name | Type | Description  | Notes
 
 # **internalListInternalWallets**
 ```swift
-    open class func internalListInternalWallets(page: String? = nil, perPage: String? = nil, asset: String? = nil, completion: @escaping (_ data: InternalInternalWalletListBankModel?, _ error: Error?) -> Void)
+    open class func internalListInternalWallets(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, completion: @escaping (_ data: InternalInternalWalletListBankModel?, _ error: Error?) -> Void)
 ```
 
 List InternalWallets
@@ -1528,8 +1528,8 @@ Retrieves a listing of internal wallets.  Required scope: **internal:accounts:re
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 let asset = "asset_example" // String | Comma separated assets to list wallets for. (optional)
 
 // List InternalWallets
@@ -1549,8 +1549,8 @@ InternalAPI.internalListInternalWallets(page: page, perPage: perPage, asset: ass
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
  **asset** | **String** | Comma separated assets to list wallets for. | [optional] 
 
 ### Return type
@@ -1570,7 +1570,7 @@ Name | Type | Description  | Notes
 
 # **internalListTransactions**
 ```swift
-    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: String? = nil, perPage: String? = nil, completion: @escaping (_ data: [InternalTransactionBankModel]?, _ error: Error?) -> Void)
+    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: [InternalTransactionBankModel]?, _ error: Error?) -> Void)
 ```
 
 List Transactions
@@ -1585,8 +1585,8 @@ import CybridApiBankSwift
 let environment = "environment_example" // String | 
 let accountGuid = "accountGuid_example" // String | 
 let accountType = "accountType_example" // String | 
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 
 // List Transactions
 InternalAPI.internalListTransactions(environment: environment, accountGuid: accountGuid, accountType: accountType, page: page, perPage: perPage) { (response, error) in
@@ -1608,8 +1608,8 @@ Name | Type | Description  | Notes
  **environment** | **String** |  | 
  **accountGuid** | **String** |  | 
  **accountType** | **String** |  | 
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
 
 ### Return type
 

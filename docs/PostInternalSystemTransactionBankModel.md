@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **guid** | **String** | The internal identifier for the system transaction. | 
 **providerId** | **String** | The external identifier for the system transaction. | 
 **systemAccountGuid** | **String** | The identifier of the account the transaction is associated to. | 
-**amount** | **String** | The amount in the transaction. | 
+**amount** | **Int** | The amount in the transaction. | 
 **assetCode** | **String** | The asset code. | 
 **direction** | **String** | The direction of the transaction: debit or credit. | 
 **description** | **String** | The description for the transaction. | [optional] 

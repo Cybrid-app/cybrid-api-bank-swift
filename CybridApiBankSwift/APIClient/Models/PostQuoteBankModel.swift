@@ -24,11 +24,11 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The direction of the quote: either 'buy' or 'sell'. */
     public var side: SideBankModel
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
-    public var receiveAmount: String?
+    public var receiveAmount: AnyCodable?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
-    public var deliverAmount: String?
+    public var deliverAmount: AnyCodable?
 
-    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: AnyCodable? = nil, deliverAmount: AnyCodable? = nil) {
         self.customerGuid = customerGuid
         self.symbol = symbol
         self.side = side

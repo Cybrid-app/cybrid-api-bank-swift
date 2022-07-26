@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listIdentityRecords**
 ```swift
-    open class func listIdentityRecords(customerGuid: String? = nil, page: String? = nil, perPage: String? = nil, completion: @escaping (_ data: IdentityRecordListBankModel?, _ error: Error?) -> Void)
+    open class func listIdentityRecords(customerGuid: String? = nil, page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: IdentityRecordListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Identity Records
@@ -124,8 +124,8 @@ Retrieves a listing of identity records for a bank.  Required scope: **customers
 import CybridApiBankSwift
 
 let customerGuid = "customerGuid_example" // String | Comma separated customer identifier to list identity records for. (optional)
-let page = "page_example" // String |  (optional)
-let perPage = "perPage_example" // String |  (optional)
+let page = 987 // Int |  (optional)
+let perPage = 987 // Int |  (optional)
 
 // List Identity Records
 IdentityRecordsAPI.listIdentityRecords(customerGuid: customerGuid, page: page, perPage: perPage) { (response, error) in
@@ -145,8 +145,8 @@ IdentityRecordsAPI.listIdentityRecords(customerGuid: customerGuid, page: page, p
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customerGuid** | **String** | Comma separated customer identifier to list identity records for. | [optional] 
- **page** | **String** |  | [optional] 
- **perPage** | **String** |  | [optional] 
+ **page** | **Int** |  | [optional] 
+ **perPage** | **Int** |  | [optional] 
 
 ### Return type
 

@@ -39,15 +39,15 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     /** The trade's state */
     public var state: StateBankModel?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
-    public var receiveAmount: String?
+    public var receiveAmount: Int?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
-    public var deliverAmount: String?
+    public var deliverAmount: Int?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units */
-    public var fee: String?
+    public var fee: Int?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, fee: Int? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.quoteGuid = quoteGuid

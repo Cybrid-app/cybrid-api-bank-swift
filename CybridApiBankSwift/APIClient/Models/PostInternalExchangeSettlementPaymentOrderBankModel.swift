@@ -36,9 +36,9 @@ public struct PostInternalExchangeSettlementPaymentOrderBankModel: Codable, JSON
     /** The identifier of the exchange settlement obligation that this payment is associated with. */
     public var exchangeSettlementObligationGuid: String
     /** The sequence number of the payment order */
-    public var sequenceNumber: String
+    public var sequenceNumber: Int
     /** The amount expected to be received as part of this payment. */
-    public var paymentAmount: String
+    public var paymentAmount: Int
     /** The expected state of the underlying money transfer for the payment order (sandbox only) */
     public var expectedState: ExpectedStateBankModel?
     /** The identifier of the internal account that is expected to originate the payment. */
@@ -50,7 +50,7 @@ public struct PostInternalExchangeSettlementPaymentOrderBankModel: Codable, JSON
     /** The type of the external account that is expected to receive the payment. */
     public var externalAccountType: ExternalAccountTypeBankModel
 
-    public init(exchangeSettlementGuid: String, exchangeSettlementObligationGuid: String, sequenceNumber: String, paymentAmount: String, expectedState: ExpectedStateBankModel? = nil, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, externalAccountGuid: String, externalAccountType: ExternalAccountTypeBankModel) {
+    public init(exchangeSettlementGuid: String, exchangeSettlementObligationGuid: String, sequenceNumber: Int, paymentAmount: Int, expectedState: ExpectedStateBankModel? = nil, internalAccountGuid: String, internalAccountType: InternalAccountTypeBankModel, externalAccountGuid: String, externalAccountType: ExternalAccountTypeBankModel) {
         self.exchangeSettlementGuid = exchangeSettlementGuid
         self.exchangeSettlementObligationGuid = exchangeSettlementObligationGuid
         self.sequenceNumber = sequenceNumber

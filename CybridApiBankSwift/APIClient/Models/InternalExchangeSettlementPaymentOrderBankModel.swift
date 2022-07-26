@@ -42,9 +42,9 @@ public struct InternalExchangeSettlementPaymentOrderBankModel: Codable, JSONEnco
     /** The identifier of the exchange settlement obligation that this payment is associated with. */
     public var exchangeSettlementObligationGuid: String?
     /** The sequence number of the payment order */
-    public var sequenceNumber: String?
+    public var sequenceNumber: Int?
     /** The amount expected to be received as part of this payment. */
-    public var paymentAmount: String?
+    public var paymentAmount: Int?
     /** The identifier of the internal account that is expected to originate the payment. */
     public var internalAccountGuid: String?
     /** The type of the internal account that is expected to originate the payment. */
@@ -58,7 +58,7 @@ public struct InternalExchangeSettlementPaymentOrderBankModel: Codable, JSONEnco
     /** ISO8601 datetime the exchange settlement payment order was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, exchangeSettlementObligationGuid: String? = nil, sequenceNumber: String? = nil, paymentAmount: String? = nil, internalAccountGuid: String? = nil, internalAccountType: InternalAccountTypeBankModel? = nil, externalAccountGuid: String? = nil, externalAccountType: ExternalAccountTypeBankModel? = nil, state: StateBankModel? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, exchangeSettlementObligationGuid: String? = nil, sequenceNumber: Int? = nil, paymentAmount: Int? = nil, internalAccountGuid: String? = nil, internalAccountType: InternalAccountTypeBankModel? = nil, externalAccountGuid: String? = nil, externalAccountType: ExternalAccountTypeBankModel? = nil, state: StateBankModel? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.exchangeSettlementObligationGuid = exchangeSettlementObligationGuid
         self.sequenceNumber = sequenceNumber

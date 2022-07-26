@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **paymentKind** | **String** | The kind of expected payment. | 
-**nonce** | **String** | The sequence number of the expected payment | 
-**paymentAmount** | **String** | The amount expected to be received as part of this payment. | 
+**nonce** | **Int** | The sequence number of the expected payment | 
+**paymentAmount** | **Int** | The amount expected to be received as part of this payment. | 
 **internalAccountGuid** | **String** | The identifier of the internal account that is expected to originate the payment. | 
 **internalAccountType** | **String** | The type of the internal account that is expected to originate the payment. | 
 **exchangeSettlementGuid** | **String** | The identifier of the exchange settlement that this payment is associated with. | [optional] 

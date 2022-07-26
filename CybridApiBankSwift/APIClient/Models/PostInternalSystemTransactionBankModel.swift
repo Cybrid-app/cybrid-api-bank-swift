@@ -24,7 +24,7 @@ public struct PostInternalSystemTransactionBankModel: Codable, JSONEncodable, Ha
     /** The identifier of the account the transaction is associated to. */
     public var systemAccountGuid: String
     /** The amount in the transaction. */
-    public var amount: String
+    public var amount: Int
     /** The asset code. */
     public var assetCode: String
     /** The direction of the transaction: debit or credit. */
@@ -32,7 +32,7 @@ public struct PostInternalSystemTransactionBankModel: Codable, JSONEncodable, Ha
     /** The description for the transaction. */
     public var description: String?
 
-    public init(guid: String, providerId: String, systemAccountGuid: String, amount: String, assetCode: String, direction: DirectionBankModel, description: String? = nil) {
+    public init(guid: String, providerId: String, systemAccountGuid: String, amount: Int, assetCode: String, direction: DirectionBankModel, description: String? = nil) {
         self.guid = guid
         self.providerId = providerId
         self.systemAccountGuid = systemAccountGuid

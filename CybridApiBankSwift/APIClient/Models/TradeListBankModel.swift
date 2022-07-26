@@ -13,15 +13,15 @@ import AnyCodable
 public struct TradeListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: String
+    public var total: Int
     /** The page index to retrieve. */
-    public var page: String
+    public var page: Int
     /** The number of entities per page to return. */
-    public var perPage: String
+    public var perPage: Int
     /** Array of trade entities */
     public var objects: [TradeBankModel]
 
-    public init(total: String, page: String, perPage: String, objects: [TradeBankModel]) {
+    public init(total: Int, page: Int, perPage: Int, objects: [TradeBankModel]) {
         self.total = total
         self.page = page
         self.perPage = perPage

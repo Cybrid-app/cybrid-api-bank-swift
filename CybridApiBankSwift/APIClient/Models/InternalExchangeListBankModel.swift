@@ -13,15 +13,15 @@ import AnyCodable
 public struct InternalExchangeListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: String
+    public var total: Int
     /** The page index to retrieve. */
-    public var page: String
+    public var page: Int
     /** The number of entities per page to return. */
-    public var perPage: String
+    public var perPage: Int
     /** Array of exchange entities */
     public var objects: [InternalExchangeBankModel]
 
-    public init(total: String, page: String, perPage: String, objects: [InternalExchangeBankModel]) {
+    public init(total: Int, page: Int, perPage: Int, objects: [InternalExchangeBankModel]) {
         self.total = total
         self.page = page
         self.perPage = perPage

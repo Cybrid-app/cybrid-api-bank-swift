@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **listAssets**
 ```swift
-    open class func listAssets(page: String? = nil, perPage: String? = nil, completion: @escaping (_ data: AssetListBankModel?, _ error: Error?) -> Void)
+    open class func listAssets(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: AssetListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get assets list
@@ -21,8 +21,8 @@ Retrieves a listing of assets.  Required scope: **prices:read**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let page = "page_example" // String | The page index to retrieve. (optional)
-let perPage = "perPage_example" // String | The number of entities per page to return. (optional)
+let page = 987 // Int | The page index to retrieve. (optional)
+let perPage = 987 // Int | The number of entities per page to return. (optional)
 
 // Get assets list
 AssetsAPI.listAssets(page: page, perPage: perPage) { (response, error) in
@@ -41,8 +41,8 @@ AssetsAPI.listAssets(page: page, perPage: perPage) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String** | The page index to retrieve. | [optional] 
- **perPage** | **String** | The number of entities per page to return. | [optional] 
+ **page** | **Int** | The page index to retrieve. | [optional] 
+ **perPage** | **Int** | The number of entities per page to return. | [optional] 
 
 ### Return type
 

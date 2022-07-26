@@ -26,9 +26,9 @@ public struct AssetBankModel: Codable, JSONEncodable, Hashable {
     /** The currency symbol for the asset. */
     public var symbol: String
     /** The number of decimals for the default unit of the asset. */
-    public var decimals: String
+    public var decimals: Int
 
-    public init(type: TypeBankModel, code: String, name: String, symbol: String, decimals: String) {
+    public init(type: TypeBankModel, code: String, name: String, symbol: String, decimals: Int) {
         self.type = type
         self.code = code
         self.name = name

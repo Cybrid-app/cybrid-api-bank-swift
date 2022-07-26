@@ -29,11 +29,11 @@ public struct InternalExchangeSettlementObligationBankModel: Codable, JSONEncoda
     /** The exchange settlement's state */
     public var state: StateBankModel?
     /** The account's payable estimate for this obligation. */
-    public var payableAmountEstimate: String?
+    public var payableAmountEstimate: Int?
     /** The account's receivable estimate for this obligation. */
-    public var receivableAmountEstimate: String?
+    public var receivableAmountEstimate: Int?
 
-    public init(guid: String? = nil, exchangeSettlementGuid: String? = nil, asset: String? = nil, state: StateBankModel? = nil, payableAmountEstimate: String? = nil, receivableAmountEstimate: String? = nil) {
+    public init(guid: String? = nil, exchangeSettlementGuid: String? = nil, asset: String? = nil, state: StateBankModel? = nil, payableAmountEstimate: Int? = nil, receivableAmountEstimate: Int? = nil) {
         self.guid = guid
         self.exchangeSettlementGuid = exchangeSettlementGuid
         self.asset = asset

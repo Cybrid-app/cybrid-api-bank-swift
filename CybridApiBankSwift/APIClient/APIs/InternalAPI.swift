@@ -1308,7 +1308,7 @@ open class InternalAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListExchanges(page: String? = nil, perPage: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExchangeListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExchangeListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return internalListExchangesWithRequestBuilder(page: page, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1333,7 +1333,7 @@ open class InternalAPI {
      - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<InternalExchangeListBankModel> 
      */
-    open class func internalListExchangesWithRequestBuilder(page: String? = nil, perPage: String? = nil) -> RequestBuilder<InternalExchangeListBankModel> {
+    open class func internalListExchangesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<InternalExchangeListBankModel> {
         let localVariablePath = "/api/internal/exchanges"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1367,7 +1367,7 @@ open class InternalAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListExternalBankAccounts(page: String? = nil, perPage: String? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExternalBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func internalListExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExternalBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return internalListExternalBankAccountsWithRequestBuilder(page: page, perPage: perPage, asset: asset, bankGuid: bankGuid, exchangeGuid: exchangeGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1395,7 +1395,7 @@ open class InternalAPI {
      - parameter exchangeGuid: (query) Comma separated exchange_guids to list bank accounts for. (optional)
      - returns: RequestBuilder<InternalExternalBankAccountListBankModel> 
      */
-    open class func internalListExternalBankAccountsWithRequestBuilder(page: String? = nil, perPage: String? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil) -> RequestBuilder<InternalExternalBankAccountListBankModel> {
+    open class func internalListExternalBankAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, bankGuid: String? = nil, exchangeGuid: String? = nil) -> RequestBuilder<InternalExternalBankAccountListBankModel> {
         let localVariablePath = "/api/internal/external_bank_accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1431,7 +1431,7 @@ open class InternalAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListExternalWallets(page: String? = nil, perPage: String? = nil, asset: String? = nil, exchangeGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func internalListExternalWallets(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, exchangeGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return internalListExternalWalletsWithRequestBuilder(page: page, perPage: perPage, asset: asset, exchangeGuid: exchangeGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1458,7 +1458,7 @@ open class InternalAPI {
      - parameter exchangeGuid: (query) Comma separated exchange_guids to list wallets for. (optional)
      - returns: RequestBuilder<InternalExternalWalletListBankModel> 
      */
-    open class func internalListExternalWalletsWithRequestBuilder(page: String? = nil, perPage: String? = nil, asset: String? = nil, exchangeGuid: String? = nil) -> RequestBuilder<InternalExternalWalletListBankModel> {
+    open class func internalListExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, exchangeGuid: String? = nil) -> RequestBuilder<InternalExternalWalletListBankModel> {
         let localVariablePath = "/api/internal/external_wallets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1493,7 +1493,7 @@ open class InternalAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListInternalBankAccounts(page: String? = nil, perPage: String? = nil, asset: String? = nil, accountKind: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func internalListInternalBankAccounts(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, accountKind: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return internalListInternalBankAccountsWithRequestBuilder(page: page, perPage: perPage, asset: asset, accountKind: accountKind).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1520,7 +1520,7 @@ open class InternalAPI {
      - parameter accountKind: (query) Comma separated account kinds to list bank accounts for. (optional)
      - returns: RequestBuilder<InternalInternalBankAccountListBankModel> 
      */
-    open class func internalListInternalBankAccountsWithRequestBuilder(page: String? = nil, perPage: String? = nil, asset: String? = nil, accountKind: String? = nil) -> RequestBuilder<InternalInternalBankAccountListBankModel> {
+    open class func internalListInternalBankAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, accountKind: String? = nil) -> RequestBuilder<InternalInternalBankAccountListBankModel> {
         let localVariablePath = "/api/internal/internal_bank_accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1554,7 +1554,7 @@ open class InternalAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListInternalWallets(page: String? = nil, perPage: String? = nil, asset: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func internalListInternalWallets(page: Int? = nil, perPage: Int? = nil, asset: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return internalListInternalWalletsWithRequestBuilder(page: page, perPage: perPage, asset: asset).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1580,7 +1580,7 @@ open class InternalAPI {
      - parameter asset: (query) Comma separated assets to list wallets for. (optional)
      - returns: RequestBuilder<InternalInternalWalletListBankModel> 
      */
-    open class func internalListInternalWalletsWithRequestBuilder(page: String? = nil, perPage: String? = nil, asset: String? = nil) -> RequestBuilder<InternalInternalWalletListBankModel> {
+    open class func internalListInternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, asset: String? = nil) -> RequestBuilder<InternalInternalWalletListBankModel> {
         let localVariablePath = "/api/internal/internal_wallets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1631,7 +1631,7 @@ open class InternalAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: String? = nil, perPage: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[InternalTransactionBankModel], ErrorResponse>) -> Void)) -> RequestTask {
+    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[InternalTransactionBankModel], ErrorResponse>) -> Void)) -> RequestTask {
         return internalListTransactionsWithRequestBuilder(environment: environment, accountGuid: accountGuid, accountType: accountType, page: page, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1659,7 +1659,7 @@ open class InternalAPI {
      - parameter perPage: (query)  (optional)
      - returns: RequestBuilder<[InternalTransactionBankModel]> 
      */
-    open class func internalListTransactionsWithRequestBuilder(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: String? = nil, perPage: String? = nil) -> RequestBuilder<[InternalTransactionBankModel]> {
+    open class func internalListTransactionsWithRequestBuilder(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<[InternalTransactionBankModel]> {
         let localVariablePath = "/api/internal/transactions"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

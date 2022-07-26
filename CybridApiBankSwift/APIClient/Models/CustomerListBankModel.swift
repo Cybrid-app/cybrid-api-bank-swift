@@ -13,14 +13,14 @@ import AnyCodable
 public struct CustomerListBankModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
-    public var total: String
+    public var total: Int
     /** The page index to retrieve. */
-    public var page: String
+    public var page: Int
     /** The number of entities per page to return. */
-    public var perPage: String
+    public var perPage: Int
     public var objects: [CustomerBankModel]
 
-    public init(total: String, page: String, perPage: String, objects: [CustomerBankModel]) {
+    public init(total: Int, page: Int, perPage: Int, objects: [CustomerBankModel]) {
         self.total = total
         self.page = page
         self.perPage = perPage
