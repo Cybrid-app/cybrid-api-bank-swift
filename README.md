@@ -56,6 +56,7 @@ The following scopes are available on the platform and can be requested when gen
 | Symbols       | prices:read        |                      |                   | Bank               |
 | Quotes        | quotes:read        |                      | quotes:execute    | Bank               |
 | Trades        | trades:read        |                      | trades:execute    | Bank               |
+| Rewards       | rewards:read       |                      | rewards:execute   | Bank               |
 
 ## Organizations
 
@@ -262,6 +263,8 @@ Class | Method | HTTP request | Description
  - **quotes:read**: quotes read
  - **trades:execute**: trades execute
  - **trades:read**: trades read
+ - **rewards:execute**: rewards execute
+ - **rewards:read**: rewards read
 
 
 ## Author
