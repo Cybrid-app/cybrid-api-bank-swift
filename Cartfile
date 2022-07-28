@@ -1,4 +1,4 @@
 github "Flight-School/AnyCodable" ~> 0.6.1
 # Add BigInt dependency
-github "attaswift/BigInt" ~> 5.3
+github "attaswift/BigInt" ~> 5.2.0
 # ------
