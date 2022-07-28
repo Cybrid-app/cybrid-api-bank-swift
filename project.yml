@@ -7,9 +7,11 @@ targets:
     sources: [CybridApiBankSwift/APIClient]
     info:
       path: ./Info.plist
-      version: 0.34.0
+      version: 0.34.1
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
     dependencies:
     - carthage: AnyCodable
+    # Add BigInt library
+    - carthage: BigInt
