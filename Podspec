@@ -13,4 +13,7 @@ Pod::Spec.new do |s|
   s.description = 'Cybrid Bank API for Swift'
   s.source_files = 'CybridApiBankSwift/APIClient/**/*.swift'
   s.dependency 'AnyCodable-FlightSchool', '~> 0.6.1'
+  # Add BigInt dependency
+  s.dependency 'BigInt', '~> 5.3.0'
+  # -------
 end

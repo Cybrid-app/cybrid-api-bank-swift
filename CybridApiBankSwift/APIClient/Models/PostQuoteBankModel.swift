@@ -6,8 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
+#if canImport(BigInt)
+import BigInt
 #endif
 
 public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
@@ -24,11 +24,11 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The direction of the quote: either 'buy' or 'sell'. */
     public var side: SideBankModel
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
-    public var receiveAmount: AnyCodable?
+    public var receiveAmount: BigInt?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
-    public var deliverAmount: AnyCodable?
+    public var deliverAmount: BigInt?
 
-    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: AnyCodable? = nil, deliverAmount: AnyCodable? = nil) {
+    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil) {
         self.customerGuid = customerGuid
         self.symbol = symbol
         self.side = side
