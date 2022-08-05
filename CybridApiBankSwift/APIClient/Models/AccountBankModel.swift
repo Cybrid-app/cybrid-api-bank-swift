@@ -19,6 +19,10 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case savings = "savings"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum ProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case compound = "compound"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
         case created = "created"
@@ -26,6 +30,8 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The account type. */
     public var type: TypeBankModel?
+    /** The account provider, if applicable. */
+    public var provider: ProviderBankModel?
     /** Auto-generated unique identifier for the account. */
     public var guid: String?
     /** ISO8601 datetime the account was created at. */
@@ -45,8 +51,9 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     /** The account's state. */
     public var state: StateBankModel?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: Int? = nil, platformAvailable: Int? = nil, state: StateBankModel? = nil) {
+    public init(type: TypeBankModel? = nil, provider: ProviderBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: Int? = nil, platformAvailable: Int? = nil, state: StateBankModel? = nil) {
         self.type = type
+        self.provider = provider
         self.guid = guid
         self.createdAt = createdAt
         self.asset = asset
@@ -60,6 +67,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
+        case provider
         case guid
         case createdAt = "created_at"
         case asset
@@ -76,6 +84,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(provider, forKey: .provider)
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(asset, forKey: .asset)
