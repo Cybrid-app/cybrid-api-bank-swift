@@ -17,8 +17,14 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
         case savings = "savings"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum ProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case compound = "compound"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The account type. */
     public var type: TypeBankModel
+    /** The account provider, if applicable. */
+    public var provider: ProviderBankModel?
     /** The customer identifier associated with the account. */
     public var customerGuid: String
     /** The asset code. */
@@ -26,8 +32,9 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The name of the account. */
     public var name: String
 
-    public init(type: TypeBankModel, customerGuid: String, asset: String, name: String) {
+    public init(type: TypeBankModel, provider: ProviderBankModel? = nil, customerGuid: String, asset: String, name: String) {
         self.type = type
+        self.provider = provider
         self.customerGuid = customerGuid
         self.asset = asset
         self.name = name
@@ -35,6 +42,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
+        case provider
         case customerGuid = "customer_guid"
         case asset
         case name
@@ -45,6 +53,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(provider, forKey: .provider)
         try container.encode(customerGuid, forKey: .customerGuid)
         try container.encode(asset, forKey: .asset)
         try container.encode(name, forKey: .name)
