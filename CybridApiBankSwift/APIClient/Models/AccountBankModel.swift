@@ -17,6 +17,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case trading = "trading"
         case fee = "fee"
         case savings = "savings"
+        case staking = "staking"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

@@ -13,8 +13,7 @@ import AnyCodable
 public struct PostInternalAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case trading = "trading"
-        case savings = "savings"
+        case backstopped = "backstopped"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The account type. */
