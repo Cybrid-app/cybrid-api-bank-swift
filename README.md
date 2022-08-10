@@ -152,6 +152,7 @@ Class | Method | HTTP request | Description
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
 *QuotesAPI* | [**listQuotes**](docs/QuotesAPI.md#listquotes) | **GET** /api/quotes | Get quotes list
+*RewardsAPI* | [**createRewards**](docs/RewardsAPI.md#createrewards) | **POST** /api/rewards | Create Reward
 *SymbolsAPI* | [**listSymbols**](docs/SymbolsAPI.md#listsymbols) | **GET** /api/symbols | Get Symbols list
 *TradesAPI* | [**createTrade**](docs/TradesAPI.md#createtrade) | **POST** /api/trades | Create Trade
 *TradesAPI* | [**getTrade**](docs/TradesAPI.md#gettrade) | **GET** /api/trades/{trade_guid} | Get Trade
@@ -224,11 +225,13 @@ Class | Method | HTTP request | Description
  - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
  - [PostInternalTradingSymbolConfigurationBankModel](docs/PostInternalTradingSymbolConfigurationBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
+ - [PostRewardBankModel](docs/PostRewardBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)
  - [PostTradingConfigurationBankModel](docs/PostTradingConfigurationBankModel.md)
  - [PostVerificationKeyBankModel](docs/PostVerificationKeyBankModel.md)
  - [QuoteBankModel](docs/QuoteBankModel.md)
  - [QuoteListBankModel](docs/QuoteListBankModel.md)
+ - [RewardBankModel](docs/RewardBankModel.md)
  - [SymbolPriceBankModel](docs/SymbolPriceBankModel.md)
  - [TradeBankModel](docs/TradeBankModel.md)
  - [TradeListBankModel](docs/TradeListBankModel.md)
