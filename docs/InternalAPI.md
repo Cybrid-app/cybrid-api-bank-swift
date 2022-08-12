@@ -17,10 +17,10 @@ Method | HTTP request | Description
 [**internalCreateExpectedPayment**](InternalAPI.md#internalcreateexpectedpayment) | **POST** /api/internal/expected_payments | Create Expected Payment
 [**internalCreateExternalBankAccount**](InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 [**internalCreateExternalWallet**](InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
+[**internalCreateFeeConfiguration**](InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
 [**internalCreateInternalBankAccount**](InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 [**internalCreateSystemAccount**](InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
-[**internalCreateTradingConfiguration**](InternalAPI.md#internalcreatetradingconfiguration) | **POST** /api/internal/trading_configurations | Create TradingConfiguration
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 [**internalGetExchange**](InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
@@ -692,6 +692,56 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalCreateFeeConfiguration**
+```swift
+    open class func internalCreateFeeConfiguration(postFeeConfigurationBankModel: PostFeeConfigurationBankModel, completion: @escaping (_ data: FeeConfigurationBankModel?, _ error: Error?) -> Void)
+```
+
+Create FeeConfiguration
+
+Creates a fee configuration.  Required scope: **internal:banks:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postFeeConfigurationBankModel = PostFeeConfiguration(productType: "productType_example", asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)], productProvider: "productProvider_example") // PostFeeConfigurationBankModel | 
+
+// Create FeeConfiguration
+InternalAPI.internalCreateFeeConfiguration(postFeeConfigurationBankModel: postFeeConfigurationBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postFeeConfigurationBankModel** | [**PostFeeConfigurationBankModel**](PostFeeConfigurationBankModel.md) |  | 
+
+### Return type
+
+[**FeeConfigurationBankModel**](FeeConfigurationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalCreateInternalBankAccount**
 ```swift
     open class func internalCreateInternalBankAccount(postInternalInternalBankAccountBankModel: PostInternalInternalBankAccountBankModel, completion: @escaping (_ data: InternalInternalBankAccountBankModel?, _ error: Error?) -> Void)
@@ -830,56 +880,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalSystemAccountBankModel**](InternalSystemAccountBankModel.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **internalCreateTradingConfiguration**
-```swift
-    open class func internalCreateTradingConfiguration(postTradingConfigurationBankModel: PostTradingConfigurationBankModel, completion: @escaping (_ data: TradingConfigurationBankModel?, _ error: Error?) -> Void)
-```
-
-Create TradingConfiguration
-
-Creates a trading configuration.  Required scope: **internal:banks:write**
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import CybridApiBankSwift
-
-let postTradingConfigurationBankModel = PostTradingConfiguration(asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostTradingConfigurationBankModel | 
-
-// Create TradingConfiguration
-InternalAPI.internalCreateTradingConfiguration(postTradingConfigurationBankModel: postTradingConfigurationBankModel) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **postTradingConfigurationBankModel** | [**PostTradingConfigurationBankModel**](PostTradingConfigurationBankModel.md) |  | 
-
-### Return type
-
-[**TradingConfigurationBankModel**](TradingConfigurationBankModel.md)
 
 ### Authorization
 

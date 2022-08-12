@@ -679,6 +679,56 @@ open class InternalAPI {
     }
 
     /**
+     Create FeeConfiguration
+     
+     - parameter postFeeConfigurationBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateFeeConfiguration(postFeeConfigurationBankModel: PostFeeConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<FeeConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateFeeConfigurationWithRequestBuilder(postFeeConfigurationBankModel: postFeeConfigurationBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create FeeConfiguration
+     - POST /api/internal/fee_configurations
+     - Creates a fee configuration.  Required scope: **internal:banks:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postFeeConfigurationBankModel: (body)  
+     - returns: RequestBuilder<FeeConfigurationBankModel> 
+     */
+    open class func internalCreateFeeConfigurationWithRequestBuilder(postFeeConfigurationBankModel: PostFeeConfigurationBankModel) -> RequestBuilder<FeeConfigurationBankModel> {
+        let localVariablePath = "/api/internal/fee_configurations"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postFeeConfigurationBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<FeeConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create InternalBankAccount
      
      - parameter postInternalInternalBankAccountBankModel: (body)  
@@ -824,56 +874,6 @@ open class InternalAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<InternalSystemAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
-     Create TradingConfiguration
-     
-     - parameter postTradingConfigurationBankModel: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func internalCreateTradingConfiguration(postTradingConfigurationBankModel: PostTradingConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradingConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return internalCreateTradingConfigurationWithRequestBuilder(postTradingConfigurationBankModel: postTradingConfigurationBankModel).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Create TradingConfiguration
-     - POST /api/internal/trading_configurations
-     - Creates a trading configuration.  Required scope: **internal:banks:write**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
-     - parameter postTradingConfigurationBankModel: (body)  
-     - returns: RequestBuilder<TradingConfigurationBankModel> 
-     */
-    open class func internalCreateTradingConfigurationWithRequestBuilder(postTradingConfigurationBankModel: PostTradingConfigurationBankModel) -> RequestBuilder<TradingConfigurationBankModel> {
-        let localVariablePath = "/api/internal/trading_configurations"
-        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postTradingConfigurationBankModel)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TradingConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

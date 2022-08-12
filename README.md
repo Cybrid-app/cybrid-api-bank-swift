@@ -113,6 +113,9 @@ Class | Method | HTTP request | Description
 *CustomersAPI* | [**createCustomer**](docs/CustomersAPI.md#createcustomer) | **POST** /api/customers | Create Customer
 *CustomersAPI* | [**getCustomer**](docs/CustomersAPI.md#getcustomer) | **GET** /api/customers/{customer_guid} | Get Customer
 *CustomersAPI* | [**listCustomers**](docs/CustomersAPI.md#listcustomers) | **GET** /api/customers | Get customers list
+*FeeConfigurationsAPI* | [**createFeeConfiguration**](docs/FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create FeeConfiguration
+*FeeConfigurationsAPI* | [**getFeeConfiguration**](docs/FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get FeeConfiguration
+*FeeConfigurationsAPI* | [**listFeeConfigurations**](docs/FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List fee configurations
 *IdentityRecordsAPI* | [**createIdentityRecord**](docs/IdentityRecordsAPI.md#createidentityrecord) | **POST** /api/identity_records | Create Identity Record
 *IdentityRecordsAPI* | [**getIdentityRecord**](docs/IdentityRecordsAPI.md#getidentityrecord) | **GET** /api/identity_records/{identity_record_guid} | Get Identity Record
 *IdentityRecordsAPI* | [**listIdentityRecords**](docs/IdentityRecordsAPI.md#listidentityrecords) | **GET** /api/identity_records | List Identity Records
@@ -129,10 +132,10 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateExpectedPayment**](docs/InternalAPI.md#internalcreateexpectedpayment) | **POST** /api/internal/expected_payments | Create Expected Payment
 *InternalAPI* | [**internalCreateExternalBankAccount**](docs/InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 *InternalAPI* | [**internalCreateExternalWallet**](docs/InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
+*InternalAPI* | [**internalCreateFeeConfiguration**](docs/InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
 *InternalAPI* | [**internalCreateInternalBankAccount**](docs/InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 *InternalAPI* | [**internalCreateSystemAccount**](docs/InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
-*InternalAPI* | [**internalCreateTradingConfiguration**](docs/InternalAPI.md#internalcreatetradingconfiguration) | **POST** /api/internal/trading_configurations | Create TradingConfiguration
 *InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 *InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 *InternalAPI* | [**internalGetExchange**](docs/InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
@@ -157,9 +160,6 @@ Class | Method | HTTP request | Description
 *TradesAPI* | [**createTrade**](docs/TradesAPI.md#createtrade) | **POST** /api/trades | Create Trade
 *TradesAPI* | [**getTrade**](docs/TradesAPI.md#gettrade) | **GET** /api/trades/{trade_guid} | Get Trade
 *TradesAPI* | [**listTrades**](docs/TradesAPI.md#listtrades) | **GET** /api/trades | Get trades list
-*TradingConfigurationsAPI* | [**createTradingConfiguration**](docs/TradingConfigurationsAPI.md#createtradingconfiguration) | **POST** /api/trading_configurations | Create TradingConfiguration
-*TradingConfigurationsAPI* | [**getTradingConfiguration**](docs/TradingConfigurationsAPI.md#gettradingconfiguration) | **GET** /api/trading_configurations/{trading_configuration_guid} | Get TradingConfiguration
-*TradingConfigurationsAPI* | [**listTradingConfigurations**](docs/TradingConfigurationsAPI.md#listtradingconfigurations) | **GET** /api/trading_configurations | List trading configurations
 *VerificationKeysAPI* | [**createVerificationKey**](docs/VerificationKeysAPI.md#createverificationkey) | **POST** /api/bank_verification_keys | Create VerificationKey
 *VerificationKeysAPI* | [**getVerificationKey**](docs/VerificationKeysAPI.md#getverificationkey) | **GET** /api/bank_verification_keys/{verification_key_guid} | Get VerificationKey
 *VerificationKeysAPI* | [**listVerificationKeys**](docs/VerificationKeysAPI.md#listverificationkeys) | **GET** /api/bank_verification_keys | Get Verification Keys list
@@ -178,6 +178,8 @@ Class | Method | HTTP request | Description
  - [CustomerListBankModel](docs/CustomerListBankModel.md)
  - [ErrorResponseBankModel](docs/ErrorResponseBankModel.md)
  - [FeeBankModel](docs/FeeBankModel.md)
+ - [FeeConfigurationBankModel](docs/FeeConfigurationBankModel.md)
+ - [FeeConfigurationListBankModel](docs/FeeConfigurationListBankModel.md)
  - [IdentityRecordBankModel](docs/IdentityRecordBankModel.md)
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
  - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
@@ -206,6 +208,7 @@ Class | Method | HTTP request | Description
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
  - [PostFeeBankModel](docs/PostFeeBankModel.md)
+ - [PostFeeConfigurationBankModel](docs/PostFeeConfigurationBankModel.md)
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
  - [PostInternalAccountBankModel](docs/PostInternalAccountBankModel.md)
@@ -227,7 +230,6 @@ Class | Method | HTTP request | Description
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostRewardBankModel](docs/PostRewardBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)
- - [PostTradingConfigurationBankModel](docs/PostTradingConfigurationBankModel.md)
  - [PostVerificationKeyBankModel](docs/PostVerificationKeyBankModel.md)
  - [QuoteBankModel](docs/QuoteBankModel.md)
  - [QuoteListBankModel](docs/QuoteListBankModel.md)
@@ -235,8 +237,6 @@ Class | Method | HTTP request | Description
  - [SymbolPriceBankModel](docs/SymbolPriceBankModel.md)
  - [TradeBankModel](docs/TradeBankModel.md)
  - [TradeListBankModel](docs/TradeListBankModel.md)
- - [TradingConfigurationBankModel](docs/TradingConfigurationBankModel.md)
- - [TradingConfigurationListBankModel](docs/TradingConfigurationListBankModel.md)
  - [VerificationKeyBankModel](docs/VerificationKeyBankModel.md)
  - [VerificationKeyListBankModel](docs/VerificationKeyListBankModel.md)
 
