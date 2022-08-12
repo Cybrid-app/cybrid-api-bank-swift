@@ -1,4 +1,4 @@
-# TradingConfigurationListBankModel
+# FeeConfigurationListBankModel
 
 ## Properties
 Name | Type | Description | Notes
@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **total** | **Int** | The total number of records available. | [optional] 
 **page** | **Int** | The page index to retrieve. | [optional] 
 **perPage** | **Int** | The number of entities per page to return. | [optional] 
-**objects** | [TradingConfigurationBankModel] |  | [optional] 
+**objects** | [FeeConfigurationBankModel] |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

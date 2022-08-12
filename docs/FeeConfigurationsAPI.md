@@ -1,32 +1,32 @@
-# TradingConfigurationsAPI
+# FeeConfigurationsAPI
 
 All URIs are relative to *http://api-bank.cybrid.local*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createTradingConfiguration**](TradingConfigurationsAPI.md#createtradingconfiguration) | **POST** /api/trading_configurations | Create TradingConfiguration
-[**getTradingConfiguration**](TradingConfigurationsAPI.md#gettradingconfiguration) | **GET** /api/trading_configurations/{trading_configuration_guid} | Get TradingConfiguration
-[**listTradingConfigurations**](TradingConfigurationsAPI.md#listtradingconfigurations) | **GET** /api/trading_configurations | List trading configurations
+[**createFeeConfiguration**](FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create FeeConfiguration
+[**getFeeConfiguration**](FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get FeeConfiguration
+[**listFeeConfigurations**](FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List fee configurations
 
 
-# **createTradingConfiguration**
+# **createFeeConfiguration**
 ```swift
-    open class func createTradingConfiguration(postTradingConfigurationBankModel: PostTradingConfigurationBankModel, completion: @escaping (_ data: TradingConfigurationBankModel?, _ error: Error?) -> Void)
+    open class func createFeeConfiguration(postFeeConfigurationBankModel: PostFeeConfigurationBankModel, completion: @escaping (_ data: FeeConfigurationBankModel?, _ error: Error?) -> Void)
 ```
 
-Create TradingConfiguration
+Create FeeConfiguration
 
-Creates a trading configuration.  Required scope: **banks:write**
+Creates a fee configuration.  Required scope: **banks:write**
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTradingConfigurationBankModel = PostTradingConfiguration(asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostTradingConfigurationBankModel | 
+let postFeeConfigurationBankModel = PostFeeConfiguration(productType: "productType_example", asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)], productProvider: "productProvider_example") // PostFeeConfigurationBankModel | 
 
-// Create TradingConfiguration
-TradingConfigurationsAPI.createTradingConfiguration(postTradingConfigurationBankModel: postTradingConfigurationBankModel) { (response, error) in
+// Create FeeConfiguration
+FeeConfigurationsAPI.createFeeConfiguration(postFeeConfigurationBankModel: postFeeConfigurationBankModel) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -42,11 +42,11 @@ TradingConfigurationsAPI.createTradingConfiguration(postTradingConfigurationBank
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **postTradingConfigurationBankModel** | [**PostTradingConfigurationBankModel**](PostTradingConfigurationBankModel.md) |  | 
+ **postFeeConfigurationBankModel** | [**PostFeeConfigurationBankModel**](PostFeeConfigurationBankModel.md) |  | 
 
 ### Return type
 
-[**TradingConfigurationBankModel**](TradingConfigurationBankModel.md)
+[**FeeConfigurationBankModel**](FeeConfigurationBankModel.md)
 
 ### Authorization
 
@@ -59,24 +59,24 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getTradingConfiguration**
+# **getFeeConfiguration**
 ```swift
-    open class func getTradingConfiguration(tradingConfigurationGuid: String, completion: @escaping (_ data: TradingConfigurationBankModel?, _ error: Error?) -> Void)
+    open class func getFeeConfiguration(feeConfigurationGuid: String, completion: @escaping (_ data: FeeConfigurationBankModel?, _ error: Error?) -> Void)
 ```
 
-Get TradingConfiguration
+Get FeeConfiguration
 
-Retrieves a trading configuration.  Required scope: **banks:read**
+Retrieves a fee configuration.  Required scope: **banks:read**
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let tradingConfigurationGuid = "tradingConfigurationGuid_example" // String | Identifier for the trading configuration.
+let feeConfigurationGuid = "feeConfigurationGuid_example" // String | Identifier for the fee configuration.
 
-// Get TradingConfiguration
-TradingConfigurationsAPI.getTradingConfiguration(tradingConfigurationGuid: tradingConfigurationGuid) { (response, error) in
+// Get FeeConfiguration
+FeeConfigurationsAPI.getFeeConfiguration(feeConfigurationGuid: feeConfigurationGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -92,11 +92,11 @@ TradingConfigurationsAPI.getTradingConfiguration(tradingConfigurationGuid: tradi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tradingConfigurationGuid** | **String** | Identifier for the trading configuration. | 
+ **feeConfigurationGuid** | **String** | Identifier for the fee configuration. | 
 
 ### Return type
 
-[**TradingConfigurationBankModel**](TradingConfigurationBankModel.md)
+[**FeeConfigurationBankModel**](FeeConfigurationBankModel.md)
 
 ### Authorization
 
@@ -109,14 +109,14 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listTradingConfigurations**
+# **listFeeConfigurations**
 ```swift
-    open class func listTradingConfigurations(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: TradingConfigurationListBankModel?, _ error: Error?) -> Void)
+    open class func listFeeConfigurations(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: FeeConfigurationListBankModel?, _ error: Error?) -> Void)
 ```
 
-List trading configurations
+List fee configurations
 
-Retrieves a listing of trading configurations for a bank.  Required scope: **banks:read**
+Retrieves a listing of fee configurations for a bank.  Required scope: **banks:read**
 
 ### Example
 ```swift
@@ -126,8 +126,8 @@ import CybridApiBankSwift
 let page = 987 // Int |  (optional)
 let perPage = 987 // Int |  (optional)
 
-// List trading configurations
-TradingConfigurationsAPI.listTradingConfigurations(page: page, perPage: perPage) { (response, error) in
+// List fee configurations
+FeeConfigurationsAPI.listFeeConfigurations(page: page, perPage: perPage) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TradingConfigurationListBankModel**](TradingConfigurationListBankModel.md)
+[**FeeConfigurationListBankModel**](FeeConfigurationListBankModel.md)
 
 ### Authorization
 
