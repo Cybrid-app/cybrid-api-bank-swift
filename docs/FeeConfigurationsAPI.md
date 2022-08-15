@@ -4,9 +4,9 @@ All URIs are relative to *http://api-bank.cybrid.local*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createFeeConfiguration**](FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create FeeConfiguration
-[**getFeeConfiguration**](FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get FeeConfiguration
-[**listFeeConfigurations**](FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List fee configurations
+[**createFeeConfiguration**](FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create Fee Configuration
+[**getFeeConfiguration**](FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get Fee Configuration
+[**listFeeConfigurations**](FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List Fee Configurations
 
 
 # **createFeeConfiguration**
@@ -14,7 +14,7 @@ Method | HTTP request | Description
     open class func createFeeConfiguration(postFeeConfigurationBankModel: PostFeeConfigurationBankModel, completion: @escaping (_ data: FeeConfigurationBankModel?, _ error: Error?) -> Void)
 ```
 
-Create FeeConfiguration
+Create Fee Configuration
 
 Creates a fee configuration.  Required scope: **banks:write**
 
@@ -25,7 +25,7 @@ import CybridApiBankSwift
 
 let postFeeConfigurationBankModel = PostFeeConfiguration(productType: "productType_example", asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)], productProvider: "productProvider_example") // PostFeeConfigurationBankModel | 
 
-// Create FeeConfiguration
+// Create Fee Configuration
 FeeConfigurationsAPI.createFeeConfiguration(postFeeConfigurationBankModel: postFeeConfigurationBankModel) { (response, error) in
     guard error == nil else {
         print(error)
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
     open class func getFeeConfiguration(feeConfigurationGuid: String, completion: @escaping (_ data: FeeConfigurationBankModel?, _ error: Error?) -> Void)
 ```
 
-Get FeeConfiguration
+Get Fee Configuration
 
 Retrieves a fee configuration.  Required scope: **banks:read**
 
@@ -75,7 +75,7 @@ import CybridApiBankSwift
 
 let feeConfigurationGuid = "feeConfigurationGuid_example" // String | Identifier for the fee configuration.
 
-// Get FeeConfiguration
+// Get Fee Configuration
 FeeConfigurationsAPI.getFeeConfiguration(feeConfigurationGuid: feeConfigurationGuid) { (response, error) in
     guard error == nil else {
         print(error)
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
     open class func listFeeConfigurations(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: FeeConfigurationListBankModel?, _ error: Error?) -> Void)
 ```
 
-List fee configurations
+List Fee Configurations
 
 Retrieves a listing of fee configurations for a bank.  Required scope: **banks:read**
 
@@ -126,7 +126,7 @@ import CybridApiBankSwift
 let page = 987 // Int |  (optional)
 let perPage = 987 // Int |  (optional)
 
-// List fee configurations
+// List Fee Configurations
 FeeConfigurationsAPI.listFeeConfigurations(page: page, perPage: perPage) { (response, error) in
     guard error == nil else {
         print(error)

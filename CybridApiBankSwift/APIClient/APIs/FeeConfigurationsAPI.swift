@@ -13,7 +13,7 @@ import AnyCodable
 open class FeeConfigurationsAPI {
 
     /**
-     Create FeeConfiguration
+     Create Fee Configuration
      
      - parameter postFeeConfigurationBankModel: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
@@ -32,7 +32,7 @@ open class FeeConfigurationsAPI {
     }
 
     /**
-     Create FeeConfiguration
+     Create Fee Configuration
      - POST /api/fee_configurations
      - Creates a fee configuration.  Required scope: **banks:write**
      - BASIC:
@@ -63,7 +63,7 @@ open class FeeConfigurationsAPI {
     }
 
     /**
-     Get FeeConfiguration
+     Get Fee Configuration
      
      - parameter feeConfigurationGuid: (path) Identifier for the fee configuration. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
@@ -82,7 +82,7 @@ open class FeeConfigurationsAPI {
     }
 
     /**
-     Get FeeConfiguration
+     Get Fee Configuration
      - GET /api/fee_configurations/{fee_configuration_guid}
      - Retrieves a fee configuration.  Required scope: **banks:read**
      - BASIC:
@@ -116,7 +116,7 @@ open class FeeConfigurationsAPI {
     }
 
     /**
-     List fee configurations
+     List Fee Configurations
      
      - parameter page: (query)  (optional)
      - parameter perPage: (query)  (optional)
@@ -136,7 +136,7 @@ open class FeeConfigurationsAPI {
     }
 
     /**
-     List fee configurations
+     List Fee Configurations
      - GET /api/fee_configurations
      - Retrieves a listing of fee configurations for a bank.  Required scope: **banks:read**
      - BASIC:
