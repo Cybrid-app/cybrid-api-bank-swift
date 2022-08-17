@@ -12,47 +12,73 @@ import BigInt
 
 public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum ProductTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case trading = "trading"
+        case savings = "savings"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case buy = "buy"
         case sell = "sell"
+        case deposit = "deposit"
+        case withdrawal = "withdrawal"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum ProductProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case compound = "compound"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    /** The type of product the quote is for. */
+    public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the customer. */
     public var customerGuid: String
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. */
-    public var symbol: String
-    /** The direction of the quote: either 'buy' or 'sell'. */
+    public var symbol: String?
+    /** The asset code the quote was requested for. Populated for savings quotes. */
+    public var asset: String?
+    /** The direction of the quote: either 'buy' or 'sell' for trade quotes; 'deposit' or 'withdrawal' for savings quotes. */
     public var side: SideBankModel
-    /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
+    /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
     public var receiveAmount: BigInt?
-    /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
+    /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
     public var deliverAmount: BigInt?
+    /** The provider for the product being quoted. Populated for savings quotes. */
+    public var productProvider: ProductProviderBankModel?
 
-    public init(customerGuid: String, symbol: String, side: SideBankModel, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String, symbol: String? = nil, asset: String? = nil, side: SideBankModel, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil, productProvider: ProductProviderBankModel? = nil) {
+        self.productType = productType
         self.customerGuid = customerGuid
         self.symbol = symbol
+        self.asset = asset
         self.side = side
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
+        self.productProvider = productProvider
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case productType = "product_type"
         case customerGuid = "customer_guid"
         case symbol
+        case asset
         case side
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
+        case productProvider = "product_provider"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(productType, forKey: .productType)
         try container.encode(customerGuid, forKey: .customerGuid)
-        try container.encode(symbol, forKey: .symbol)
+        try container.encodeIfPresent(symbol, forKey: .symbol)
+        try container.encodeIfPresent(asset, forKey: .asset)
         try container.encode(side, forKey: .side)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
+        try container.encodeIfPresent(productProvider, forKey: .productProvider)
     }
 }
 
