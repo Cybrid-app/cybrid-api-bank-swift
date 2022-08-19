@@ -209,6 +209,8 @@ Class | Method | HTTP request | Description
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
 *QuotesAPI* | [**listQuotes**](docs/QuotesAPI.md#listquotes) | **GET** /api/quotes | Get quotes list
 *RewardsAPI* | [**createRewards**](docs/RewardsAPI.md#createrewards) | **POST** /api/rewards | Create Reward
+*RewardsAPI* | [**getReward**](docs/RewardsAPI.md#getreward) | **GET** /api/rewards/{reward_guid} | Get Reward
+*RewardsAPI* | [**listRewards**](docs/RewardsAPI.md#listrewards) | **GET** /api/rewards | Get rewards list
 *SymbolsAPI* | [**listSymbols**](docs/SymbolsAPI.md#listsymbols) | **GET** /api/symbols | Get Symbols list
 *TradesAPI* | [**createTrade**](docs/TradesAPI.md#createtrade) | **POST** /api/trades | Create Trade
 *TradesAPI* | [**getTrade**](docs/TradesAPI.md#gettrade) | **GET** /api/trades/{trade_guid} | Get Trade
@@ -287,6 +289,7 @@ Class | Method | HTTP request | Description
  - [QuoteBankModel](docs/QuoteBankModel.md)
  - [QuoteListBankModel](docs/QuoteListBankModel.md)
  - [RewardBankModel](docs/RewardBankModel.md)
+ - [RewardListBankModel](docs/RewardListBankModel.md)
  - [SymbolPriceBankModel](docs/SymbolPriceBankModel.md)
  - [TradeBankModel](docs/TradeBankModel.md)
  - [TradeListBankModel](docs/TradeListBankModel.md)
