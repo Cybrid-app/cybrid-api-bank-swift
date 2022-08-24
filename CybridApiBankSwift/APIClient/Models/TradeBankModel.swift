@@ -6,8 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
+#if canImport(BigInt)
+import BigInt
 #endif
 
 public struct TradeBankModel: Codable, JSONEncodable, Hashable {
@@ -39,15 +39,15 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     /** The trade's state */
     public var state: StateBankModel?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
-    public var receiveAmount: Int?
+    public var receiveAmount: BigInt?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
-    public var deliverAmount: Int?
+    public var deliverAmount: BigInt?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units */
-    public var fee: Int?
+    public var fee: BigInt?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, fee: Int? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil, fee: BigInt? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.quoteGuid = quoteGuid

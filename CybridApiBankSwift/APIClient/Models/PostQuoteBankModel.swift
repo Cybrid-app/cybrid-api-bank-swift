@@ -6,8 +6,8 @@
 //
 
 import Foundation
-#if canImport(BigInt)
-import BigInt
+#if canImport(AnyCodable)
+import AnyCodable
 #endif
 
 public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
@@ -39,13 +39,13 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The direction of the quote: either 'buy' or 'sell' for trade quotes; 'deposit' or 'withdrawal' for savings quotes. */
     public var side: SideBankModel
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
-    public var receiveAmount: BigInt?
+    public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
-    public var deliverAmount: BigInt?
+    public var deliverAmount: String?
     /** The provider for the product being quoted. Populated for savings quotes. */
     public var productProvider: ProductProviderBankModel?
 
-    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String, symbol: String? = nil, asset: String? = nil, side: SideBankModel, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil, productProvider: ProductProviderBankModel? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String, symbol: String? = nil, asset: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil, productProvider: ProductProviderBankModel? = nil) {
         self.productType = productType
         self.customerGuid = customerGuid
         self.symbol = symbol
