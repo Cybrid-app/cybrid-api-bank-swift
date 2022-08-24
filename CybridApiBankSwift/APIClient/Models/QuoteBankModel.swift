@@ -6,8 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
+#if canImport(BigInt)
+import BigInt
 #endif
 
 public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
@@ -41,11 +41,11 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The direction of the quote: either 'buy' or 'sell' for trade quotes; 'deposit' or 'withdrawal' for savings quotes. */
     public var side: SideBankModel?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
-    public var receiveAmount: Int?
+    public var receiveAmount: BigInt?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
-    public var deliverAmount: Int?
+    public var deliverAmount: BigInt?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units for trade quotes and \"asset\" for savings quotes. */
-    public var fee: Int?
+    public var fee: BigInt?
     /** ISO8601 datetime the quote was created at. */
     public var issuedAt: Date?
     /** ISO8601 datetime the quote is expiring at. Populated for trading quotes. */
@@ -53,7 +53,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The provider for the product being quoted. Populated for savings quotes. */
     public var productProvider: ProductProviderBankModel?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, asset: String? = nil, side: SideBankModel? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, fee: Int? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, productProvider: ProductProviderBankModel? = nil) {
+    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, asset: String? = nil, side: SideBankModel? = nil, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil, fee: BigInt? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, productProvider: ProductProviderBankModel? = nil) {
         self.guid = guid
         self.productType = productType
         self.customerGuid = customerGuid
