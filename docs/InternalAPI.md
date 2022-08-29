@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**internalCreateFeeConfiguration**](InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
 [**internalCreateInternalBankAccount**](InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
+[**internalCreateSavingsAssetConfiguration**](InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 [**internalCreateSystemAccount**](InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
@@ -830,6 +831,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalInternalWalletBankModel**](InternalInternalWalletBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateSavingsAssetConfiguration**
+```swift
+    open class func internalCreateSavingsAssetConfiguration(postInternalSavingsAssetConfigurationBankModel: PostInternalSavingsAssetConfigurationBankModel, completion: @escaping (_ data: InternalSavingsAssetConfigurationBankModel?, _ error: Error?) -> Void)
+```
+
+Create SavingsAssetConfiguration
+
+Creates a savings asset configuration.  Required scope: **internal:banks:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalSavingsAssetConfigurationBankModel = PostInternalSavingsAssetConfiguration(type: "type_example", productProvider: "productProvider_example", environment: "environment_example", bankGuid: "bankGuid_example", enabled: false, asset: "asset_example") // PostInternalSavingsAssetConfigurationBankModel | 
+
+// Create SavingsAssetConfiguration
+InternalAPI.internalCreateSavingsAssetConfiguration(postInternalSavingsAssetConfigurationBankModel: postInternalSavingsAssetConfigurationBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalSavingsAssetConfigurationBankModel** | [**PostInternalSavingsAssetConfigurationBankModel**](PostInternalSavingsAssetConfigurationBankModel.md) |  | 
+
+### Return type
+
+[**InternalSavingsAssetConfigurationBankModel**](InternalSavingsAssetConfigurationBankModel.md)
 
 ### Authorization
 

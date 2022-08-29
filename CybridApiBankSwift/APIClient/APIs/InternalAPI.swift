@@ -829,6 +829,56 @@ open class InternalAPI {
     }
 
     /**
+     Create SavingsAssetConfiguration
+     
+     - parameter postInternalSavingsAssetConfigurationBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateSavingsAssetConfiguration(postInternalSavingsAssetConfigurationBankModel: PostInternalSavingsAssetConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalSavingsAssetConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateSavingsAssetConfigurationWithRequestBuilder(postInternalSavingsAssetConfigurationBankModel: postInternalSavingsAssetConfigurationBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create SavingsAssetConfiguration
+     - POST /api/internal/savings_asset_configurations
+     - Creates a savings asset configuration.  Required scope: **internal:banks:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalSavingsAssetConfigurationBankModel: (body)  
+     - returns: RequestBuilder<InternalSavingsAssetConfigurationBankModel> 
+     */
+    open class func internalCreateSavingsAssetConfigurationWithRequestBuilder(postInternalSavingsAssetConfigurationBankModel: PostInternalSavingsAssetConfigurationBankModel) -> RequestBuilder<InternalSavingsAssetConfigurationBankModel> {
+        let localVariablePath = "/api/internal/savings_asset_configurations"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalSavingsAssetConfigurationBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalSavingsAssetConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create SystemAccount
      
      - parameter postInternalSystemAccountBankModel: (body)  
