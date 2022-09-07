@@ -707,7 +707,7 @@ Creates a fee configuration.  Required scope: **internal:banks:write**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postFeeConfigurationBankModel = PostFeeConfiguration(productType: "productType_example", asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)], productProvider: "productProvider_example") // PostFeeConfigurationBankModel | 
+let postFeeConfigurationBankModel = PostFeeConfiguration(productType: "productType_example", asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostFeeConfigurationBankModel | 
 
 // Create FeeConfiguration
 InternalAPI.internalCreateFeeConfiguration(postFeeConfigurationBankModel: postFeeConfigurationBankModel) { (response, error) in

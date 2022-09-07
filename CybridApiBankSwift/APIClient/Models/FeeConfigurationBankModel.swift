@@ -14,11 +14,6 @@ public struct FeeConfigurationBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ProductTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case trading = "trading"
-        case savings = "savings"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum ProductProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case compound = "compound"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the exchange. */
@@ -31,18 +26,15 @@ public struct FeeConfigurationBankModel: Codable, JSONEncodable, Hashable {
     public var asset: String?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
-    /** The provider for the product being configured. */
-    public var productProvider: ProductProviderBankModel?
     /** The fees associated with the configuration */
     public var fees: [FeeBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, productType: ProductTypeBankModel? = nil, asset: String? = nil, createdAt: Date? = nil, productProvider: ProductProviderBankModel? = nil, fees: [FeeBankModel]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, productType: ProductTypeBankModel? = nil, asset: String? = nil, createdAt: Date? = nil, fees: [FeeBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.productType = productType
         self.asset = asset
         self.createdAt = createdAt
-        self.productProvider = productProvider
         self.fees = fees
     }
 
@@ -52,7 +44,6 @@ public struct FeeConfigurationBankModel: Codable, JSONEncodable, Hashable {
         case productType = "product_type"
         case asset
         case createdAt = "created_at"
-        case productProvider = "product_provider"
         case fees
     }
 
@@ -65,7 +56,6 @@ public struct FeeConfigurationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(productType, forKey: .productType)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
-        try container.encodeIfPresent(productProvider, forKey: .productProvider)
         try container.encodeIfPresent(fees, forKey: .fees)
     }
 }

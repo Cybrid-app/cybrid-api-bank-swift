@@ -14,7 +14,6 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ProductTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case trading = "trading"
-        case savings = "savings"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -22,10 +21,6 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case sell = "sell"
         case deposit = "deposit"
         case withdrawal = "withdrawal"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum ProductProviderBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case compound = "compound"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the quote. */
@@ -36,36 +31,30 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     /** Symbol the quote was requested for. Format is \"asset-counter_asset\" in uppercase. Populated for trade quotes. */
     public var symbol: String?
-    /** The asset code the quote was requested for. Populated for savings quotes. */
-    public var asset: String?
-    /** The direction of the quote: either 'buy' or 'sell' for trade quotes; 'deposit' or 'withdrawal' for savings quotes. */
+    /** The direction of the quote: either 'buy' or 'sell' for trade quotes. */
     public var side: SideBankModel?
-    /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
+    /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes. */
     public var receiveAmount: BigInt?
-    /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes and currency is always \"asset\" for savings quotes. */
+    /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: BigInt?
-    /** The fee associated with the trade. Denominated in \"counter_asset\" base units for trade quotes and \"asset\" for savings quotes. */
+    /** The fee associated with the trade. Denominated in \"counter_asset\" base units for trade quotes. */
     public var fee: BigInt?
     /** ISO8601 datetime the quote was created at. */
     public var issuedAt: Date?
     /** ISO8601 datetime the quote is expiring at. Populated for trading quotes. */
     public var expiresAt: Date?
-    /** The provider for the product being quoted. Populated for savings quotes. */
-    public var productProvider: ProductProviderBankModel?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, asset: String? = nil, side: SideBankModel? = nil, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil, fee: BigInt? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, productProvider: ProductProviderBankModel? = nil) {
+    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: BigInt? = nil, deliverAmount: BigInt? = nil, fee: BigInt? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil) {
         self.guid = guid
         self.productType = productType
         self.customerGuid = customerGuid
         self.symbol = symbol
-        self.asset = asset
         self.side = side
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
         self.fee = fee
         self.issuedAt = issuedAt
         self.expiresAt = expiresAt
-        self.productProvider = productProvider
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -73,14 +62,12 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case productType = "product_type"
         case customerGuid = "customer_guid"
         case symbol
-        case asset
         case side
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
         case fee
         case issuedAt = "issued_at"
         case expiresAt = "expires_at"
-        case productProvider = "product_provider"
     }
 
     // Encodable protocol methods
@@ -91,14 +78,12 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(productType, forKey: .productType)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(symbol, forKey: .symbol)
-        try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(fee, forKey: .fee)
         try container.encodeIfPresent(issuedAt, forKey: .issuedAt)
         try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
-        try container.encodeIfPresent(productProvider, forKey: .productProvider)
     }
 }
 
