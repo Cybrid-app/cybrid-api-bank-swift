@@ -16,19 +16,15 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** The bank's list of supported trading symbols. */
     public var supportedTradingSymbols: [String]?
-    /** The bank's list of supported savings asset by provider. */
-    public var supportedSavingsConfiguration: [String: [String]]?
 
-    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil, supportedSavingsConfiguration: [String: [String]]? = nil) {
+    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil) {
         self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
-        self.supportedSavingsConfiguration = supportedSavingsConfiguration
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case supportedTradingSymbols = "supported_trading_symbols"
-        case supportedSavingsConfiguration = "supported_savings_configuration"
     }
 
     // Encodable protocol methods
@@ -37,7 +33,6 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
-        try container.encodeIfPresent(supportedSavingsConfiguration, forKey: .supportedSavingsConfiguration)
     }
 }
 

@@ -23,7 +23,7 @@ Creates an account.  ## Account Type  An Account is tied to a specific cryptocur
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postAccountBankModel = PostAccount(type: "type_example", provider: "provider_example", customerGuid: "customerGuid_example", asset: "asset_example", name: "name_example") // PostAccountBankModel | 
+let postAccountBankModel = PostAccount(type: "type_example", customerGuid: "customerGuid_example", asset: "asset_example", name: "name_example") // PostAccountBankModel | 
 
 // Create Account
 AccountsAPI.createAccount(postAccountBankModel: postAccountBankModel) { (response, error) in

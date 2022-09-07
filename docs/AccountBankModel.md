@@ -4,7 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The account type. | [optional] 
-**provider** | **String** | The account provider, if applicable. | [optional] 
 **guid** | **String** | Auto-generated unique identifier for the account. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the account was created at. | [optional] 
 **asset** | **String** | The asset code. | [optional] 
