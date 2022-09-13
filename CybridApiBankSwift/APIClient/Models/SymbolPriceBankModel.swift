@@ -6,8 +6,8 @@
 //
 
 import Foundation
-#if canImport(BigInt)
-import BigInt
+#if canImport(AnyCodable)
+import AnyCodable
 #endif
 
 public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
@@ -15,15 +15,15 @@ public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
     /** The trade symbol the pricing is related to. Format is asset-counter_asset, e.g., BTC-USD. */
     public var symbol: String?
     /** The purchase price (in base units) for the asset denominated in the counter asset currency. */
-    public var buyPrice: BigInt?
+    public var buyPrice: String?
     /** The sale price (in base units) for the asset denominated in the counter asset currency. */
-    public var sellPrice: BigInt?
+    public var sellPrice: String?
     /** ISO8601 datetime the purchase price was generated at. */
     public var buyPriceLastUpdatedAt: Date?
     /** ISO8601 datetime the sale price was generated at. */
     public var sellPriceLastUpdatedAt: Date?
 
-    public init(symbol: String? = nil, buyPrice: BigInt? = nil, sellPrice: BigInt? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
+    public init(symbol: String? = nil, buyPrice: String? = nil, sellPrice: String? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
         self.symbol = symbol
         self.buyPrice = buyPrice
         self.sellPrice = sellPrice

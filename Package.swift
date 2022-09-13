@@ -18,10 +18,6 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.6.1"),
-        // Add BigInt dependency
-        .package(url: "https://github.com/attaswift/BigInt.git", from: "5.2.0"),
         // ------
     ],
     targets: [
@@ -30,7 +26,7 @@ let package = Package(
         .target(
             name: "CybridApiBankSwift",
             // Add BigInt dependency
-            dependencies: ["AnyCodable", "BigInt", ],
+            dependencies: [],
             path: "CybridApiBankSwift/APIClient"
         ),
     ]

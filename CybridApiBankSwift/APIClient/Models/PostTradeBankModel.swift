@@ -6,8 +6,8 @@
 //
 
 import Foundation
-#if canImport(BigInt)
-import BigInt
+#if canImport(AnyCodable)
+import AnyCodable
 #endif
 
 public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
