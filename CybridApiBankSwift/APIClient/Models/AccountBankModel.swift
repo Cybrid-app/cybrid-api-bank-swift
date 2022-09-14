@@ -38,13 +38,13 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     /** The customer identifier associated with the account. */
     public var customerGuid: String?
     /** The amount of funds that are in the account, in base units of the asset. */
-    public var platformBalance: Int?
+    public var platformBalance: String?
     /** The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. */
-    public var platformAvailable: Int?
+    public var platformAvailable: String?
     /** The account's state. */
     public var state: StateBankModel?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: Int? = nil, platformAvailable: Int? = nil, state: StateBankModel? = nil) {
+    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
