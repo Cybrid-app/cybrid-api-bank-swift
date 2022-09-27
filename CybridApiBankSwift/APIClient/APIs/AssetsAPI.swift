@@ -35,13 +35,7 @@ open class AssetsAPI {
     /**
      Get assets list
      - GET /api/assets
-     - Retrieves a listing of assets.  Required scope: **prices:read**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
+     - Retrieves a listing of assets.
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - returns: RequestBuilder<AssetListBankModel> 
