@@ -829,6 +829,56 @@ open class InternalAPI {
     }
 
     /**
+     Create Person Details
+     
+     - parameter postInternalPersonDetailBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreatePersonDetails(postInternalPersonDetailBankModel: PostInternalPersonDetailBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalPersonDetailBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreatePersonDetailsWithRequestBuilder(postInternalPersonDetailBankModel: postInternalPersonDetailBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create Person Details
+     - POST /api/internal/person_details
+     - Create a person details record.  Required scope: **internal:customers:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalPersonDetailBankModel: (body)  
+     - returns: RequestBuilder<InternalPersonDetailBankModel> 
+     */
+    open class func internalCreatePersonDetailsWithRequestBuilder(postInternalPersonDetailBankModel: PostInternalPersonDetailBankModel) -> RequestBuilder<InternalPersonDetailBankModel> {
+        let localVariablePath = "/api/internal/person_details"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalPersonDetailBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalPersonDetailBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create SavingsAssetConfiguration
      
      - parameter postInternalSavingsAssetConfigurationBankModel: (body)  

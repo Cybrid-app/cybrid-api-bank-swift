@@ -188,6 +188,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateFeeConfiguration**](docs/InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
 *InternalAPI* | [**internalCreateInternalBankAccount**](docs/InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
+*InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 *InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 *InternalAPI* | [**internalCreateSystemAccount**](docs/InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 *InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
@@ -255,6 +256,7 @@ Class | Method | HTTP request | Description
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
  - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
  - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
+ - [InternalPersonDetailBankModel](docs/InternalPersonDetailBankModel.md)
  - [InternalSavingsAssetConfigurationBankModel](docs/InternalSavingsAssetConfigurationBankModel.md)
  - [InternalSystemAccountBankModel](docs/InternalSystemAccountBankModel.md)
  - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
@@ -281,6 +283,7 @@ Class | Method | HTTP request | Description
  - [PostInternalExternalWalletBankModel](docs/PostInternalExternalWalletBankModel.md)
  - [PostInternalInternalBankAccountBankModel](docs/PostInternalInternalBankAccountBankModel.md)
  - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
+ - [PostInternalPersonDetailBankModel](docs/PostInternalPersonDetailBankModel.md)
  - [PostInternalSavingsAssetConfigurationBankModel](docs/PostInternalSavingsAssetConfigurationBankModel.md)
  - [PostInternalSystemAccountBankModel](docs/PostInternalSystemAccountBankModel.md)
  - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)

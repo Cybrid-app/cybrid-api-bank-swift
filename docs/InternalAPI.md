@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**internalCreateFeeConfiguration**](InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
 [**internalCreateInternalBankAccount**](InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
+[**internalCreatePersonDetails**](InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 [**internalCreateSavingsAssetConfiguration**](InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 [**internalCreateSystemAccount**](InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
@@ -831,6 +832,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalInternalWalletBankModel**](InternalInternalWalletBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreatePersonDetails**
+```swift
+    open class func internalCreatePersonDetails(postInternalPersonDetailBankModel: PostInternalPersonDetailBankModel, completion: @escaping (_ data: InternalPersonDetailBankModel?, _ error: Error?) -> Void)
+```
+
+Create Person Details
+
+Create a person details record.  Required scope: **internal:customers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalPersonDetailBankModel = PostInternalPersonDetail(personGuid: "personGuid_example", revision: 123, piiRecordGuid: "piiRecordGuid_example") // PostInternalPersonDetailBankModel | 
+
+// Create Person Details
+InternalAPI.internalCreatePersonDetails(postInternalPersonDetailBankModel: postInternalPersonDetailBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalPersonDetailBankModel** | [**PostInternalPersonDetailBankModel**](PostInternalPersonDetailBankModel.md) |  | 
+
+### Return type
+
+[**InternalPersonDetailBankModel**](InternalPersonDetailBankModel.md)
 
 ### Authorization
 
