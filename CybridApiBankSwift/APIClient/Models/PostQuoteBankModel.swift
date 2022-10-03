@@ -26,7 +26,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The type of product the quote is for. */
     public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the customer. */
-    public var customerGuid: String
+    public var customerGuid: String?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. */
     public var symbol: String?
     /** The direction of the quote: either 'buy' or 'sell' for trade quotes. */
@@ -36,7 +36,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
         self.productType = productType
         self.customerGuid = customerGuid
         self.symbol = symbol
@@ -59,7 +59,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(productType, forKey: .productType)
-        try container.encode(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(symbol, forKey: .symbol)
         try container.encode(side, forKey: .side)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
