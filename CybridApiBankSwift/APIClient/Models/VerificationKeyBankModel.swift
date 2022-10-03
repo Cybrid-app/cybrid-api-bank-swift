@@ -23,6 +23,13 @@ public struct VerificationKeyBankModel: Codable, JSONEncodable, Hashable {
         case failed = "failed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum FailureCodeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case algorithm = "invalid_algorithm"
+        case nonce = "invalid_nonce"
+        case publicKey = "invalid_public_key"
+        case signature = "invalid_signature"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum AlgorithmBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case rs512 = "RS512"
         case unknownDefaultOpenApi = "unknown_default_open_api"
@@ -35,6 +42,8 @@ public struct VerificationKeyBankModel: Codable, JSONEncodable, Hashable {
     public var type: TypeBankModel?
     /** The verification key's state. */
     public var state: StateBankModel?
+    /** The verification key's failure code (if any). */
+    public var failureCode: FailureCodeBankModel?
     /** The verification key's algorithm. */
     public var algorithm: AlgorithmBankModel?
     /** The verification key's cryptographic fingerprint. */
@@ -42,11 +51,12 @@ public struct VerificationKeyBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the verification key was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, state: StateBankModel? = nil, algorithm: AlgorithmBankModel? = nil, fingerprint: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, state: StateBankModel? = nil, failureCode: FailureCodeBankModel? = nil, algorithm: AlgorithmBankModel? = nil, fingerprint: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
         self.state = state
+        self.failureCode = failureCode
         self.algorithm = algorithm
         self.fingerprint = fingerprint
         self.createdAt = createdAt
@@ -57,6 +67,7 @@ public struct VerificationKeyBankModel: Codable, JSONEncodable, Hashable {
         case bankGuid = "bank_guid"
         case type
         case state
+        case failureCode = "failure_code"
         case algorithm
         case fingerprint
         case createdAt = "created_at"
@@ -70,6 +81,7 @@ public struct VerificationKeyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(algorithm, forKey: .algorithm)
         try container.encodeIfPresent(fingerprint, forKey: .fingerprint)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
