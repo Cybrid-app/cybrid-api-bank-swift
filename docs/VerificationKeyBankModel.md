@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **bankGuid** | **String** | The banks&#39;s identifier. | [optional] 
 **type** | **String** | The verification key&#39;s type. | [optional] 
 **state** | **String** | The verification key&#39;s state. | [optional] 
+**failureCode** | **String** | The verification key&#39;s failure code (if any). | [optional] 
 **algorithm** | **String** | The verification key&#39;s algorithm. | [optional] 
 **fingerprint** | **String** | The verification key&#39;s cryptographic fingerprint. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the verification key was created at. | [optional] 

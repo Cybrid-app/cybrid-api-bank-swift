@@ -19,15 +19,31 @@ public struct AttestationDetailsBankModel: Codable, JSONEncodable, Hashable {
         case failed = "failed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum FailureCodeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case invalidKey = "invalid_key"
+        case invalidAlgorithm = "invalid_algorithm"
+        case invalidSignature = "invalid_signature"
+        case invalidIssuer = "invalid_issuer"
+        case invalidAudience = "invalid_audience"
+        case invalidSubject = "invalid_subject"
+        case jwtExpired = "jwt_expired"
+        case missingJti = "missing_jti"
+        case missingKeyid = "missing_keyid"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The state of an identity record attestation */
     public var state: StateBankModel?
+    /** The failure code of an identity record attestation (if any) */
+    public var failureCode: FailureCodeBankModel?
 
-    public init(state: StateBankModel? = nil) {
+    public init(state: StateBankModel? = nil, failureCode: FailureCodeBankModel? = nil) {
         self.state = state
+        self.failureCode = failureCode
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case state
+        case failureCode = "failure_code"
     }
 
     // Encodable protocol methods
@@ -35,6 +51,7 @@ public struct AttestationDetailsBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
     }
 }
 
