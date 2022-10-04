@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **String** | The bank&#39;s name. | 
 **type** | **String** | The bank&#39;s type. | 
 **supportedTradingSymbols** | **[String]** | The bank&#39;s list of supported trading symbols. | [optional] 
+**supportedFiatAccountAssets** | **[String]** | The bank&#39;s list of supported fiat symbols. | [optional] 
 **features** | **[String]** | The bank&#39;s enabled features. | 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | 
 

@@ -187,6 +187,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateExternalBankAccount**](docs/InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 *InternalAPI* | [**internalCreateExternalWallet**](docs/InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
 *InternalAPI* | [**internalCreateFeeConfiguration**](docs/InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
+*InternalAPI* | [**internalCreateFiatAssetConfiguration**](docs/InternalAPI.md#internalcreatefiatassetconfiguration) | **POST** /api/internal/fiat_asset_configurations | Create FiatAssetConfiguration
 *InternalAPI* | [**internalCreateInternalBankAccount**](docs/InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 *InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
@@ -253,6 +254,7 @@ Class | Method | HTTP request | Description
  - [InternalExternalBankAccountListBankModel](docs/InternalExternalBankAccountListBankModel.md)
  - [InternalExternalWalletBankModel](docs/InternalExternalWalletBankModel.md)
  - [InternalExternalWalletListBankModel](docs/InternalExternalWalletListBankModel.md)
+ - [InternalFiatAssetConfigurationBankModel](docs/InternalFiatAssetConfigurationBankModel.md)
  - [InternalInternalBankAccountBankModel](docs/InternalInternalBankAccountBankModel.md)
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
  - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
@@ -282,6 +284,7 @@ Class | Method | HTTP request | Description
  - [PostInternalExpectedPaymentBankModel](docs/PostInternalExpectedPaymentBankModel.md)
  - [PostInternalExternalBankAccountBankModel](docs/PostInternalExternalBankAccountBankModel.md)
  - [PostInternalExternalWalletBankModel](docs/PostInternalExternalWalletBankModel.md)
+ - [PostInternalFiatAssetConfigurationBankModel](docs/PostInternalFiatAssetConfigurationBankModel.md)
  - [PostInternalInternalBankAccountBankModel](docs/PostInternalInternalBankAccountBankModel.md)
  - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
  - [PostInternalPersonDetailBankModel](docs/PostInternalPersonDetailBankModel.md)

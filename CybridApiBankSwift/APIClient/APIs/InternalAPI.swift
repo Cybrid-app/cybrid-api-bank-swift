@@ -729,6 +729,56 @@ open class InternalAPI {
     }
 
     /**
+     Create FiatAssetConfiguration
+     
+     - parameter postInternalFiatAssetConfigurationBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateFiatAssetConfiguration(postInternalFiatAssetConfigurationBankModel: PostInternalFiatAssetConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalFiatAssetConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateFiatAssetConfigurationWithRequestBuilder(postInternalFiatAssetConfigurationBankModel: postInternalFiatAssetConfigurationBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create FiatAssetConfiguration
+     - POST /api/internal/fiat_asset_configurations
+     - Creates a fiat asset configuration.  Required scope: **internal:banks:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalFiatAssetConfigurationBankModel: (body)  
+     - returns: RequestBuilder<InternalFiatAssetConfigurationBankModel> 
+     */
+    open class func internalCreateFiatAssetConfigurationWithRequestBuilder(postInternalFiatAssetConfigurationBankModel: PostInternalFiatAssetConfigurationBankModel) -> RequestBuilder<InternalFiatAssetConfigurationBankModel> {
+        let localVariablePath = "/api/internal/fiat_asset_configurations"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalFiatAssetConfigurationBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalFiatAssetConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create InternalBankAccount
      
      - parameter postInternalInternalBankAccountBankModel: (body)  

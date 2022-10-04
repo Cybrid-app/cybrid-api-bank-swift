@@ -16,6 +16,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case backstopped = "backstopped"
         case trading = "trading"
         case fee = "fee"
+        case fiat = "fiat"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**internalCreateExternalBankAccount**](InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
 [**internalCreateExternalWallet**](InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
 [**internalCreateFeeConfiguration**](InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
+[**internalCreateFiatAssetConfiguration**](InternalAPI.md#internalcreatefiatassetconfiguration) | **POST** /api/internal/fiat_asset_configurations | Create FiatAssetConfiguration
 [**internalCreateInternalBankAccount**](InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 [**internalCreatePersonDetails**](InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
@@ -732,6 +733,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FeeConfigurationBankModel**](FeeConfigurationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateFiatAssetConfiguration**
+```swift
+    open class func internalCreateFiatAssetConfiguration(postInternalFiatAssetConfigurationBankModel: PostInternalFiatAssetConfigurationBankModel, completion: @escaping (_ data: InternalFiatAssetConfigurationBankModel?, _ error: Error?) -> Void)
+```
+
+Create FiatAssetConfiguration
+
+Creates a fiat asset configuration.  Required scope: **internal:banks:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalFiatAssetConfigurationBankModel = PostInternalFiatAssetConfiguration(type: "type_example", environment: "environment_example", bankGuid: "bankGuid_example", enabled: false, asset: "asset_example") // PostInternalFiatAssetConfigurationBankModel | 
+
+// Create FiatAssetConfiguration
+InternalAPI.internalCreateFiatAssetConfiguration(postInternalFiatAssetConfigurationBankModel: postInternalFiatAssetConfigurationBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalFiatAssetConfigurationBankModel** | [**PostInternalFiatAssetConfigurationBankModel**](PostInternalFiatAssetConfigurationBankModel.md) |  | 
+
+### Return type
+
+[**InternalFiatAssetConfigurationBankModel**](InternalFiatAssetConfigurationBankModel.md)
 
 ### Authorization
 
