@@ -30,12 +30,15 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public var supportedTradingSymbols: [String]
     /** The bank's enabled features. At present, both **attestation_identity_records** and **backstopped_funding_source** must be set. */
     public var features: [FeaturesBankModel]
+    /** The bank's list of supported fiat assets. */
+    public var supportedFiatAccountAssets: [String]
 
-    public init(name: String, type: TypeBankModel, supportedTradingSymbols: [String], features: [FeaturesBankModel]) {
+    public init(name: String, type: TypeBankModel, supportedTradingSymbols: [String], features: [FeaturesBankModel], supportedFiatAccountAssets: [String]) {
         self.name = name
         self.type = type
         self.supportedTradingSymbols = supportedTradingSymbols
         self.features = features
+        self.supportedFiatAccountAssets = supportedFiatAccountAssets
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -43,6 +46,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case type
         case supportedTradingSymbols = "supported_trading_symbols"
         case features
+        case supportedFiatAccountAssets = "supported_fiat_account_assets"
     }
 
     // Encodable protocol methods
@@ -53,6 +57,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(supportedTradingSymbols, forKey: .supportedTradingSymbols)
         try container.encode(features, forKey: .features)
+        try container.encode(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
     }
 }
 

@@ -32,17 +32,20 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public var type: TypeBankModel
     /** The bank's list of supported trading symbols. */
     public var supportedTradingSymbols: [String]?
+    /** The bank's list of supported fiat symbols. */
+    public var supportedFiatAccountAssets: [String]?
     /** The bank's enabled features. */
     public var features: [FeaturesBankModel]
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date
 
-    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
+    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
         self.type = type
         self.supportedTradingSymbols = supportedTradingSymbols
+        self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.features = features
         self.createdAt = createdAt
     }
@@ -53,6 +56,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case name
         case type
         case supportedTradingSymbols = "supported_trading_symbols"
+        case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case features
         case createdAt = "created_at"
     }
@@ -66,6 +70,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
+        try container.encodeIfPresent(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encode(features, forKey: .features)
         try container.encode(createdAt, forKey: .createdAt)
     }
