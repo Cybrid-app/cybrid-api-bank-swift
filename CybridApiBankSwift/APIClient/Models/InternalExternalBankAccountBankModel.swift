@@ -14,6 +14,7 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case zumRailsUser = "zum_rails_user"
+        case plaid = "plaid"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum EnvironmentBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -35,10 +36,12 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
     public var exchangeGuid: String?
     /** The bank identifier. */
     public var bankGuid: String?
+    /** The customer identifier. */
+    public var customerGuid: String?
     /** ISO8601 datetime the exchange was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, name: String? = nil, assetCode: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, exchangeGuid: String? = nil, bankGuid: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, name: String? = nil, assetCode: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, exchangeGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.name = name
         self.assetCode = assetCode
@@ -46,6 +49,7 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         self.environment = environment
         self.exchangeGuid = exchangeGuid
         self.bankGuid = bankGuid
+        self.customerGuid = customerGuid
         self.createdAt = createdAt
     }
 
@@ -57,6 +61,7 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         case environment
         case exchangeGuid = "exchange_guid"
         case bankGuid = "bank_guid"
+        case customerGuid = "customer_guid"
         case createdAt = "created_at"
     }
 
@@ -71,6 +76,7 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         try container.encodeIfPresent(environment, forKey: .environment)
         try container.encodeIfPresent(exchangeGuid, forKey: .exchangeGuid)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
     }
 }

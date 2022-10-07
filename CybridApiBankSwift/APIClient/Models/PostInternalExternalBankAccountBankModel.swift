@@ -14,6 +14,7 @@ public struct PostInternalExternalBankAccountBankModel: Codable, JSONEncodable, 
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case zumRailsUser = "zum_rails_user"
+        case plaid = "plaid"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The name of the account. */
@@ -21,21 +22,30 @@ public struct PostInternalExternalBankAccountBankModel: Codable, JSONEncodable, 
     /** The account type */
     public var accountKind: AccountKindBankModel
     /** The id of the account at the third-party provider. */
-    public var providerId: String
+    public var providerId: String?
     /** The exchange identifier. */
     public var exchangeGuid: String?
     /** The bank identifier. */
     public var bankGuid: String?
+    /** The customer identifier. */
+    public var customerGuid: String?
     /** The asset code. */
     public var asset: String
+    /** The public token for the account. */
+    public var plaidPublicToken: String?
+    /** The account identifier in plaid. */
+    public var plaidAccountId: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, providerId: String, exchangeGuid: String? = nil, bankGuid: String? = nil, asset: String) {
+    public init(name: String, accountKind: AccountKindBankModel, providerId: String? = nil, exchangeGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, asset: String, plaidPublicToken: String? = nil, plaidAccountId: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.providerId = providerId
         self.exchangeGuid = exchangeGuid
         self.bankGuid = bankGuid
+        self.customerGuid = customerGuid
         self.asset = asset
+        self.plaidPublicToken = plaidPublicToken
+        self.plaidAccountId = plaidAccountId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -44,7 +54,10 @@ public struct PostInternalExternalBankAccountBankModel: Codable, JSONEncodable, 
         case providerId = "provider_id"
         case exchangeGuid = "exchange_guid"
         case bankGuid = "bank_guid"
+        case customerGuid = "customer_guid"
         case asset
+        case plaidPublicToken = "plaid_public_token"
+        case plaidAccountId = "plaid_account_id"
     }
 
     // Encodable protocol methods
@@ -53,10 +66,13 @@ public struct PostInternalExternalBankAccountBankModel: Codable, JSONEncodable, 
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(accountKind, forKey: .accountKind)
-        try container.encode(providerId, forKey: .providerId)
+        try container.encodeIfPresent(providerId, forKey: .providerId)
         try container.encodeIfPresent(exchangeGuid, forKey: .exchangeGuid)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encode(asset, forKey: .asset)
+        try container.encodeIfPresent(plaidPublicToken, forKey: .plaidPublicToken)
+        try container.encodeIfPresent(plaidAccountId, forKey: .plaidAccountId)
     }
 }
 
