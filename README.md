@@ -36,11 +36,11 @@ Our complete set of APIs allows you to manage resources across three distinct ar
 
 *The complete set of APIs can be found on the following pages:*
 
-| API                                                            | Description                  |
-|----------------------------------------------------------------|------------------------------|
-| [Organization API](<api_platform_organization_swagger_ui_url>) | APIs to manage organizations |
-| [Bank API](<api_platform_bank_swagger_ui_url>)                 | APIs to manage banks (and all downstream customer activity)        |
-| [Identities API](<api_idp_swagger_ui_url>)                     | APIs to manage organization and bank identities    |
+| API                                                              | Description                                                 |
+|------------------------------------------------------------------|-------------------------------------------------------------|
+| [Organization API](<api_platform_organization_swagger_ui_url>)   | APIs to manage organizations                                |
+| [Bank API](<api_platform_bank_swagger_ui_url>)                   | APIs to manage banks (and all downstream customer activity) |
+| [Identities API](<api_idp_swagger_ui_url>)                       | APIs to manage organization and bank identities             |
 
 For questions please contact [Support](mailto:support@cybrid.xyz) at any time for assistance, or contact the [Product Team](mailto:product@cybrid.xyz) for product suggestions.
 
@@ -76,39 +76,41 @@ The Cybrid platform supports the use of scopes to control the level of access a 
 
 The following scopes are available on the platform and can be requested when generating either an Organization or a Bank token. Generally speaking, the _Read_ scope is required to read and list resources, the _Write_ scope is required to update a resource and the _Execute_ scope is required to create a resource.
 
-| Resource      | Read scope (Token Type)                       | Write scope (Token Type)           | Execute scope (Token Type)        |
-|---------------|-----------------------------------------------|------------------------------------|-----------------------------------|
-| Organizations | organizations:read (Organization)             | organizations:write (Organization) |                                   |
-| Banks         | banks:read (Organization, Bank)               | banks:write (Organization, Bank)   | banks:execute (Organization)      |
-| Customers     | customers:read (Organization, Bank, Customer) | customers:write (Bank)             | customers:execute (Bank)          |
-| Accounts      | accounts:read (Organization, Bank, Customer)  |                                    | accounts:execute (Bank, Customer) |
-| Prices        | prices:read (Bank, Customer)                  |                                    |                                   |
-| Quotes        | quotes:read (Organization, Bank, Customer)    |                                    | quotes:execute (Bank, Customer)   |
-| Trades        | trades:read (Organization, Bank, Customer)    |                                    | trades:execute (Bank              |
-| Rewards       | rewards:read (Bank, Bank)                     |                                    | rewards:execute (Bank             |
+| Resource               | Read scope (Token Type)                                    | Write scope (Token Type)           | Execute scope (Token Type)                      |
+|------------------------|------------------------------------------------------------|------------------------------------|-------------------------------------------------|
+| Organizations          | organizations:read (Organization)                          | organizations:write (Organization) |                                                 |
+| Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)   | banks:execute (Organization)                    |
+| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank)             | customers:execute (Bank)                        |
+| Accounts               | accounts:read (Organization, Bank, Customer)               |                                    | accounts:execute (Bank, Customer)               |
+| Prices                 | prices:read (Bank, Customer)                               |                                    |                                                 |
+| Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                    | quotes:execute (Bank, Customer)                 |
+| Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank)                           |
+| Rewards                | rewards:read (Bank)                                        |                                    | rewards:execute (Bank)                          |
+| External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
 
 ## Available Endpoints
 
 The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](<api_platform_organization_swagger_ui_url>) and [Bank](<api_platform_bank_swagger_ui_url>) API services are listed below:
 
-| API Service  | Model            | API Endpoint Path              | Description                                                               |
-|--------------|------------------|--------------------------------|---------------------------------------------------------------------------|
-| Identity     | Bank             | /api/bank_applications         | Create and list banks                                                     |
-| Identity     | Organization     | /api/organization_applications | Create and list organizations                                             |
-| Identity     | CustomerToken    | /api/customer_tokens           | Create customer JWT access tokens                                         |
-| Organization | Organization     | /api/organizations             | APIs to retrieve and update organization name                             |
-| Bank         | Asset            | /api/assets                    | Get a list of assets supported by the platform (ex: BTC, ETH)             |
-| Bank         | VerificationKey  | /api/bank_verification_keys    | Create, list and retrive verification keys, used for signing identities   |
-| Bank         | Banks            | /api/banks                     | Create, update and list banks, the parent to customers, accounts, etc     |
-| Bank         | FeeConfiguration | /api/fee_configurations        | Create and list bank fees (spread or fixed)                               |
-| Bank         | Customers        | /api/customers                 | Create and list customers                                                 |
-| Bank         | IdentityRecord   | /api/identity_records          | Create and list identity records, which are attached to customers for KYC |
-| Bank         | Accounts         | /api/accounts                  | Create and list accounts, which hold a specific asset for a customers     |
-| Bank         | Symbols          | /api/symbols                   | Get a list of symbols supported for trade (ex: BTC-USD)                   |
-| Bank         | Prices           | /api/prices                    | Get the current prices for assets on the platform                         |
-| Bank         | Quotes           | /api/quotes                    | Create and list quotes, which are required to execute trades              |
-| Bank         | Trades           | /api/trades                    | Create and list trades, which buy or sell cryptocurrency                  |
-| Bank         | Rewards          | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                |
+| API Service  | Model               | API Endpoint Path              | Description                                                                                       |
+|--------------|---------------------|--------------------------------|---------------------------------------------------------------------------------------------------|
+| Identity     | Bank                | /api/bank_applications         | Create and list banks                                                                             |
+| Identity     | Organization        | /api/organization_applications | Create and list organizations                                                                     |
+| Identity     | CustomerToken       | /api/customer_tokens           | Create customer JWT access tokens                                                                 |
+| Organization | Organization        | /api/organizations             | APIs to retrieve and update organization name                                                     |
+| Bank         | Asset               | /api/assets                    | Get a list of assets supported by the platform (ex: BTC, ETH)                                     |
+| Bank         | VerificationKey     | /api/bank_verification_keys    | Create, list and retrive verification keys, used for signing identities                           |
+| Bank         | Banks               | /api/banks                     | Create, update and list banks, the parent to customers, accounts, etc                             |
+| Bank         | FeeConfiguration    | /api/fee_configurations        | Create and list bank fees (spread or fixed)                                                       |
+| Bank         | Customers           | /api/customers                 | Create and list customers                                                                         |
+| Bank         | IdentityRecord      | /api/identity_records          | Create and list identity records, which are attached to customers for KYC                         |
+| Bank         | Accounts            | /api/accounts                  | Create and list accounts, which hold a specific asset for a customers                             |
+| Bank         | Symbols             | /api/symbols                   | Get a list of symbols supported for trade (ex: BTC-USD)                                           |
+| Bank         | Prices              | /api/prices                    | Get the current prices for assets on the platform                                                 |
+| Bank         | Quotes              | /api/quotes                    | Create and list quotes, which are required to execute trades                                      |
+| Bank         | Trades              | /api/trades                    | Create and list trades, which buy or sell cryptocurrency                                          |
+| Bank         | Rewards             | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
+| Bank         | ExternalBankAccount | /api/external_bank_account     | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
 
 ## Understanding Object Models & Endpoints
 
@@ -167,6 +169,9 @@ Class | Method | HTTP request | Description
 *CustomersAPI* | [**createCustomer**](docs/CustomersAPI.md#createcustomer) | **POST** /api/customers | Create Customer
 *CustomersAPI* | [**getCustomer**](docs/CustomersAPI.md#getcustomer) | **GET** /api/customers/{customer_guid} | Get Customer
 *CustomersAPI* | [**listCustomers**](docs/CustomersAPI.md#listcustomers) | **GET** /api/customers | Get customers list
+*ExternalBankAccountsAPI* | [**createExternalBankAccount**](docs/ExternalBankAccountsAPI.md#createexternalbankaccount) | **POST** /api/external_bank_accounts | Create ExternalBankAccount
+*ExternalBankAccountsAPI* | [**getExternalBankAccount**](docs/ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
+*ExternalBankAccountsAPI* | [**listExternalBankAccounts**](docs/ExternalBankAccountsAPI.md#listexternalbankaccounts) | **GET** /api/external_bank_accounts | Get external bank accounts list
 *FeeConfigurationsAPI* | [**createFeeConfiguration**](docs/FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create Fee Configuration
 *FeeConfigurationsAPI* | [**getFeeConfiguration**](docs/FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get Fee Configuration
 *FeeConfigurationsAPI* | [**listFeeConfigurations**](docs/FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List Fee Configurations
@@ -236,6 +241,8 @@ Class | Method | HTTP request | Description
  - [CustomerBankModel](docs/CustomerBankModel.md)
  - [CustomerListBankModel](docs/CustomerListBankModel.md)
  - [ErrorResponseBankModel](docs/ErrorResponseBankModel.md)
+ - [ExternalBankAccountBankModel](docs/ExternalBankAccountBankModel.md)
+ - [ExternalBankAccountListBankModel](docs/ExternalBankAccountListBankModel.md)
  - [FeeBankModel](docs/FeeBankModel.md)
  - [FeeConfigurationBankModel](docs/FeeConfigurationBankModel.md)
  - [FeeConfigurationListBankModel](docs/FeeConfigurationListBankModel.md)
@@ -269,6 +276,7 @@ Class | Method | HTTP request | Description
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
+ - [PostExternalBankAccountBankModel](docs/PostExternalBankAccountBankModel.md)
  - [PostFeeBankModel](docs/PostFeeBankModel.md)
  - [PostFeeConfigurationBankModel](docs/PostFeeConfigurationBankModel.md)
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
@@ -334,6 +342,8 @@ Class | Method | HTTP request | Description
  - **trades:read**: trades read
  - **rewards:execute**: rewards execute
  - **rewards:read**: rewards read
+ - **external_bank_accounts:read**: external_bank_accounts read
+ - **external_bank_accounts:execute**: external_bank_accounts execute
 
 
 ## Author
