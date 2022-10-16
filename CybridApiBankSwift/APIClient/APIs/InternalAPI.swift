@@ -173,6 +173,56 @@ open class InternalAPI {
     }
 
     /**
+     Create CountryCodeConfiguration
+     
+     - parameter postInternalCountryCodeConfigurationBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateCountryCodeConfiguration(postInternalCountryCodeConfigurationBankModel: PostInternalCountryCodeConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalCountryCodeConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateCountryCodeConfigurationWithRequestBuilder(postInternalCountryCodeConfigurationBankModel: postInternalCountryCodeConfigurationBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create CountryCodeConfiguration
+     - POST /api/internal/country_code_configurations
+     - Creates a country code configuration.  Required scope: **internal:banks:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalCountryCodeConfigurationBankModel: (body)  
+     - returns: RequestBuilder<InternalCountryCodeConfigurationBankModel> 
+     */
+    open class func internalCreateCountryCodeConfigurationWithRequestBuilder(postInternalCountryCodeConfigurationBankModel: PostInternalCountryCodeConfigurationBankModel) -> RequestBuilder<InternalCountryCodeConfigurationBankModel> {
+        let localVariablePath = "/api/internal/country_code_configurations"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalCountryCodeConfigurationBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalCountryCodeConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create CybridAccount
      
      - parameter postInternalCybridAccountBankModel: (body)  

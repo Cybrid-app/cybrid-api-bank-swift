@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalClaimExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
 *InternalAPI* | [**internalClaimExpectedPayment**](docs/InternalAPI.md#internalclaimexpectedpayment) | **POST** /api/internal/expected_payments/{guid}/claim | Claim Expected Payment
 *InternalAPI* | [**internalCreateAccount**](docs/InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
+*InternalAPI* | [**internalCreateCountryCodeConfiguration**](docs/InternalAPI.md#internalcreatecountrycodeconfiguration) | **POST** /api/internal/country_code_configurations | Create CountryCodeConfiguration
 *InternalAPI* | [**internalCreateCybridAccount**](docs/InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 *InternalAPI* | [**internalCreateExchange**](docs/InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
 *InternalAPI* | [**internalCreateExchangeAccount**](docs/InternalAPI.md#internalcreateexchangeaccount) | **POST** /api/internal/exchange_accounts | Create ExchangeAccount
@@ -248,6 +249,7 @@ Class | Method | HTTP request | Description
  - [FeeConfigurationListBankModel](docs/FeeConfigurationListBankModel.md)
  - [IdentityRecordBankModel](docs/IdentityRecordBankModel.md)
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
+ - [InternalCountryCodeConfigurationBankModel](docs/InternalCountryCodeConfigurationBankModel.md)
  - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
  - [InternalCybridAccountBankModel](docs/InternalCybridAccountBankModel.md)
  - [InternalExchangeAccountBankModel](docs/InternalExchangeAccountBankModel.md)
@@ -284,6 +286,7 @@ Class | Method | HTTP request | Description
  - [PostInternalAccountBankModel](docs/PostInternalAccountBankModel.md)
  - [PostInternalClaimExchangeSettlementPaymentOrderBankModel](docs/PostInternalClaimExchangeSettlementPaymentOrderBankModel.md)
  - [PostInternalClaimExpectedPaymentBankModel](docs/PostInternalClaimExpectedPaymentBankModel.md)
+ - [PostInternalCountryCodeConfigurationBankModel](docs/PostInternalCountryCodeConfigurationBankModel.md)
  - [PostInternalCybridAccountBankModel](docs/PostInternalCybridAccountBankModel.md)
  - [PostInternalExchangeAccountBankModel](docs/PostInternalExchangeAccountBankModel.md)
  - [PostInternalExchangeBankModel](docs/PostInternalExchangeBankModel.md)

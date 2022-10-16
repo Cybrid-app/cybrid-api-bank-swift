@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**internalClaimExchangeSettlementPaymentOrder**](InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
 [**internalClaimExpectedPayment**](InternalAPI.md#internalclaimexpectedpayment) | **POST** /api/internal/expected_payments/{guid}/claim | Claim Expected Payment
 [**internalCreateAccount**](InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
+[**internalCreateCountryCodeConfiguration**](InternalAPI.md#internalcreatecountrycodeconfiguration) | **POST** /api/internal/country_code_configurations | Create CountryCodeConfiguration
 [**internalCreateCybridAccount**](InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 [**internalCreateExchange**](InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
 [**internalCreateExchangeAccount**](InternalAPI.md#internalcreateexchangeaccount) | **POST** /api/internal/exchange_accounts | Create ExchangeAccount
@@ -183,6 +184,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountBankModel**](AccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateCountryCodeConfiguration**
+```swift
+    open class func internalCreateCountryCodeConfiguration(postInternalCountryCodeConfigurationBankModel: PostInternalCountryCodeConfigurationBankModel, completion: @escaping (_ data: InternalCountryCodeConfigurationBankModel?, _ error: Error?) -> Void)
+```
+
+Create CountryCodeConfiguration
+
+Creates a country code configuration.  Required scope: **internal:banks:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalCountryCodeConfigurationBankModel = PostInternalCountryCodeConfiguration(type: "type_example", environment: "environment_example", bankGuid: "bankGuid_example", enabled: false, code: "code_example") // PostInternalCountryCodeConfigurationBankModel | 
+
+// Create CountryCodeConfiguration
+InternalAPI.internalCreateCountryCodeConfiguration(postInternalCountryCodeConfigurationBankModel: postInternalCountryCodeConfigurationBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalCountryCodeConfigurationBankModel** | [**PostInternalCountryCodeConfigurationBankModel**](PostInternalCountryCodeConfigurationBankModel.md) |  | 
+
+### Return type
+
+[**InternalCountryCodeConfigurationBankModel**](InternalCountryCodeConfigurationBankModel.md)
 
 ### Authorization
 
