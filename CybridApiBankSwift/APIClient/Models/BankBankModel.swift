@@ -34,18 +34,21 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public var supportedTradingSymbols: [String]?
     /** The bank's list of supported fiat symbols. */
     public var supportedFiatAccountAssets: [String]?
+    /** The bank's list of supported country codes. */
+    public var supportedCountryCodes: [String]?
     /** The bank's enabled features. */
     public var features: [FeaturesBankModel]
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date
 
-    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
+    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
         self.type = type
         self.supportedTradingSymbols = supportedTradingSymbols
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
+        self.supportedCountryCodes = supportedCountryCodes
         self.features = features
         self.createdAt = createdAt
     }
@@ -57,6 +60,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case type
         case supportedTradingSymbols = "supported_trading_symbols"
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
+        case supportedCountryCodes = "supported_country_codes"
         case features
         case createdAt = "created_at"
     }
@@ -71,6 +75,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
         try container.encodeIfPresent(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
+        try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
         try container.encode(features, forKey: .features)
         try container.encode(createdAt, forKey: .createdAt)
     }
