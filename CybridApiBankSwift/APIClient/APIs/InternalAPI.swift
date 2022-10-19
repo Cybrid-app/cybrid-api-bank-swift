@@ -173,6 +173,56 @@ open class InternalAPI {
     }
 
     /**
+     Create Compliance Decision
+     
+     - parameter postInternalComplianceDecisionBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateComplianceDecision(postInternalComplianceDecisionBankModel: PostInternalComplianceDecisionBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalComplianceDecisionBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateComplianceDecisionWithRequestBuilder(postInternalComplianceDecisionBankModel: postInternalComplianceDecisionBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create Compliance Decision
+     - POST /api/internal/compliance_decisions
+     - Create an Compliance Decision.  Required scope: **internal:customers:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalComplianceDecisionBankModel: (body)  
+     - returns: RequestBuilder<InternalComplianceDecisionBankModel> 
+     */
+    open class func internalCreateComplianceDecisionWithRequestBuilder(postInternalComplianceDecisionBankModel: PostInternalComplianceDecisionBankModel) -> RequestBuilder<InternalComplianceDecisionBankModel> {
+        let localVariablePath = "/api/internal/compliance_decisions"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalComplianceDecisionBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalComplianceDecisionBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create CountryCodeConfiguration
      
      - parameter postInternalCountryCodeConfigurationBankModel: (body)  
@@ -1935,6 +1985,61 @@ open class InternalAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Patch Identity Verification
+     
+     - parameter identityVerificationGuid: (path) Identifier for the identity verification. 
+     - parameter patchInternalIdentityVerificationBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchIdentityVerification(identityVerificationGuid: String, patchInternalIdentityVerificationBankModel: PatchInternalIdentityVerificationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchIdentityVerificationWithRequestBuilder(identityVerificationGuid: identityVerificationGuid, patchInternalIdentityVerificationBankModel: patchInternalIdentityVerificationBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Identity Verification
+     - PATCH /api/internal/identity_verifications/{identity_verification_guid}
+     - Patch an identity verification.  Required scope: **internal:customers:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter identityVerificationGuid: (path) Identifier for the identity verification. 
+     - parameter patchInternalIdentityVerificationBankModel: (body)  
+     - returns: RequestBuilder<IdentityVerificationBankModel> 
+     */
+    open class func internalPatchIdentityVerificationWithRequestBuilder(identityVerificationGuid: String, patchInternalIdentityVerificationBankModel: PatchInternalIdentityVerificationBankModel) -> RequestBuilder<IdentityVerificationBankModel> {
+        var localVariablePath = "/api/internal/identity_verifications/{identity_verification_guid}"
+        let identityVerificationGuidPreEscape = "\(APIHelper.mapValueToPathItem(identityVerificationGuid))"
+        let identityVerificationGuidPostEscape = identityVerificationGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{identity_verification_guid}", with: identityVerificationGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalIdentityVerificationBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<IdentityVerificationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

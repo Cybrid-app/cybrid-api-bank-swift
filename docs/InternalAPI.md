@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**internalClaimExchangeSettlementPaymentOrder**](InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
 [**internalClaimExpectedPayment**](InternalAPI.md#internalclaimexpectedpayment) | **POST** /api/internal/expected_payments/{guid}/claim | Claim Expected Payment
 [**internalCreateAccount**](InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
+[**internalCreateComplianceDecision**](InternalAPI.md#internalcreatecompliancedecision) | **POST** /api/internal/compliance_decisions | Create Compliance Decision
 [**internalCreateCountryCodeConfiguration**](InternalAPI.md#internalcreatecountrycodeconfiguration) | **POST** /api/internal/country_code_configurations | Create CountryCodeConfiguration
 [**internalCreateCybridAccount**](InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 [**internalCreateExchange**](InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
@@ -40,6 +41,7 @@ Method | HTTP request | Description
 [**internalListInternalWallets**](InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 [**internalPatchAccount**](InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+[**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 
 
 # **internalClaimExchangeSettlementPaymentOrder**
@@ -184,6 +186,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountBankModel**](AccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCreateComplianceDecision**
+```swift
+    open class func internalCreateComplianceDecision(postInternalComplianceDecisionBankModel: PostInternalComplianceDecisionBankModel, completion: @escaping (_ data: InternalComplianceDecisionBankModel?, _ error: Error?) -> Void)
+```
+
+Create Compliance Decision
+
+Create an Compliance Decision.  Required scope: **internal:customers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalComplianceDecisionBankModel = PostInternalComplianceDecision(type: "type_example", decidedAt: Date(), identityVerificationGuid: "identityVerificationGuid_example", outcome: "outcome_example", failureCodes: ["failureCodes_example"]) // PostInternalComplianceDecisionBankModel | 
+
+// Create Compliance Decision
+InternalAPI.internalCreateComplianceDecision(postInternalComplianceDecisionBankModel: postInternalComplianceDecisionBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalComplianceDecisionBankModel** | [**PostInternalComplianceDecisionBankModel**](PostInternalComplianceDecisionBankModel.md) |  | 
+
+### Return type
+
+[**InternalComplianceDecisionBankModel**](InternalComplianceDecisionBankModel.md)
 
 ### Authorization
 
@@ -1870,6 +1922,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountBankModel**](AccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchIdentityVerification**
+```swift
+    open class func internalPatchIdentityVerification(identityVerificationGuid: String, patchInternalIdentityVerificationBankModel: PatchInternalIdentityVerificationBankModel, completion: @escaping (_ data: IdentityVerificationBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Identity Verification
+
+Patch an identity verification.  Required scope: **internal:customers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let identityVerificationGuid = "identityVerificationGuid_example" // String | Identifier for the identity verification.
+let patchInternalIdentityVerificationBankModel = PatchInternalIdentityVerification(startedAt: Date(), identityWorkflowGuid: "identityWorkflowGuid_example", completedAt: Date(), outcome: "outcome_example", failureCodes: ["failureCodes_example"]) // PatchInternalIdentityVerificationBankModel | 
+
+// Patch Identity Verification
+InternalAPI.internalPatchIdentityVerification(identityVerificationGuid: identityVerificationGuid, patchInternalIdentityVerificationBankModel: patchInternalIdentityVerificationBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identityVerificationGuid** | **String** | Identifier for the identity verification. | 
+ **patchInternalIdentityVerificationBankModel** | [**PatchInternalIdentityVerificationBankModel**](PatchInternalIdentityVerificationBankModel.md) |  | 
+
+### Return type
+
+[**IdentityVerificationBankModel**](IdentityVerificationBankModel.md)
 
 ### Authorization
 

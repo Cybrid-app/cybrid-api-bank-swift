@@ -178,9 +178,13 @@ Class | Method | HTTP request | Description
 *IdentityRecordsAPI* | [**createIdentityRecord**](docs/IdentityRecordsAPI.md#createidentityrecord) | **POST** /api/identity_records | Create Identity Record
 *IdentityRecordsAPI* | [**getIdentityRecord**](docs/IdentityRecordsAPI.md#getidentityrecord) | **GET** /api/identity_records/{identity_record_guid} | Get Identity Record
 *IdentityRecordsAPI* | [**listIdentityRecords**](docs/IdentityRecordsAPI.md#listidentityrecords) | **GET** /api/identity_records | List Identity Records
+*IdentityVerificationsAPI* | [**createIdentityVerification**](docs/IdentityVerificationsAPI.md#createidentityverification) | **POST** /api/identity_verifications | Create Identity Verification
+*IdentityVerificationsAPI* | [**getIdentityVerification**](docs/IdentityVerificationsAPI.md#getidentityverification) | **GET** /api/identity_verifications/{identity_verification_guid} | Get Identity Verification
+*IdentityVerificationsAPI* | [**listIdentityVerifications**](docs/IdentityVerificationsAPI.md#listidentityverifications) | **GET** /api/identity_verifications | List Identity Verifications
 *InternalAPI* | [**internalClaimExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
 *InternalAPI* | [**internalClaimExpectedPayment**](docs/InternalAPI.md#internalclaimexpectedpayment) | **POST** /api/internal/expected_payments/{guid}/claim | Claim Expected Payment
 *InternalAPI* | [**internalCreateAccount**](docs/InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
+*InternalAPI* | [**internalCreateComplianceDecision**](docs/InternalAPI.md#internalcreatecompliancedecision) | **POST** /api/internal/compliance_decisions | Create Compliance Decision
 *InternalAPI* | [**internalCreateCountryCodeConfiguration**](docs/InternalAPI.md#internalcreatecountrycodeconfiguration) | **POST** /api/internal/country_code_configurations | Create CountryCodeConfiguration
 *InternalAPI* | [**internalCreateCybridAccount**](docs/InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
 *InternalAPI* | [**internalCreateExchange**](docs/InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
@@ -214,6 +218,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 *InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+*InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
@@ -249,6 +254,9 @@ Class | Method | HTTP request | Description
  - [FeeConfigurationListBankModel](docs/FeeConfigurationListBankModel.md)
  - [IdentityRecordBankModel](docs/IdentityRecordBankModel.md)
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
+ - [IdentityVerificationBankModel](docs/IdentityVerificationBankModel.md)
+ - [IdentityVerificationListBankModel](docs/IdentityVerificationListBankModel.md)
+ - [InternalComplianceDecisionBankModel](docs/InternalComplianceDecisionBankModel.md)
  - [InternalCountryCodeConfigurationBankModel](docs/InternalCountryCodeConfigurationBankModel.md)
  - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
  - [InternalCybridAccountBankModel](docs/InternalCybridAccountBankModel.md)
@@ -275,6 +283,7 @@ Class | Method | HTTP request | Description
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
+ - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
@@ -283,9 +292,11 @@ Class | Method | HTTP request | Description
  - [PostFeeConfigurationBankModel](docs/PostFeeConfigurationBankModel.md)
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
+ - [PostIdentityVerificationBankModel](docs/PostIdentityVerificationBankModel.md)
  - [PostInternalAccountBankModel](docs/PostInternalAccountBankModel.md)
  - [PostInternalClaimExchangeSettlementPaymentOrderBankModel](docs/PostInternalClaimExchangeSettlementPaymentOrderBankModel.md)
  - [PostInternalClaimExpectedPaymentBankModel](docs/PostInternalClaimExpectedPaymentBankModel.md)
+ - [PostInternalComplianceDecisionBankModel](docs/PostInternalComplianceDecisionBankModel.md)
  - [PostInternalCountryCodeConfigurationBankModel](docs/PostInternalCountryCodeConfigurationBankModel.md)
  - [PostInternalCybridAccountBankModel](docs/PostInternalCybridAccountBankModel.md)
  - [PostInternalExchangeAccountBankModel](docs/PostInternalExchangeAccountBankModel.md)
