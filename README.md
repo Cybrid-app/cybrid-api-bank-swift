@@ -178,6 +178,9 @@ Class | Method | HTTP request | Description
 *IdentityRecordsAPI* | [**createIdentityRecord**](docs/IdentityRecordsAPI.md#createidentityrecord) | **POST** /api/identity_records | Create Identity Record
 *IdentityRecordsAPI* | [**getIdentityRecord**](docs/IdentityRecordsAPI.md#getidentityrecord) | **GET** /api/identity_records/{identity_record_guid} | Get Identity Record
 *IdentityRecordsAPI* | [**listIdentityRecords**](docs/IdentityRecordsAPI.md#listidentityrecords) | **GET** /api/identity_records | List Identity Records
+*IdentityVerificationsAPI* | [**createIdentityVerification**](docs/IdentityVerificationsAPI.md#createidentityverification) | **POST** /api/identity_verifications | Create Identity Verification
+*IdentityVerificationsAPI* | [**getIdentityVerification**](docs/IdentityVerificationsAPI.md#getidentityverification) | **GET** /api/identity_verifications/{identity_verification_guid} | Get Identity Verification
+*IdentityVerificationsAPI* | [**listIdentityVerifications**](docs/IdentityVerificationsAPI.md#listidentityverifications) | **GET** /api/identity_verifications | List Identity Verifications
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
@@ -213,6 +216,8 @@ Class | Method | HTTP request | Description
  - [FeeConfigurationListBankModel](docs/FeeConfigurationListBankModel.md)
  - [IdentityRecordBankModel](docs/IdentityRecordBankModel.md)
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
+ - [IdentityVerificationBankModel](docs/IdentityVerificationBankModel.md)
+ - [IdentityVerificationListBankModel](docs/IdentityVerificationListBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
@@ -222,6 +227,7 @@ Class | Method | HTTP request | Description
  - [PostFeeConfigurationBankModel](docs/PostFeeConfigurationBankModel.md)
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
+ - [PostIdentityVerificationBankModel](docs/PostIdentityVerificationBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostRewardBankModel](docs/PostRewardBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)
