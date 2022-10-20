@@ -19,7 +19,7 @@ public struct InternalComplianceDecisionBankModel: Codable, JSONEncodable, Hasha
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case completed = "completed"
+        case decided = "decided"
         case expired = "expired"
         case invalidated = "invalidated"
         case unknownDefaultOpenApi = "unknown_default_open_api"

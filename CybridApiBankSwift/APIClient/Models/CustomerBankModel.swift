@@ -16,23 +16,34 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case individual = "individual"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case storing = "storing"
+        case unverified = "unverified"
+        case verified = "verified"
+        case rejected = "rejected"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the customer. */
     public var guid: String?
     /** The customer's type. */
     public var type: TypeBankModel?
     /** ISO8601 datetime the customer was created at. */
     public var createdAt: Date?
+    /** The customer's state. */
+    public var state: StateBankModel?
 
-    public init(guid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.createdAt = createdAt
+        self.state = state
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case type
         case createdAt = "created_at"
+        case state
     }
 
     // Encodable protocol methods
@@ -42,6 +53,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(state, forKey: .state)
     }
 }
 
