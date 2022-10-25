@@ -80,12 +80,12 @@ The following scopes are available on the platform and can be requested when gen
 |------------------------|------------------------------------------------------------|------------------------------------|-------------------------------------------------|
 | Organizations          | organizations:read (Organization)                          | organizations:write (Organization) |                                                 |
 | Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)   | banks:execute (Organization)                    |
-| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank)             | customers:execute (Bank)                        |
+| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)   | customers:execute (Bank)                        |
 | Accounts               | accounts:read (Organization, Bank, Customer)               |                                    | accounts:execute (Bank, Customer)               |
 | Prices                 | prices:read (Bank, Customer)                               |                                    |                                                 |
 | Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                    | quotes:execute (Bank, Customer)                 |
 | Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank)                           |
-| Rewards                | rewards:read (Bank)                                        |                                    | rewards:execute (Bank)                          |
+| Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
 | External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
 
 ## Available Endpoints
