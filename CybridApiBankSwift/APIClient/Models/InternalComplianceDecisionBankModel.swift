@@ -31,6 +31,11 @@ public struct InternalComplianceDecisionBankModel: Codable, JSONEncodable, Hasha
     }
     public enum FailureCodesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case requestedFailure = "requested_failure"
+        case idCheckFailure = "id_check_failure"
+        case databaseCheckFailure = "database_check_failure"
+        case selfieFailure = "selfie_failure"
+        case pepCheckFailure = "pep_check_failure"
+        case watchlistCheckFailure = "watchlist_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the compliance decision. */
