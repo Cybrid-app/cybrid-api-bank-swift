@@ -34,12 +34,18 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     }
     public enum FailureCodesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case requestedFailure = "requested_failure"
+        case idCheckFailure = "id_check_failure"
+        case databaseCheckFailure = "database_check_failure"
+        case selfieFailure = "selfie_failure"
+        case pepCheckFailure = "pep_check_failure"
+        case watchlistCheckFailure = "watchlist_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PersonaStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case waiting = "waiting"
         case pending = "pending"
         case reviewing = "reviewing"
+        case processing = "processing"
         case expired = "expired"
         case completed = "completed"
         case unknown = "unknown"
