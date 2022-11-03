@@ -364,6 +364,8 @@ Class | Method | HTTP request | Description
  - **quotes:read**: quotes read
  - **trades:execute**: trades execute
  - **trades:read**: trades read
+ - **transfers:execute**: transfers execute
+ - **transfers:read**: transfers read
  - **rewards:execute**: rewards execute
  - **rewards:read**: rewards read
  - **external_bank_accounts:read**: external_bank_accounts read
