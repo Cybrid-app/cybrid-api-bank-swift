@@ -88,6 +88,7 @@ The following scopes are available on the platform and can be requested when gen
 | Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
 | External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
 | Workflows              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
+| Transfers              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
 
 ## Available Endpoints
 
@@ -113,6 +114,7 @@ The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](
 | Bank         | Rewards              | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
 | Bank         | ExternalBankAccounts | /api/external_bank_accounts    | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
 | Bank         | Workflows            | /api/workflows                 | Create, get and list workflows                                                                    |
+| Bank         | Transfers            | /api/transfers                 | Create, get and list transfers                                                                    |
 
 ## Understanding Object Models & Endpoints
 
@@ -221,6 +223,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
 *InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
+*InternalAPI* | [**internalPatchTransfer**](docs/InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
@@ -232,6 +235,9 @@ Class | Method | HTTP request | Description
 *TradesAPI* | [**createTrade**](docs/TradesAPI.md#createtrade) | **POST** /api/trades | Create Trade
 *TradesAPI* | [**getTrade**](docs/TradesAPI.md#gettrade) | **GET** /api/trades/{trade_guid} | Get Trade
 *TradesAPI* | [**listTrades**](docs/TradesAPI.md#listtrades) | **GET** /api/trades | Get trades list
+*TransfersAPI* | [**createTransfer**](docs/TransfersAPI.md#createtransfer) | **POST** /api/transfers | Create Transfer
+*TransfersAPI* | [**getTransfer**](docs/TransfersAPI.md#gettransfer) | **GET** /api/transfers/{transfer_guid} | Get Transfer
+*TransfersAPI* | [**listTransfers**](docs/TransfersAPI.md#listtransfers) | **GET** /api/transfers | Get transfers list
 *VerificationKeysAPI* | [**createVerificationKey**](docs/VerificationKeysAPI.md#createverificationkey) | **POST** /api/bank_verification_keys | Create VerificationKey
 *VerificationKeysAPI* | [**getVerificationKey**](docs/VerificationKeysAPI.md#getverificationkey) | **GET** /api/bank_verification_keys/{verification_key_guid} | Get VerificationKey
 *VerificationKeysAPI* | [**listVerificationKeys**](docs/VerificationKeysAPI.md#listverificationkeys) | **GET** /api/bank_verification_keys | Get Verification Keys list
@@ -289,6 +295,7 @@ Class | Method | HTTP request | Description
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
  - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
+ - [PatchInternalTransferBankModel](docs/PatchInternalTransferBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
@@ -322,6 +329,7 @@ Class | Method | HTTP request | Description
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostRewardBankModel](docs/PostRewardBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)
+ - [PostTransferBankModel](docs/PostTransferBankModel.md)
  - [PostVerificationKeyBankModel](docs/PostVerificationKeyBankModel.md)
  - [PostWorkflowBankModel](docs/PostWorkflowBankModel.md)
  - [QuoteBankModel](docs/QuoteBankModel.md)
@@ -331,6 +339,8 @@ Class | Method | HTTP request | Description
  - [SymbolPriceBankModel](docs/SymbolPriceBankModel.md)
  - [TradeBankModel](docs/TradeBankModel.md)
  - [TradeListBankModel](docs/TradeListBankModel.md)
+ - [TransferBankModel](docs/TransferBankModel.md)
+ - [TransferListBankModel](docs/TransferListBankModel.md)
  - [VerificationKeyBankModel](docs/VerificationKeyBankModel.md)
  - [VerificationKeyListBankModel](docs/VerificationKeyListBankModel.md)
  - [WorkflowBankModel](docs/WorkflowBankModel.md)

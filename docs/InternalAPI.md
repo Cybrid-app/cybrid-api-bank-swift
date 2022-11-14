@@ -42,6 +42,7 @@ Method | HTTP request | Description
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 [**internalPatchAccount**](InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
 [**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
+[**internalPatchTransfer**](InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 
 
 # **internalClaimExchangeSettlementPaymentOrder**
@@ -1974,6 +1975,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IdentityVerificationBankModel**](IdentityVerificationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchTransfer**
+```swift
+    open class func internalPatchTransfer(transferGuid: String, patchInternalTransferBankModel: PatchInternalTransferBankModel, completion: @escaping (_ data: TransferBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Transfer
+
+Patch an transfer.  Required scope: **internal:transfers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let transferGuid = "transferGuid_example" // String | Identifier for the transfer.
+let patchInternalTransferBankModel = PatchInternalTransfer(state: "state_example", failureCode: "failureCode_example") // PatchInternalTransferBankModel | 
+
+// Patch Transfer
+InternalAPI.internalPatchTransfer(transferGuid: transferGuid, patchInternalTransferBankModel: patchInternalTransferBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transferGuid** | **String** | Identifier for the transfer. | 
+ **patchInternalTransferBankModel** | [**PatchInternalTransferBankModel**](PatchInternalTransferBankModel.md) |  | 
+
+### Return type
+
+[**TransferBankModel**](TransferBankModel.md)
 
 ### Authorization
 
