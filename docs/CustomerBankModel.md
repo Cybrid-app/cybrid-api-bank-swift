@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the customer. | [optional] 
+**bankGuid** | **String** | Auto-generated unique identifier for the customer&#39;s bank. | [optional] 
 **type** | **String** | The customer&#39;s type. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the customer was created at. | [optional] 
 **state** | **String** | The customer&#39;s state. | [optional] 
