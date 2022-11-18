@@ -228,6 +228,8 @@ Class | Method | HTTP request | Description
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
  - [IdentityVerificationBankModel](docs/IdentityVerificationBankModel.md)
  - [IdentityVerificationListBankModel](docs/IdentityVerificationListBankModel.md)
+ - [IdentityVerificationWithDetailsAllOfBankModel](docs/IdentityVerificationWithDetailsAllOfBankModel.md)
+ - [IdentityVerificationWithDetailsBankModel](docs/IdentityVerificationWithDetailsBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)

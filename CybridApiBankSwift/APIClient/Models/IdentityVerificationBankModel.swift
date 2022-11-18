@@ -41,16 +41,6 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case watchlistCheckFailure = "watchlist_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum PersonaStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case waiting = "waiting"
-        case pending = "pending"
-        case reviewing = "reviewing"
-        case processing = "processing"
-        case expired = "expired"
-        case completed = "completed"
-        case unknown = "unknown"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
     /** The customer's identifier. */
@@ -67,12 +57,8 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var outcome: OutcomeBankModel?
     /** The reason codes explaining the outcome. */
     public var failureCodes: [FailureCodesBankModel]?
-    /** The Persona identifier of the backing inquiry. */
-    public var personaInquiryId: String?
-    /** The Persona state of the backing inquiry. */
-    public var personaState: PersonaStateBankModel?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil, personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
@@ -81,8 +67,6 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
-        self.personaInquiryId = personaInquiryId
-        self.personaState = personaState
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -94,8 +78,6 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case state
         case outcome
         case failureCodes = "failure_codes"
-        case personaInquiryId = "persona_inquiry_id"
-        case personaState = "persona_state"
     }
 
     // Encodable protocol methods
@@ -110,8 +92,6 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
-        try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
-        try container.encodeIfPresent(personaState, forKey: .personaState)
     }
 }
 
