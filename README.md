@@ -267,6 +267,8 @@ Class | Method | HTTP request | Description
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
  - [IdentityVerificationBankModel](docs/IdentityVerificationBankModel.md)
  - [IdentityVerificationListBankModel](docs/IdentityVerificationListBankModel.md)
+ - [IdentityVerificationWithDetailsAllOfBankModel](docs/IdentityVerificationWithDetailsAllOfBankModel.md)
+ - [IdentityVerificationWithDetailsBankModel](docs/IdentityVerificationWithDetailsBankModel.md)
  - [InternalComplianceDecisionBankModel](docs/InternalComplianceDecisionBankModel.md)
  - [InternalCountryCodeConfigurationBankModel](docs/InternalCountryCodeConfigurationBankModel.md)
  - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)

@@ -70,7 +70,7 @@ open class IdentityVerificationsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getIdentityVerification(identityVerificationGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getIdentityVerification(identityVerificationGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationWithDetailsBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return getIdentityVerificationWithRequestBuilder(identityVerificationGuid: identityVerificationGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -92,9 +92,9 @@ open class IdentityVerificationsAPI {
        - type: oauth2
        - name: oauth2
      - parameter identityVerificationGuid: (path) Identifier for the identity verification. 
-     - returns: RequestBuilder<IdentityVerificationBankModel> 
+     - returns: RequestBuilder<IdentityVerificationWithDetailsBankModel> 
      */
-    open class func getIdentityVerificationWithRequestBuilder(identityVerificationGuid: String) -> RequestBuilder<IdentityVerificationBankModel> {
+    open class func getIdentityVerificationWithRequestBuilder(identityVerificationGuid: String) -> RequestBuilder<IdentityVerificationWithDetailsBankModel> {
         var localVariablePath = "/api/identity_verifications/{identity_verification_guid}"
         let identityVerificationGuidPreEscape = "\(APIHelper.mapValueToPathItem(identityVerificationGuid))"
         let identityVerificationGuidPostEscape = identityVerificationGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -110,7 +110,7 @@ open class IdentityVerificationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<IdentityVerificationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<IdentityVerificationWithDetailsBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

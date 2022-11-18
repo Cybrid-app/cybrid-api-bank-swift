@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **getIdentityVerification**
 ```swift
-    open class func getIdentityVerification(identityVerificationGuid: String, completion: @escaping (_ data: IdentityVerificationBankModel?, _ error: Error?) -> Void)
+    open class func getIdentityVerification(identityVerificationGuid: String, completion: @escaping (_ data: IdentityVerificationWithDetailsBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Identity Verification
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IdentityVerificationBankModel**](IdentityVerificationBankModel.md)
+[**IdentityVerificationWithDetailsBankModel**](IdentityVerificationWithDetailsBankModel.md)
 
 ### Authorization
 
