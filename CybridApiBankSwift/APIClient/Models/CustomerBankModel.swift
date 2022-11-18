@@ -25,6 +25,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     }
     /** Auto-generated unique identifier for the customer. */
     public var guid: String?
+    /** Auto-generated unique identifier for the customer's bank. */
+    public var bankGuid: String?
     /** The customer's type. */
     public var type: TypeBankModel?
     /** ISO8601 datetime the customer was created at. */
@@ -32,8 +34,9 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     /** The customer's state. */
     public var state: StateBankModel?
 
-    public init(guid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil) {
         self.guid = guid
+        self.bankGuid = bankGuid
         self.type = type
         self.createdAt = createdAt
         self.state = state
@@ -41,6 +44,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case bankGuid = "bank_guid"
         case type
         case createdAt = "created_at"
         case state
@@ -51,6 +55,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(state, forKey: .state)
