@@ -20,6 +20,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case attestationIdentityRecords = "attestation_identity_records"
         case backstoppedFundingSource = "backstopped_funding_source"
+        case plaidFundingSource = "plaid_funding_source"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The bank's name. */
