@@ -28,18 +28,21 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the customer. */
     public var customerGuid: String?
-    /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. */
+    /** The asset code the quote was requested for. Populated for funding quotes. */
+    public var asset: String?
+    /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. Populated for trade quotes. */
     public var symbol: String?
-    /** The direction of the quote: either 'buy' or 'sell' for trade quotes. */
+    /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. */
     public var side: SideBankModel
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes. */
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
         self.productType = productType
         self.customerGuid = customerGuid
+        self.asset = asset
         self.symbol = symbol
         self.side = side
         self.receiveAmount = receiveAmount
@@ -49,6 +52,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case productType = "product_type"
         case customerGuid = "customer_guid"
+        case asset
         case symbol
         case side
         case receiveAmount = "receive_amount"
@@ -61,6 +65,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(productType, forKey: .productType)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(symbol, forKey: .symbol)
         try container.encode(side, forKey: .side)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
