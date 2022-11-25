@@ -26,7 +26,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The name of the account. */
     public var name: String?
     /** The asset code. */
-    public var assetCode: String?
+    public var asset: String?
     /** The type of account. */
     public var accountKind: AccountKindBankModel?
     /** The environment that the external bank account is operating in. */
@@ -40,10 +40,10 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The Plaid access token for the account. */
     public var plaidAccessToken: String?
 
-    public init(guid: String? = nil, name: String? = nil, assetCode: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, plaidAccessToken: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, plaidAccessToken: String? = nil) {
         self.guid = guid
         self.name = name
-        self.assetCode = assetCode
+        self.asset = asset
         self.accountKind = accountKind
         self.environment = environment
         self.bankGuid = bankGuid
@@ -55,7 +55,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case name
-        case assetCode = "asset_code"
+        case asset
         case accountKind = "account_kind"
         case environment
         case bankGuid = "bank_guid"
@@ -70,7 +70,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(assetCode, forKey: .assetCode)
+        try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(accountKind, forKey: .accountKind)
         try container.encodeIfPresent(environment, forKey: .environment)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
