@@ -15,6 +15,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public enum TransferTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case savings = "savings"
         case funding = "funding"
+        case book = "book"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -40,7 +41,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var quoteGuid: String?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
-    /** The direction of the quote: either 'buy' or 'sell'. */
+    /** The direction of the quote: 'deposit' or 'withdrawal'. */
     public var side: SideBankModel?
     /** The trade's state */
     public var state: StateBankModel?
