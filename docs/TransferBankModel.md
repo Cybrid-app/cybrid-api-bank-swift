@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **customerGuid** | **String** | The associated customer&#39;s identifier. | [optional] 
 **quoteGuid** | **String** | The associated quote&#39;s identifier. | [optional] 
 **asset** | **String** | The asset the transfer is related to, e.g., USD. | [optional] 
-**side** | **String** | The direction of the quote: either &#39;buy&#39; or &#39;sell&#39;. | [optional] 
+**side** | **String** | The direction of the quote: &#39;deposit&#39; or &#39;withdrawal&#39;. | [optional] 
 **state** | **String** | The trade&#39;s state | [optional] 
 **amount** | **Int** | The amount being transferred. | [optional] 
 **fee** | **Int** | The fee associated with the trade. | [optional] 

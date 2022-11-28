@@ -15,6 +15,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public enum ProductTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case trading = "trading"
         case funding = "funding"
+        case bookTransfer = "book_transfer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -28,7 +29,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the customer. */
     public var customerGuid: String?
-    /** The asset code the quote was requested for. Populated for funding quotes. */
+    /** The asset code the quote was requested for. Populated for funding and book transfer quotes. */
     public var asset: String?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. Populated for trade quotes. */
     public var symbol: String?

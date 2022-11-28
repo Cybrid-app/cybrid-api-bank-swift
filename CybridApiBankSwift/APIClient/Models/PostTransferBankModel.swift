@@ -14,6 +14,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TransferTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case funding = "funding"
+        case book = "book"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
