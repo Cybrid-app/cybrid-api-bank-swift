@@ -84,7 +84,7 @@ The following scopes are available on the platform and can be requested when gen
 | Accounts               | accounts:read (Organization, Bank, Customer)               |                                    | accounts:execute (Bank, Customer)               |
 | Prices                 | prices:read (Bank, Customer)                               |                                    |                                                 |
 | Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                    | quotes:execute (Bank, Customer)                 |
-| Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank)                           |
+| Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank, Customer)                 |
 | Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
 | External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
 | Workflows              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
