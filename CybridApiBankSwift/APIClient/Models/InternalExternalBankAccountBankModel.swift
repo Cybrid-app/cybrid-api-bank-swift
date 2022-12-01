@@ -22,6 +22,12 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         case production = "production"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case storing = "storing"
+        case completed = "completed"
+        case failed = "failed"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the account. */
     public var guid: String?
     /** The name of the account. */
@@ -40,8 +46,12 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
     public var customerGuid: String?
     /** ISO8601 datetime the exchange was created at. */
     public var createdAt: Date?
+    /** The state of the external bank account. */
+    public var state: StateBankModel?
+    /** The failure code for failed transfers. */
+    public var failureCode: String?
 
-    public init(guid: String? = nil, name: String? = nil, assetCode: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, exchangeGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, name: String? = nil, assetCode: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, exchangeGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.name = name
         self.assetCode = assetCode
@@ -51,6 +61,8 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.createdAt = createdAt
+        self.state = state
+        self.failureCode = failureCode
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -63,6 +75,8 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case createdAt = "created_at"
+        case state
+        case failureCode = "failure_code"
     }
 
     // Encodable protocol methods
@@ -78,6 +92,8 @@ public struct InternalExternalBankAccountBankModel: Codable, JSONEncodable, Hash
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
     }
 }
 

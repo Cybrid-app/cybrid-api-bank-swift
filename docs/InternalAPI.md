@@ -41,6 +41,7 @@ Method | HTTP request | Description
 [**internalListInternalWallets**](InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 [**internalPatchAccount**](InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+[**internalPatchExternalBankAccount**](InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 [**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 [**internalPatchTransfer**](InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 
@@ -1923,6 +1924,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountBankModel**](AccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchExternalBankAccount**
+```swift
+    open class func internalPatchExternalBankAccount(externalBankAccountGuid: String, patchInternalExternalBankAccountBankModel: PatchInternalExternalBankAccountBankModel, completion: @escaping (_ data: InternalExternalBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch ExternalBankAccount
+
+Patch an external bank account.  Required scope: **internal:accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
+let patchInternalExternalBankAccountBankModel = PatchInternalExternalBankAccount(state: "state_example", failureCode: "failureCode_example") // PatchInternalExternalBankAccountBankModel | 
+
+// Patch ExternalBankAccount
+InternalAPI.internalPatchExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid, patchInternalExternalBankAccountBankModel: patchInternalExternalBankAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalBankAccountGuid** | **String** | Identifier for the external bank account. | 
+ **patchInternalExternalBankAccountBankModel** | [**PatchInternalExternalBankAccountBankModel**](PatchInternalExternalBankAccountBankModel.md) |  | 
+
+### Return type
+
+[**InternalExternalBankAccountBankModel**](InternalExternalBankAccountBankModel.md)
 
 ### Authorization
 

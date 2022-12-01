@@ -222,6 +222,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 *InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+*InternalAPI* | [**internalPatchExternalBankAccount**](docs/InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 *InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 *InternalAPI* | [**internalPatchTransfer**](docs/InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
@@ -296,6 +297,7 @@ Class | Method | HTTP request | Description
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
+ - [PatchInternalExternalBankAccountBankModel](docs/PatchInternalExternalBankAccountBankModel.md)
  - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
  - [PatchInternalTransferBankModel](docs/PatchInternalTransferBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
