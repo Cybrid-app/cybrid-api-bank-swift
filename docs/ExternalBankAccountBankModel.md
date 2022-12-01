@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **bankGuid** | **String** | The bank identifier. | [optional] 
 **customerGuid** | **String** | The customer identifier. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the exchange was created at. | [optional] 
-**plaidAccessToken** | **String** | The Plaid access token for the account. | [optional] 
+**plaidInstitutionId** | **String** | The Plaid institution ID for the account. | [optional] 
+**plaidAccountMask** | **String** | The account number mask for the account. | [optional] 
+**plaidAccountName** | **String** | The name for the account. | [optional] 
+**state** | **String** | The state of the external bank account. | [optional] 
+**failureCode** | **String** | The failure code for failed transfers. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
