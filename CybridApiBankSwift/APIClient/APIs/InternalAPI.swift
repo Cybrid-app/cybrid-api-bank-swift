@@ -2045,6 +2045,61 @@ open class InternalAPI {
     }
 
     /**
+     Patch Identity Record
+     
+     - parameter identityRecordGuid: (path) Identifier for the identity record. 
+     - parameter patchInternalIdentityRecordBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchIdentityRecord(identityRecordGuid: String, patchInternalIdentityRecordBankModel: PatchInternalIdentityRecordBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityRecordBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchIdentityRecordWithRequestBuilder(identityRecordGuid: identityRecordGuid, patchInternalIdentityRecordBankModel: patchInternalIdentityRecordBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Identity Record
+     - PATCH /api/internal/identity_records/{identity_record_guid}
+     - Patch an identity record.  Required scope: **internal:customers:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter identityRecordGuid: (path) Identifier for the identity record. 
+     - parameter patchInternalIdentityRecordBankModel: (body)  
+     - returns: RequestBuilder<IdentityRecordBankModel> 
+     */
+    open class func internalPatchIdentityRecordWithRequestBuilder(identityRecordGuid: String, patchInternalIdentityRecordBankModel: PatchInternalIdentityRecordBankModel) -> RequestBuilder<IdentityRecordBankModel> {
+        var localVariablePath = "/api/internal/identity_records/{identity_record_guid}"
+        let identityRecordGuidPreEscape = "\(APIHelper.mapValueToPathItem(identityRecordGuid))"
+        let identityRecordGuidPostEscape = identityRecordGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{identity_record_guid}", with: identityRecordGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalIdentityRecordBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<IdentityRecordBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Patch Identity Verification
      
      - parameter identityVerificationGuid: (path) Identifier for the identity verification. 

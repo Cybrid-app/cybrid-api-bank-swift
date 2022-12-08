@@ -42,6 +42,7 @@ Method | HTTP request | Description
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 [**internalPatchAccount**](InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
 [**internalPatchExternalBankAccount**](InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
+[**internalPatchIdentityRecord**](InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 [**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 [**internalPatchTransfer**](InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 
@@ -1976,6 +1977,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalExternalBankAccountBankModel**](InternalExternalBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchIdentityRecord**
+```swift
+    open class func internalPatchIdentityRecord(identityRecordGuid: String, patchInternalIdentityRecordBankModel: PatchInternalIdentityRecordBankModel, completion: @escaping (_ data: IdentityRecordBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Identity Record
+
+Patch an identity record.  Required scope: **internal:customers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let identityRecordGuid = "identityRecordGuid_example" // String | Identifier for the identity record.
+let patchInternalIdentityRecordBankModel = PatchInternalIdentityRecord(completedAt: Date(), outcome: "outcome_example", failureCode: "failureCode_example") // PatchInternalIdentityRecordBankModel | 
+
+// Patch Identity Record
+InternalAPI.internalPatchIdentityRecord(identityRecordGuid: identityRecordGuid, patchInternalIdentityRecordBankModel: patchInternalIdentityRecordBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identityRecordGuid** | **String** | Identifier for the identity record. | 
+ **patchInternalIdentityRecordBankModel** | [**PatchInternalIdentityRecordBankModel**](PatchInternalIdentityRecordBankModel.md) |  | 
+
+### Return type
+
+[**IdentityRecordBankModel**](IdentityRecordBankModel.md)
 
 ### Authorization
 
