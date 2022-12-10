@@ -215,6 +215,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalGetExchangeSettlementObligation**](docs/InternalAPI.md#internalgetexchangesettlementobligation) | **GET** /api/internal/exchange_settlement_obligations/{guid} | Get Exchange Settlement Obligation
 *InternalAPI* | [**internalGetExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
 *InternalAPI* | [**internalGetExpectedPayment**](docs/InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
+*InternalAPI* | [**internalGetExternalBankAccount**](docs/InternalAPI.md#internalgetexternalbankaccount) | **GET** /api/internal/external_bank_accounts/{external_bank_account_guid} | Get ExternalBankAccount
 *InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 *InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 *InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -226,6 +227,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalPatchIdentityRecord**](docs/InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 *InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 *InternalAPI* | [**internalPatchTransfer**](docs/InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
+*InternalAPI* | [**internalPatchWorkflow**](docs/InternalAPI.md#internalpatchworkflow) | **PATCH** /api/internal/workflows/{workflow_guid} | Patch Workflow
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
@@ -302,6 +304,7 @@ Class | Method | HTTP request | Description
  - [PatchInternalIdentityRecordBankModel](docs/PatchInternalIdentityRecordBankModel.md)
  - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
  - [PatchInternalTransferBankModel](docs/PatchInternalTransferBankModel.md)
+ - [PatchInternalWorkflowBankModel](docs/PatchInternalWorkflowBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)

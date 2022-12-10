@@ -1550,6 +1550,59 @@ open class InternalAPI {
     }
 
     /**
+     Get ExternalBankAccount
+     
+     - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalGetExternalBankAccount(externalBankAccountGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalExternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalGetExternalBankAccountWithRequestBuilder(externalBankAccountGuid: externalBankAccountGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get ExternalBankAccount
+     - GET /api/internal/external_bank_accounts/{external_bank_account_guid}
+     - Retrieves an external bank account.  Required scope: **internal:accounts:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - returns: RequestBuilder<InternalExternalBankAccountBankModel> 
+     */
+    open class func internalGetExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String) -> RequestBuilder<InternalExternalBankAccountBankModel> {
+        var localVariablePath = "/api/internal/external_bank_accounts/{external_bank_account_guid}"
+        let externalBankAccountGuidPreEscape = "\(APIHelper.mapValueToPathItem(externalBankAccountGuid))"
+        let externalBankAccountGuidPostEscape = externalBankAccountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{external_bank_account_guid}", with: externalBankAccountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalExternalBankAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      List Exchanges
      
      - parameter page: (query)  (optional)
@@ -2205,6 +2258,61 @@ open class InternalAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<TransferBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Patch Workflow
+     
+     - parameter workflowGuid: (path) Identifier for the workflow. 
+     - parameter patchInternalWorkflowBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchWorkflow(workflowGuid: String, patchInternalWorkflowBankModel: PatchInternalWorkflowBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<WorkflowBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchWorkflowWithRequestBuilder(workflowGuid: workflowGuid, patchInternalWorkflowBankModel: patchInternalWorkflowBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Workflow
+     - PATCH /api/internal/workflows/{workflow_guid}
+     - Patch an workflow.  Required scope: **internal:workflows:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter workflowGuid: (path) Identifier for the workflow. 
+     - parameter patchInternalWorkflowBankModel: (body)  
+     - returns: RequestBuilder<WorkflowBankModel> 
+     */
+    open class func internalPatchWorkflowWithRequestBuilder(workflowGuid: String, patchInternalWorkflowBankModel: PatchInternalWorkflowBankModel) -> RequestBuilder<WorkflowBankModel> {
+        var localVariablePath = "/api/internal/workflows/{workflow_guid}"
+        let workflowGuidPreEscape = "\(APIHelper.mapValueToPathItem(workflowGuid))"
+        let workflowGuidPostEscape = workflowGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{workflow_guid}", with: workflowGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalWorkflowBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<WorkflowBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

@@ -34,6 +34,7 @@ Method | HTTP request | Description
 [**internalGetExchangeSettlementObligation**](InternalAPI.md#internalgetexchangesettlementobligation) | **GET** /api/internal/exchange_settlement_obligations/{guid} | Get Exchange Settlement Obligation
 [**internalGetExchangeSettlementPaymentOrder**](InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
 [**internalGetExpectedPayment**](InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
+[**internalGetExternalBankAccount**](InternalAPI.md#internalgetexternalbankaccount) | **GET** /api/internal/external_bank_accounts/{external_bank_account_guid} | Get ExternalBankAccount
 [**internalListExchanges**](InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 [**internalListExternalBankAccounts**](InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 [**internalListExternalWallets**](InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -45,6 +46,7 @@ Method | HTTP request | Description
 [**internalPatchIdentityRecord**](InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 [**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 [**internalPatchTransfer**](InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
+[**internalPatchWorkflow**](InternalAPI.md#internalpatchworkflow) | **PATCH** /api/internal/workflows/{workflow_guid} | Patch Workflow
 
 
 # **internalClaimExchangeSettlementPaymentOrder**
@@ -1551,6 +1553,56 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalGetExternalBankAccount**
+```swift
+    open class func internalGetExternalBankAccount(externalBankAccountGuid: String, completion: @escaping (_ data: InternalExternalBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Get ExternalBankAccount
+
+Retrieves an external bank account.  Required scope: **internal:accounts:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
+
+// Get ExternalBankAccount
+InternalAPI.internalGetExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalBankAccountGuid** | **String** | Identifier for the external bank account. | 
+
+### Return type
+
+[**InternalExternalBankAccountBankModel**](InternalExternalBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalListExchanges**
 ```swift
     open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalExchangeListBankModel?, _ error: Error?) -> Void)
@@ -2133,6 +2185,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransferBankModel**](TransferBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchWorkflow**
+```swift
+    open class func internalPatchWorkflow(workflowGuid: String, patchInternalWorkflowBankModel: PatchInternalWorkflowBankModel, completion: @escaping (_ data: WorkflowBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Workflow
+
+Patch an workflow.  Required scope: **internal:workflows:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let workflowGuid = "workflowGuid_example" // String | Identifier for the workflow.
+let patchInternalWorkflowBankModel = PatchInternalWorkflow(state: "state_example", failureCode: "failureCode_example") // PatchInternalWorkflowBankModel | 
+
+// Patch Workflow
+InternalAPI.internalPatchWorkflow(workflowGuid: workflowGuid, patchInternalWorkflowBankModel: patchInternalWorkflowBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workflowGuid** | **String** | Identifier for the workflow. | 
+ **patchInternalWorkflowBankModel** | [**PatchInternalWorkflowBankModel**](PatchInternalWorkflowBankModel.md) |  | 
+
+### Return type
+
+[**WorkflowBankModel**](WorkflowBankModel.md)
 
 ### Authorization
 

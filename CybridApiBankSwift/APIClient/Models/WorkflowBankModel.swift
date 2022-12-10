@@ -16,19 +16,31 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
         case plaid = "plaid"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case storing = "storing"
+        case completed = "completed"
+        case failed = "failed"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the workflow. */
     public var guid: String?
     /** The associated customer's identifier. */
     public var customerGuid: String?
     /** The type of workflow. */
     public var type: TypeBankModel?
+    /** The state of the workflow. */
+    public var state: StateBankModel?
+    /** The failure code for failed workflows. */
+    public var failureCode: String?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
+        self.state = state
+        self.failureCode = failureCode
         self.createdAt = createdAt
     }
 
@@ -36,6 +48,8 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
         case guid
         case customerGuid = "customer_guid"
         case type
+        case state
+        case failureCode = "failure_code"
         case createdAt = "created_at"
     }
 
@@ -46,6 +60,8 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
     }
 }
