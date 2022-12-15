@@ -63,6 +63,59 @@ open class ExternalBankAccountsAPI {
     }
 
     /**
+     Delete External Bank Account
+     
+     - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func deleteExternalBankAccount(externalBankAccountGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return deleteExternalBankAccountWithRequestBuilder(externalBankAccountGuid: externalBankAccountGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Delete External Bank Account
+     - DELETE /api/external_bank_accounts/{external_bank_account_guid}
+     - Deletes an external bank account.  Required scope: **external_bank_accounts:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - returns: RequestBuilder<ExternalBankAccountBankModel> 
+     */
+    open class func deleteExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String) -> RequestBuilder<ExternalBankAccountBankModel> {
+        var localVariablePath = "/api/external_bank_accounts/{external_bank_account_guid}"
+        let externalBankAccountGuidPreEscape = "\(APIHelper.mapValueToPathItem(externalBankAccountGuid))"
+        let externalBankAccountGuidPostEscape = externalBankAccountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{external_bank_account_guid}", with: externalBankAccountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ExternalBankAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get External Bank Account
      
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
