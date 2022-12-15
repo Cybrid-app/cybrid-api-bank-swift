@@ -76,19 +76,19 @@ The Cybrid platform supports the use of scopes to control the level of access a 
 
 The following scopes are available on the platform and can be requested when generating either an Organization, Bank or Customer token. Generally speaking, the _Read_ scope is required to read and list resources, the _Write_ scope is required to update a resource and the _Execute_ scope is required to create a resource.
 
-| Resource               | Read scope (Token Type)                                    | Write scope (Token Type)           | Execute scope (Token Type)                      |
-|------------------------|------------------------------------------------------------|------------------------------------|-------------------------------------------------|
-| Organizations          | organizations:read (Organization)                          | organizations:write (Organization) |                                                 |
-| Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)   | banks:execute (Organization)                    |
-| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)   | customers:execute (Bank)                        |
-| Accounts               | accounts:read (Organization, Bank, Customer)               |                                    | accounts:execute (Bank, Customer)               |
-| Prices                 | prices:read (Bank, Customer)                               |                                    |                                                 |
-| Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                    | quotes:execute (Bank, Customer)                 |
-| Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank, Customer)                 |
-| Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
-| External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
-| Workflows              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
-| Transfers              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
+| Resource               | Read scope (Token Type)                                    | Write scope (Token Type)                      | Execute scope (Token Type)                      |
+|------------------------|------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
+| Organizations          | organizations:read (Organization)                          | organizations:write (Organization)            |                                                 |
+| Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)              | banks:execute (Organization)                    |
+| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)              | customers:execute (Bank)                        |
+| Accounts               | accounts:read (Organization, Bank, Customer)               |                                               | accounts:execute (Bank, Customer)               |
+| Prices                 | prices:read (Bank, Customer)                               |                                               |                                                 |
+| Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                               | quotes:execute (Bank, Customer)                 |
+| Trades                 | trades:read (Organization, Bank, Customer)                 |                                               | trades:execute (Bank, Customer)                 |
+| Rewards                | rewards:read (Bank, Customer)                              |                                               | rewards:execute (Bank)                          |
+| External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) | external_bank_accounts:write (Bank, Customer) | external_bank_accounts:execute (Bank, Customer) |
+| Workflows              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
+| Transfers              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
 
 ## Available Endpoints
 
@@ -174,6 +174,7 @@ Class | Method | HTTP request | Description
 *CustomersAPI* | [**getCustomer**](docs/CustomersAPI.md#getcustomer) | **GET** /api/customers/{customer_guid} | Get Customer
 *CustomersAPI* | [**listCustomers**](docs/CustomersAPI.md#listcustomers) | **GET** /api/customers | Get customers list
 *ExternalBankAccountsAPI* | [**createExternalBankAccount**](docs/ExternalBankAccountsAPI.md#createexternalbankaccount) | **POST** /api/external_bank_accounts | Create ExternalBankAccount
+*ExternalBankAccountsAPI* | [**deleteExternalBankAccount**](docs/ExternalBankAccountsAPI.md#deleteexternalbankaccount) | **DELETE** /api/external_bank_accounts/{external_bank_account_guid} | Delete External Bank Account
 *ExternalBankAccountsAPI* | [**getExternalBankAccount**](docs/ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
 *ExternalBankAccountsAPI* | [**listExternalBankAccounts**](docs/ExternalBankAccountsAPI.md#listexternalbankaccounts) | **GET** /api/external_bank_accounts | Get external bank accounts list
 *FeeConfigurationsAPI* | [**createFeeConfiguration**](docs/FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create Fee Configuration
@@ -388,6 +389,7 @@ Class | Method | HTTP request | Description
  - **rewards:execute**: rewards execute
  - **rewards:read**: rewards read
  - **external_bank_accounts:read**: external_bank_accounts read
+ - **external_bank_accounts:write**: external_bank_accounts write
  - **external_bank_accounts:execute**: external_bank_accounts execute
  - **workflows:read**: workflows read
  - **workflows:execute**: workflows execute

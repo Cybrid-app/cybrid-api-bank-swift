@@ -16,7 +16,7 @@ public struct PatchInternalExternalBankAccountBankModel: Codable, JSONEncodable,
         case completed = "completed"
         case failed = "failed"
         case refreshRequired = "refresh_required"
-        case refreshFailed = "refresh_failed"
+        case deleted = "deleted"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The state of the external bank account. */

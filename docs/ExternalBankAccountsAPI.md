@@ -5,6 +5,7 @@ All URIs are relative to *http://api-bank.cybrid.local*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createExternalBankAccount**](ExternalBankAccountsAPI.md#createexternalbankaccount) | **POST** /api/external_bank_accounts | Create ExternalBankAccount
+[**deleteExternalBankAccount**](ExternalBankAccountsAPI.md#deleteexternalbankaccount) | **DELETE** /api/external_bank_accounts/{external_bank_account_guid} | Delete External Bank Account
 [**getExternalBankAccount**](ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
 [**listExternalBankAccounts**](ExternalBankAccountsAPI.md#listexternalbankaccounts) | **GET** /api/external_bank_accounts | Get external bank accounts list
 
@@ -55,6 +56,56 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteExternalBankAccount**
+```swift
+    open class func deleteExternalBankAccount(externalBankAccountGuid: String, completion: @escaping (_ data: ExternalBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Delete External Bank Account
+
+Deletes an external bank account.  Required scope: **external_bank_accounts:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
+
+// Delete External Bank Account
+ExternalBankAccountsAPI.deleteExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalBankAccountGuid** | **String** | Identifier for the external bank account. | 
+
+### Return type
+
+[**ExternalBankAccountBankModel**](ExternalBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
