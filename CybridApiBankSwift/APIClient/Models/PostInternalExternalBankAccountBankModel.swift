@@ -13,8 +13,9 @@ import AnyCodable
 public struct PostInternalExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case zumRailsUser = "zum_rails_user"
+        case modernTreasuryExternalAccount = "modern_treasury_external_account"
         case plaid = "plaid"
+        case zumRailsUser = "zum_rails_user"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The name of the account. */
