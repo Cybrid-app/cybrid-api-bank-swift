@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **fee** | **Int** | The fee associated with the trade. Denominated in \&quot;counter_asset\&quot; base units for trade quotes. | [optional] 
 **issuedAt** | **Date** | ISO8601 datetime the quote was created at. | [optional] 
 **expiresAt** | **Date** | ISO8601 datetime the quote is expiring at. Populated for trading quotes. | [optional] 
+**asset** | **String** | The asset code the quote was requested for. Populated for book transfer and funding quotes. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

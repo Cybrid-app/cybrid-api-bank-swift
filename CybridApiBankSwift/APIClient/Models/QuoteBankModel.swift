@@ -45,8 +45,10 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var issuedAt: Date?
     /** ISO8601 datetime the quote is expiring at. Populated for trading quotes. */
     public var expiresAt: Date?
+    /** The asset code the quote was requested for. Populated for book transfer and funding quotes. */
+    public var asset: String?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil) {
+    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil) {
         self.guid = guid
         self.productType = productType
         self.customerGuid = customerGuid
@@ -57,6 +59,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         self.fee = fee
         self.issuedAt = issuedAt
         self.expiresAt = expiresAt
+        self.asset = asset
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -70,6 +73,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case fee
         case issuedAt = "issued_at"
         case expiresAt = "expires_at"
+        case asset
     }
 
     // Encodable protocol methods
@@ -86,6 +90,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fee, forKey: .fee)
         try container.encodeIfPresent(issuedAt, forKey: .issuedAt)
         try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
+        try container.encodeIfPresent(asset, forKey: .asset)
     }
 }
 
