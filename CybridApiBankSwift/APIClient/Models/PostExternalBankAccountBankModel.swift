@@ -22,14 +22,14 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var accountKind: AccountKindBankModel
     /** The customer identifier. */
     public var customerGuid: String?
-    /** The asset code. */
-    public var asset: String
+    /** The asset code. If not set will try and default to the Bank's configured fiat asset. */
+    public var asset: String?
     /** The public token for the account. */
     public var plaidPublicToken: String?
     /** The account identifier in plaid. */
     public var plaidAccountId: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String, plaidPublicToken: String? = nil, plaidAccountId: String? = nil) {
+    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.customerGuid = customerGuid

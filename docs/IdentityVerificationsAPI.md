@@ -23,7 +23,7 @@ Create an Identity Verification.  Required scope: **customers:write**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postIdentityVerificationBankModel = PostIdentityVerification(type: "type_example", method: "method_example", customerGuid: "customerGuid_example", expectedBehaviours: ["expectedBehaviours_example"]) // PostIdentityVerificationBankModel | 
+let postIdentityVerificationBankModel = PostIdentityVerification(type: "type_example", method: "method_example", countryCode: "countryCode_example", customerGuid: "customerGuid_example", expectedBehaviours: ["expectedBehaviours_example"]) // PostIdentityVerificationBankModel | 
 
 // Create Identity Verification
 IdentityVerificationsAPI.createIdentityVerification(postIdentityVerificationBankModel: postIdentityVerificationBankModel) { (response, error) in

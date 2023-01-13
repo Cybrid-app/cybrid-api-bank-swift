@@ -29,14 +29,17 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var type: TypeBankModel
     /** The identity verification method. */
     public var method: MethodBankModel
+    /** The ISO 3166 country 2-Alpha country the customer is being verified in. If not present, will default to the Bank's configured country code. */
+    public var countryCode: String?
     /** The customer's identifier. */
     public var customerGuid: String?
     /** The optional expected behaviour to simulate. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
 
-    public init(type: TypeBankModel, method: MethodBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
+    public init(type: TypeBankModel, method: MethodBankModel, countryCode: String? = nil, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
         self.type = type
         self.method = method
+        self.countryCode = countryCode
         self.customerGuid = customerGuid
         self.expectedBehaviours = expectedBehaviours
     }
@@ -44,6 +47,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case method
+        case countryCode = "country_code"
         case customerGuid = "customer_guid"
         case expectedBehaviours = "expected_behaviours"
     }
@@ -54,6 +58,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encode(method, forKey: .method)
+        try container.encodeIfPresent(countryCode, forKey: .countryCode)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(expectedBehaviours, forKey: .expectedBehaviours)
     }
