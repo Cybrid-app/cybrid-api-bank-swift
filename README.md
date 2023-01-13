@@ -61,12 +61,15 @@ Your `Client ID` and `Secret` can be exchanged for a time-limited `Bearer Token`
 The following curl command can be used to quickly generate a `Bearer Token` for use in testing the API or demo applications.
 
 ```
+# Example request when using Bank credentials
 curl -X POST <api_idp_url>/oauth/token -d '{
     \"grant_type\": \"client_credentials\",
     \"client_id\": \"<Your Client ID>\",
     \"client_secret\": \"<Your Secret>\",
-    \"scope\": \"banks:read banks:write accounts:read accounts:execute customers:read customers:write customers:execute prices:read quotes:execute trades:execute trades:read\"
+    \"scope\": \"<api_platform_bank_scopes>\"
   }' -H \"Content-Type: application/json\"
+
+# When using Organization credentials set `scope` to '<api_platform_organization_scopes>'
 ```
 <font color=\"orange\">**⚠️ Note: The above curl will create a bearer token with full scope access. Delete scopes if you'd like to restrict access.**</font>
 
