@@ -25,7 +25,6 @@ Method | HTTP request | Description
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 [**internalCreatePersonDetails**](InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 [**internalCreateSavingsAssetConfiguration**](InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
-[**internalCreateSystemAccount**](InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 [**internalGetExchange**](InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
@@ -35,6 +34,8 @@ Method | HTTP request | Description
 [**internalGetExchangeSettlementPaymentOrder**](InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
 [**internalGetExpectedPayment**](InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
 [**internalGetExternalBankAccount**](InternalAPI.md#internalgetexternalbankaccount) | **GET** /api/internal/external_bank_accounts/{external_bank_account_guid} | Get ExternalBankAccount
+[**internalGetInternalBankAccount**](InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
+[**internalGetInternalWallet**](InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
 [**internalListExchanges**](InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 [**internalListExternalBankAccounts**](InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 [**internalListExternalWallets**](InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -42,9 +43,13 @@ Method | HTTP request | Description
 [**internalListInternalWallets**](InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 [**internalPatchAccount**](InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+[**internalPatchDepositAddress**](InternalAPI.md#internalpatchdepositaddress) | **PATCH** /api/internal/deposit_addresses/{guid} | Patch Deposit Address
 [**internalPatchExternalBankAccount**](InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 [**internalPatchIdentityRecord**](InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 [**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
+[**internalPatchInternalBankAccount**](InternalAPI.md#internalpatchinternalbankaccount) | **PATCH** /api/internal/internal_bank_accounts/{guid} | Patch Internal Bank Account
+[**internalPatchInternalWallet**](InternalAPI.md#internalpatchinternalwallet) | **PATCH** /api/internal/internal_wallets/{guid} | Patch Internal Wallet
+[**internalPatchInternalWalletGroup**](InternalAPI.md#internalpatchinternalwalletgroup) | **PATCH** /api/internal/internal_wallet_groups/{guid} | Patch Internal Wallet
 [**internalPatchTransfer**](InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 [**internalPatchWorkflow**](InternalAPI.md#internalpatchworkflow) | **PATCH** /api/internal/workflows/{workflow_guid} | Patch Workflow
 
@@ -917,7 +922,7 @@ Create an InternalBankAccount.  Required scope: **internal:accounts:execute**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInternalInternalBankAccountBankModel = PostInternalInternalBankAccount(name: "name_example", accountKind: "accountKind_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example") // PostInternalInternalBankAccountBankModel | 
+let postInternalInternalBankAccountBankModel = PostInternalInternalBankAccount(name: "name_example", asset: "asset_example", accountKind: "accountKind_example", environment: "environment_example", providerId: "providerId_example") // PostInternalInternalBankAccountBankModel | 
 
 // Create InternalBankAccount
 InternalAPI.internalCreateInternalBankAccount(postInternalInternalBankAccountBankModel: postInternalInternalBankAccountBankModel) { (response, error) in
@@ -967,7 +972,7 @@ Create an InternalWallet.  Required scope: **internal:accounts:execute**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInternalInternalWalletBankModel = PostInternalInternalWallet(name: "name_example", accountKind: "accountKind_example", providerId: "providerId_example", systemAccountGuid: "systemAccountGuid_example") // PostInternalInternalWalletBankModel | 
+let postInternalInternalWalletBankModel = PostInternalInternalWallet(name: "name_example", asset: "asset_example", accountKind: "accountKind_example", environment: "environment_example", providerId: "providerId_example") // PostInternalInternalWalletBankModel | 
 
 // Create InternalWallet
 InternalAPI.internalCreateInternalWallet(postInternalInternalWalletBankModel: postInternalInternalWalletBankModel) { (response, error) in
@@ -1091,56 +1096,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalSavingsAssetConfigurationBankModel**](InternalSavingsAssetConfigurationBankModel.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **internalCreateSystemAccount**
-```swift
-    open class func internalCreateSystemAccount(postInternalSystemAccountBankModel: PostInternalSystemAccountBankModel, completion: @escaping (_ data: InternalSystemAccountBankModel?, _ error: Error?) -> Void)
-```
-
-Create SystemAccount
-
-Create a SystemAccount.  Required scope: **internal:system_accounts:execute**
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import CybridApiBankSwift
-
-let postInternalSystemAccountBankModel = PostInternalSystemAccount(type: "type_example", asset: "asset_example", name: "name_example", environment: "environment_example") // PostInternalSystemAccountBankModel | 
-
-// Create SystemAccount
-InternalAPI.internalCreateSystemAccount(postInternalSystemAccountBankModel: postInternalSystemAccountBankModel) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **postInternalSystemAccountBankModel** | [**PostInternalSystemAccountBankModel**](PostInternalSystemAccountBankModel.md) |  | 
-
-### Return type
-
-[**InternalSystemAccountBankModel**](InternalSystemAccountBankModel.md)
 
 ### Authorization
 
@@ -1603,6 +1558,106 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalGetInternalBankAccount**
+```swift
+    open class func internalGetInternalBankAccount(internalBankAccountGuid: String, completion: @escaping (_ data: InternalInternalBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Get InternalBankAccount
+
+Retrieves an internal bank account.  Required scope: **internal:accounts:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let internalBankAccountGuid = "internalBankAccountGuid_example" // String | Identifier for the internal bank account.
+
+// Get InternalBankAccount
+InternalAPI.internalGetInternalBankAccount(internalBankAccountGuid: internalBankAccountGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **internalBankAccountGuid** | **String** | Identifier for the internal bank account. | 
+
+### Return type
+
+[**InternalInternalBankAccountBankModel**](InternalInternalBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetInternalWallet**
+```swift
+    open class func internalGetInternalWallet(internalWalletGuid: String, completion: @escaping (_ data: InternalInternalWalletBankModel?, _ error: Error?) -> Void)
+```
+
+Get InternalWallet
+
+Retrieves an internal wallet.  Required scope: **internal:accounts:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let internalWalletGuid = "internalWalletGuid_example" // String | Identifier for the internal wallet.
+
+// Get InternalWallet
+InternalAPI.internalGetInternalWallet(internalWalletGuid: internalWalletGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **internalWalletGuid** | **String** | Identifier for the internal wallet. | 
+
+### Return type
+
+[**InternalInternalWalletBankModel**](InternalInternalWalletBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalListExchanges**
 ```swift
     open class func internalListExchanges(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalExchangeListBankModel?, _ error: Error?) -> Void)
@@ -1989,6 +2044,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalPatchDepositAddress**
+```swift
+    open class func internalPatchDepositAddress(guid: String, patchInternalDepositAddressBankModel: PatchInternalDepositAddressBankModel, completion: @escaping (_ data: DepositAddressBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Deposit Address
+
+Patch an deposit address.  Required scope: **internal:deposit_addresses:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the resource.
+let patchInternalDepositAddressBankModel = PatchInternalDepositAddress(storedAt: Date(), address: "address_example", format: "format_example", tag: "tag_example") // PatchInternalDepositAddressBankModel | 
+
+// Patch Deposit Address
+InternalAPI.internalPatchDepositAddress(guid: guid, patchInternalDepositAddressBankModel: patchInternalDepositAddressBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the resource. | 
+ **patchInternalDepositAddressBankModel** | [**PatchInternalDepositAddressBankModel**](PatchInternalDepositAddressBankModel.md) |  | 
+
+### Return type
+
+[**DepositAddressBankModel**](DepositAddressBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalPatchExternalBankAccount**
 ```swift
     open class func internalPatchExternalBankAccount(externalBankAccountGuid: String, patchInternalExternalBankAccountBankModel: PatchInternalExternalBankAccountBankModel, completion: @escaping (_ data: InternalExternalBankAccountBankModel?, _ error: Error?) -> Void)
@@ -2133,6 +2240,162 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IdentityVerificationBankModel**](IdentityVerificationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchInternalBankAccount**
+```swift
+    open class func internalPatchInternalBankAccount(guid: String, patchInternalInternalBankAccountBankModel: PatchInternalInternalBankAccountBankModel, completion: @escaping (_ data: InternalInternalBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Internal Bank Account
+
+Patch an internal bank account.  Required scope: **internal:accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the resource.
+let patchInternalInternalBankAccountBankModel = PatchInternalInternalBankAccount(storedAt: Date()) // PatchInternalInternalBankAccountBankModel | 
+
+// Patch Internal Bank Account
+InternalAPI.internalPatchInternalBankAccount(guid: guid, patchInternalInternalBankAccountBankModel: patchInternalInternalBankAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the resource. | 
+ **patchInternalInternalBankAccountBankModel** | [**PatchInternalInternalBankAccountBankModel**](PatchInternalInternalBankAccountBankModel.md) |  | 
+
+### Return type
+
+[**InternalInternalBankAccountBankModel**](InternalInternalBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchInternalWallet**
+```swift
+    open class func internalPatchInternalWallet(guid: String, patchInternalInternalWalletBankModel: PatchInternalInternalWalletBankModel, completion: @escaping (_ data: InternalInternalWalletBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Internal Wallet
+
+Patch an internal wallet.  Required scope: **internal:accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the resource.
+let patchInternalInternalWalletBankModel = PatchInternalInternalWallet(storedAt: Date()) // PatchInternalInternalWalletBankModel | 
+
+// Patch Internal Wallet
+InternalAPI.internalPatchInternalWallet(guid: guid, patchInternalInternalWalletBankModel: patchInternalInternalWalletBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the resource. | 
+ **patchInternalInternalWalletBankModel** | [**PatchInternalInternalWalletBankModel**](PatchInternalInternalWalletBankModel.md) |  | 
+
+### Return type
+
+[**InternalInternalWalletBankModel**](InternalInternalWalletBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchInternalWalletGroup**
+```swift
+    open class func internalPatchInternalWalletGroup(guid: String, patchInternalInternalWalletGroupBankModel: PatchInternalInternalWalletGroupBankModel, completion: @escaping (_ data: InternalInternalWalletGroupBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Internal Wallet
+
+Patch an internal wallet.  Required scope: **internal:accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the resource.
+let patchInternalInternalWalletGroupBankModel = PatchInternalInternalWalletGroup(storedAt: Date()) // PatchInternalInternalWalletGroupBankModel | 
+
+// Patch Internal Wallet
+InternalAPI.internalPatchInternalWalletGroup(guid: guid, patchInternalInternalWalletGroupBankModel: patchInternalInternalWalletGroupBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the resource. | 
+ **patchInternalInternalWalletGroupBankModel** | [**PatchInternalInternalWalletGroupBankModel**](PatchInternalInternalWalletGroupBankModel.md) |  | 
+
+### Return type
+
+[**InternalInternalWalletGroupBankModel**](InternalInternalWalletGroupBankModel.md)
 
 ### Authorization
 

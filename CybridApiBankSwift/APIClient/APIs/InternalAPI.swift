@@ -1079,56 +1079,6 @@ open class InternalAPI {
     }
 
     /**
-     Create SystemAccount
-     
-     - parameter postInternalSystemAccountBankModel: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func internalCreateSystemAccount(postInternalSystemAccountBankModel: PostInternalSystemAccountBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalSystemAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return internalCreateSystemAccountWithRequestBuilder(postInternalSystemAccountBankModel: postInternalSystemAccountBankModel).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Create SystemAccount
-     - POST /api/internal/system_accounts
-     - Create a SystemAccount.  Required scope: **internal:system_accounts:execute**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
-     - parameter postInternalSystemAccountBankModel: (body)  
-     - returns: RequestBuilder<InternalSystemAccountBankModel> 
-     */
-    open class func internalCreateSystemAccountWithRequestBuilder(postInternalSystemAccountBankModel: PostInternalSystemAccountBankModel) -> RequestBuilder<InternalSystemAccountBankModel> {
-        let localVariablePath = "/api/internal/system_accounts"
-        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalSystemAccountBankModel)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<InternalSystemAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Create TradingSymbolConfiguration
      
      - parameter postInternalTradingSymbolConfigurationBankModel: (body)  
@@ -1603,6 +1553,112 @@ open class InternalAPI {
     }
 
     /**
+     Get InternalBankAccount
+     
+     - parameter internalBankAccountGuid: (path) Identifier for the internal bank account. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalGetInternalBankAccount(internalBankAccountGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalGetInternalBankAccountWithRequestBuilder(internalBankAccountGuid: internalBankAccountGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get InternalBankAccount
+     - GET /api/internal/internal_bank_accounts/{internal_bank_account_guid}
+     - Retrieves an internal bank account.  Required scope: **internal:accounts:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter internalBankAccountGuid: (path) Identifier for the internal bank account. 
+     - returns: RequestBuilder<InternalInternalBankAccountBankModel> 
+     */
+    open class func internalGetInternalBankAccountWithRequestBuilder(internalBankAccountGuid: String) -> RequestBuilder<InternalInternalBankAccountBankModel> {
+        var localVariablePath = "/api/internal/internal_bank_accounts/{internal_bank_account_guid}"
+        let internalBankAccountGuidPreEscape = "\(APIHelper.mapValueToPathItem(internalBankAccountGuid))"
+        let internalBankAccountGuidPostEscape = internalBankAccountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{internal_bank_account_guid}", with: internalBankAccountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalInternalBankAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Get InternalWallet
+     
+     - parameter internalWalletGuid: (path) Identifier for the internal wallet. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalGetInternalWallet(internalWalletGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalWalletBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalGetInternalWalletWithRequestBuilder(internalWalletGuid: internalWalletGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get InternalWallet
+     - GET /api/internal/internal_wallets/{internal_wallet_guid}
+     - Retrieves an internal wallet.  Required scope: **internal:accounts:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter internalWalletGuid: (path) Identifier for the internal wallet. 
+     - returns: RequestBuilder<InternalInternalWalletBankModel> 
+     */
+    open class func internalGetInternalWalletWithRequestBuilder(internalWalletGuid: String) -> RequestBuilder<InternalInternalWalletBankModel> {
+        var localVariablePath = "/api/internal/internal_wallets/{internal_wallet_guid}"
+        let internalWalletGuidPreEscape = "\(APIHelper.mapValueToPathItem(internalWalletGuid))"
+        let internalWalletGuidPostEscape = internalWalletGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{internal_wallet_guid}", with: internalWalletGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalInternalWalletBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      List Exchanges
      
      - parameter page: (query)  (optional)
@@ -2043,6 +2099,61 @@ open class InternalAPI {
     }
 
     /**
+     Patch Deposit Address
+     
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalDepositAddressBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchDepositAddress(guid: String, patchInternalDepositAddressBankModel: PatchInternalDepositAddressBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositAddressBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchDepositAddressWithRequestBuilder(guid: guid, patchInternalDepositAddressBankModel: patchInternalDepositAddressBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Deposit Address
+     - PATCH /api/internal/deposit_addresses/{guid}
+     - Patch an deposit address.  Required scope: **internal:deposit_addresses:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalDepositAddressBankModel: (body)  
+     - returns: RequestBuilder<DepositAddressBankModel> 
+     */
+    open class func internalPatchDepositAddressWithRequestBuilder(guid: String, patchInternalDepositAddressBankModel: PatchInternalDepositAddressBankModel) -> RequestBuilder<DepositAddressBankModel> {
+        var localVariablePath = "/api/internal/deposit_addresses/{guid}"
+        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
+        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalDepositAddressBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DepositAddressBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Patch ExternalBankAccount
      
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
@@ -2203,6 +2314,171 @@ open class InternalAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<IdentityVerificationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Patch Internal Bank Account
+     
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalInternalBankAccountBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchInternalBankAccount(guid: String, patchInternalInternalBankAccountBankModel: PatchInternalInternalBankAccountBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchInternalBankAccountWithRequestBuilder(guid: guid, patchInternalInternalBankAccountBankModel: patchInternalInternalBankAccountBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Internal Bank Account
+     - PATCH /api/internal/internal_bank_accounts/{guid}
+     - Patch an internal bank account.  Required scope: **internal:accounts:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalInternalBankAccountBankModel: (body)  
+     - returns: RequestBuilder<InternalInternalBankAccountBankModel> 
+     */
+    open class func internalPatchInternalBankAccountWithRequestBuilder(guid: String, patchInternalInternalBankAccountBankModel: PatchInternalInternalBankAccountBankModel) -> RequestBuilder<InternalInternalBankAccountBankModel> {
+        var localVariablePath = "/api/internal/internal_bank_accounts/{guid}"
+        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
+        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalInternalBankAccountBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalInternalBankAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Patch Internal Wallet
+     
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalInternalWalletBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchInternalWallet(guid: String, patchInternalInternalWalletBankModel: PatchInternalInternalWalletBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalWalletBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchInternalWalletWithRequestBuilder(guid: guid, patchInternalInternalWalletBankModel: patchInternalInternalWalletBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Internal Wallet
+     - PATCH /api/internal/internal_wallets/{guid}
+     - Patch an internal wallet.  Required scope: **internal:accounts:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalInternalWalletBankModel: (body)  
+     - returns: RequestBuilder<InternalInternalWalletBankModel> 
+     */
+    open class func internalPatchInternalWalletWithRequestBuilder(guid: String, patchInternalInternalWalletBankModel: PatchInternalInternalWalletBankModel) -> RequestBuilder<InternalInternalWalletBankModel> {
+        var localVariablePath = "/api/internal/internal_wallets/{guid}"
+        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
+        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalInternalWalletBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalInternalWalletBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Patch Internal Wallet
+     
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalInternalWalletGroupBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalPatchInternalWalletGroup(guid: String, patchInternalInternalWalletGroupBankModel: PatchInternalInternalWalletGroupBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalInternalWalletGroupBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalPatchInternalWalletGroupWithRequestBuilder(guid: guid, patchInternalInternalWalletGroupBankModel: patchInternalInternalWalletGroupBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Internal Wallet
+     - PATCH /api/internal/internal_wallet_groups/{guid}
+     - Patch an internal wallet.  Required scope: **internal:accounts:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter guid: (path) Identifier for the resource. 
+     - parameter patchInternalInternalWalletGroupBankModel: (body)  
+     - returns: RequestBuilder<InternalInternalWalletGroupBankModel> 
+     */
+    open class func internalPatchInternalWalletGroupWithRequestBuilder(guid: String, patchInternalInternalWalletGroupBankModel: PatchInternalInternalWalletGroupBankModel) -> RequestBuilder<InternalInternalWalletGroupBankModel> {
+        var localVariablePath = "/api/internal/internal_wallet_groups/{guid}"
+        let guidPreEscape = "\(APIHelper.mapValueToPathItem(guid))"
+        let guidPostEscape = guidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{guid}", with: guidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchInternalInternalWalletGroupBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalInternalWalletGroupBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

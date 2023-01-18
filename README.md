@@ -79,19 +79,20 @@ The Cybrid platform supports the use of scopes to control the level of access a 
 
 The following scopes are available on the platform and can be requested when generating either an Organization, Bank or Customer token. Generally speaking, the _Read_ scope is required to read and list resources, the _Write_ scope is required to update a resource and the _Execute_ scope is required to create a resource.
 
-| Resource               | Read scope (Token Type)                                    | Write scope (Token Type)                      | Execute scope (Token Type)                      |
-|------------------------|------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
-| Organizations          | organizations:read (Organization)                          | organizations:write (Organization)            |                                                 |
-| Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)              | banks:execute (Organization)                    |
-| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)              | customers:execute (Bank)                        |
-| Accounts               | accounts:read (Organization, Bank, Customer)               |                                               | accounts:execute (Bank, Customer)               |
-| Prices                 | prices:read (Bank, Customer)                               |                                               |                                                 |
-| Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                               | quotes:execute (Bank, Customer)                 |
-| Trades                 | trades:read (Organization, Bank, Customer)                 |                                               | trades:execute (Bank, Customer)                 |
-| Rewards                | rewards:read (Bank, Customer)                              |                                               | rewards:execute (Bank)                          |
-| External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) | external_bank_accounts:write (Bank, Customer) | external_bank_accounts:execute (Bank, Customer) |
-| Workflows              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
-| Transfers              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
+| Resource              | Read scope (Token Type)                                    | Write scope (Token Type)                      | Execute scope (Token Type)                      |
+|-----------------------|------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
+| Account               | accounts:read (Organization, Bank, Customer)               |                                               | accounts:execute (Bank, Customer)               |
+| Bank                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)              | banks:execute (Organization)                    |
+| Customer              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)              | customers:execute (Bank)                        |
+| Deposit Address       | deposit_addresses:read (Organization, Bank, Customer)      | deposit_addresses:write (Bank, Customer)      | deposit_addresses:execute (Bank, Customer)      |
+| External Bank Account | external_bank_accounts:read (Organization, Bank, Customer) | external_bank_accounts:write (Bank, Customer) | external_bank_accounts:execute (Bank, Customer) |
+| Organization          | organizations:read (Organization)                          | organizations:write (Organization)            |                                                 |
+| Price                 | prices:read (Bank, Customer)                               |                                               |                                                 |
+| Quote                 | quotes:read (Organization, Bank, Customer)                 |                                               | quotes:execute (Bank, Customer)                 |
+| Reward                | rewards:read (Bank, Customer)                              |                                               | rewards:execute (Bank)                          |
+| Trade                 | trades:read (Organization, Bank, Customer)                 |                                               | trades:execute (Bank, Customer)                 |
+| Transfer              | transfers:read (Organization, Bank, Customer)              |                                               | transfers:execute (Bank, Customer)              |
+| Workflow              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
 
 ## Available Endpoints
 
@@ -100,24 +101,26 @@ The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](
 | API Service  | Model                | API Endpoint Path              | Description                                                                                       |
 |--------------|----------------------|--------------------------------|---------------------------------------------------------------------------------------------------|
 | Identity     | Bank                 | /api/bank_applications         | Create and list banks                                                                             |
-| Identity     | Organization         | /api/organization_applications | Create and list organizations                                                                     |
 | Identity     | CustomerToken        | /api/customer_tokens           | Create customer JWT access tokens                                                                 |
+| Identity     | Organization         | /api/organization_applications | Create and list organizations                                                                     |
 | Organization | Organization         | /api/organizations             | APIs to retrieve and update organization name                                                     |
+| Bank         | Account              | /api/accounts                  | Create and list accounts, which hold a specific asset for a customers                             |
 | Bank         | Asset                | /api/assets                    | Get a list of assets supported by the platform (ex: BTC, ETH)                                     |
-| Bank         | VerificationKey      | /api/bank_verification_keys    | Create, list and retrive verification keys, used for signing identities                           |
-| Bank         | Banks                | /api/banks                     | Create, update and list banks, the parent to customers, accounts, etc                             |
+| Bank         | Bank                 | /api/banks                     | Create, update and list banks, the parent to customers, accounts, etc                             |
+| Bank         | BankVerificationKey  | /api/bank_verification_keys    | Create, list and retrive verification keys, used for signing identities                           |
+| Bank         | Customer             | /api/customers                 | Create and list customers                                                                         |
+| Bank         | DepositAddress       | /api/deposit_addresses         | Create, get and list deposit addresses                                                            |
+| Bank         | ExternalBankAccount  | /api/external_bank_accounts    | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
 | Bank         | FeeConfiguration     | /api/fee_configurations        | Create and list bank fees (spread or fixed)                                                       |
-| Bank         | Customers            | /api/customers                 | Create and list customers                                                                         |
 | Bank         | IdentityRecord       | /api/identity_records          | Create and list identity records, which are attached to customers for KYC                         |
-| Bank         | Accounts             | /api/accounts                  | Create and list accounts, which hold a specific asset for a customers                             |
-| Bank         | Symbols              | /api/symbols                   | Get a list of symbols supported for trade (ex: BTC-USD)                                           |
-| Bank         | Prices               | /api/prices                    | Get the current prices for assets on the platform                                                 |
-| Bank         | Quotes               | /api/quotes                    | Create and list quotes, which are required to execute trades                                      |
-| Bank         | Trades               | /api/trades                    | Create and list trades, which buy or sell cryptocurrency                                          |
-| Bank         | Rewards              | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
-| Bank         | ExternalBankAccounts | /api/external_bank_accounts    | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
-| Bank         | Workflows            | /api/workflows                 | Create, get and list workflows                                                                    |
-| Bank         | Transfers            | /api/transfers                 | Create, get and list transfers (e.g., funding, book)                                              |
+| Bank         | IdentityVerification | /api/identity_verifications    | Create and list identity verifications, which are performed on customers for KYC                  |
+| Bank         | Price                | /api/prices                    | Get the current prices for assets on the platform                                                 |
+| Bank         | Quote                | /api/quotes                    | Create and list quotes, which are required to execute trades                                      |
+| Bank         | Reward               | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
+| Bank         | Symbol               | /api/symbols                   | Get a list of symbols supported for trade (ex: BTC-USD)                                           |
+| Bank         | Trade                | /api/trades                    | Create and list trades, which buy or sell cryptocurrency                                          |
+| Bank         | Transfer             | /api/transfers                 | Create, get and list transfers (e.g., funding, book)                                              |
+| Bank         | Workflow             | /api/workflows                 | Create, get and list workflows                                                                    |
 
 ## Understanding Object Models & Endpoints
 
@@ -176,6 +179,9 @@ Class | Method | HTTP request | Description
 *CustomersAPI* | [**createCustomer**](docs/CustomersAPI.md#createcustomer) | **POST** /api/customers | Create Customer
 *CustomersAPI* | [**getCustomer**](docs/CustomersAPI.md#getcustomer) | **GET** /api/customers/{customer_guid} | Get Customer
 *CustomersAPI* | [**listCustomers**](docs/CustomersAPI.md#listcustomers) | **GET** /api/customers | Get customers list
+*DepositAddressesAPI* | [**createDepositAddress**](docs/DepositAddressesAPI.md#createdepositaddress) | **POST** /api/deposit_addresses | Create Deposit Address
+*DepositAddressesAPI* | [**getDepositAddress**](docs/DepositAddressesAPI.md#getdepositaddress) | **GET** /api/deposit_addresses/{deposit_address_guid} | Get Deposit Address
+*DepositAddressesAPI* | [**listDepositAddresses**](docs/DepositAddressesAPI.md#listdepositaddresses) | **GET** /api/deposit_addresses | List Deposit Addresses
 *ExternalBankAccountsAPI* | [**createExternalBankAccount**](docs/ExternalBankAccountsAPI.md#createexternalbankaccount) | **POST** /api/external_bank_accounts | Create ExternalBankAccount
 *ExternalBankAccountsAPI* | [**deleteExternalBankAccount**](docs/ExternalBankAccountsAPI.md#deleteexternalbankaccount) | **DELETE** /api/external_bank_accounts/{external_bank_account_guid} | Delete External Bank Account
 *ExternalBankAccountsAPI* | [**getExternalBankAccount**](docs/ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
@@ -210,7 +216,6 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 *InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 *InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
-*InternalAPI* | [**internalCreateSystemAccount**](docs/InternalAPI.md#internalcreatesystemaccount) | **POST** /api/internal/system_accounts | Create SystemAccount
 *InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 *InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 *InternalAPI* | [**internalGetExchange**](docs/InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
@@ -220,6 +225,8 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalGetExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
 *InternalAPI* | [**internalGetExpectedPayment**](docs/InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
 *InternalAPI* | [**internalGetExternalBankAccount**](docs/InternalAPI.md#internalgetexternalbankaccount) | **GET** /api/internal/external_bank_accounts/{external_bank_account_guid} | Get ExternalBankAccount
+*InternalAPI* | [**internalGetInternalBankAccount**](docs/InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
+*InternalAPI* | [**internalGetInternalWallet**](docs/InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
 *InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 *InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 *InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -227,9 +234,13 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 *InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+*InternalAPI* | [**internalPatchDepositAddress**](docs/InternalAPI.md#internalpatchdepositaddress) | **PATCH** /api/internal/deposit_addresses/{guid} | Patch Deposit Address
 *InternalAPI* | [**internalPatchExternalBankAccount**](docs/InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 *InternalAPI* | [**internalPatchIdentityRecord**](docs/InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 *InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
+*InternalAPI* | [**internalPatchInternalBankAccount**](docs/InternalAPI.md#internalpatchinternalbankaccount) | **PATCH** /api/internal/internal_bank_accounts/{guid} | Patch Internal Bank Account
+*InternalAPI* | [**internalPatchInternalWallet**](docs/InternalAPI.md#internalpatchinternalwallet) | **PATCH** /api/internal/internal_wallets/{guid} | Patch Internal Wallet
+*InternalAPI* | [**internalPatchInternalWalletGroup**](docs/InternalAPI.md#internalpatchinternalwalletgroup) | **PATCH** /api/internal/internal_wallet_groups/{guid} | Patch Internal Wallet
 *InternalAPI* | [**internalPatchTransfer**](docs/InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
 *InternalAPI* | [**internalPatchWorkflow**](docs/InternalAPI.md#internalpatchworkflow) | **PATCH** /api/internal/workflows/{workflow_guid} | Patch Workflow
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
@@ -265,6 +276,8 @@ Class | Method | HTTP request | Description
  - [BankListBankModel](docs/BankListBankModel.md)
  - [CustomerBankModel](docs/CustomerBankModel.md)
  - [CustomerListBankModel](docs/CustomerListBankModel.md)
+ - [DepositAddressBankModel](docs/DepositAddressBankModel.md)
+ - [DepositAddressListBankModel](docs/DepositAddressListBankModel.md)
  - [ErrorResponseBankModel](docs/ErrorResponseBankModel.md)
  - [ExternalBankAccountBankModel](docs/ExternalBankAccountBankModel.md)
  - [ExternalBankAccountListBankModel](docs/ExternalBankAccountListBankModel.md)
@@ -296,22 +309,27 @@ Class | Method | HTTP request | Description
  - [InternalInternalBankAccountBankModel](docs/InternalInternalBankAccountBankModel.md)
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
  - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
+ - [InternalInternalWalletGroupBankModel](docs/InternalInternalWalletGroupBankModel.md)
  - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
  - [InternalPersonDetailBankModel](docs/InternalPersonDetailBankModel.md)
  - [InternalSavingsAssetConfigurationBankModel](docs/InternalSavingsAssetConfigurationBankModel.md)
- - [InternalSystemAccountBankModel](docs/InternalSystemAccountBankModel.md)
  - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
+ - [PatchInternalDepositAddressBankModel](docs/PatchInternalDepositAddressBankModel.md)
  - [PatchInternalExternalBankAccountBankModel](docs/PatchInternalExternalBankAccountBankModel.md)
  - [PatchInternalIdentityRecordBankModel](docs/PatchInternalIdentityRecordBankModel.md)
  - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
+ - [PatchInternalInternalBankAccountBankModel](docs/PatchInternalInternalBankAccountBankModel.md)
+ - [PatchInternalInternalWalletBankModel](docs/PatchInternalInternalWalletBankModel.md)
+ - [PatchInternalInternalWalletGroupBankModel](docs/PatchInternalInternalWalletGroupBankModel.md)
  - [PatchInternalTransferBankModel](docs/PatchInternalTransferBankModel.md)
  - [PatchInternalWorkflowBankModel](docs/PatchInternalWorkflowBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
+ - [PostDepositAddressBankModel](docs/PostDepositAddressBankModel.md)
  - [PostExternalBankAccountBankModel](docs/PostExternalBankAccountBankModel.md)
  - [PostFeeBankModel](docs/PostFeeBankModel.md)
  - [PostFeeConfigurationBankModel](docs/PostFeeConfigurationBankModel.md)
@@ -336,7 +354,6 @@ Class | Method | HTTP request | Description
  - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
  - [PostInternalPersonDetailBankModel](docs/PostInternalPersonDetailBankModel.md)
  - [PostInternalSavingsAssetConfigurationBankModel](docs/PostInternalSavingsAssetConfigurationBankModel.md)
- - [PostInternalSystemAccountBankModel](docs/PostInternalSystemAccountBankModel.md)
  - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
  - [PostInternalTradingSymbolConfigurationBankModel](docs/PostInternalTradingSymbolConfigurationBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
@@ -396,6 +413,8 @@ Class | Method | HTTP request | Description
  - **external_bank_accounts:execute**: external_bank_accounts execute
  - **workflows:read**: workflows read
  - **workflows:execute**: workflows execute
+ - **deposit_addresses:read**: deposit_addresses read
+ - **deposit_addresses:execute**: deposit_addresses execute
 
 
 ## Author

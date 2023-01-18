@@ -16,27 +16,36 @@ public struct PostInternalInternalWalletBankModel: Codable, JSONEncodable, Hasha
         case fireblocksVault = "fireblocks_vault"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum EnvironmentBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case sandbox = "sandbox"
+        case production = "production"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The name of the account. */
     public var name: String
-    /** The account type */
+    /** The asset code. */
+    public var asset: String
+    /** The type of account. */
     public var accountKind: AccountKindBankModel
+    /** The account environment. */
+    public var environment: EnvironmentBankModel
     /** The id of the account at the third-party provider. */
     public var providerId: String
-    /** The bank identifier associated with the account. */
-    public var systemAccountGuid: String
 
-    public init(name: String, accountKind: AccountKindBankModel, providerId: String, systemAccountGuid: String) {
+    public init(name: String, asset: String, accountKind: AccountKindBankModel, environment: EnvironmentBankModel, providerId: String) {
         self.name = name
+        self.asset = asset
         self.accountKind = accountKind
+        self.environment = environment
         self.providerId = providerId
-        self.systemAccountGuid = systemAccountGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
+        case asset
         case accountKind = "account_kind"
+        case environment
         case providerId = "provider_id"
-        case systemAccountGuid = "system_account_guid"
     }
 
     // Encodable protocol methods
@@ -44,9 +53,10 @@ public struct PostInternalInternalWalletBankModel: Codable, JSONEncodable, Hasha
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
+        try container.encode(asset, forKey: .asset)
         try container.encode(accountKind, forKey: .accountKind)
+        try container.encode(environment, forKey: .environment)
         try container.encode(providerId, forKey: .providerId)
-        try container.encode(systemAccountGuid, forKey: .systemAccountGuid)
     }
 }
 
