@@ -1936,7 +1936,7 @@ Name | Type | Description  | Notes
 
 # **internalListTransactions**
 ```swift
-    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: [InternalTransactionBankModel]?, _ error: Error?) -> Void)
+    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, cursor: String? = nil, perPage: Int? = nil, completion: @escaping (_ data: InternalTransactionsListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Transactions
@@ -1951,11 +1951,11 @@ import CybridApiBankSwift
 let environment = "environment_example" // String | 
 let accountGuid = "accountGuid_example" // String | 
 let accountType = "accountType_example" // String | 
-let page = 987 // Int |  (optional)
+let cursor = "cursor_example" // String |  (optional)
 let perPage = 987 // Int |  (optional)
 
 // List Transactions
-InternalAPI.internalListTransactions(environment: environment, accountGuid: accountGuid, accountType: accountType, page: page, perPage: perPage) { (response, error) in
+InternalAPI.internalListTransactions(environment: environment, accountGuid: accountGuid, accountType: accountType, cursor: cursor, perPage: perPage) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1974,12 +1974,12 @@ Name | Type | Description  | Notes
  **environment** | **String** |  | 
  **accountGuid** | **String** |  | 
  **accountType** | **String** |  | 
- **page** | **Int** |  | [optional] 
+ **cursor** | **String** |  | [optional] 
  **perPage** | **Int** |  | [optional] 
 
 ### Return type
 
-[**[InternalTransactionBankModel]**](InternalTransactionBankModel.md)
+[**InternalTransactionsListBankModel**](InternalTransactionsListBankModel.md)
 
 ### Authorization
 

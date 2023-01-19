@@ -1984,14 +1984,14 @@ open class InternalAPI {
      - parameter environment: (query)  
      - parameter accountGuid: (query)  
      - parameter accountType: (query)  
-     - parameter page: (query)  (optional)
+     - parameter cursor: (query)  (optional)
      - parameter perPage: (query)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[InternalTransactionBankModel], ErrorResponse>) -> Void)) -> RequestTask {
-        return internalListTransactionsWithRequestBuilder(environment: environment, accountGuid: accountGuid, accountType: accountType, page: page, perPage: perPage).execute(apiResponseQueue) { result in
+    open class func internalListTransactions(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, cursor: String? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalTransactionsListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalListTransactionsWithRequestBuilder(environment: environment, accountGuid: accountGuid, accountType: accountType, cursor: cursor, perPage: perPage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -2014,18 +2014,18 @@ open class InternalAPI {
      - parameter environment: (query)  
      - parameter accountGuid: (query)  
      - parameter accountType: (query)  
-     - parameter page: (query)  (optional)
+     - parameter cursor: (query)  (optional)
      - parameter perPage: (query)  (optional)
-     - returns: RequestBuilder<[InternalTransactionBankModel]> 
+     - returns: RequestBuilder<InternalTransactionsListBankModel> 
      */
-    open class func internalListTransactionsWithRequestBuilder(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<[InternalTransactionBankModel]> {
+    open class func internalListTransactionsWithRequestBuilder(environment: EnvironmentBankModel_internalListTransactions, accountGuid: String, accountType: AccountTypeBankModel_internalListTransactions, cursor: String? = nil, perPage: Int? = nil) -> RequestBuilder<InternalTransactionsListBankModel> {
         let localVariablePath = "/api/internal/transactions"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "page": page?.encodeToJSON(),
+            "cursor": cursor?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
             "environment": environment.encodeToJSON(),
             "account_guid": accountGuid.encodeToJSON(),
@@ -2038,7 +2038,7 @@ open class InternalAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[InternalTransactionBankModel]>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InternalTransactionsListBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

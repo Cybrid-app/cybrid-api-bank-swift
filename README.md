@@ -315,6 +315,8 @@ Class | Method | HTTP request | Description
  - [InternalSavingsAssetConfigurationBankModel](docs/InternalSavingsAssetConfigurationBankModel.md)
  - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
+ - [InternalTransactionsListBankModel](docs/InternalTransactionsListBankModel.md)
+ - [InternalTransactionsListPageInfoBankModel](docs/InternalTransactionsListPageInfoBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
  - [PatchInternalDepositAddressBankModel](docs/PatchInternalDepositAddressBankModel.md)
