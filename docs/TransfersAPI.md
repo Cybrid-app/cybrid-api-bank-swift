@@ -23,7 +23,7 @@ Creates a transfer.  Required scope: **transfers:execute**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTransferBankModel = PostTransfer(quoteGuid: "quoteGuid_example", transferType: "transferType_example", externalBankAccountGuid: "externalBankAccountGuid_example", expectedError: "expectedError_example") // PostTransferBankModel | 
+let postTransferBankModel = PostTransfer(quoteGuid: "quoteGuid_example", transferType: "transferType_example", externalBankAccountGuid: "externalBankAccountGuid_example", oneTimeAddress: PostOneTimeAddress(address: "address_example", tag: "tag_example"), expectedError: "expectedError_example") // PostTransferBankModel | 
 
 // Create Transfer
 TransfersAPI.createTransfer(postTransferBankModel: postTransferBankModel) { (response, error) in

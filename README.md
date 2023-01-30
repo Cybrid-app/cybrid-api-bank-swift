@@ -253,6 +253,7 @@ Class | Method | HTTP request | Description
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
  - [PostIdentityVerificationBankModel](docs/PostIdentityVerificationBankModel.md)
+ - [PostOneTimeAddressBankModel](docs/PostOneTimeAddressBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostRewardBankModel](docs/PostRewardBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)

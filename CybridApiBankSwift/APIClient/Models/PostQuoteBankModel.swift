@@ -16,6 +16,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case trading = "trading"
         case funding = "funding"
         case bookTransfer = "book_transfer"
+        case cryptoTransfer = "crypto_transfer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -29,11 +30,11 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the customer. */
     public var customerGuid: String?
-    /** The asset code the quote was requested for. Populated for funding and book transfer quotes. */
+    /** The asset code the quote was requested for. Populated for funding, book transfer and crypto transfer quotes. */
     public var asset: String?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. Populated for trade quotes. */
     public var symbol: String?
-    /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. */
+    /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. The direction for book transfer quotes: either 'deposit' or 'withdrawal'. The direction for crypto transfer quotes: 'withdrawal'.  */
     public var side: SideBankModel
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes. */
     public var receiveAmount: String?

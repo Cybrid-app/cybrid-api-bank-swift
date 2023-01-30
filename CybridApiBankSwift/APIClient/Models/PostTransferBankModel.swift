@@ -15,6 +15,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public enum TransferTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case funding = "funding"
         case book = "book"
+        case crypto = "crypto"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -33,13 +34,15 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var transferType: TransferTypeBankModel
     /** The customer's fiat asset external bank account's identifier. */
     public var externalBankAccountGuid: String?
+    public var oneTimeAddress: PostOneTimeAddressBankModel?
     /** The optional expected error to simulate transfer failure. */
     public var expectedError: ExpectedErrorBankModel?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, oneTimeAddress: PostOneTimeAddressBankModel? = nil, expectedError: ExpectedErrorBankModel? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.externalBankAccountGuid = externalBankAccountGuid
+        self.oneTimeAddress = oneTimeAddress
         self.expectedError = expectedError
     }
 
@@ -47,6 +50,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case quoteGuid = "quote_guid"
         case transferType = "transfer_type"
         case externalBankAccountGuid = "external_bank_account_guid"
+        case oneTimeAddress = "one_time_address"
         case expectedError = "expected_error"
     }
 
@@ -57,6 +61,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(quoteGuid, forKey: .quoteGuid)
         try container.encode(transferType, forKey: .transferType)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
+        try container.encodeIfPresent(oneTimeAddress, forKey: .oneTimeAddress)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
     }
 }
