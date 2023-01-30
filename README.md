@@ -358,6 +358,7 @@ Class | Method | HTTP request | Description
  - [PostInternalSavingsAssetConfigurationBankModel](docs/PostInternalSavingsAssetConfigurationBankModel.md)
  - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
  - [PostInternalTradingSymbolConfigurationBankModel](docs/PostInternalTradingSymbolConfigurationBankModel.md)
+ - [PostOneTimeAddressBankModel](docs/PostOneTimeAddressBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostRewardBankModel](docs/PostRewardBankModel.md)
  - [PostTradeBankModel](docs/PostTradeBankModel.md)

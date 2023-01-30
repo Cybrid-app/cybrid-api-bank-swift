@@ -16,6 +16,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case trading = "trading"
         case funding = "funding"
         case bookTransfer = "book_transfer"
+        case cryptoTransfer = "crypto_transfer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
