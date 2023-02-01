@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **completedAt** | **Date** | ISO8601 datetime the identity record was completed at. | [optional] 
+**expiredAt** | **Date** | ISO8601 datetime the identity record is expired at. | [optional] 
 **outcome** | **String** | The outcome of the identity record. | [optional] 
 **failureCode** | **String** |  | [optional] 
 

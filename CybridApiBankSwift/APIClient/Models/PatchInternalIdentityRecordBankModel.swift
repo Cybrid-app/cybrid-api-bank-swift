@@ -31,18 +31,22 @@ public struct PatchInternalIdentityRecordBankModel: Codable, JSONEncodable, Hash
     }
     /** ISO8601 datetime the identity record was completed at. */
     public var completedAt: Date?
+    /** ISO8601 datetime the identity record is expired at. */
+    public var expiredAt: Date?
     /** The outcome of the identity record. */
     public var outcome: OutcomeBankModel?
     public var failureCode: FailureCodeBankModel?
 
-    public init(completedAt: Date? = nil, outcome: OutcomeBankModel? = nil, failureCode: FailureCodeBankModel? = nil) {
+    public init(completedAt: Date? = nil, expiredAt: Date? = nil, outcome: OutcomeBankModel? = nil, failureCode: FailureCodeBankModel? = nil) {
         self.completedAt = completedAt
+        self.expiredAt = expiredAt
         self.outcome = outcome
         self.failureCode = failureCode
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case completedAt = "completed_at"
+        case expiredAt = "expired_at"
         case outcome
         case failureCode = "failure_code"
     }
@@ -52,6 +56,7 @@ public struct PatchInternalIdentityRecordBankModel: Codable, JSONEncodable, Hash
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(completedAt, forKey: .completedAt)
+        try container.encodeIfPresent(expiredAt, forKey: .expiredAt)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
     }

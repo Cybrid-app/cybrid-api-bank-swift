@@ -2163,7 +2163,7 @@ Patch an identity record.  Required scope: **internal:customers:write**
 import CybridApiBankSwift
 
 let identityRecordGuid = "identityRecordGuid_example" // String | Identifier for the identity record.
-let patchInternalIdentityRecordBankModel = PatchInternalIdentityRecord(completedAt: Date(), outcome: "outcome_example", failureCode: "failureCode_example") // PatchInternalIdentityRecordBankModel | 
+let patchInternalIdentityRecordBankModel = PatchInternalIdentityRecord(completedAt: Date(), expiredAt: Date(), outcome: "outcome_example", failureCode: "failureCode_example") // PatchInternalIdentityRecordBankModel | 
 
 // Patch Identity Record
 InternalAPI.internalPatchIdentityRecord(identityRecordGuid: identityRecordGuid, patchInternalIdentityRecordBankModel: patchInternalIdentityRecordBankModel) { (response, error) in

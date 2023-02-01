@@ -14,7 +14,7 @@ public struct AttestationDetailsBankModel: Codable, JSONEncodable, Hashable {
 
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
-        case pending = "pending"
+        case expired = "expired"
         case verified = "verified"
         case failed = "failed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
