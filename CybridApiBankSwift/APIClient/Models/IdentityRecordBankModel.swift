@@ -23,15 +23,18 @@ public struct IdentityRecordBankModel: Codable, JSONEncodable, Hashable {
     /** The identity record's type. */
     public var type: TypeBankModel?
     public var attestationDetails: AttestationDetailsBankModel?
-    /** ISO8601 datetime the customer was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the record is expired at. */
+    public var expiredAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, attestationDetails: AttestationDetailsBankModel? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, attestationDetails: AttestationDetailsBankModel? = nil, createdAt: Date? = nil, expiredAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
         self.attestationDetails = attestationDetails
         self.createdAt = createdAt
+        self.expiredAt = expiredAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -40,6 +43,7 @@ public struct IdentityRecordBankModel: Codable, JSONEncodable, Hashable {
         case type
         case attestationDetails = "attestation_details"
         case createdAt = "created_at"
+        case expiredAt = "expired_at"
     }
 
     // Encodable protocol methods
@@ -51,6 +55,7 @@ public struct IdentityRecordBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(attestationDetails, forKey: .attestationDetails)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(expiredAt, forKey: .expiredAt)
     }
 }
 
