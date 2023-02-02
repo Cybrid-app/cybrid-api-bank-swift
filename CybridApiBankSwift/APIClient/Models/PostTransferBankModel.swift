@@ -32,7 +32,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var quoteGuid: String
     /** The type of transfer. */
     public var transferType: TransferTypeBankModel
-    /** The customer's fiat asset external bank account's identifier. */
+    /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
     public var externalBankAccountGuid: String?
     public var oneTimeAddress: PostOneTimeAddressBankModel?
     /** The optional expected error to simulate transfer failure. */
