@@ -15,6 +15,7 @@ public struct PostInternalExternalBankAccountBankModel: Codable, JSONEncodable, 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case modernTreasuryExternalAccount = "modern_treasury_external_account"
         case plaid = "plaid"
+        case plaidProcessorToken = "plaid_processor_token"
         case zumRailsUser = "zum_rails_user"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

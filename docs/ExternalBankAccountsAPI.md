@@ -24,7 +24,7 @@ Create an ExternalBankAccount.  Required scope: **external_bank_accounts:execute
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postExternalBankAccountBankModel = PostExternalBankAccount(name: "name_example", accountKind: "accountKind_example", customerGuid: "customerGuid_example", asset: "asset_example", plaidPublicToken: "plaidPublicToken_example", plaidAccountId: "plaidAccountId_example") // PostExternalBankAccountBankModel | 
+let postExternalBankAccountBankModel = PostExternalBankAccount(name: "name_example", accountKind: "accountKind_example", customerGuid: "customerGuid_example", asset: "asset_example", plaidPublicToken: "plaidPublicToken_example", plaidAccountId: "plaidAccountId_example", plaidProcessorToken: "plaidProcessorToken_example", plaidInstitutionId: "plaidInstitutionId_example", plaidAccountMask: "plaidAccountMask_example", plaidAccountName: "plaidAccountName_example") // PostExternalBankAccountBankModel | 
 
 // Create ExternalBankAccount
 ExternalBankAccountsAPI.createExternalBankAccount(postExternalBankAccountBankModel: postExternalBankAccountBankModel) { (response, error) in
