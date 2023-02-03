@@ -12,6 +12,11 @@ import AnyCodable
 
 public struct PostInternalInternalWalletBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case omnibus = "internal_omnibus"
+        case tradingDeposits = "internal_trading_deposits"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fireblocksVault = "fireblocks_vault"
         case unknownDefaultOpenApi = "unknown_default_open_api"
@@ -21,6 +26,8 @@ public struct PostInternalInternalWalletBankModel: Codable, JSONEncodable, Hasha
         case production = "production"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    /** The type of internal wallet. */
+    public var type: TypeBankModel
     /** The name of the account. */
     public var name: String
     /** The asset code. */
@@ -31,32 +38,40 @@ public struct PostInternalInternalWalletBankModel: Codable, JSONEncodable, Hasha
     public var environment: EnvironmentBankModel
     /** The id of the account at the third-party provider. */
     public var providerId: String
+    /** The unique identifier for the customer associated with the trading deposits wallet. */
+    public var customerGuid: String?
 
-    public init(name: String, asset: String, accountKind: AccountKindBankModel, environment: EnvironmentBankModel, providerId: String) {
+    public init(type: TypeBankModel, name: String, asset: String, accountKind: AccountKindBankModel, environment: EnvironmentBankModel, providerId: String, customerGuid: String? = nil) {
+        self.type = type
         self.name = name
         self.asset = asset
         self.accountKind = accountKind
         self.environment = environment
         self.providerId = providerId
+        self.customerGuid = customerGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case type
         case name
         case asset
         case accountKind = "account_kind"
         case environment
         case providerId = "provider_id"
+        case customerGuid = "customer_guid"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
         try container.encode(name, forKey: .name)
         try container.encode(asset, forKey: .asset)
         try container.encode(accountKind, forKey: .accountKind)
         try container.encode(environment, forKey: .environment)
         try container.encode(providerId, forKey: .providerId)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
     }
 }
 

@@ -12,6 +12,11 @@ import AnyCodable
 
 public struct InternalInternalWalletBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case omnibus = "internal_omnibus"
+        case tradingDeposits = "internal_trading_deposits"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fireblocksVault = "fireblocks_vault"
         case unknownDefaultOpenApi = "unknown_default_open_api"
@@ -28,6 +33,8 @@ public struct InternalInternalWalletBankModel: Codable, JSONEncodable, Hashable 
     }
     /** Auto-generated unique identifier for the account. */
     public var guid: String?
+    /** The type of internal wallet. */
+    public var type: TypeBankModel?
     /** The name of the account. */
     public var name: String?
     /** The asset code. */
@@ -41,8 +48,9 @@ public struct InternalInternalWalletBankModel: Codable, JSONEncodable, Hashable 
     /** The state of the verification process. */
     public var state: StateBankModel?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil) {
+    public init(guid: String? = nil, type: TypeBankModel? = nil, name: String? = nil, asset: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil) {
         self.guid = guid
+        self.type = type
         self.name = name
         self.asset = asset
         self.accountKind = accountKind
@@ -53,6 +61,7 @@ public struct InternalInternalWalletBankModel: Codable, JSONEncodable, Hashable 
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case type
         case name
         case asset
         case accountKind = "account_kind"
@@ -66,6 +75,7 @@ public struct InternalInternalWalletBankModel: Codable, JSONEncodable, Hashable 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(accountKind, forKey: .accountKind)

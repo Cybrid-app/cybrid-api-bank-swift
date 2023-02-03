@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the account. | [optional] 
+**type** | **String** | The type of internal wallet. | [optional] 
 **name** | **String** | The name of the account. | [optional] 
 **asset** | **String** | The asset code. | [optional] 
 **accountKind** | **String** | The type of account. | [optional] 

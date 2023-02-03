@@ -217,6 +217,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 *InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 *InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
+*InternalAPI* | [**internalCryptoFundingDepositTransfer**](docs/InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
 *InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 *InternalAPI* | [**internalGetExchange**](docs/InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 *InternalAPI* | [**internalGetExchangeAccount**](docs/InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
@@ -293,6 +294,7 @@ Class | Method | HTTP request | Description
  - [InternalComplianceDecisionBankModel](docs/InternalComplianceDecisionBankModel.md)
  - [InternalCountryCodeConfigurationBankModel](docs/InternalCountryCodeConfigurationBankModel.md)
  - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
+ - [InternalCryptoFundingDepositTransferBankModel](docs/InternalCryptoFundingDepositTransferBankModel.md)
  - [InternalCybridAccountBankModel](docs/InternalCybridAccountBankModel.md)
  - [InternalExchangeAccountBankModel](docs/InternalExchangeAccountBankModel.md)
  - [InternalExchangeBankModel](docs/InternalExchangeBankModel.md)
@@ -343,6 +345,7 @@ Class | Method | HTTP request | Description
  - [PostInternalClaimExpectedPaymentBankModel](docs/PostInternalClaimExpectedPaymentBankModel.md)
  - [PostInternalComplianceDecisionBankModel](docs/PostInternalComplianceDecisionBankModel.md)
  - [PostInternalCountryCodeConfigurationBankModel](docs/PostInternalCountryCodeConfigurationBankModel.md)
+ - [PostInternalCryptoFundingDepositTransferBankModel](docs/PostInternalCryptoFundingDepositTransferBankModel.md)
  - [PostInternalCybridAccountBankModel](docs/PostInternalCybridAccountBankModel.md)
  - [PostInternalExchangeAccountBankModel](docs/PostInternalExchangeAccountBankModel.md)
  - [PostInternalExchangeBankModel](docs/PostInternalExchangeBankModel.md)

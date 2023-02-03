@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**internalCreatePersonDetails**](InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 [**internalCreateSavingsAssetConfiguration**](InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
+[**internalCryptoFundingDepositTransfer**](InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
 [**internalGetExchange**](InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
 [**internalGetExchangeAccount**](InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
@@ -972,7 +973,7 @@ Create an InternalWallet.  Required scope: **internal:accounts:execute**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInternalInternalWalletBankModel = PostInternalInternalWallet(name: "name_example", asset: "asset_example", accountKind: "accountKind_example", environment: "environment_example", providerId: "providerId_example") // PostInternalInternalWalletBankModel | 
+let postInternalInternalWalletBankModel = PostInternalInternalWallet(type: "type_example", name: "name_example", asset: "asset_example", accountKind: "accountKind_example", environment: "environment_example", providerId: "providerId_example", customerGuid: "customerGuid_example") // PostInternalInternalWalletBankModel | 
 
 // Create InternalWallet
 InternalAPI.internalCreateInternalWallet(postInternalInternalWalletBankModel: postInternalInternalWalletBankModel) { (response, error) in
@@ -1146,6 +1147,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalTradingSymbolConfigurationBankModel**](InternalTradingSymbolConfigurationBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalCryptoFundingDepositTransfer**
+```swift
+    open class func internalCryptoFundingDepositTransfer(postInternalCryptoFundingDepositTransferBankModel: PostInternalCryptoFundingDepositTransferBankModel, completion: @escaping (_ data: InternalCryptoFundingDepositTransferBankModel?, _ error: Error?) -> Void)
+```
+
+Create Crypto Funding Deposit Transfer
+
+Create a Crypto Funding Deposit Transfer.  Required scope: **internal:transfers:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalCryptoFundingDepositTransferBankModel = PostInternalCryptoFundingDepositTransfer(environment: "environment_example", depositAddressGuid: "depositAddressGuid_example", txnHash: "txnHash_example", amount: 123) // PostInternalCryptoFundingDepositTransferBankModel | 
+
+// Create Crypto Funding Deposit Transfer
+InternalAPI.internalCryptoFundingDepositTransfer(postInternalCryptoFundingDepositTransferBankModel: postInternalCryptoFundingDepositTransferBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalCryptoFundingDepositTransferBankModel** | [**PostInternalCryptoFundingDepositTransferBankModel**](PostInternalCryptoFundingDepositTransferBankModel.md) |  | 
+
+### Return type
+
+[**InternalCryptoFundingDepositTransferBankModel**](InternalCryptoFundingDepositTransferBankModel.md)
 
 ### Authorization
 

@@ -1129,6 +1129,56 @@ open class InternalAPI {
     }
 
     /**
+     Create Crypto Funding Deposit Transfer
+     
+     - parameter postInternalCryptoFundingDepositTransferBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCryptoFundingDepositTransfer(postInternalCryptoFundingDepositTransferBankModel: PostInternalCryptoFundingDepositTransferBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalCryptoFundingDepositTransferBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCryptoFundingDepositTransferWithRequestBuilder(postInternalCryptoFundingDepositTransferBankModel: postInternalCryptoFundingDepositTransferBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create Crypto Funding Deposit Transfer
+     - POST /api/internal/crypto_funding_deposit_transfers
+     - Create a Crypto Funding Deposit Transfer.  Required scope: **internal:transfers:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalCryptoFundingDepositTransferBankModel: (body)  
+     - returns: RequestBuilder<InternalCryptoFundingDepositTransferBankModel> 
+     */
+    open class func internalCryptoFundingDepositTransferWithRequestBuilder(postInternalCryptoFundingDepositTransferBankModel: PostInternalCryptoFundingDepositTransferBankModel) -> RequestBuilder<InternalCryptoFundingDepositTransferBankModel> {
+        let localVariablePath = "/api/internal/crypto_funding_deposit_transfers"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalCryptoFundingDepositTransferBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalCryptoFundingDepositTransferBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get CybridAccount
      
      - parameter accountGuid: (path) Identifier for the Cybrid account. 
