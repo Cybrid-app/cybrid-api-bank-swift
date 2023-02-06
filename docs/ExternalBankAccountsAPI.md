@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteExternalBankAccount**](ExternalBankAccountsAPI.md#deleteexternalbankaccount) | **DELETE** /api/external_bank_accounts/{external_bank_account_guid} | Delete External Bank Account
 [**getExternalBankAccount**](ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
 [**listExternalBankAccounts**](ExternalBankAccountsAPI.md#listexternalbankaccounts) | **GET** /api/external_bank_accounts | Get external bank accounts list
+[**patchExternalBankAccount**](ExternalBankAccountsAPI.md#patchexternalbankaccount) | **PATCH** /api/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 
 
 # **createExternalBankAccount**
@@ -214,6 +215,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patchExternalBankAccount**
+```swift
+    open class func patchExternalBankAccount(externalBankAccountGuid: String, patchExternalBankAccountBankModel: PatchExternalBankAccountBankModel, completion: @escaping (_ data: ExternalBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch ExternalBankAccount
+
+Patch an external bank account.  Required scope: **external_bank_accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
+let patchExternalBankAccountBankModel = PatchExternalBankAccount(state: "state_example") // PatchExternalBankAccountBankModel | 
+
+// Patch ExternalBankAccount
+ExternalBankAccountsAPI.patchExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid, patchExternalBankAccountBankModel: patchExternalBankAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalBankAccountGuid** | **String** | Identifier for the external bank account. | 
+ **patchExternalBankAccountBankModel** | [**PatchExternalBankAccountBankModel**](PatchExternalBankAccountBankModel.md) |  | 
+
+### Return type
+
+[**ExternalBankAccountBankModel**](ExternalBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -186,6 +186,7 @@ Class | Method | HTTP request | Description
 *ExternalBankAccountsAPI* | [**deleteExternalBankAccount**](docs/ExternalBankAccountsAPI.md#deleteexternalbankaccount) | **DELETE** /api/external_bank_accounts/{external_bank_account_guid} | Delete External Bank Account
 *ExternalBankAccountsAPI* | [**getExternalBankAccount**](docs/ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
 *ExternalBankAccountsAPI* | [**listExternalBankAccounts**](docs/ExternalBankAccountsAPI.md#listexternalbankaccounts) | **GET** /api/external_bank_accounts | Get external bank accounts list
+*ExternalBankAccountsAPI* | [**patchExternalBankAccount**](docs/ExternalBankAccountsAPI.md#patchexternalbankaccount) | **PATCH** /api/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 *FeeConfigurationsAPI* | [**createFeeConfiguration**](docs/FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create Fee Configuration
 *FeeConfigurationsAPI* | [**getFeeConfiguration**](docs/FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get Fee Configuration
 *FeeConfigurationsAPI* | [**listFeeConfigurations**](docs/FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List Fee Configurations
@@ -320,6 +321,7 @@ Class | Method | HTTP request | Description
  - [InternalTransactionsListBankModel](docs/InternalTransactionsListBankModel.md)
  - [InternalTransactionsListPageInfoBankModel](docs/InternalTransactionsListPageInfoBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
+ - [PatchExternalBankAccountBankModel](docs/PatchExternalBankAccountBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
  - [PatchInternalDepositAddressBankModel](docs/PatchInternalDepositAddressBankModel.md)
  - [PatchInternalExternalBankAccountBankModel](docs/PatchInternalExternalBankAccountBankModel.md)
