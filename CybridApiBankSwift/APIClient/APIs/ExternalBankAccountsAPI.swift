@@ -232,4 +232,59 @@ open class ExternalBankAccountsAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch ExternalBankAccount
+     
+     - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - parameter patchExternalBankAccountBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func patchExternalBankAccount(externalBankAccountGuid: String, patchExternalBankAccountBankModel: PatchExternalBankAccountBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return patchExternalBankAccountWithRequestBuilder(externalBankAccountGuid: externalBankAccountGuid, patchExternalBankAccountBankModel: patchExternalBankAccountBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch ExternalBankAccount
+     - PATCH /api/external_bank_accounts/{external_bank_account_guid}
+     - Patch an external bank account.  Required scope: **external_bank_accounts:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - parameter patchExternalBankAccountBankModel: (body)  
+     - returns: RequestBuilder<ExternalBankAccountBankModel> 
+     */
+    open class func patchExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String, patchExternalBankAccountBankModel: PatchExternalBankAccountBankModel) -> RequestBuilder<ExternalBankAccountBankModel> {
+        var localVariablePath = "/api/external_bank_accounts/{external_bank_account_guid}"
+        let externalBankAccountGuidPreEscape = "\(APIHelper.mapValueToPathItem(externalBankAccountGuid))"
+        let externalBankAccountGuidPostEscape = externalBankAccountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{external_bank_account_guid}", with: externalBankAccountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchExternalBankAccountBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ExternalBankAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
