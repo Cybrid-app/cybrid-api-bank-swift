@@ -44,7 +44,9 @@ Method | HTTP request | Description
 [**internalListInternalWallets**](InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 [**internalListTransactions**](InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 [**internalPatchAccount**](InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+[**internalPatchCybridAccount**](InternalAPI.md#internalpatchcybridaccount) | **PATCH** /api/internal/cybrid_accounts/{guid} | Patch Cybrid Account
 [**internalPatchDepositAddress**](InternalAPI.md#internalpatchdepositaddress) | **PATCH** /api/internal/deposit_addresses/{guid} | Patch Deposit Address
+[**internalPatchExchangeAccount**](InternalAPI.md#internalpatchexchangeaccount) | **PATCH** /api/internal/exchange_accounts/{guid} | Patch Exchange Account
 [**internalPatchExternalBankAccount**](InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 [**internalPatchIdentityRecord**](InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 [**internalPatchIdentityVerification**](InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
@@ -2095,6 +2097,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalPatchCybridAccount**
+```swift
+    open class func internalPatchCybridAccount(guid: String, patchInternalCybridAccountBankModel: PatchInternalCybridAccountBankModel, completion: @escaping (_ data: InternalCybridAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Cybrid Account
+
+Patch an cybrid account.  Required scope: **internal:accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the resource.
+let patchInternalCybridAccountBankModel = PatchInternalCybridAccount(storedAt: Date()) // PatchInternalCybridAccountBankModel | 
+
+// Patch Cybrid Account
+InternalAPI.internalPatchCybridAccount(guid: guid, patchInternalCybridAccountBankModel: patchInternalCybridAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the resource. | 
+ **patchInternalCybridAccountBankModel** | [**PatchInternalCybridAccountBankModel**](PatchInternalCybridAccountBankModel.md) |  | 
+
+### Return type
+
+[**InternalCybridAccountBankModel**](InternalCybridAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalPatchDepositAddress**
 ```swift
     open class func internalPatchDepositAddress(guid: String, patchInternalDepositAddressBankModel: PatchInternalDepositAddressBankModel, completion: @escaping (_ data: DepositAddressBankModel?, _ error: Error?) -> Void)
@@ -2135,6 +2189,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DepositAddressBankModel**](DepositAddressBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalPatchExchangeAccount**
+```swift
+    open class func internalPatchExchangeAccount(guid: String, patchInternalExchangeAccountBankModel: PatchInternalExchangeAccountBankModel, completion: @escaping (_ data: InternalExchangeAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Exchange Account
+
+Patch an exchange account.  Required scope: **internal:accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let guid = "guid_example" // String | Identifier for the resource.
+let patchInternalExchangeAccountBankModel = PatchInternalExchangeAccount(storedAt: Date()) // PatchInternalExchangeAccountBankModel | 
+
+// Patch Exchange Account
+InternalAPI.internalPatchExchangeAccount(guid: guid, patchInternalExchangeAccountBankModel: patchInternalExchangeAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **guid** | **String** | Identifier for the resource. | 
+ **patchInternalExchangeAccountBankModel** | [**PatchInternalExchangeAccountBankModel**](PatchInternalExchangeAccountBankModel.md) |  | 
+
+### Return type
+
+[**InternalExchangeAccountBankModel**](InternalExchangeAccountBankModel.md)
 
 ### Authorization
 

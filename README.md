@@ -236,7 +236,9 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 *InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
+*InternalAPI* | [**internalPatchCybridAccount**](docs/InternalAPI.md#internalpatchcybridaccount) | **PATCH** /api/internal/cybrid_accounts/{guid} | Patch Cybrid Account
 *InternalAPI* | [**internalPatchDepositAddress**](docs/InternalAPI.md#internalpatchdepositaddress) | **PATCH** /api/internal/deposit_addresses/{guid} | Patch Deposit Address
+*InternalAPI* | [**internalPatchExchangeAccount**](docs/InternalAPI.md#internalpatchexchangeaccount) | **PATCH** /api/internal/exchange_accounts/{guid} | Patch Exchange Account
 *InternalAPI* | [**internalPatchExternalBankAccount**](docs/InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
 *InternalAPI* | [**internalPatchIdentityRecord**](docs/InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 *InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
@@ -323,7 +325,9 @@ Class | Method | HTTP request | Description
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchExternalBankAccountBankModel](docs/PatchExternalBankAccountBankModel.md)
  - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
+ - [PatchInternalCybridAccountBankModel](docs/PatchInternalCybridAccountBankModel.md)
  - [PatchInternalDepositAddressBankModel](docs/PatchInternalDepositAddressBankModel.md)
+ - [PatchInternalExchangeAccountBankModel](docs/PatchInternalExchangeAccountBankModel.md)
  - [PatchInternalExternalBankAccountBankModel](docs/PatchInternalExternalBankAccountBankModel.md)
  - [PatchInternalIdentityRecordBankModel](docs/PatchInternalIdentityRecordBankModel.md)
  - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)

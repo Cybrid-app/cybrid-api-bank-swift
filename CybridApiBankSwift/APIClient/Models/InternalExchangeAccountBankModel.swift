@@ -17,6 +17,11 @@ public struct InternalExchangeAccountBankModel: Codable, JSONEncodable, Hashable
         case crypto = "crypto"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case storing = "storing"
+        case created = "created"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The exchange account type. */
     public var type: TypeBankModel?
     /** Auto-generated unique identifier for exchange account. */
@@ -27,13 +32,16 @@ public struct InternalExchangeAccountBankModel: Codable, JSONEncodable, Hashable
     public var exchangeGuid: String?
     /** The asset code of the exchange account. */
     public var assetCode: String?
+    /** The state of the account. */
+    public var state: StateBankModel?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, exchangeGuid: String? = nil, assetCode: String? = nil) {
+    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, exchangeGuid: String? = nil, assetCode: String? = nil, state: StateBankModel? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
         self.exchangeGuid = exchangeGuid
         self.assetCode = assetCode
+        self.state = state
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -42,6 +50,7 @@ public struct InternalExchangeAccountBankModel: Codable, JSONEncodable, Hashable
         case createdAt = "created_at"
         case exchangeGuid = "exchange_guid"
         case assetCode = "asset_code"
+        case state
     }
 
     // Encodable protocol methods
@@ -53,6 +62,7 @@ public struct InternalExchangeAccountBankModel: Codable, JSONEncodable, Hashable
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(exchangeGuid, forKey: .exchangeGuid)
         try container.encodeIfPresent(assetCode, forKey: .assetCode)
+        try container.encodeIfPresent(state, forKey: .state)
     }
 }
 
