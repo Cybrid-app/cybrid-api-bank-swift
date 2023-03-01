@@ -214,6 +214,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateFeeConfiguration**](docs/InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
 *InternalAPI* | [**internalCreateFiatAssetConfiguration**](docs/InternalAPI.md#internalcreatefiatassetconfiguration) | **POST** /api/internal/fiat_asset_configurations | Create FiatAssetConfiguration
 *InternalAPI* | [**internalCreateInternalBankAccount**](docs/InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
+*InternalAPI* | [**internalCreateInternalTransfer**](docs/InternalAPI.md#internalcreateinternaltransfer) | **POST** /api/internal/internal_transfers | Create InternalTransfer
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 *InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 *InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
@@ -228,11 +229,13 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalGetExpectedPayment**](docs/InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
 *InternalAPI* | [**internalGetExternalBankAccount**](docs/InternalAPI.md#internalgetexternalbankaccount) | **GET** /api/internal/external_bank_accounts/{external_bank_account_guid} | Get ExternalBankAccount
 *InternalAPI* | [**internalGetInternalBankAccount**](docs/InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
+*InternalAPI* | [**internalGetInternalTransfer**](docs/InternalAPI.md#internalgetinternaltransfer) | **GET** /api/internal/internal_transfers/{guid} | Get InternalTransfer
 *InternalAPI* | [**internalGetInternalWallet**](docs/InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
 *InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 *InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 *InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
 *InternalAPI* | [**internalListInternalBankAccounts**](docs/InternalAPI.md#internallistinternalbankaccounts) | **GET** /api/internal/internal_bank_accounts | List InternalBankAccounts
+*InternalAPI* | [**internalListInternalTransfers**](docs/InternalAPI.md#internallistinternaltransfers) | **GET** /api/internal/internal_transfers | List InternalTransfers
 *InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
 *InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
 *InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
@@ -243,6 +246,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalPatchIdentityRecord**](docs/InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
 *InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
 *InternalAPI* | [**internalPatchInternalBankAccount**](docs/InternalAPI.md#internalpatchinternalbankaccount) | **PATCH** /api/internal/internal_bank_accounts/{guid} | Patch Internal Bank Account
+*InternalAPI* | [**internalPatchInternalTransfer**](docs/InternalAPI.md#internalpatchinternaltransfer) | **PATCH** /api/internal/internal_transfers/{guid} | Patch Internal Transfer
 *InternalAPI* | [**internalPatchInternalWallet**](docs/InternalAPI.md#internalpatchinternalwallet) | **PATCH** /api/internal/internal_wallets/{guid} | Patch Internal Wallet
 *InternalAPI* | [**internalPatchInternalWalletGroup**](docs/InternalAPI.md#internalpatchinternalwalletgroup) | **PATCH** /api/internal/internal_wallet_groups/{guid} | Patch Internal Wallet
 *InternalAPI* | [**internalPatchTransfer**](docs/InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
@@ -313,6 +317,8 @@ Class | Method | HTTP request | Description
  - [InternalFiatAssetConfigurationBankModel](docs/InternalFiatAssetConfigurationBankModel.md)
  - [InternalInternalBankAccountBankModel](docs/InternalInternalBankAccountBankModel.md)
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
+ - [InternalInternalTransferBankModel](docs/InternalInternalTransferBankModel.md)
+ - [InternalInternalTransferListBankModel](docs/InternalInternalTransferListBankModel.md)
  - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
  - [InternalInternalWalletGroupBankModel](docs/InternalInternalWalletGroupBankModel.md)
  - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
@@ -332,6 +338,7 @@ Class | Method | HTTP request | Description
  - [PatchInternalIdentityRecordBankModel](docs/PatchInternalIdentityRecordBankModel.md)
  - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
  - [PatchInternalInternalBankAccountBankModel](docs/PatchInternalInternalBankAccountBankModel.md)
+ - [PatchInternalInternalTransferBankModel](docs/PatchInternalInternalTransferBankModel.md)
  - [PatchInternalInternalWalletBankModel](docs/PatchInternalInternalWalletBankModel.md)
  - [PatchInternalInternalWalletGroupBankModel](docs/PatchInternalInternalWalletGroupBankModel.md)
  - [PatchInternalTransferBankModel](docs/PatchInternalTransferBankModel.md)
@@ -362,6 +369,7 @@ Class | Method | HTTP request | Description
  - [PostInternalExternalWalletBankModel](docs/PostInternalExternalWalletBankModel.md)
  - [PostInternalFiatAssetConfigurationBankModel](docs/PostInternalFiatAssetConfigurationBankModel.md)
  - [PostInternalInternalBankAccountBankModel](docs/PostInternalInternalBankAccountBankModel.md)
+ - [PostInternalInternalTransferBankModel](docs/PostInternalInternalTransferBankModel.md)
  - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
  - [PostInternalPersonDetailBankModel](docs/PostInternalPersonDetailBankModel.md)
  - [PostInternalSavingsAssetConfigurationBankModel](docs/PostInternalSavingsAssetConfigurationBankModel.md)
