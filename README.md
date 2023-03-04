@@ -20,7 +20,7 @@ If you're new to our APIs and the Cybrid Platform, follow the below guides to ge
 2. [Getting Ready for Trading](https://www.cybrid.xyz/guides/getting-ready-for-trading)
 3. [Running the Web Demo App](https://www.cybrid.xyz/guides/running-the-cybrid-web-demo-crypto-app) (or, alternatively, [Testing with Hosted Web Demo App](https://www.cybrid.xyz/guides/testing-with-the-web-demo-crypo-app))
 
-In [Getting Started in the Cybrid Sandbox](https://www.cybrid.xyz/guides/getting-started), we walk you through how to use the [Cybrid Sandbox](https://id.demo.cybrid.app/) to create a test bank, generate API keys, and set banks fees. In [Getting Ready for Trading](https://www.cybrid.xyz/guides/getting-ready-for-trading), we walk through creating customers, customer identities, accounts, as well as executing quotes and trades.
+In [Getting Started in the Cybrid Sandbox](https://www.cybrid.xyz/guides/getting-started), we walk you through how to use the [Cybrid Sandbox](https://id.demo.cybrid.app/) to create a test bank and generate API keys. In [Getting Ready for Trading](https://www.cybrid.xyz/guides/getting-ready-for-trading), we walk through creating customers, customer identities, accounts, as well as executing quotes and trades.
 
 If you've already run through the first two guides, you can follow the [Running the Web Demo App](https://www.cybrid.xyz/guides/running-the-cybrid-web-demo-crypto-app) guide to test our web SDK with your sandbox `bank` and `customer`.
 
@@ -111,7 +111,6 @@ The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](
 | Bank         | Customer             | /api/customers                 | Create and list customers                                                                         |
 | Bank         | DepositAddress       | /api/deposit_addresses         | Create, get and list deposit addresses                                                            |
 | Bank         | ExternalBankAccount  | /api/external_bank_accounts    | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
-| Bank         | FeeConfiguration     | /api/fee_configurations        | Create and list bank fees (spread or fixed)                                                       |
 | Bank         | IdentityRecord       | /api/identity_records          | Create and list identity records, which are attached to customers for KYC                         |
 | Bank         | IdentityVerification | /api/identity_verifications    | Create and list identity verifications, which are performed on customers for KYC                  |
 | Bank         | Price                | /api/prices                    | Get the current prices for assets on the platform                                                 |
@@ -187,9 +186,6 @@ Class | Method | HTTP request | Description
 *ExternalBankAccountsAPI* | [**getExternalBankAccount**](docs/ExternalBankAccountsAPI.md#getexternalbankaccount) | **GET** /api/external_bank_accounts/{external_bank_account_guid} | Get External Bank Account
 *ExternalBankAccountsAPI* | [**listExternalBankAccounts**](docs/ExternalBankAccountsAPI.md#listexternalbankaccounts) | **GET** /api/external_bank_accounts | Get external bank accounts list
 *ExternalBankAccountsAPI* | [**patchExternalBankAccount**](docs/ExternalBankAccountsAPI.md#patchexternalbankaccount) | **PATCH** /api/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
-*FeeConfigurationsAPI* | [**createFeeConfiguration**](docs/FeeConfigurationsAPI.md#createfeeconfiguration) | **POST** /api/fee_configurations | Create Fee Configuration
-*FeeConfigurationsAPI* | [**getFeeConfiguration**](docs/FeeConfigurationsAPI.md#getfeeconfiguration) | **GET** /api/fee_configurations/{fee_configuration_guid} | Get Fee Configuration
-*FeeConfigurationsAPI* | [**listFeeConfigurations**](docs/FeeConfigurationsAPI.md#listfeeconfigurations) | **GET** /api/fee_configurations | List Fee Configurations
 *IdentityRecordsAPI* | [**createIdentityRecord**](docs/IdentityRecordsAPI.md#createidentityrecord) | **POST** /api/identity_records | Create Identity Record
 *IdentityRecordsAPI* | [**getIdentityRecord**](docs/IdentityRecordsAPI.md#getidentityrecord) | **GET** /api/identity_records/{identity_record_guid} | Get Identity Record
 *IdentityRecordsAPI* | [**listIdentityRecords**](docs/IdentityRecordsAPI.md#listidentityrecords) | **GET** /api/identity_records | List Identity Records
@@ -289,9 +285,6 @@ Class | Method | HTTP request | Description
  - [ErrorResponseBankModel](docs/ErrorResponseBankModel.md)
  - [ExternalBankAccountBankModel](docs/ExternalBankAccountBankModel.md)
  - [ExternalBankAccountListBankModel](docs/ExternalBankAccountListBankModel.md)
- - [FeeBankModel](docs/FeeBankModel.md)
- - [FeeConfigurationBankModel](docs/FeeConfigurationBankModel.md)
- - [FeeConfigurationListBankModel](docs/FeeConfigurationListBankModel.md)
  - [IdentityRecordBankModel](docs/IdentityRecordBankModel.md)
  - [IdentityRecordListBankModel](docs/IdentityRecordListBankModel.md)
  - [IdentityVerificationBankModel](docs/IdentityVerificationBankModel.md)
@@ -314,6 +307,8 @@ Class | Method | HTTP request | Description
  - [InternalExternalBankAccountListBankModel](docs/InternalExternalBankAccountListBankModel.md)
  - [InternalExternalWalletBankModel](docs/InternalExternalWalletBankModel.md)
  - [InternalExternalWalletListBankModel](docs/InternalExternalWalletListBankModel.md)
+ - [InternalFeeBankModel](docs/InternalFeeBankModel.md)
+ - [InternalFeeConfigurationBankModel](docs/InternalFeeConfigurationBankModel.md)
  - [InternalFiatAssetConfigurationBankModel](docs/InternalFiatAssetConfigurationBankModel.md)
  - [InternalInternalBankAccountBankModel](docs/InternalInternalBankAccountBankModel.md)
  - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
@@ -323,6 +318,8 @@ Class | Method | HTTP request | Description
  - [InternalInternalWalletGroupBankModel](docs/InternalInternalWalletGroupBankModel.md)
  - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
  - [InternalPersonDetailBankModel](docs/InternalPersonDetailBankModel.md)
+ - [InternalPostFeeBankModel](docs/InternalPostFeeBankModel.md)
+ - [InternalPostFeeConfigurationBankModel](docs/InternalPostFeeConfigurationBankModel.md)
  - [InternalSavingsAssetConfigurationBankModel](docs/InternalSavingsAssetConfigurationBankModel.md)
  - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
@@ -348,8 +345,6 @@ Class | Method | HTTP request | Description
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
  - [PostDepositAddressBankModel](docs/PostDepositAddressBankModel.md)
  - [PostExternalBankAccountBankModel](docs/PostExternalBankAccountBankModel.md)
- - [PostFeeBankModel](docs/PostFeeBankModel.md)
- - [PostFeeConfigurationBankModel](docs/PostFeeConfigurationBankModel.md)
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
  - [PostIdentityVerificationBankModel](docs/PostIdentityVerificationBankModel.md)

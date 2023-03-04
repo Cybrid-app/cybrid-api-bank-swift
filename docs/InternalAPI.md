@@ -817,7 +817,7 @@ Name | Type | Description  | Notes
 
 # **internalCreateFeeConfiguration**
 ```swift
-    open class func internalCreateFeeConfiguration(postFeeConfigurationBankModel: PostFeeConfigurationBankModel, completion: @escaping (_ data: FeeConfigurationBankModel?, _ error: Error?) -> Void)
+    open class func internalCreateFeeConfiguration(internalPostFeeConfigurationBankModel: InternalPostFeeConfigurationBankModel, completion: @escaping (_ data: InternalFeeConfigurationBankModel?, _ error: Error?) -> Void)
 ```
 
 Create FeeConfiguration
@@ -829,10 +829,10 @@ Creates a fee configuration.  Required scope: **internal:banks:write**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postFeeConfigurationBankModel = PostFeeConfiguration(productType: "productType_example", asset: "asset_example", fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostFeeConfigurationBankModel | 
+let internalPostFeeConfigurationBankModel = InternalPostFeeConfiguration(type: "type_example", productType: "productType_example", asset: "asset_example", fees: [InternalPostFee(type: "type_example", spreadFee: 123, fixedFee: 123)], productProvider: "productProvider_example", bankGuid: "bankGuid_example") // InternalPostFeeConfigurationBankModel | 
 
 // Create FeeConfiguration
-InternalAPI.internalCreateFeeConfiguration(postFeeConfigurationBankModel: postFeeConfigurationBankModel) { (response, error) in
+InternalAPI.internalCreateFeeConfiguration(internalPostFeeConfigurationBankModel: internalPostFeeConfigurationBankModel) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -848,11 +848,11 @@ InternalAPI.internalCreateFeeConfiguration(postFeeConfigurationBankModel: postFe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **postFeeConfigurationBankModel** | [**PostFeeConfigurationBankModel**](PostFeeConfigurationBankModel.md) |  | 
+ **internalPostFeeConfigurationBankModel** | [**InternalPostFeeConfigurationBankModel**](InternalPostFeeConfigurationBankModel.md) |  | 
 
 ### Return type
 
-[**FeeConfigurationBankModel**](FeeConfigurationBankModel.md)
+[**InternalFeeConfigurationBankModel**](InternalFeeConfigurationBankModel.md)
 
 ### Authorization
 

@@ -781,13 +781,13 @@ open class InternalAPI {
     /**
      Create FeeConfiguration
      
-     - parameter postFeeConfigurationBankModel: (body)  
+     - parameter internalPostFeeConfigurationBankModel: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func internalCreateFeeConfiguration(postFeeConfigurationBankModel: PostFeeConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<FeeConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return internalCreateFeeConfigurationWithRequestBuilder(postFeeConfigurationBankModel: postFeeConfigurationBankModel).execute(apiResponseQueue) { result in
+    open class func internalCreateFeeConfiguration(internalPostFeeConfigurationBankModel: InternalPostFeeConfigurationBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalFeeConfigurationBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateFeeConfigurationWithRequestBuilder(internalPostFeeConfigurationBankModel: internalPostFeeConfigurationBankModel).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -807,13 +807,13 @@ open class InternalAPI {
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter postFeeConfigurationBankModel: (body)  
-     - returns: RequestBuilder<FeeConfigurationBankModel> 
+     - parameter internalPostFeeConfigurationBankModel: (body)  
+     - returns: RequestBuilder<InternalFeeConfigurationBankModel> 
      */
-    open class func internalCreateFeeConfigurationWithRequestBuilder(postFeeConfigurationBankModel: PostFeeConfigurationBankModel) -> RequestBuilder<FeeConfigurationBankModel> {
+    open class func internalCreateFeeConfigurationWithRequestBuilder(internalPostFeeConfigurationBankModel: InternalPostFeeConfigurationBankModel) -> RequestBuilder<InternalFeeConfigurationBankModel> {
         let localVariablePath = "/api/internal/fee_configurations"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postFeeConfigurationBankModel)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: internalPostFeeConfigurationBankModel)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -823,7 +823,7 @@ open class InternalAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FeeConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InternalFeeConfigurationBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

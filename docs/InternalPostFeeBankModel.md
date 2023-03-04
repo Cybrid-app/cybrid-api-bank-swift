@@ -1,4 +1,4 @@
-# PostFeeBankModel
+# InternalPostFeeBankModel
 
 ## Properties
 Name | Type | Description | Notes
