@@ -14,6 +14,7 @@ public struct PostInternalCybridAccountBankModel: Codable, JSONEncodable, Hashab
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fee = "fee"
+        case gas = "gas"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum EnvironmentBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
