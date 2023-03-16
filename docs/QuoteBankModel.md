@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **issuedAt** | **Date** | ISO8601 datetime the quote was created at. | [optional] 
 **expiresAt** | **Date** | ISO8601 datetime the quote is expiring at. Populated for trading quotes. | [optional] 
 **asset** | **String** | The asset code the quote was requested for. Populated for book transfer and funding quotes. | [optional] 
+**networkFee** | **Int** | The network fee in base units of network_fee_asset. Only present on &#x60;crypto_transfer&#x60; quotes. | [optional] 
+**networkFeeAsset** | **String** | The asset code of the network fee. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

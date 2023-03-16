@@ -48,8 +48,12 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var expiresAt: Date?
     /** The asset code the quote was requested for. Populated for book transfer and funding quotes. */
     public var asset: String?
+    /** The network fee in base units of network_fee_asset. Only present on `crypto_transfer` quotes. */
+    public var networkFee: String?
+    /** The asset code of the network fee. */
+    public var networkFeeAsset: String?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil) {
+    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
         self.guid = guid
         self.productType = productType
         self.customerGuid = customerGuid
@@ -61,6 +65,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         self.issuedAt = issuedAt
         self.expiresAt = expiresAt
         self.asset = asset
+        self.networkFee = networkFee
+        self.networkFeeAsset = networkFeeAsset
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -75,6 +81,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case issuedAt = "issued_at"
         case expiresAt = "expires_at"
         case asset
+        case networkFee = "network_fee"
+        case networkFeeAsset = "network_fee_asset"
     }
 
     // Encodable protocol methods
@@ -92,6 +100,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(issuedAt, forKey: .issuedAt)
         try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
         try container.encodeIfPresent(asset, forKey: .asset)
+        try container.encodeIfPresent(networkFee, forKey: .networkFee)
+        try container.encodeIfPresent(networkFeeAsset, forKey: .networkFeeAsset)
     }
 }
 
