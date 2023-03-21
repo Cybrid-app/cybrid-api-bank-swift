@@ -23,7 +23,7 @@ Creates a customer.  ## Customer Type  Customer resources are an abstraction for
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postCustomerBankModel = PostCustomer(type: "type_example") // PostCustomerBankModel | 
+let postCustomerBankModel = PostCustomer(type: "type_example", name: PostCustomer_name(first: "first_example", middle: "middle_example", last: "last_example"), address: PostCustomer_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), dateOfBirth: Date(), phoneNumber: "phoneNumber_example", emailAddress: "emailAddress_example", identificationNumbers: [PostIdentificationNumber(type: "type_example", issuingCountryCode: "issuingCountryCode_example", identificationNumber: "identificationNumber_example")]) // PostCustomerBankModel | 
 
 // Create Customer
 CustomersAPI.createCustomer(postCustomerBankModel: postCustomerBankModel) { (response, error) in
