@@ -23,6 +23,8 @@ public struct PatchInternalIdentityVerificationBankModel: Codable, JSONEncodable
     }
     /** ISO8601 datetime the identity verification was started at. */
     public var startedAt: Date?
+    /** The GUID of the attested check backing the verification. */
+    public var attestedCheckGuid: String?
     /** The GUID of the identity workflow backing the verification. */
     public var identityWorkflowGuid: String?
     /** ISO8601 datetime the identity verification was completed at. */
@@ -32,8 +34,9 @@ public struct PatchInternalIdentityVerificationBankModel: Codable, JSONEncodable
     /** The reason codes explaining the outcome. */
     public var failureCodes: [FailureCodesBankModel]?
 
-    public init(startedAt: Date? = nil, identityWorkflowGuid: String? = nil, completedAt: Date? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil) {
+    public init(startedAt: Date? = nil, attestedCheckGuid: String? = nil, identityWorkflowGuid: String? = nil, completedAt: Date? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil) {
         self.startedAt = startedAt
+        self.attestedCheckGuid = attestedCheckGuid
         self.identityWorkflowGuid = identityWorkflowGuid
         self.completedAt = completedAt
         self.outcome = outcome
@@ -42,6 +45,7 @@ public struct PatchInternalIdentityVerificationBankModel: Codable, JSONEncodable
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case startedAt = "started_at"
+        case attestedCheckGuid = "attested_check_guid"
         case identityWorkflowGuid = "identity_workflow_guid"
         case completedAt = "completed_at"
         case outcome
@@ -53,6 +57,7 @@ public struct PatchInternalIdentityVerificationBankModel: Codable, JSONEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(startedAt, forKey: .startedAt)
+        try container.encodeIfPresent(attestedCheckGuid, forKey: .attestedCheckGuid)
         try container.encodeIfPresent(identityWorkflowGuid, forKey: .identityWorkflowGuid)
         try container.encodeIfPresent(completedAt, forKey: .completedAt)
         try container.encodeIfPresent(outcome, forKey: .outcome)

@@ -13,6 +13,7 @@ import AnyCodable
 public struct InternalComplianceDecisionBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case attested = "person_attested"
         case watchlists = "person_watchlists"
         case verification = "person_verification"
         case authentication = "person_authentication"
@@ -36,6 +37,10 @@ public struct InternalComplianceDecisionBankModel: Codable, JSONEncodable, Hasha
         case selfieFailure = "selfie_failure"
         case pepCheckFailure = "pep_check_failure"
         case watchlistCheckFailure = "watchlist_check_failure"
+        case nameCheckFailure = "name_check_failure"
+        case addressCheckFailure = "address_check_failure"
+        case dobCheckFailure = "dob_check_failure"
+        case idNumberCheckFailure = "id_number_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the compliance decision. */

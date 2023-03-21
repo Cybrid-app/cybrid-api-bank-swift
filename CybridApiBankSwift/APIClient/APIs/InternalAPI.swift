@@ -1079,6 +1079,56 @@ open class InternalAPI {
     }
 
     /**
+     Create InternalQuote
+     
+     - parameter internalPostQuoteBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateQuote(internalPostQuoteBankModel: InternalPostQuoteBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalQuoteBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateQuoteWithRequestBuilder(internalPostQuoteBankModel: internalPostQuoteBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create InternalQuote
+     - POST /api/internal/quotes
+     - Creates a quote.  Required scope: **internal:quotes:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter internalPostQuoteBankModel: (body)  
+     - returns: RequestBuilder<InternalQuoteBankModel> 
+     */
+    open class func internalCreateQuoteWithRequestBuilder(internalPostQuoteBankModel: InternalPostQuoteBankModel) -> RequestBuilder<InternalQuoteBankModel> {
+        let localVariablePath = "/api/internal/quotes"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: internalPostQuoteBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalQuoteBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create SavingsAssetConfiguration
      
      - parameter postInternalSavingsAssetConfigurationBankModel: (body)  
@@ -1807,6 +1857,59 @@ open class InternalAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<InternalInternalWalletBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Get InternalQuote
+     
+     - parameter quoteGuid: (path) Identifier for the quote. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalGetQuote(quoteGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InternalQuoteBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalGetQuoteWithRequestBuilder(quoteGuid: quoteGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get InternalQuote
+     - GET /api/internal/quotes/{quote_guid}
+     - Retrieves a quote.  Required scope: **internal:quotes:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter quoteGuid: (path) Identifier for the quote. 
+     - returns: RequestBuilder<InternalQuoteBankModel> 
+     */
+    open class func internalGetQuoteWithRequestBuilder(quoteGuid: String) -> RequestBuilder<InternalQuoteBankModel> {
+        var localVariablePath = "/api/internal/quotes/{quote_guid}"
+        let quoteGuidPreEscape = "\(APIHelper.mapValueToPathItem(quoteGuid))"
+        let quoteGuidPostEscape = quoteGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{quote_guid}", with: quoteGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InternalQuoteBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

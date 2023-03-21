@@ -18,6 +18,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case idAndSelfie = "id_and_selfie"
+        case attested = "attested"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -39,6 +40,10 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case selfieFailure = "selfie_failure"
         case pepCheckFailure = "pep_check_failure"
         case watchlistCheckFailure = "watchlist_check_failure"
+        case nameCheckFailure = "name_check_failure"
+        case addressCheckFailure = "address_check_failure"
+        case dobCheckFailure = "dob_check_failure"
+        case idNumberCheckFailure = "id_number_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PersonaStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

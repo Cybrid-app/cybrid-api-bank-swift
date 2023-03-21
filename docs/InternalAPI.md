@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**internalCreateInternalTransfer**](InternalAPI.md#internalcreateinternaltransfer) | **POST** /api/internal/internal_transfers | Create InternalTransfer
 [**internalCreateInternalWallet**](InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 [**internalCreatePersonDetails**](InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
+[**internalCreateQuote**](InternalAPI.md#internalcreatequote) | **POST** /api/internal/quotes | Create InternalQuote
 [**internalCreateSavingsAssetConfiguration**](InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 [**internalCryptoFundingDepositTransfer**](InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
@@ -39,6 +40,7 @@ Method | HTTP request | Description
 [**internalGetInternalBankAccount**](InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
 [**internalGetInternalTransfer**](InternalAPI.md#internalgetinternaltransfer) | **GET** /api/internal/internal_transfers/{guid} | Get InternalTransfer
 [**internalGetInternalWallet**](InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
+[**internalGetQuote**](InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get InternalQuote
 [**internalListExchanges**](InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 [**internalListExternalBankAccounts**](InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 [**internalListExternalWallets**](InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -1115,6 +1117,56 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalCreateQuote**
+```swift
+    open class func internalCreateQuote(internalPostQuoteBankModel: InternalPostQuoteBankModel, completion: @escaping (_ data: InternalQuoteBankModel?, _ error: Error?) -> Void)
+```
+
+Create InternalQuote
+
+Creates a quote.  Required scope: **internal:quotes:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let internalPostQuoteBankModel = InternalPostQuote(productType: "productType_example", symbol: "symbol_example", side: "side_example", receiveAmount: 123, deliverAmount: 123, environment: "environment_example") // InternalPostQuoteBankModel | 
+
+// Create InternalQuote
+InternalAPI.internalCreateQuote(internalPostQuoteBankModel: internalPostQuoteBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **internalPostQuoteBankModel** | [**InternalPostQuoteBankModel**](InternalPostQuoteBankModel.md) |  | 
+
+### Return type
+
+[**InternalQuoteBankModel**](InternalQuoteBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalCreateSavingsAssetConfiguration**
 ```swift
     open class func internalCreateSavingsAssetConfiguration(postInternalSavingsAssetConfigurationBankModel: PostInternalSavingsAssetConfigurationBankModel, completion: @escaping (_ data: InternalSavingsAssetConfigurationBankModel?, _ error: Error?) -> Void)
@@ -1803,6 +1855,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalInternalWalletBankModel**](InternalInternalWalletBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetQuote**
+```swift
+    open class func internalGetQuote(quoteGuid: String, completion: @escaping (_ data: InternalQuoteBankModel?, _ error: Error?) -> Void)
+```
+
+Get InternalQuote
+
+Retrieves a quote.  Required scope: **internal:quotes:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let quoteGuid = "quoteGuid_example" // String | Identifier for the quote.
+
+// Get InternalQuote
+InternalAPI.internalGetQuote(quoteGuid: quoteGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **quoteGuid** | **String** | Identifier for the quote. | 
+
+### Return type
+
+[**InternalQuoteBankModel**](InternalQuoteBankModel.md)
 
 ### Authorization
 
@@ -2530,7 +2632,7 @@ Patch an identity verification.  Required scope: **internal:customers:write**
 import CybridApiBankSwift
 
 let identityVerificationGuid = "identityVerificationGuid_example" // String | Identifier for the identity verification.
-let patchInternalIdentityVerificationBankModel = PatchInternalIdentityVerification(startedAt: Date(), identityWorkflowGuid: "identityWorkflowGuid_example", completedAt: Date(), outcome: "outcome_example", failureCodes: ["failureCodes_example"]) // PatchInternalIdentityVerificationBankModel | 
+let patchInternalIdentityVerificationBankModel = PatchInternalIdentityVerification(startedAt: Date(), attestedCheckGuid: "attestedCheckGuid_example", identityWorkflowGuid: "identityWorkflowGuid_example", completedAt: Date(), outcome: "outcome_example", failureCodes: ["failureCodes_example"]) // PatchInternalIdentityVerificationBankModel | 
 
 // Patch Identity Verification
 InternalAPI.internalPatchIdentityVerification(identityVerificationGuid: identityVerificationGuid, patchInternalIdentityVerificationBankModel: patchInternalIdentityVerificationBankModel) { (response, error) in

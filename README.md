@@ -213,6 +213,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreateInternalTransfer**](docs/InternalAPI.md#internalcreateinternaltransfer) | **POST** /api/internal/internal_transfers | Create InternalTransfer
 *InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
 *InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
+*InternalAPI* | [**internalCreateQuote**](docs/InternalAPI.md#internalcreatequote) | **POST** /api/internal/quotes | Create InternalQuote
 *InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
 *InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 *InternalAPI* | [**internalCryptoFundingDepositTransfer**](docs/InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
@@ -227,6 +228,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalGetInternalBankAccount**](docs/InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
 *InternalAPI* | [**internalGetInternalTransfer**](docs/InternalAPI.md#internalgetinternaltransfer) | **GET** /api/internal/internal_transfers/{guid} | Get InternalTransfer
 *InternalAPI* | [**internalGetInternalWallet**](docs/InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
+*InternalAPI* | [**internalGetQuote**](docs/InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get InternalQuote
 *InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 *InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 *InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -320,6 +322,8 @@ Class | Method | HTTP request | Description
  - [InternalPersonDetailBankModel](docs/InternalPersonDetailBankModel.md)
  - [InternalPostFeeBankModel](docs/InternalPostFeeBankModel.md)
  - [InternalPostFeeConfigurationBankModel](docs/InternalPostFeeConfigurationBankModel.md)
+ - [InternalPostQuoteBankModel](docs/InternalPostQuoteBankModel.md)
+ - [InternalQuoteBankModel](docs/InternalQuoteBankModel.md)
  - [InternalSavingsAssetConfigurationBankModel](docs/InternalSavingsAssetConfigurationBankModel.md)
  - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
  - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
@@ -342,12 +346,17 @@ Class | Method | HTTP request | Description
  - [PatchInternalWorkflowBankModel](docs/PatchInternalWorkflowBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
+ - [PostCustomerAddressBankModel](docs/PostCustomerAddressBankModel.md)
  - [PostCustomerBankModel](docs/PostCustomerBankModel.md)
+ - [PostCustomerNameBankModel](docs/PostCustomerNameBankModel.md)
  - [PostDepositAddressBankModel](docs/PostDepositAddressBankModel.md)
  - [PostExternalBankAccountBankModel](docs/PostExternalBankAccountBankModel.md)
+ - [PostIdentificationNumberBankModel](docs/PostIdentificationNumberBankModel.md)
  - [PostIdentityRecordAttestationDetailsBankModel](docs/PostIdentityRecordAttestationDetailsBankModel.md)
  - [PostIdentityRecordBankModel](docs/PostIdentityRecordBankModel.md)
+ - [PostIdentityVerificationAddressBankModel](docs/PostIdentityVerificationAddressBankModel.md)
  - [PostIdentityVerificationBankModel](docs/PostIdentityVerificationBankModel.md)
+ - [PostIdentityVerificationNameBankModel](docs/PostIdentityVerificationNameBankModel.md)
  - [PostInternalAccountBankModel](docs/PostInternalAccountBankModel.md)
  - [PostInternalClaimExchangeSettlementPaymentOrderBankModel](docs/PostInternalClaimExchangeSettlementPaymentOrderBankModel.md)
  - [PostInternalClaimExpectedPaymentBankModel](docs/PostInternalClaimExpectedPaymentBankModel.md)
