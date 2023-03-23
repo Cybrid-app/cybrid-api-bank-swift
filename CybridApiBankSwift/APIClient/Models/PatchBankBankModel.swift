@@ -16,23 +16,15 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** The bank's list of supported trading symbols. */
     public var supportedTradingSymbols: [String]?
-    /** The bank's list of supported fiat assets. */
-    public var supportedFiatAccountAssets: [String]?
-    /** The bank's list of supported country codes. */
-    public var supportedCountryCodes: [String]?
 
-    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil) {
+    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil) {
         self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
-        self.supportedFiatAccountAssets = supportedFiatAccountAssets
-        self.supportedCountryCodes = supportedCountryCodes
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case supportedTradingSymbols = "supported_trading_symbols"
-        case supportedFiatAccountAssets = "supported_fiat_account_assets"
-        case supportedCountryCodes = "supported_country_codes"
     }
 
     // Encodable protocol methods
@@ -41,8 +33,6 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
-        try container.encodeIfPresent(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
-        try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
     }
 }
 

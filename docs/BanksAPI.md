@@ -179,7 +179,7 @@ Update a bank.  Required scope: **banks:write**
 import CybridApiBankSwift
 
 let bankGuid = "bankGuid_example" // String | Identifier for the bank.
-let patchBankBankModel = PatchBank(name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"], supportedFiatAccountAssets: ["supportedFiatAccountAssets_example"], supportedCountryCodes: ["supportedCountryCodes_example"]) // PatchBankBankModel | 
+let patchBankBankModel = PatchBank(name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"]) // PatchBankBankModel | 
 
 // Patch Bank
 BanksAPI.updateBank(bankGuid: bankGuid, patchBankBankModel: patchBankBankModel) { (response, error) in
