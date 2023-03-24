@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **state** | **String** | The trade&#39;s state | [optional] 
 **amount** | **Int** | The amount being transferred. | [optional] 
 **fee** | **Int** | The fee associated with the trade. | [optional] 
+**networkFee** | **Int** | The network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers. | [optional] 
+**networkFeeAsset** | **String** | The asset code of the network fee. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
