@@ -50,10 +50,14 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var amount: Int?
     /** The fee associated with the trade. */
     public var fee: Int?
+    /** The network fee in base units of network_fee_asset. Only present on `crypto` transfers. */
+    public var networkFee: Int?
+    /** The asset code of the network fee. */
+    public var networkFeeAsset: String?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.customerGuid = customerGuid
@@ -63,6 +67,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         self.state = state
         self.amount = amount
         self.fee = fee
+        self.networkFee = networkFee
+        self.networkFeeAsset = networkFeeAsset
         self.createdAt = createdAt
     }
 
@@ -76,6 +82,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case state
         case amount
         case fee
+        case networkFee = "network_fee"
+        case networkFeeAsset = "network_fee_asset"
         case createdAt = "created_at"
     }
 
@@ -92,6 +100,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(amount, forKey: .amount)
         try container.encodeIfPresent(fee, forKey: .fee)
+        try container.encodeIfPresent(networkFee, forKey: .networkFee)
+        try container.encodeIfPresent(networkFeeAsset, forKey: .networkFeeAsset)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
     }
 }
