@@ -14,7 +14,7 @@ import Foundation
 public typealias CybridApiBankSwift = CybridApiBankSwiftAPI
 
 open class CybridApiBankSwiftAPI {
-    public static var basePath = "http://api-bank.cybrid.local"
+    public static var basePath = "https://bank.sandbox.cybrid.app"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

@@ -12,15 +12,16 @@ If you're looking for our UI SDK Widgets for Web or Mobile (iOS/Android), genera
 
 ## Getting Started
 
-This is Cybrid's public interactive API documentation, which allows you to fully test our APIs. If you'd like to use a different tool to exercise our APIs, you can download the [Open API 3.0 yaml](<api_platform_bank_swagger_schema_url>) for import.
+This is Cybrid's public interactive API documentation, which allows you to fully test our APIs. If you'd like to use a different tool to exercise our APIs, you can download the [Open API 3.0 yaml](https://bank.sandbox.cybrid.app/api/schema/v1/swagger.yaml) for import.
 
 If you're new to our APIs and the Cybrid Platform, follow the below guides to get set up and familiar with the platform:
 
-1. [Getting Started in the Cybrid Sandbox](https://www.cybrid.xyz/guides/getting-started)
-2. [Getting Ready for Trading](https://www.cybrid.xyz/guides/getting-ready-for-trading)
-3. [Running the Web Demo App](https://www.cybrid.xyz/guides/running-the-cybrid-web-demo-crypto-app) (or, alternatively, [Testing with Hosted Web Demo App](https://www.cybrid.xyz/guides/testing-with-the-web-demo-crypo-app))
+1. [Understanding the Platform](https://kb.cybrid.xyz/understanding-the-platform)
+2. [Getting Started in the Cybrid Sandbox](https://kb.cybrid.xyz/getting-started-guide)
+3. [Getting Ready for Trading](https://kb.cybrid.xyz/getting-ready-for-trading)
+4. [Running the Web Demo App](https://kb.cybrid.xyz/locally-running-the-web-demo-app) (or, alternatively, [Testing with Hosted Web Demo App](https://kb.cybrid.xyz/testing-with-hosted-web-demo-app))
 
-In [Getting Started in the Cybrid Sandbox](https://www.cybrid.xyz/guides/getting-started), we walk you through how to use the [Cybrid Sandbox](https://id.demo.cybrid.app/) to create a test bank and generate API keys. In [Getting Ready for Trading](https://www.cybrid.xyz/guides/getting-ready-for-trading), we walk through creating customers, customer identities, accounts, as well as executing quotes and trades.
+In [Getting Started in the Cybrid Sandbox](https://www.cybrid.xyz/guides/getting-started), we walk you through how to use the [Cybrid Sandbox](https://id.sandbox.cybrid.app/) to create a test bank and generate API keys. In [Getting Ready for Trading](https://www.cybrid.xyz/guides/getting-ready-for-trading), we walk through creating customers, customer identities, accounts, as well as executing quotes and trades.
 
 If you've already run through the first two guides, you can follow the [Running the Web Demo App](https://www.cybrid.xyz/guides/running-the-cybrid-web-demo-crypto-app) guide to test our web SDK with your sandbox `bank` and `customer`.
 
@@ -38,21 +39,21 @@ Our complete set of APIs allows you to manage resources across three distinct ar
 
 | API                                                              | Description                                                 |
 |------------------------------------------------------------------|-------------------------------------------------------------|
-| [Organization API](<api_platform_organization_swagger_ui_url>)   | APIs to manage organizations                                |
-| [Bank API](<api_platform_bank_swagger_ui_url>)                   | APIs to manage banks (and all downstream customer activity) |
-| [Identities API](<api_idp_swagger_ui_url>)                       | APIs to manage organization and bank identities             |
+| [Organization API](https://organization.sandbox.cybrid.app/api/schema/swagger-ui)   | APIs to manage organizations                                |
+| [Bank API](https://bank.sandbox.cybrid.app/api/schema/swagger-ui)                   | APIs to manage banks (and all downstream customer activity) |
+| [Identities API](https://id.sandbox.cybrid.app/api/schema/swagger-ui)                       | APIs to manage organization and bank identities             |
 
 For questions please contact [Support](mailto:support@cybrid.xyz) at any time for assistance, or contact the [Product Team](mailto:product@cybrid.xyz) for product suggestions.
 
 ## Authenticating with the API
 
-The Cybrid Platform uses OAuth 2.0 Bearer Tokens to authenticate requests to the platform. Credentials to create `Organization` and `Bank` tokens can be generated via the [Cybrid Sandbox](<api_idp_url>). Access tokens can be generated for a `Customer` as well via the [Cybrid IdP](<api_idp_url>) as well.
+The Cybrid Platform uses OAuth 2.0 Bearer Tokens to authenticate requests to the platform. Credentials to create `Organization` and `Bank` tokens can be generated via the [Cybrid Sandbox](https://id.sandbox.cybrid.app). Access tokens can be generated for a `Customer` as well via the [Cybrid IdP](https://id.sandbox.cybrid.app) as well.
 
 An `Organization` access token applies broadly to the whole Organization and all of its `Banks`, whereas, a `Bank` access token is specific to an individual Bank. `Customer` tokens, similarly, are scoped to a specific customer in a bank.
 
 Both `Organization` and `Bank` tokens can be created using the OAuth Client Credential Grant flow. Each Organization and Bank has its own unique `Client ID` and `Secret` that allows for machine-to-machine authentication.
 
-A `Bank` can then generate `Customer` access tokens via API using our [Identities API](<api_idp_swagger_ui_url>).
+A `Bank` can then generate `Customer` access tokens via API using our [Identities API](https://id.sandbox.cybrid.app/api/schema/swagger-ui).
 
 <font color=\"orange\">**⚠️ Never share your Client ID or Secret publicly or in your source code repository.**</font>
 
@@ -62,14 +63,14 @@ The following curl command can be used to quickly generate a `Bearer Token` for 
 
 ```
 # Example request when using Bank credentials
-curl -X POST <api_idp_url>/oauth/token -d '{
+curl -X POST https://id.sandbox.cybrid.app/oauth/token -d '{
     \"grant_type\": \"client_credentials\",
     \"client_id\": \"<Your Client ID>\",
     \"client_secret\": \"<Your Secret>\",
-    \"scope\": \"<api_platform_bank_scopes>\"
+    \"scope\": \"banks:read banks:write accounts:read accounts:execute customers:read customers:write customers:execute prices:read quotes:execute quotes:read trades:execute trades:read transfers:execute transfers:read rewards:execute rewards:read external_bank_accounts:read external_bank_accounts:write external_bank_accounts:execute workflows:read workflows:execute deposit_addresses:read deposit_addresses:execute\"
   }' -H \"Content-Type: application/json\"
 
-# When using Organization credentials set `scope` to '<api_platform_organization_scopes>'
+# When using Organization credentials set `scope` to 'organizations:read organizations:write banks:read banks:write banks:execute customers:read accounts:read quotes:read trades:read transfers:read external_bank_accounts:read workflows:read deposit_addresses:read'
 ```
 <font color=\"orange\">**⚠️ Note: The above curl will create a bearer token with full scope access. Delete scopes if you'd like to restrict access.**</font>
 
@@ -96,7 +97,7 @@ The following scopes are available on the platform and can be requested when gen
 
 ## Available Endpoints
 
-The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](<api_platform_organization_swagger_ui_url>) and [Bank](<api_platform_bank_swagger_ui_url>) API services are listed below:
+The available APIs for the [Identity](https://id.sandbox.cybrid.app/api/schema/swagger-ui), [Organization](https://organization.sandbox.cybrid.app/api/schema/swagger-ui) and [Bank](https://bank.sandbox.cybrid.app/api/schema/swagger-ui) API services are listed below:
 
 | API Service  | Model                | API Endpoint Path              | Description                                                                                       |
 |--------------|----------------------|--------------------------------|---------------------------------------------------------------------------------------------------|
@@ -147,7 +148,7 @@ An `Organization` can have multiple `banks`, in either `Sandbox` or `Production`
 ## Overview
 This API client was generated by the [OpenAPI Generator](https://openapi-generator.tech) project.  By using the [openapi-spec](https://github.com/OAI/OpenAPI-Specification) from a remote server, you can easily generate an API client.
 
-- API version: v0.0.0
+- API version: v0.68.7
 - Package version: 
 - Build package: org.openapitools.codegen.languages.Swift5ClientCodegen
 
@@ -163,7 +164,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api-bank.cybrid.local*
+All URIs are relative to *https://bank.sandbox.cybrid.app*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -192,65 +193,6 @@ Class | Method | HTTP request | Description
 *IdentityVerificationsAPI* | [**createIdentityVerification**](docs/IdentityVerificationsAPI.md#createidentityverification) | **POST** /api/identity_verifications | Create Identity Verification
 *IdentityVerificationsAPI* | [**getIdentityVerification**](docs/IdentityVerificationsAPI.md#getidentityverification) | **GET** /api/identity_verifications/{identity_verification_guid} | Get Identity Verification
 *IdentityVerificationsAPI* | [**listIdentityVerifications**](docs/IdentityVerificationsAPI.md#listidentityverifications) | **GET** /api/identity_verifications | List Identity Verifications
-*InternalAPI* | [**internalClaimExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalclaimexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders/{guid}/claim | Claim Exchange Settlement Payment Order
-*InternalAPI* | [**internalClaimExpectedPayment**](docs/InternalAPI.md#internalclaimexpectedpayment) | **POST** /api/internal/expected_payments/{guid}/claim | Claim Expected Payment
-*InternalAPI* | [**internalCreateAccount**](docs/InternalAPI.md#internalcreateaccount) | **POST** /api/internal/accounts | Create Account
-*InternalAPI* | [**internalCreateComplianceDecision**](docs/InternalAPI.md#internalcreatecompliancedecision) | **POST** /api/internal/compliance_decisions | Create Compliance Decision
-*InternalAPI* | [**internalCreateCountryCodeConfiguration**](docs/InternalAPI.md#internalcreatecountrycodeconfiguration) | **POST** /api/internal/country_code_configurations | Create CountryCodeConfiguration
-*InternalAPI* | [**internalCreateCybridAccount**](docs/InternalAPI.md#internalcreatecybridaccount) | **POST** /api/internal/cybrid_accounts | Create CybridAccount
-*InternalAPI* | [**internalCreateExchange**](docs/InternalAPI.md#internalcreateexchange) | **POST** /api/internal/exchanges | Create Exchange
-*InternalAPI* | [**internalCreateExchangeAccount**](docs/InternalAPI.md#internalcreateexchangeaccount) | **POST** /api/internal/exchange_accounts | Create ExchangeAccount
-*InternalAPI* | [**internalCreateExchangeSettlement**](docs/InternalAPI.md#internalcreateexchangesettlement) | **POST** /api/internal/exchange_settlements | Create Exchange Settlement
-*InternalAPI* | [**internalCreateExchangeSettlementApproval**](docs/InternalAPI.md#internalcreateexchangesettlementapproval) | **POST** /api/internal/exchange_settlements/{guid}/approval | Create Exchange Settlement Approval
-*InternalAPI* | [**internalCreateExchangeSettlementCompletion**](docs/InternalAPI.md#internalcreateexchangesettlementcompletion) | **POST** /api/internal/exchange_settlements/{guid}/completion | Create Exchange Settlement Completion
-*InternalAPI* | [**internalCreateExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalcreateexchangesettlementpaymentorder) | **POST** /api/internal/exchange_settlement_payment_orders | Create Exchange Settlement Payment Order
-*InternalAPI* | [**internalCreateExpectedPayment**](docs/InternalAPI.md#internalcreateexpectedpayment) | **POST** /api/internal/expected_payments | Create Expected Payment
-*InternalAPI* | [**internalCreateExternalBankAccount**](docs/InternalAPI.md#internalcreateexternalbankaccount) | **POST** /api/internal/external_bank_accounts | Create ExternalBankAccount
-*InternalAPI* | [**internalCreateExternalWallet**](docs/InternalAPI.md#internalcreateexternalwallet) | **POST** /api/internal/external_wallets | Create ExternalWallet
-*InternalAPI* | [**internalCreateFeeConfiguration**](docs/InternalAPI.md#internalcreatefeeconfiguration) | **POST** /api/internal/fee_configurations | Create FeeConfiguration
-*InternalAPI* | [**internalCreateFiatAssetConfiguration**](docs/InternalAPI.md#internalcreatefiatassetconfiguration) | **POST** /api/internal/fiat_asset_configurations | Create FiatAssetConfiguration
-*InternalAPI* | [**internalCreateInternalBankAccount**](docs/InternalAPI.md#internalcreateinternalbankaccount) | **POST** /api/internal/internal_bank_accounts | Create InternalBankAccount
-*InternalAPI* | [**internalCreateInternalTransfer**](docs/InternalAPI.md#internalcreateinternaltransfer) | **POST** /api/internal/internal_transfers | Create InternalTransfer
-*InternalAPI* | [**internalCreateInternalWallet**](docs/InternalAPI.md#internalcreateinternalwallet) | **POST** /api/internal/internal_wallets | Create InternalWallet
-*InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
-*InternalAPI* | [**internalCreateQuote**](docs/InternalAPI.md#internalcreatequote) | **POST** /api/internal/quotes | Create InternalQuote
-*InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
-*InternalAPI* | [**internalCreateTrade**](docs/InternalAPI.md#internalcreatetrade) | **POST** /api/internal/trades | Create Internal Trade
-*InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
-*InternalAPI* | [**internalCryptoFundingDepositTransfer**](docs/InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
-*InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
-*InternalAPI* | [**internalGetExchange**](docs/InternalAPI.md#internalgetexchange) | **GET** /api/internal/exchanges/{exchange_guid} | Get Exchange
-*InternalAPI* | [**internalGetExchangeAccount**](docs/InternalAPI.md#internalgetexchangeaccount) | **GET** /api/internal/exchange_accounts/{account_guid} | Get ExchangeAccount
-*InternalAPI* | [**internalGetExchangeSettlement**](docs/InternalAPI.md#internalgetexchangesettlement) | **GET** /api/internal/exchange_settlements/{guid} | Get Exchange Settlement
-*InternalAPI* | [**internalGetExchangeSettlementObligation**](docs/InternalAPI.md#internalgetexchangesettlementobligation) | **GET** /api/internal/exchange_settlement_obligations/{guid} | Get Exchange Settlement Obligation
-*InternalAPI* | [**internalGetExchangeSettlementPaymentOrder**](docs/InternalAPI.md#internalgetexchangesettlementpaymentorder) | **GET** /api/internal/exchange_settlement_payment_orders/{guid} | Get Exchange Settlement Payment Order
-*InternalAPI* | [**internalGetExpectedPayment**](docs/InternalAPI.md#internalgetexpectedpayment) | **GET** /api/internal/expected_payments/{guid} | Get Expected Payment
-*InternalAPI* | [**internalGetExternalBankAccount**](docs/InternalAPI.md#internalgetexternalbankaccount) | **GET** /api/internal/external_bank_accounts/{external_bank_account_guid} | Get ExternalBankAccount
-*InternalAPI* | [**internalGetInternalBankAccount**](docs/InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
-*InternalAPI* | [**internalGetInternalTransfer**](docs/InternalAPI.md#internalgetinternaltransfer) | **GET** /api/internal/internal_transfers/{guid} | Get InternalTransfer
-*InternalAPI* | [**internalGetInternalWallet**](docs/InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
-*InternalAPI* | [**internalGetQuote**](docs/InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get Internal Quote
-*InternalAPI* | [**internalGetTrade**](docs/InternalAPI.md#internalgettrade) | **GET** /api/internal/trades/{trade_guid} | Get Internal Trade
-*InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
-*InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
-*InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
-*InternalAPI* | [**internalListInternalBankAccounts**](docs/InternalAPI.md#internallistinternalbankaccounts) | **GET** /api/internal/internal_bank_accounts | List InternalBankAccounts
-*InternalAPI* | [**internalListInternalTransfers**](docs/InternalAPI.md#internallistinternaltransfers) | **GET** /api/internal/internal_transfers | List InternalTransfers
-*InternalAPI* | [**internalListInternalWallets**](docs/InternalAPI.md#internallistinternalwallets) | **GET** /api/internal/internal_wallets | List InternalWallets
-*InternalAPI* | [**internalListTransactions**](docs/InternalAPI.md#internallisttransactions) | **GET** /api/internal/transactions | List Transactions
-*InternalAPI* | [**internalPatchAccount**](docs/InternalAPI.md#internalpatchaccount) | **PATCH** /api/internal/accounts/{account_guid} | Patch Account
-*InternalAPI* | [**internalPatchCybridAccount**](docs/InternalAPI.md#internalpatchcybridaccount) | **PATCH** /api/internal/cybrid_accounts/{guid} | Patch Cybrid Account
-*InternalAPI* | [**internalPatchDepositAddress**](docs/InternalAPI.md#internalpatchdepositaddress) | **PATCH** /api/internal/deposit_addresses/{guid} | Patch Deposit Address
-*InternalAPI* | [**internalPatchExchangeAccount**](docs/InternalAPI.md#internalpatchexchangeaccount) | **PATCH** /api/internal/exchange_accounts/{guid} | Patch Exchange Account
-*InternalAPI* | [**internalPatchExternalBankAccount**](docs/InternalAPI.md#internalpatchexternalbankaccount) | **PATCH** /api/internal/external_bank_accounts/{external_bank_account_guid} | Patch ExternalBankAccount
-*InternalAPI* | [**internalPatchIdentityRecord**](docs/InternalAPI.md#internalpatchidentityrecord) | **PATCH** /api/internal/identity_records/{identity_record_guid} | Patch Identity Record
-*InternalAPI* | [**internalPatchIdentityVerification**](docs/InternalAPI.md#internalpatchidentityverification) | **PATCH** /api/internal/identity_verifications/{identity_verification_guid} | Patch Identity Verification
-*InternalAPI* | [**internalPatchInternalBankAccount**](docs/InternalAPI.md#internalpatchinternalbankaccount) | **PATCH** /api/internal/internal_bank_accounts/{guid} | Patch Internal Bank Account
-*InternalAPI* | [**internalPatchInternalTransfer**](docs/InternalAPI.md#internalpatchinternaltransfer) | **PATCH** /api/internal/internal_transfers/{guid} | Patch Internal Transfer
-*InternalAPI* | [**internalPatchInternalWallet**](docs/InternalAPI.md#internalpatchinternalwallet) | **PATCH** /api/internal/internal_wallets/{guid} | Patch Internal Wallet
-*InternalAPI* | [**internalPatchInternalWalletGroup**](docs/InternalAPI.md#internalpatchinternalwalletgroup) | **PATCH** /api/internal/internal_wallet_groups/{guid} | Patch Internal Wallet
-*InternalAPI* | [**internalPatchTransfer**](docs/InternalAPI.md#internalpatchtransfer) | **PATCH** /api/internal/transfers/{transfer_guid} | Patch Transfer
-*InternalAPI* | [**internalPatchWorkflow**](docs/InternalAPI.md#internalpatchworkflow) | **PATCH** /api/internal/workflows/{workflow_guid} | Patch Workflow
 *PricesAPI* | [**listPrices**](docs/PricesAPI.md#listprices) | **GET** /api/prices | Get Price
 *QuotesAPI* | [**createQuote**](docs/QuotesAPI.md#createquote) | **POST** /api/quotes | Create Quote
 *QuotesAPI* | [**getQuote**](docs/QuotesAPI.md#getquote) | **GET** /api/quotes/{quote_guid} | Get Quote
@@ -295,57 +237,8 @@ Class | Method | HTTP request | Description
  - [IdentityVerificationListBankModel](docs/IdentityVerificationListBankModel.md)
  - [IdentityVerificationWithDetailsAllOfBankModel](docs/IdentityVerificationWithDetailsAllOfBankModel.md)
  - [IdentityVerificationWithDetailsBankModel](docs/IdentityVerificationWithDetailsBankModel.md)
- - [InternalComplianceDecisionBankModel](docs/InternalComplianceDecisionBankModel.md)
- - [InternalCountryCodeConfigurationBankModel](docs/InternalCountryCodeConfigurationBankModel.md)
- - [InternalCreateExchangeSettlementApproval202ResponseBankModel](docs/InternalCreateExchangeSettlementApproval202ResponseBankModel.md)
- - [InternalCryptoFundingDepositTransferBankModel](docs/InternalCryptoFundingDepositTransferBankModel.md)
- - [InternalCybridAccountBankModel](docs/InternalCybridAccountBankModel.md)
- - [InternalExchangeAccountBankModel](docs/InternalExchangeAccountBankModel.md)
- - [InternalExchangeBankModel](docs/InternalExchangeBankModel.md)
- - [InternalExchangeListBankModel](docs/InternalExchangeListBankModel.md)
- - [InternalExchangeSettlementBankModel](docs/InternalExchangeSettlementBankModel.md)
- - [InternalExchangeSettlementObligationBankModel](docs/InternalExchangeSettlementObligationBankModel.md)
- - [InternalExchangeSettlementPaymentOrderBankModel](docs/InternalExchangeSettlementPaymentOrderBankModel.md)
- - [InternalExpectedPaymentBankModel](docs/InternalExpectedPaymentBankModel.md)
- - [InternalExternalBankAccountBankModel](docs/InternalExternalBankAccountBankModel.md)
- - [InternalExternalBankAccountListBankModel](docs/InternalExternalBankAccountListBankModel.md)
- - [InternalExternalWalletBankModel](docs/InternalExternalWalletBankModel.md)
- - [InternalExternalWalletListBankModel](docs/InternalExternalWalletListBankModel.md)
- - [InternalFeeBankModel](docs/InternalFeeBankModel.md)
- - [InternalFeeConfigurationBankModel](docs/InternalFeeConfigurationBankModel.md)
- - [InternalFiatAssetConfigurationBankModel](docs/InternalFiatAssetConfigurationBankModel.md)
- - [InternalInternalBankAccountBankModel](docs/InternalInternalBankAccountBankModel.md)
- - [InternalInternalBankAccountListBankModel](docs/InternalInternalBankAccountListBankModel.md)
- - [InternalInternalTransferBankModel](docs/InternalInternalTransferBankModel.md)
- - [InternalInternalTransferListBankModel](docs/InternalInternalTransferListBankModel.md)
- - [InternalInternalWalletBankModel](docs/InternalInternalWalletBankModel.md)
- - [InternalInternalWalletGroupBankModel](docs/InternalInternalWalletGroupBankModel.md)
- - [InternalInternalWalletListBankModel](docs/InternalInternalWalletListBankModel.md)
- - [InternalPersonDetailBankModel](docs/InternalPersonDetailBankModel.md)
- - [InternalPostFeeBankModel](docs/InternalPostFeeBankModel.md)
- - [InternalPostFeeConfigurationBankModel](docs/InternalPostFeeConfigurationBankModel.md)
- - [InternalPostQuoteBankModel](docs/InternalPostQuoteBankModel.md)
- - [InternalQuoteBankModel](docs/InternalQuoteBankModel.md)
- - [InternalSavingsAssetConfigurationBankModel](docs/InternalSavingsAssetConfigurationBankModel.md)
- - [InternalTradingSymbolConfigurationBankModel](docs/InternalTradingSymbolConfigurationBankModel.md)
- - [InternalTransactionBankModel](docs/InternalTransactionBankModel.md)
- - [InternalTransactionsListBankModel](docs/InternalTransactionsListBankModel.md)
- - [InternalTransactionsListPageInfoBankModel](docs/InternalTransactionsListPageInfoBankModel.md)
  - [PatchBankBankModel](docs/PatchBankBankModel.md)
  - [PatchExternalBankAccountBankModel](docs/PatchExternalBankAccountBankModel.md)
- - [PatchInternalAccountBankModel](docs/PatchInternalAccountBankModel.md)
- - [PatchInternalCybridAccountBankModel](docs/PatchInternalCybridAccountBankModel.md)
- - [PatchInternalDepositAddressBankModel](docs/PatchInternalDepositAddressBankModel.md)
- - [PatchInternalExchangeAccountBankModel](docs/PatchInternalExchangeAccountBankModel.md)
- - [PatchInternalExternalBankAccountBankModel](docs/PatchInternalExternalBankAccountBankModel.md)
- - [PatchInternalIdentityRecordBankModel](docs/PatchInternalIdentityRecordBankModel.md)
- - [PatchInternalIdentityVerificationBankModel](docs/PatchInternalIdentityVerificationBankModel.md)
- - [PatchInternalInternalBankAccountBankModel](docs/PatchInternalInternalBankAccountBankModel.md)
- - [PatchInternalInternalTransferBankModel](docs/PatchInternalInternalTransferBankModel.md)
- - [PatchInternalInternalWalletBankModel](docs/PatchInternalInternalWalletBankModel.md)
- - [PatchInternalInternalWalletGroupBankModel](docs/PatchInternalInternalWalletGroupBankModel.md)
- - [PatchInternalTransferBankModel](docs/PatchInternalTransferBankModel.md)
- - [PatchInternalWorkflowBankModel](docs/PatchInternalWorkflowBankModel.md)
  - [PostAccountBankModel](docs/PostAccountBankModel.md)
  - [PostBankBankModel](docs/PostBankBankModel.md)
  - [PostCustomerAddressBankModel](docs/PostCustomerAddressBankModel.md)
@@ -359,29 +252,6 @@ Class | Method | HTTP request | Description
  - [PostIdentityVerificationAddressBankModel](docs/PostIdentityVerificationAddressBankModel.md)
  - [PostIdentityVerificationBankModel](docs/PostIdentityVerificationBankModel.md)
  - [PostIdentityVerificationNameBankModel](docs/PostIdentityVerificationNameBankModel.md)
- - [PostInternalAccountBankModel](docs/PostInternalAccountBankModel.md)
- - [PostInternalClaimExchangeSettlementPaymentOrderBankModel](docs/PostInternalClaimExchangeSettlementPaymentOrderBankModel.md)
- - [PostInternalClaimExpectedPaymentBankModel](docs/PostInternalClaimExpectedPaymentBankModel.md)
- - [PostInternalComplianceDecisionBankModel](docs/PostInternalComplianceDecisionBankModel.md)
- - [PostInternalCountryCodeConfigurationBankModel](docs/PostInternalCountryCodeConfigurationBankModel.md)
- - [PostInternalCryptoFundingDepositTransferBankModel](docs/PostInternalCryptoFundingDepositTransferBankModel.md)
- - [PostInternalCybridAccountBankModel](docs/PostInternalCybridAccountBankModel.md)
- - [PostInternalExchangeAccountBankModel](docs/PostInternalExchangeAccountBankModel.md)
- - [PostInternalExchangeBankModel](docs/PostInternalExchangeBankModel.md)
- - [PostInternalExchangeSettlementBankModel](docs/PostInternalExchangeSettlementBankModel.md)
- - [PostInternalExchangeSettlementPaymentOrderBankModel](docs/PostInternalExchangeSettlementPaymentOrderBankModel.md)
- - [PostInternalExpectedPaymentBankModel](docs/PostInternalExpectedPaymentBankModel.md)
- - [PostInternalExternalBankAccountBankModel](docs/PostInternalExternalBankAccountBankModel.md)
- - [PostInternalExternalWalletBankModel](docs/PostInternalExternalWalletBankModel.md)
- - [PostInternalFiatAssetConfigurationBankModel](docs/PostInternalFiatAssetConfigurationBankModel.md)
- - [PostInternalInternalBankAccountBankModel](docs/PostInternalInternalBankAccountBankModel.md)
- - [PostInternalInternalTransferBankModel](docs/PostInternalInternalTransferBankModel.md)
- - [PostInternalInternalWalletBankModel](docs/PostInternalInternalWalletBankModel.md)
- - [PostInternalPersonDetailBankModel](docs/PostInternalPersonDetailBankModel.md)
- - [PostInternalSavingsAssetConfigurationBankModel](docs/PostInternalSavingsAssetConfigurationBankModel.md)
- - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
- - [PostInternalTradeBankModel](docs/PostInternalTradeBankModel.md)
- - [PostInternalTradingSymbolConfigurationBankModel](docs/PostInternalTradingSymbolConfigurationBankModel.md)
  - [PostOneTimeAddressBankModel](docs/PostOneTimeAddressBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)
  - [PostRewardBankModel](docs/PostRewardBankModel.md)
