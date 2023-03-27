@@ -1,6 +1,6 @@
 # TransfersAPI
 
-All URIs are relative to *http://api-bank.cybrid.local*
+All URIs are relative to *https://bank.sandbox.cybrid.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
