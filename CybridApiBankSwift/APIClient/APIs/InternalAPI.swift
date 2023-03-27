@@ -1179,6 +1179,56 @@ open class InternalAPI {
     }
 
     /**
+     Create Internal Trade
+     
+     - parameter postInternalTradeBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalCreateTrade(postInternalTradeBankModel: PostInternalTradeBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradeBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalCreateTradeWithRequestBuilder(postInternalTradeBankModel: postInternalTradeBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create Internal Trade
+     - POST /api/internal/trades
+     - Creates a trade.  Required scope: **internal:trades:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter postInternalTradeBankModel: (body)  
+     - returns: RequestBuilder<TradeBankModel> 
+     */
+    open class func internalCreateTradeWithRequestBuilder(postInternalTradeBankModel: PostInternalTradeBankModel) -> RequestBuilder<TradeBankModel> {
+        let localVariablePath = "/api/internal/trades"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postInternalTradeBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TradeBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create TradingSymbolConfiguration
      
      - parameter postInternalTradingSymbolConfigurationBankModel: (body)  
@@ -1862,7 +1912,7 @@ open class InternalAPI {
     }
 
     /**
-     Get InternalQuote
+     Get Internal Quote
      
      - parameter quoteGuid: (path) Identifier for the quote. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
@@ -1881,7 +1931,7 @@ open class InternalAPI {
     }
 
     /**
-     Get InternalQuote
+     Get Internal Quote
      - GET /api/internal/quotes/{quote_guid}
      - Retrieves a quote.  Required scope: **internal:quotes:read**
      - BASIC:
@@ -1910,6 +1960,59 @@ open class InternalAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<InternalQuoteBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Get Internal Trade
+     
+     - parameter tradeGuid: (path) Identifier for the trade. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func internalGetTrade(tradeGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradeBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return internalGetTradeWithRequestBuilder(tradeGuid: tradeGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get Internal Trade
+     - GET /api/internal/trades/{trade_guid}
+     - Retrieves a trade.  Required scope: **internal:trades:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter tradeGuid: (path) Identifier for the trade. 
+     - returns: RequestBuilder<TradeBankModel> 
+     */
+    open class func internalGetTradeWithRequestBuilder(tradeGuid: String) -> RequestBuilder<TradeBankModel> {
+        var localVariablePath = "/api/internal/trades/{trade_guid}"
+        let tradeGuidPreEscape = "\(APIHelper.mapValueToPathItem(tradeGuid))"
+        let tradeGuidPostEscape = tradeGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{trade_guid}", with: tradeGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TradeBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

@@ -215,6 +215,7 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalCreatePersonDetails**](docs/InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 *InternalAPI* | [**internalCreateQuote**](docs/InternalAPI.md#internalcreatequote) | **POST** /api/internal/quotes | Create InternalQuote
 *InternalAPI* | [**internalCreateSavingsAssetConfiguration**](docs/InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
+*InternalAPI* | [**internalCreateTrade**](docs/InternalAPI.md#internalcreatetrade) | **POST** /api/internal/trades | Create Internal Trade
 *InternalAPI* | [**internalCreateTradingSymbolConfiguration**](docs/InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 *InternalAPI* | [**internalCryptoFundingDepositTransfer**](docs/InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
 *InternalAPI* | [**internalGetCybridAccount**](docs/InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
@@ -228,7 +229,8 @@ Class | Method | HTTP request | Description
 *InternalAPI* | [**internalGetInternalBankAccount**](docs/InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
 *InternalAPI* | [**internalGetInternalTransfer**](docs/InternalAPI.md#internalgetinternaltransfer) | **GET** /api/internal/internal_transfers/{guid} | Get InternalTransfer
 *InternalAPI* | [**internalGetInternalWallet**](docs/InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
-*InternalAPI* | [**internalGetQuote**](docs/InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get InternalQuote
+*InternalAPI* | [**internalGetQuote**](docs/InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get Internal Quote
+*InternalAPI* | [**internalGetTrade**](docs/InternalAPI.md#internalgettrade) | **GET** /api/internal/trades/{trade_guid} | Get Internal Trade
 *InternalAPI* | [**internalListExchanges**](docs/InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 *InternalAPI* | [**internalListExternalBankAccounts**](docs/InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 *InternalAPI* | [**internalListExternalWallets**](docs/InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -378,6 +380,7 @@ Class | Method | HTTP request | Description
  - [PostInternalPersonDetailBankModel](docs/PostInternalPersonDetailBankModel.md)
  - [PostInternalSavingsAssetConfigurationBankModel](docs/PostInternalSavingsAssetConfigurationBankModel.md)
  - [PostInternalSystemTransactionBankModel](docs/PostInternalSystemTransactionBankModel.md)
+ - [PostInternalTradeBankModel](docs/PostInternalTradeBankModel.md)
  - [PostInternalTradingSymbolConfigurationBankModel](docs/PostInternalTradingSymbolConfigurationBankModel.md)
  - [PostOneTimeAddressBankModel](docs/PostOneTimeAddressBankModel.md)
  - [PostQuoteBankModel](docs/PostQuoteBankModel.md)

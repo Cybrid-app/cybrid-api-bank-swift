@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**internalCreatePersonDetails**](InternalAPI.md#internalcreatepersondetails) | **POST** /api/internal/person_details | Create Person Details
 [**internalCreateQuote**](InternalAPI.md#internalcreatequote) | **POST** /api/internal/quotes | Create InternalQuote
 [**internalCreateSavingsAssetConfiguration**](InternalAPI.md#internalcreatesavingsassetconfiguration) | **POST** /api/internal/savings_asset_configurations | Create SavingsAssetConfiguration
+[**internalCreateTrade**](InternalAPI.md#internalcreatetrade) | **POST** /api/internal/trades | Create Internal Trade
 [**internalCreateTradingSymbolConfiguration**](InternalAPI.md#internalcreatetradingsymbolconfiguration) | **POST** /api/internal/trading_symbol_configurations | Create TradingSymbolConfiguration
 [**internalCryptoFundingDepositTransfer**](InternalAPI.md#internalcryptofundingdeposittransfer) | **POST** /api/internal/crypto_funding_deposit_transfers | Create Crypto Funding Deposit Transfer
 [**internalGetCybridAccount**](InternalAPI.md#internalgetcybridaccount) | **GET** /api/internal/cybrid_accounts/{account_guid} | Get CybridAccount
@@ -40,7 +41,8 @@ Method | HTTP request | Description
 [**internalGetInternalBankAccount**](InternalAPI.md#internalgetinternalbankaccount) | **GET** /api/internal/internal_bank_accounts/{internal_bank_account_guid} | Get InternalBankAccount
 [**internalGetInternalTransfer**](InternalAPI.md#internalgetinternaltransfer) | **GET** /api/internal/internal_transfers/{guid} | Get InternalTransfer
 [**internalGetInternalWallet**](InternalAPI.md#internalgetinternalwallet) | **GET** /api/internal/internal_wallets/{internal_wallet_guid} | Get InternalWallet
-[**internalGetQuote**](InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get InternalQuote
+[**internalGetQuote**](InternalAPI.md#internalgetquote) | **GET** /api/internal/quotes/{quote_guid} | Get Internal Quote
+[**internalGetTrade**](InternalAPI.md#internalgettrade) | **GET** /api/internal/trades/{trade_guid} | Get Internal Trade
 [**internalListExchanges**](InternalAPI.md#internallistexchanges) | **GET** /api/internal/exchanges | List Exchanges
 [**internalListExternalBankAccounts**](InternalAPI.md#internallistexternalbankaccounts) | **GET** /api/internal/external_bank_accounts | List ExternalBankAccounts
 [**internalListExternalWallets**](InternalAPI.md#internallistexternalwallets) | **GET** /api/internal/external_wallets | List ExternalWallets
@@ -1217,6 +1219,56 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **internalCreateTrade**
+```swift
+    open class func internalCreateTrade(postInternalTradeBankModel: PostInternalTradeBankModel, completion: @escaping (_ data: TradeBankModel?, _ error: Error?) -> Void)
+```
+
+Create Internal Trade
+
+Creates a trade.  Required scope: **internal:trades:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let postInternalTradeBankModel = PostInternalTrade(quoteGuid: "quoteGuid_example", environment: "environment_example") // PostInternalTradeBankModel | 
+
+// Create Internal Trade
+InternalAPI.internalCreateTrade(postInternalTradeBankModel: postInternalTradeBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postInternalTradeBankModel** | [**PostInternalTradeBankModel**](PostInternalTradeBankModel.md) |  | 
+
+### Return type
+
+[**TradeBankModel**](TradeBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **internalCreateTradingSymbolConfiguration**
 ```swift
     open class func internalCreateTradingSymbolConfiguration(postInternalTradingSymbolConfigurationBankModel: PostInternalTradingSymbolConfigurationBankModel, completion: @escaping (_ data: InternalTradingSymbolConfigurationBankModel?, _ error: Error?) -> Void)
@@ -1872,7 +1924,7 @@ Name | Type | Description  | Notes
     open class func internalGetQuote(quoteGuid: String, completion: @escaping (_ data: InternalQuoteBankModel?, _ error: Error?) -> Void)
 ```
 
-Get InternalQuote
+Get Internal Quote
 
 Retrieves a quote.  Required scope: **internal:quotes:read**
 
@@ -1883,7 +1935,7 @@ import CybridApiBankSwift
 
 let quoteGuid = "quoteGuid_example" // String | Identifier for the quote.
 
-// Get InternalQuote
+// Get Internal Quote
 InternalAPI.internalGetQuote(quoteGuid: quoteGuid) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1905,6 +1957,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InternalQuoteBankModel**](InternalQuoteBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internalGetTrade**
+```swift
+    open class func internalGetTrade(tradeGuid: String, completion: @escaping (_ data: TradeBankModel?, _ error: Error?) -> Void)
+```
+
+Get Internal Trade
+
+Retrieves a trade.  Required scope: **internal:trades:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let tradeGuid = "tradeGuid_example" // String | Identifier for the trade.
+
+// Get Internal Trade
+InternalAPI.internalGetTrade(tradeGuid: tradeGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradeGuid** | **String** | Identifier for the trade. | 
+
+### Return type
+
+[**TradeBankModel**](TradeBankModel.md)
 
 ### Authorization
 
