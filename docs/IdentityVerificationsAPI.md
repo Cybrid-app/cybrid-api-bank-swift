@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create Identity Verification
 
-Create an Identity Verification.  Required scope: **customers:write**
+Creates an Identity Verification.  ## Identity Verifications  Identity Verifications confirm an individual's identity with for the purpose of inclusion on the platform. This know-your-customer (KYC) process is a requirement for individuals to be able to transact. At present, we offer support for Cybrid performing the verification or working with partners to accept their KYC/AML process and have it attested to in our platform.    Required scope: **customers:write**
 
 ### Example
 ```swift
