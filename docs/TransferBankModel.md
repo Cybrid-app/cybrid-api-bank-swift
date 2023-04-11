@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **state** | **String** | The trade&#39;s state | [optional] 
 **amount** | **Int** | The amount being transferred. | [optional] 
 **fee** | **Int** | The fee associated with the trade. | [optional] 
-**networkFee** | **Int** | The network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers. | [optional] 
+**estimatedNetworkFee** | **Int** | The estimated network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers. | [optional] 
+**networkFee** | **Int** | The actual network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
 **networkFeeAsset** | **String** | The asset code of the network fee. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | [optional] 
 
