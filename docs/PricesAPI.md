@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **listPrices**
 ```swift
-    open class func listPrices(symbol: String? = nil, completion: @escaping (_ data: [SymbolPriceBankModel]?, _ error: Error?) -> Void)
+    open class func listPrices(symbol: String? = nil, bankGuid: String? = nil, completion: @escaping (_ data: [SymbolPriceBankModel]?, _ error: Error?) -> Void)
 ```
 
 Get Price
@@ -22,9 +22,10 @@ Retrieves a listing of symbol prices.  ## Symbols  Symbol are pairs and are in t
 import CybridApiBankSwift
 
 let symbol = "symbol_example" // String | Comma separated symbols to list prices for. (optional)
+let bankGuid = "bankGuid_example" // String | The bank identifier to retrieve prices for. (optional)
 
 // Get Price
-PricesAPI.listPrices(symbol: symbol) { (response, error) in
+PricesAPI.listPrices(symbol: symbol, bankGuid: bankGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -41,6 +42,7 @@ PricesAPI.listPrices(symbol: symbol) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String** | Comma separated symbols to list prices for. | [optional] 
+ **bankGuid** | **String** | The bank identifier to retrieve prices for. | [optional] 
 
 ### Return type
 
