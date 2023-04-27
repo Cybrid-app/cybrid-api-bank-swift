@@ -16,12 +16,13 @@ open class PricesAPI {
      Get Price
      
      - parameter symbol: (query) Comma separated symbols to list prices for. (optional)
+     - parameter bankGuid: (query) The bank identifier to retrieve prices for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listPrices(symbol: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[SymbolPriceBankModel], ErrorResponse>) -> Void)) -> RequestTask {
-        return listPricesWithRequestBuilder(symbol: symbol).execute(apiResponseQueue) { result in
+    open class func listPrices(symbol: String? = nil, bankGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[SymbolPriceBankModel], ErrorResponse>) -> Void)) -> RequestTask {
+        return listPricesWithRequestBuilder(symbol: symbol, bankGuid: bankGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -42,9 +43,10 @@ open class PricesAPI {
        - type: oauth2
        - name: oauth2
      - parameter symbol: (query) Comma separated symbols to list prices for. (optional)
+     - parameter bankGuid: (query) The bank identifier to retrieve prices for. (optional)
      - returns: RequestBuilder<[SymbolPriceBankModel]> 
      */
-    open class func listPricesWithRequestBuilder(symbol: String? = nil) -> RequestBuilder<[SymbolPriceBankModel]> {
+    open class func listPricesWithRequestBuilder(symbol: String? = nil, bankGuid: String? = nil) -> RequestBuilder<[SymbolPriceBankModel]> {
         let localVariablePath = "/api/prices"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -52,6 +54,7 @@ open class PricesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "symbol": symbol?.encodeToJSON(),
+            "bank_guid": bankGuid?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
