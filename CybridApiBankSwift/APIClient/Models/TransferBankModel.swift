@@ -54,12 +54,16 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var estimatedNetworkFee: Int?
     /** The actual network fee in base units of network_fee_asset. Only present on `crypto` transfers that have successfully completed. */
     public var networkFee: Int?
-    /** The asset code of the network fee. */
+    /** The asset code of the network fee. Only present on `crypto` transfers that have successfully completed. */
     public var networkFeeAsset: String?
+    /** The equivalent fiat network fee in base units of network_fee_liability_amount_asset. Only present on `crypto` transfers that have successfully completed. */
+    public var networkFeeLiabilityAmount: Int?
+    /** The fiat asset the network_fee_liability_amount is denominated in. Only present on `crypto` transfers that have successfully completed. */
+    public var networkFeeLiabilityAmountAsset: String?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.customerGuid = customerGuid
@@ -72,6 +76,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         self.estimatedNetworkFee = estimatedNetworkFee
         self.networkFee = networkFee
         self.networkFeeAsset = networkFeeAsset
+        self.networkFeeLiabilityAmount = networkFeeLiabilityAmount
+        self.networkFeeLiabilityAmountAsset = networkFeeLiabilityAmountAsset
         self.createdAt = createdAt
     }
 
@@ -88,6 +94,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case estimatedNetworkFee = "estimated_network_fee"
         case networkFee = "network_fee"
         case networkFeeAsset = "network_fee_asset"
+        case networkFeeLiabilityAmount = "network_fee_liability_amount"
+        case networkFeeLiabilityAmountAsset = "network_fee_liability_amount_asset"
         case createdAt = "created_at"
     }
 
@@ -107,6 +115,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(estimatedNetworkFee, forKey: .estimatedNetworkFee)
         try container.encodeIfPresent(networkFee, forKey: .networkFee)
         try container.encodeIfPresent(networkFeeAsset, forKey: .networkFeeAsset)
+        try container.encodeIfPresent(networkFeeLiabilityAmount, forKey: .networkFeeLiabilityAmount)
+        try container.encodeIfPresent(networkFeeLiabilityAmountAsset, forKey: .networkFeeLiabilityAmountAsset)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
     }
 }
