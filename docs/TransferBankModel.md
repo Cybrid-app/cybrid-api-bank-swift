@@ -14,7 +14,9 @@ Name | Type | Description | Notes
 **fee** | **Int** | The fee associated with the trade. | [optional] 
 **estimatedNetworkFee** | **Int** | The estimated network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers. | [optional] 
 **networkFee** | **Int** | The actual network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
-**networkFeeAsset** | **String** | The asset code of the network fee. | [optional] 
+**networkFeeAsset** | **String** | The asset code of the network fee. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
+**networkFeeLiabilityAmount** | **Int** | The equivalent fiat network fee in base units of network_fee_liability_amount_asset. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
+**networkFeeLiabilityAmountAsset** | **String** | The fiat asset the network_fee_liability_amount is denominated in. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
