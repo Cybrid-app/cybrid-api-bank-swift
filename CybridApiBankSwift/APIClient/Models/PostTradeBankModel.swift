@@ -13,7 +13,6 @@ import AnyCodable
 public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case unexpectedError = "unexpected_error"
         case invalidQuoteGuid = "invalid_quote_guid"
         case expiredQuote = "expired_quote"
         case nonSufficientFunds = "non_sufficient_funds"
