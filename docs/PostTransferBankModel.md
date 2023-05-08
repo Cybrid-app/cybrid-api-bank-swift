@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **quoteGuid** | **String** | The associated quote&#39;s identifier. | 
 **transferType** | **String** | The type of transfer. | 
+**externalWalletGuid** | **String** | The customer&#39;s external wallet&#39;s identifier. | [optional] 
 **externalBankAccountGuid** | **String** | The customer&#39;s &#39;plaid&#39; or &#39;plaid_processor_token&#39; external bank account&#39;s identifier. | [optional] 
 **oneTimeAddress** | [**PostOneTimeAddressBankModel**](PostOneTimeAddressBankModel.md) |  | [optional] 
 **expectedError** | **String** | The optional expected error to simulate transfer failure. | [optional] 
