@@ -31,7 +31,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     /** The name of the wallet. */
     public var name: String?
     /** The asset code. */
-    public var assetCode: String?
+    public var asset: String?
     /** The environment that the wallet is configured for. */
     public var environment: EnvironmentBankModel?
     /** The customer identifier. */
@@ -47,10 +47,10 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     /** The failure code of an external wallet (if any) */
     public var failureCode: String?
 
-    public init(guid: String? = nil, name: String? = nil, assetCode: String? = nil, environment: EnvironmentBankModel? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: EnvironmentBankModel? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.name = name
-        self.assetCode = assetCode
+        self.asset = asset
         self.environment = environment
         self.customerGuid = customerGuid
         self.address = address
@@ -63,7 +63,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case name
-        case assetCode = "asset_code"
+        case asset
         case environment
         case customerGuid = "customer_guid"
         case address
@@ -79,7 +79,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(assetCode, forKey: .assetCode)
+        try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(environment, forKey: .environment)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(address, forKey: .address)
