@@ -23,7 +23,7 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     /** The blockchain tag to use when transferring crypto to the wallet. */
     public var tag: String?
 
-    public init(name: String, customerGuid: String?, asset: String, address: String, tag: String? = nil) {
+    public init(name: String, customerGuid: String? = nil, asset: String, address: String, tag: String? = nil) {
         self.name = name
         self.customerGuid = customerGuid
         self.asset = asset
@@ -44,7 +44,7 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encode(asset, forKey: .asset)
         try container.encode(address, forKey: .address)
         try container.encodeIfPresent(tag, forKey: .tag)

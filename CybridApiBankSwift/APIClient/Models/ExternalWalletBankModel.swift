@@ -34,6 +34,8 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var asset: String?
     /** The environment that the wallet is configured for. */
     public var environment: EnvironmentBankModel?
+    /** The bank identifier. */
+    public var bankGuid: String?
     /** The customer identifier. */
     public var customerGuid: String?
     /** The blockchain wallet address for the wallet. */
@@ -47,11 +49,12 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     /** The failure code of an external wallet (if any) */
     public var failureCode: String?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: EnvironmentBankModel? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: EnvironmentBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.name = name
         self.asset = asset
         self.environment = environment
+        self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.address = address
         self.tag = tag
@@ -65,6 +68,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         case name
         case asset
         case environment
+        case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case address
         case tag
@@ -81,6 +85,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(environment, forKey: .environment)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(tag, forKey: .tag)
