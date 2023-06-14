@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTransfers**
 ```swift
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get transfers list
@@ -129,9 +129,10 @@ let guid = "guid_example" // String | Comma separated trade_guids to list transf
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list transfers for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list transfers for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list transfers for. (optional)
+let state = "state_example" // String | Comma separated states to list transfers for. (optional)
 
 // Get transfers list
-TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid) { (response, error) in
+TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -153,6 +154,7 @@ Name | Type | Description  | Notes
  **bankGuid** | **String** | Comma separated bank_guids to list transfers for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list transfers for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list transfers for. | [optional] 
+ **state** | **String** | Comma separated states to list transfers for. | [optional] 
 
 ### Return type
 
