@@ -14,10 +14,10 @@ public struct RewardBankModel: Codable, JSONEncodable, Hashable {
 
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
-        case initiating = "initiating"
         case pending = "pending"
-        case settling = "settling"
+        case cancelled = "cancelled"
         case completed = "completed"
+        case settling = "settling"
         case failed = "failed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
