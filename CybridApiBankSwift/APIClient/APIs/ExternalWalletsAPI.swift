@@ -176,12 +176,13 @@ open class ExternalWalletsAPI {
      - parameter guid: (query) Comma separated external_wallet_guids to list external_wallets for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list external_wallets for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list external_wallets for. (optional)
+     - parameter state: (query) Comma separated states to list external_wallets for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listExternalWalletsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid).execute(apiResponseQueue) { result in
+    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listExternalWalletsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -206,9 +207,10 @@ open class ExternalWalletsAPI {
      - parameter guid: (query) Comma separated external_wallet_guids to list external_wallets for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list external_wallets for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list external_wallets for. (optional)
+     - parameter state: (query) Comma separated states to list external_wallets for. (optional)
      - returns: RequestBuilder<ExternalWalletListBankModel> 
      */
-    open class func listExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) -> RequestBuilder<ExternalWalletListBankModel> {
+    open class func listExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<ExternalWalletListBankModel> {
         let localVariablePath = "/api/external_wallets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -220,6 +222,7 @@ open class ExternalWalletsAPI {
             "guid": guid?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
+            "state": state?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
