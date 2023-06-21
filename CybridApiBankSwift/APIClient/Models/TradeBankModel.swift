@@ -21,7 +21,6 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         case storing = "storing"
         case pending = "pending"
         case cancelled = "cancelled"
-        case executed = "executed"
         case completed = "completed"
         case settling = "settling"
         case failed = "failed"
