@@ -42,6 +42,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     /** The associated quote's identifier. */
     public var quoteGuid: String?
+    /** The associated external bank account's identifier. */
+    public var externalBankAccountGuid: String?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
     /** The direction of the quote: 'deposit' or 'withdrawal'. */
@@ -65,11 +67,12 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.customerGuid = customerGuid
         self.quoteGuid = quoteGuid
+        self.externalBankAccountGuid = externalBankAccountGuid
         self.asset = asset
         self.side = side
         self.state = state
@@ -88,6 +91,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case transferType = "transfer_type"
         case customerGuid = "customer_guid"
         case quoteGuid = "quote_guid"
+        case externalBankAccountGuid = "external_bank_account_guid"
         case asset
         case side
         case state
@@ -109,6 +113,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(transferType, forKey: .transferType)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(quoteGuid, forKey: .quoteGuid)
+        try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(state, forKey: .state)
