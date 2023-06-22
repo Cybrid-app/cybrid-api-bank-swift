@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTrades**
 ```swift
-    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, completion: @escaping (_ data: TradeListBankModel?, _ error: Error?) -> Void)
+    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: TradeListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get trades list
@@ -129,9 +129,10 @@ let guid = "guid_example" // String | Comma separated trade_guids to list trades
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list trades for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list trades for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list trades for. (optional)
+let state = "state_example" // String | Comma separated states to list trades for. (optional)
 
 // Get trades list
-TradesAPI.listTrades(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid) { (response, error) in
+TradesAPI.listTrades(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -153,6 +154,7 @@ Name | Type | Description  | Notes
  **bankGuid** | **String** | Comma separated bank_guids to list trades for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list trades for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list trades for. | [optional] 
+ **state** | **String** | Comma separated states to list trades for. | [optional] 
 
 ### Return type
 
