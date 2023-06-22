@@ -36,16 +36,14 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
     public var externalBankAccountGuid: String?
-    public var oneTimeAddress: PostOneTimeAddressBankModel?
     /** The optional expected error to simulate transfer failure. */
     public var expectedError: ExpectedErrorBankModel?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, oneTimeAddress: PostOneTimeAddressBankModel? = nil, expectedError: ExpectedErrorBankModel? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.externalWalletGuid = externalWalletGuid
         self.externalBankAccountGuid = externalBankAccountGuid
-        self.oneTimeAddress = oneTimeAddress
         self.expectedError = expectedError
     }
 
@@ -54,7 +52,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case transferType = "transfer_type"
         case externalWalletGuid = "external_wallet_guid"
         case externalBankAccountGuid = "external_bank_account_guid"
-        case oneTimeAddress = "one_time_address"
         case expectedError = "expected_error"
     }
 
@@ -66,7 +63,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(transferType, forKey: .transferType)
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
-        try container.encodeIfPresent(oneTimeAddress, forKey: .oneTimeAddress)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
     }
 }
