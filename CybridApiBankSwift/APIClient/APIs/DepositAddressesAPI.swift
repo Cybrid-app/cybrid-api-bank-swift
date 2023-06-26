@@ -34,7 +34,7 @@ open class DepositAddressesAPI {
     /**
      Create Deposit Address
      - POST /api/deposit_addresses
-     - Create an Deposit Address.  Required scope: **deposit_addresses:execute**
+     - Creates a deposit address.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the deposit address details in our private store | | created | The Platform has created the deposit address |    Required scope: **deposit_addresses:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
