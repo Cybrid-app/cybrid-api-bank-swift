@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create Workflow
 
-Creates a workflow.  Required scope: **workflows:execute**
+Creates a workflow.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the workflow details in our private store | | completed | The Platform has created the workflow | | failed | The workflow was not completed successfully |    Required scope: **workflows:execute**
 
 ### Example
 ```swift

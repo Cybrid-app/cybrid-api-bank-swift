@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create Deposit Address
 
-Create an Deposit Address.  Required scope: **deposit_addresses:execute**
+Creates a deposit address.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the deposit address details in our private store | | created | The Platform has created the deposit address |    Required scope: **deposit_addresses:execute**
 
 ### Example
 ```swift
