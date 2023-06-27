@@ -34,7 +34,7 @@ open class WorkflowsAPI {
     /**
      Create Workflow
      - POST /api/workflows
-     - Creates a workflow.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the workflow details in our private store | | completed | The Platform has created the workflow | | failed | The workflow was not completed successfully |    Required scope: **workflows:execute**
+     - Creates a workflow.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the workflow details in our private store | | completed | The Platform has created the workflow | | failed | The workflow was not completed successfully |  ## Plaid  | Param | Description | |-------|-------------| | redirect_uri | All URIs must be registered with Cybrid. For local testing use `http://localhost:4200/bank-account-connect` |    Required scope: **workflows:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
