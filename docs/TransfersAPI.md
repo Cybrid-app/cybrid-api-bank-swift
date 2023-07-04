@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTransfers**
 ```swift
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get transfers list
@@ -125,14 +125,15 @@ import CybridApiBankSwift
 
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
-let guid = "guid_example" // String | Comma separated trade_guids to list transfers for. (optional)
+let guid = "guid_example" // String | Comma separated transfer_guids to list transfers for. (optional)
+let transferType = "transferType_example" // String | Comma separated transfer_types to list accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list transfers for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list transfers for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list transfers for. (optional)
 let state = "state_example" // String | Comma separated states to list transfers for. (optional)
 
 // Get transfers list
-TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state) { (response, error) in
+TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -150,7 +151,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
- **guid** | **String** | Comma separated trade_guids to list transfers for. | [optional] 
+ **guid** | **String** | Comma separated transfer_guids to list transfers for. | [optional] 
+ **transferType** | **String** | Comma separated transfer_types to list accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list transfers for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list transfers for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list transfers for. | [optional] 
