@@ -120,7 +120,8 @@ open class TransfersAPI {
      
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
-     - parameter guid: (query) Comma separated trade_guids to list transfers for. (optional)
+     - parameter guid: (query) Comma separated transfer_guids to list transfers for. (optional)
+     - parameter transferType: (query) Comma separated transfer_types to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list transfers for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list transfers for. (optional)
      - parameter accountGuid: (query) Comma separated account_guids to list transfers for. (optional)
@@ -129,8 +130,8 @@ open class TransfersAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listTransfersWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state).execute(apiResponseQueue) { result in
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listTransfersWithRequestBuilder(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -152,14 +153,15 @@ open class TransfersAPI {
        - name: oauth2
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
-     - parameter guid: (query) Comma separated trade_guids to list transfers for. (optional)
+     - parameter guid: (query) Comma separated transfer_guids to list transfers for. (optional)
+     - parameter transferType: (query) Comma separated transfer_types to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list transfers for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list transfers for. (optional)
      - parameter accountGuid: (query) Comma separated account_guids to list transfers for. (optional)
      - parameter state: (query) Comma separated states to list transfers for. (optional)
      - returns: RequestBuilder<TransferListBankModel> 
      */
-    open class func listTransfersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil) -> RequestBuilder<TransferListBankModel> {
+    open class func listTransfersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil) -> RequestBuilder<TransferListBankModel> {
         let localVariablePath = "/api/transfers"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -169,6 +171,7 @@ open class TransfersAPI {
             "page": page?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
+            "transfer_type": transferType?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
             "account_guid": accountGuid?.encodeToJSON(),
