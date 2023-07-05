@@ -50,8 +50,10 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var side: SideBankModel?
     /** The trade's state */
     public var state: StateBankModel?
-    /** The amount being transferred. */
+    /** The actual amount in base units of the asset. */
     public var amount: Int?
+    /** The estimated amount in base units of the asset. */
+    public var estimatedAmount: Int?
     /** The fee associated with the trade. */
     public var fee: Int?
     /** The estimated network fee in base units of network_fee_asset. Only present on `crypto` transfers. */
@@ -67,7 +69,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.customerGuid = customerGuid
@@ -77,6 +79,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         self.side = side
         self.state = state
         self.amount = amount
+        self.estimatedAmount = estimatedAmount
         self.fee = fee
         self.estimatedNetworkFee = estimatedNetworkFee
         self.networkFee = networkFee
@@ -96,6 +99,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case side
         case state
         case amount
+        case estimatedAmount = "estimated_amount"
         case fee
         case estimatedNetworkFee = "estimated_network_fee"
         case networkFee = "network_fee"
@@ -118,6 +122,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(amount, forKey: .amount)
+        try container.encodeIfPresent(estimatedAmount, forKey: .estimatedAmount)
         try container.encodeIfPresent(fee, forKey: .fee)
         try container.encodeIfPresent(estimatedNetworkFee, forKey: .estimatedNetworkFee)
         try container.encodeIfPresent(networkFee, forKey: .networkFee)
