@@ -23,19 +23,19 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the identity verification. */
-    public var guid: String
+    public var guid: String?
     /** The address' bank identifier. */
-    public var bankGuid: String
+    public var bankGuid: String?
     /** The address' customer identifier. */
-    public var customerGuid: String
+    public var customerGuid: String?
     /** The address' account identifier. */
-    public var accountGuid: String
+    public var accountGuid: String?
     /** ISO8601 datetime the address was created at. */
-    public var createdAt: Date
+    public var createdAt: Date?
     /** The asset the transfer is related to, e.g., USD. */
-    public var asset: String
+    public var asset: String?
     /** The state of the address. */
-    public var state: StateBankModel
+    public var state: StateBankModel?
     /** The blockchain address. */
     public var address: String?
     /** The blockchain address format. */
@@ -43,7 +43,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
     /** The blockchain address tag. */
     public var tag: String?
 
-    public init(guid: String, bankGuid: String, customerGuid: String, accountGuid: String, createdAt: Date, asset: String, state: StateBankModel, address: String? = nil, format: FormatBankModel? = nil, tag: String? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, asset: String? = nil, state: StateBankModel? = nil, address: String? = nil, format: FormatBankModel? = nil, tag: String? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -73,13 +73,13 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(guid, forKey: .guid)
-        try container.encode(bankGuid, forKey: .bankGuid)
-        try container.encode(customerGuid, forKey: .customerGuid)
-        try container.encode(accountGuid, forKey: .accountGuid)
-        try container.encode(createdAt, forKey: .createdAt)
-        try container.encode(asset, forKey: .asset)
-        try container.encode(state, forKey: .state)
+        try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(accountGuid, forKey: .accountGuid)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(asset, forKey: .asset)
+        try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(format, forKey: .format)
         try container.encodeIfPresent(tag, forKey: .tag)
