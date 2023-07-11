@@ -14,11 +14,13 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case kyc = "kyc"
+        case bankAccount = "bank_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case idAndSelfie = "id_and_selfie"
         case attested = "attested"
+        case plaidIdentityMatch = "plaid_identity_match"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -44,6 +46,8 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case addressCheckFailure = "address_check_failure"
         case dobCheckFailure = "dob_check_failure"
         case idNumberCheckFailure = "id_number_check_failure"
+        case phoneNumberCheckFailure = "phone_number_check_failure"
+        case emailAddressCheckFailure = "email_address_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PersonaStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -76,8 +80,10 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var personaInquiryId: String?
     /** The Persona state of the backing inquiry. */
     public var personaState: PersonaStateBankModel?
+    /** The external bank account's identifier. */
+    public var externalBankAccountGuid: String?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil, personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil, personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil, externalBankAccountGuid: String? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
@@ -88,6 +94,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.failureCodes = failureCodes
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
+        self.externalBankAccountGuid = externalBankAccountGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -101,6 +108,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case failureCodes = "failure_codes"
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
+        case externalBankAccountGuid = "external_bank_account_guid"
     }
 
     // Encodable protocol methods
@@ -117,6 +125,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)
+        try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
     }
 }
 
