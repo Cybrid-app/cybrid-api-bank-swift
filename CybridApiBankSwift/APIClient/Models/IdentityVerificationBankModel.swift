@@ -14,11 +14,13 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case kyc = "kyc"
+        case bankAccount = "bank_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case idAndSelfie = "id_and_selfie"
         case attested = "attested"
+        case plaidIdentityMatch = "plaid_identity_match"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -44,6 +46,8 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case addressCheckFailure = "address_check_failure"
         case dobCheckFailure = "dob_check_failure"
         case idNumberCheckFailure = "id_number_check_failure"
+        case phoneNumberCheckFailure = "phone_number_check_failure"
+        case emailAddressCheckFailure = "email_address_check_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the identity verification. */

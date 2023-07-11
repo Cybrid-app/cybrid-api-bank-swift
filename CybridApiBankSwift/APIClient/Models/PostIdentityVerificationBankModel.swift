@@ -14,11 +14,13 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case kyc = "kyc"
+        case bankAccount = "bank_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case idAndSelfie = "id_and_selfie"
         case attested = "attested"
+        case plaidIdentityMatch = "plaid_identity_match"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -38,12 +40,18 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var address: PostIdentityVerificationAddressBankModel?
     /** The customer's date of birth; required when method is set to 'attested'. */
     public var dateOfBirth: Date?
+    /** The customer's phone number. */
+    public var phoneNumber: String?
+    /** The customer's email address. */
+    public var emailAddress: String?
     /** The customer's identification numbers; required when method is set to 'attested'. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
+    /** The external bank account's identifier. Required for 'bank_account' type. */
+    public var externalBankAccountGuid: String?
     /** The optional expected behaviour to simulate. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
 
-    public init(type: TypeBankModel, method: MethodBankModel, customerGuid: String? = nil, countryCode: String? = nil, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
+    public init(type: TypeBankModel, method: MethodBankModel, customerGuid: String? = nil, countryCode: String? = nil, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, externalBankAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
         self.type = type
         self.method = method
         self.customerGuid = customerGuid
@@ -51,7 +59,10 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         self.name = name
         self.address = address
         self.dateOfBirth = dateOfBirth
+        self.phoneNumber = phoneNumber
+        self.emailAddress = emailAddress
         self.identificationNumbers = identificationNumbers
+        self.externalBankAccountGuid = externalBankAccountGuid
         self.expectedBehaviours = expectedBehaviours
     }
 
@@ -63,7 +74,10 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case name
         case address
         case dateOfBirth = "date_of_birth"
+        case phoneNumber = "phone_number"
+        case emailAddress = "email_address"
         case identificationNumbers = "identification_numbers"
+        case externalBankAccountGuid = "external_bank_account_guid"
         case expectedBehaviours = "expected_behaviours"
     }
 
@@ -78,7 +92,10 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
+        try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+        try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
+        try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(expectedBehaviours, forKey: .expectedBehaviours)
     }
 }

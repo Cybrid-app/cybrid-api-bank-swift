@@ -10,35 +10,40 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The customer&#39;s name; required when method is set to &#39;attested&#39;. */
+/** The customer&#39;s name; required when method is set to &#39;attested&#39;. Either full or first and last are required. */
 public struct PostIdentityVerificationNameBankModel: Codable, JSONEncodable, Hashable {
 
     /** The customer's first name. */
-    public var first: String
+    public var first: String?
     /** The customer's middle name. */
     public var middle: String?
     /** The customer's last name. */
-    public var last: String
+    public var last: String?
+    /** The customer's full name. */
+    public var full: String?
 
-    public init(first: String, middle: String? = nil, last: String) {
+    public init(first: String? = nil, middle: String? = nil, last: String? = nil, full: String? = nil) {
         self.first = first
         self.middle = middle
         self.last = last
+        self.full = full
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case first
         case middle
         case last
+        case full
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(first, forKey: .first)
+        try container.encodeIfPresent(first, forKey: .first)
         try container.encodeIfPresent(middle, forKey: .middle)
-        try container.encode(last, forKey: .last)
+        try container.encodeIfPresent(last, forKey: .last)
+        try container.encodeIfPresent(full, forKey: .full)
     }
 }
 
