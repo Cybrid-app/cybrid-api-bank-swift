@@ -19,6 +19,7 @@ public struct PostIdentificationNumberBankModel: Codable, JSONEncodable, Hashabl
         case residenceCard = "residence_card"
         case socialSecurityNumber = "social_security_number"
         case taxIdentificationNumber = "tax_identification_number"
+        case identificationCard = "identification_card"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The source of the identification number. */
