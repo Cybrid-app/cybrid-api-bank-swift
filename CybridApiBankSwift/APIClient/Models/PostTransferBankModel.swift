@@ -32,6 +32,10 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var quoteGuid: String
     /** The type of transfer. */
     public var transferType: TransferTypeBankModel
+    /** The source account's identifier. Required for book transfers. */
+    public var sourceAccountGuid: String?
+    /** The destination account's identifier. Required for book transfers. */
+    public var destinationAccountGuid: String?
     /** The customer's external wallet's identifier. */
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
@@ -39,9 +43,11 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The optional expected error to simulate transfer failure. */
     public var expectedError: ExpectedErrorBankModel?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
+        self.sourceAccountGuid = sourceAccountGuid
+        self.destinationAccountGuid = destinationAccountGuid
         self.externalWalletGuid = externalWalletGuid
         self.externalBankAccountGuid = externalBankAccountGuid
         self.expectedError = expectedError
@@ -50,6 +56,8 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case quoteGuid = "quote_guid"
         case transferType = "transfer_type"
+        case sourceAccountGuid = "source_account_guid"
+        case destinationAccountGuid = "destination_account_guid"
         case externalWalletGuid = "external_wallet_guid"
         case externalBankAccountGuid = "external_bank_account_guid"
         case expectedError = "expected_error"
@@ -61,6 +69,8 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(quoteGuid, forKey: .quoteGuid)
         try container.encode(transferType, forKey: .transferType)
+        try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
+        try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
