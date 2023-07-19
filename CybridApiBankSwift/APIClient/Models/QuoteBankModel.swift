@@ -30,6 +30,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var guid: String?
     /** The type of product the quote is for. */
     public var productType: ProductTypeBankModel?
+    /** The unique identifier for the bank. */
+    public var bankGuid: String?
     /** The unique identifier for the customer. */
     public var customerGuid: String?
     /** Symbol the quote was requested for. Format is \"asset-counter_asset\" in uppercase. Populated for trade quotes. */
@@ -53,9 +55,10 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The asset code of the network fee. */
     public var networkFeeAsset: String?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
+    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
         self.guid = guid
         self.productType = productType
+        self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.symbol = symbol
         self.side = side
@@ -72,6 +75,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case productType = "product_type"
+        case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case symbol
         case side
@@ -91,6 +95,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(productType, forKey: .productType)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(symbol, forKey: .symbol)
         try container.encodeIfPresent(side, forKey: .side)

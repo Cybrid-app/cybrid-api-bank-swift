@@ -28,6 +28,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The type of product the quote is for. */
     public var productType: ProductTypeBankModel? = .trading
+    /** The unique identifier for the bank. */
+    public var bankGuid: String?
     /** The unique identifier for the customer. */
     public var customerGuid: String?
     /** The asset code the quote was requested for. Populated for funding, book transfer and crypto transfer quotes. */
@@ -41,8 +43,9 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
         self.productType = productType
+        self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.asset = asset
         self.symbol = symbol
@@ -53,6 +56,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case productType = "product_type"
+        case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case asset
         case symbol
@@ -66,6 +70,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(productType, forKey: .productType)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(symbol, forKey: .symbol)
