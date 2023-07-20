@@ -36,14 +36,14 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var asset: String?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. Populated for trade quotes. */
     public var symbol: String?
-    /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. The direction for book transfer quotes: either 'deposit' or 'withdrawal'. The direction for crypto transfer quotes: 'withdrawal'.  */
-    public var side: SideBankModel
+    /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. The direction for crypto transfer quotes: 'withdrawal'. Book transfers do not require a side. They are all 'deposit's.  */
+    public var side: SideBankModel?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes. */
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: SideBankModel, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -74,7 +74,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(symbol, forKey: .symbol)
-        try container.encode(side, forKey: .side)
+        try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
     }
