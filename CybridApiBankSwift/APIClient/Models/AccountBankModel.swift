@@ -13,7 +13,6 @@ import AnyCodable
 public struct AccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case backstopped = "backstopped"
         case trading = "trading"
         case fee = "fee"
         case fiat = "fiat"
