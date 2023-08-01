@@ -28,7 +28,6 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
-        case initiating = "initiating"
         case pending = "pending"
         case completed = "completed"
         case failed = "failed"
@@ -50,7 +49,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var asset: String?
     /** The direction of the quote: 'deposit' or 'withdrawal'. */
     public var side: SideBankModel?
-    /** The trade's state */
+    /** The transfer's state */
     public var state: StateBankModel?
     /** The actual amount in base units of the asset. */
     public var amount: Int?
