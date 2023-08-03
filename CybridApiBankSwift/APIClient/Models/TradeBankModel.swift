@@ -38,6 +38,8 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public var side: SideBankModel?
     /** The trade's state */
     public var state: StateBankModel?
+    /** The failure code for failed trades. */
+    public var failureCode: String?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell. */
@@ -47,13 +49,14 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.quoteGuid = quoteGuid
         self.symbol = symbol
         self.side = side
         self.state = state
+        self.failureCode = failureCode
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
         self.fee = fee
@@ -67,6 +70,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         case symbol
         case side
         case state
+        case failureCode = "failure_code"
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
         case fee
@@ -83,6 +87,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(symbol, forKey: .symbol)
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(fee, forKey: .fee)

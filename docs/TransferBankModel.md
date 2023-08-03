@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**guid** | **String** | Auto-generated unique identifier for the trade. | [optional] 
+**guid** | **String** | Auto-generated unique identifier for the transfer. | [optional] 
 **transferType** | **String** | The type of transfer. | [optional] 
 **bankGuid** | **String** | The associated bank&#39;s identifier. | [optional] 
 **customerGuid** | **String** | The associated customer&#39;s identifier. | [optional] 
@@ -12,9 +12,10 @@ Name | Type | Description | Notes
 **asset** | **String** | The asset the transfer is related to, e.g., USD. | [optional] 
 **side** | **String** | The direction of the quote: &#39;deposit&#39; or &#39;withdrawal&#39;. | [optional] 
 **state** | **String** | The transfer&#39;s state | [optional] 
+**failureCode** | **String** | The failure code for failed transfers. | [optional] 
 **amount** | **Int** | The actual amount in base units of the asset. | [optional] 
 **estimatedAmount** | **Int** | The estimated amount in base units of the asset. | [optional] 
-**fee** | **Int** | The fee associated with the trade. | [optional] 
+**fee** | **Int** | The fee associated with the transfer. | [optional] 
 **estimatedNetworkFee** | **Int** | The estimated network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers. | [optional] 
 **networkFee** | **Int** | The actual network fee in base units of network_fee_asset. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
 **networkFeeAsset** | **String** | The asset code of the network fee. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
