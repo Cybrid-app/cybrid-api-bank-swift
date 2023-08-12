@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **getCustomer**
 ```swift
-    open class func getCustomer(customerGuid: String, completion: @escaping (_ data: CustomerBankModel?, _ error: Error?) -> Void)
+    open class func getCustomer(customerGuid: String, includePii: Bool? = nil, completion: @escaping (_ data: CustomerBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Customer
@@ -74,9 +74,10 @@ Retrieves a customer.  Required scope: **customers:read**
 import CybridApiBankSwift
 
 let customerGuid = "customerGuid_example" // String | Identifier for the customer.
+let includePii = true // Bool | Include PII in the response. (optional)
 
 // Get Customer
-CustomersAPI.getCustomer(customerGuid: customerGuid) { (response, error) in
+CustomersAPI.getCustomer(customerGuid: customerGuid, includePii: includePii) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -93,6 +94,7 @@ CustomersAPI.getCustomer(customerGuid: customerGuid) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customerGuid** | **String** | Identifier for the customer. | 
+ **includePii** | **Bool** | Include PII in the response. | [optional] 
 
 ### Return type
 
