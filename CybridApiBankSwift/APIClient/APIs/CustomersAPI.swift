@@ -66,12 +66,13 @@ open class CustomersAPI {
      Get Customer
      
      - parameter customerGuid: (path) Identifier for the customer. 
+     - parameter includePii: (query) Include PII in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getCustomer(customerGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getCustomerWithRequestBuilder(customerGuid: customerGuid).execute(apiResponseQueue) { result in
+    open class func getCustomer(customerGuid: String, includePii: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getCustomerWithRequestBuilder(customerGuid: customerGuid, includePii: includePii).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -92,9 +93,10 @@ open class CustomersAPI {
        - type: oauth2
        - name: oauth2
      - parameter customerGuid: (path) Identifier for the customer. 
+     - parameter includePii: (query) Include PII in the response. (optional)
      - returns: RequestBuilder<CustomerBankModel> 
      */
-    open class func getCustomerWithRequestBuilder(customerGuid: String) -> RequestBuilder<CustomerBankModel> {
+    open class func getCustomerWithRequestBuilder(customerGuid: String, includePii: Bool? = nil) -> RequestBuilder<CustomerBankModel> {
         var localVariablePath = "/api/customers/{customer_guid}"
         let customerGuidPreEscape = "\(APIHelper.mapValueToPathItem(customerGuid))"
         let customerGuidPostEscape = customerGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -102,7 +104,10 @@ open class CustomersAPI {
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include_pii": includePii?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :

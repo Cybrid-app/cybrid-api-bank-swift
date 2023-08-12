@@ -33,13 +33,26 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** The customer's state. */
     public var state: StateBankModel?
+    public var name: CustomerNameBankModel?
+    public var address: CustomerAddressBankModel?
+    /** The customer's date of birth. */
+    public var dateOfBirth: Date?
+    /** The customer's phone number. */
+    public var phoneNumber: String?
+    /** The customer's phone number. */
+    public var emailAddress: String?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
         self.createdAt = createdAt
         self.state = state
+        self.name = name
+        self.address = address
+        self.dateOfBirth = dateOfBirth
+        self.phoneNumber = phoneNumber
+        self.emailAddress = emailAddress
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -48,6 +61,11 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case type
         case createdAt = "created_at"
         case state
+        case name
+        case address
+        case dateOfBirth = "date_of_birth"
+        case phoneNumber = "phone_number"
+        case emailAddress = "email_address"
     }
 
     // Encodable protocol methods
@@ -59,6 +77,11 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
+        try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+        try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
     }
 }
 
