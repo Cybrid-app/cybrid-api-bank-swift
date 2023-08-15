@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **receiveAmount** | **Int** | The amount to be received in base units of the currency: currency is \&quot;asset\&quot; for buy and \&quot;counter_asset\&quot; for sell. | [optional] 
 **deliverAmount** | **Int** | The amount to be delivered in base units of the currency: currency is \&quot;counter_asset\&quot; for buy and \&quot;asset\&quot; for sell. | [optional] 
 **fee** | **Int** | The fee associated with the trade. Denominated in \&quot;counter_asset\&quot; base units | [optional] 
-**createdAt** | **Date** | ISO8601 datetime the bank was created at. | [optional] 
+**createdAt** | **Date** | ISO8601 datetime the trade was created at. | [optional] 
+**updatedAt** | **Date** | ISO8601 datetime the trade was last updated at. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
