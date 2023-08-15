@@ -46,10 +46,12 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public var deliverAmount: String?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units */
     public var fee: String?
-    /** ISO8601 datetime the bank was created at. */
+    /** ISO8601 datetime the trade was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the trade was last updated at. */
+    public var updatedAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.quoteGuid = quoteGuid
@@ -61,6 +63,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         self.deliverAmount = deliverAmount
         self.fee = fee
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -75,6 +78,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         case deliverAmount = "deliver_amount"
         case fee
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 
     // Encodable protocol methods
@@ -92,6 +96,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(fee, forKey: .fee)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
 }
 
