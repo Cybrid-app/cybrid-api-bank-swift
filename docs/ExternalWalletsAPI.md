@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 # **listExternalWallets**
 ```swift
-    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: ExternalWalletListBankModel?, _ error: Error?) -> Void)
+    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: ExternalWalletListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get external wallets list
@@ -176,13 +176,14 @@ import CybridApiBankSwift
 
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
+let owner = ListRequestOwner() // ListRequestOwnerBankModel | The owner of the entity. (optional)
 let guid = "guid_example" // String | Comma separated external_wallet_guids to list external_wallets for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list external_wallets for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list external_wallets for. (optional)
 let state = "state_example" // String | Comma separated states to list external_wallets for. (optional)
 
 // Get external wallets list
-ExternalWalletsAPI.listExternalWallets(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state) { (response, error) in
+ExternalWalletsAPI.listExternalWallets(page: page, perPage: perPage, owner: owner, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -200,6 +201,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
+ **owner** | [**ListRequestOwnerBankModel**](.md) | The owner of the entity. | [optional] 
  **guid** | **String** | Comma separated external_wallet_guids to list external_wallets for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list external_wallets for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list external_wallets for. | [optional] 
