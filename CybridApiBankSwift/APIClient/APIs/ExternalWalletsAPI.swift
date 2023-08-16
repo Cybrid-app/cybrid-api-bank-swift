@@ -173,6 +173,7 @@ open class ExternalWalletsAPI {
      
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter owner: (query) The owner of the entity. (optional)
      - parameter guid: (query) Comma separated external_wallet_guids to list external_wallets for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list external_wallets for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list external_wallets for. (optional)
@@ -181,8 +182,8 @@ open class ExternalWalletsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listExternalWalletsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state).execute(apiResponseQueue) { result in
+    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listExternalWalletsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -204,13 +205,14 @@ open class ExternalWalletsAPI {
        - name: oauth2
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter owner: (query) The owner of the entity. (optional)
      - parameter guid: (query) Comma separated external_wallet_guids to list external_wallets for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list external_wallets for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list external_wallets for. (optional)
      - parameter state: (query) Comma separated states to list external_wallets for. (optional)
      - returns: RequestBuilder<ExternalWalletListBankModel> 
      */
-    open class func listExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<ExternalWalletListBankModel> {
+    open class func listExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<ExternalWalletListBankModel> {
         let localVariablePath = "/api/external_wallets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -219,6 +221,7 @@ open class ExternalWalletsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "page": page?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
+            "owner": owner?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
