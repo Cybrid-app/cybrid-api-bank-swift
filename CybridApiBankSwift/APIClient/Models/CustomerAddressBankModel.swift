@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** The customer&#39;s address. Only available for GET operations when &#39;include_pii&#39; is set. */
 public struct CustomerAddressBankModel: Codable, JSONEncodable, Hashable {
 
     /** The first line of the address. */
