@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** The customer&#39;s name. Only available for GET operations when &#39;include_pii&#39; is set. */
 public struct CustomerNameBankModel: Codable, JSONEncodable, Hashable {
 
     /** The customer's first name. */
