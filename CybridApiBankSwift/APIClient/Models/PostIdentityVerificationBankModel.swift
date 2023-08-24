@@ -26,6 +26,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case passedImmediately = "passed_immediately"
         case failedImmediately = "failed_immediately"
+        case taxIdNotChecked = "tax_id_not_checked"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The type of identity verification. */
