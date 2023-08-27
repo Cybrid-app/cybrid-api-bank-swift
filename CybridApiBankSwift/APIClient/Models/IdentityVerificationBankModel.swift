@@ -48,6 +48,8 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case idNumberCheckFailure = "id_number_check_failure"
         case phoneNumberCheckFailure = "phone_number_check_failure"
         case emailAddressCheckFailure = "email_address_check_failure"
+        case decisionTimeout = "decision_timeout"
+        case plaidFailure = "plaid_failure"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the identity verification. */
