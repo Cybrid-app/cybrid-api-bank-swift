@@ -27,6 +27,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         case completed = "completed"
         case failed = "failed"
         case refreshRequired = "refresh_required"
+        case unverified = "unverified"
         case deleting = "deleting"
         case deleted = "deleted"
         case unknownDefaultOpenApi = "unknown_default_open_api"
