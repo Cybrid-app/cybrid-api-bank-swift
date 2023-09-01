@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **networkFeeLiabilityAmount** | **Int** | The equivalent fiat network fee in base units of network_fee_liability_amount_asset. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
 **networkFeeLiabilityAmountAsset** | **String** | The fiat asset the network_fee_liability_amount is denominated in. Only present on &#x60;crypto&#x60; transfers that have successfully completed. | [optional] 
 **txnHash** | **String** | The hash of the blockchain transaction | [optional] 
+**sourceAccount** | [**TransferSourceAccountBankModel**](TransferSourceAccountBankModel.md) |  | [optional] 
+**destinationAccount** | [**TransferDestinationAccountBankModel**](TransferDestinationAccountBankModel.md) |  | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the trade was last updated at. | [optional] 
 
