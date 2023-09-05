@@ -39,7 +39,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var dateOfBirth: Date?
     /** The customer's phone number. Only available for GET operations when 'include_pii' is set. */
     public var phoneNumber: String?
-    /** The customer's phone number. Only available for GET operations when 'include_pii' is set. */
+    /** The customer's email address. Only available for GET operations when 'include_pii' is set. */
     public var emailAddress: String?
 
     public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil) {

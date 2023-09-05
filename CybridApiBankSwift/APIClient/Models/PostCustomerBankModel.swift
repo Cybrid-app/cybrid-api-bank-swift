@@ -24,7 +24,7 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
     public var dateOfBirth: Date?
     /** The customer's phone number. */
     public var phoneNumber: String?
-    /** The customer's phone number. */
+    /** The customer's email address. */
     public var emailAddress: String?
     /** The customer's identification numbers. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
