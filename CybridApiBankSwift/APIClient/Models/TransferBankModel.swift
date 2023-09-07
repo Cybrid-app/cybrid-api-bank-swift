@@ -19,6 +19,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case crypto = "crypto"
         case internalBankRebalance = "internal_bank_rebalance"
         case internalWalletRebalance = "internal_wallet_rebalance"
+        case instantFunding = "instant_funding"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
