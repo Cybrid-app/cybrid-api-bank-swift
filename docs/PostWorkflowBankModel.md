@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **customerGuid** | **String** | The customer identifier associated with the workflow. | [optional] 
 **externalBankAccountGuid** | **String** | The external bank account identifier associated with the workflow. | [optional] 
 **language** | **String** | The language to initialize Plaid link. | [optional] 
-**linkCustomizationName** | **String** | The customization name for Plaid link. | [optional] 
+**linkCustomizationName** | **String** | The customization name for Plaid link. Currently only supports the value \&quot;default\&quot;. | [optional] 
 **redirectUri** | **String** | The redirect URI for Plaid link. | [optional] 
 **androidPackageName** | **String** | The Android package name for Plaid link. | [optional] 
 
