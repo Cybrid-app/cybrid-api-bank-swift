@@ -16,6 +16,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case funding = "funding"
         case book = "book"
         case crypto = "crypto"
+        case instantFunding = "instant_funding"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -25,7 +26,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case failed = "failed"
         case cancelled = "cancelled"
         case manualIntervention = "manual_intervention"
-        case reversed = "reversed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The associated quote's identifier. */
