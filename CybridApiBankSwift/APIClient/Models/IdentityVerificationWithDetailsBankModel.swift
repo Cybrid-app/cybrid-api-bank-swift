@@ -41,6 +41,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case databaseCheckFailure = "database_check_failure"
         case selfieFailure = "selfie_failure"
         case pepCheckFailure = "pep_check_failure"
+        case mediaCheckFailure = "media_check_failure"
         case watchlistCheckFailure = "watchlist_check_failure"
         case nameCheckFailure = "name_check_failure"
         case addressCheckFailure = "address_check_failure"
