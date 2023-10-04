@@ -13,6 +13,10 @@ Name | Type | Description | Notes
 **plaidInstitutionId** | **String** | Plaid&#39;s institution ID for the account&#39;s institution. Required for &#39;plaid_processor_token&#39; accounts. | [optional] 
 **plaidAccountMask** | **String** | The account mask for the account. Required for &#39;plaid_processor_token&#39; accounts. | [optional] 
 **plaidAccountName** | **String** | The name of the account. Required for &#39;plaid_processor_token&#39; accounts. | [optional] 
+**counterpartyBankAccount** | [**PostExternalBankAccountCounterpartyBankAccountBankModel**](PostExternalBankAccountCounterpartyBankAccountBankModel.md) |  | [optional] 
+**counterpartyName** | [**PostExternalBankAccountCounterpartyNameBankModel**](PostExternalBankAccountCounterpartyNameBankModel.md) |  | [optional] 
+**counterpartyAddress** | [**PostExternalBankAccountCounterpartyAddressBankModel**](PostExternalBankAccountCounterpartyAddressBankModel.md) |  | [optional] 
+**counterpartyEmailAddress** | **String** | The counterparty&#39;s email address on the account. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

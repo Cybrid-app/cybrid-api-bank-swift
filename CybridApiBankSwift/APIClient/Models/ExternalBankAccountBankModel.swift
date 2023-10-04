@@ -15,6 +15,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case plaid = "plaid"
         case plaidProcessorToken = "plaid_processor_token"
+        case rawRoutingDetails = "raw_routing_details"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum EnvironmentBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
