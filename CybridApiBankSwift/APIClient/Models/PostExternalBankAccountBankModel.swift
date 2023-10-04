@@ -15,6 +15,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case plaid = "plaid"
         case plaidProcessorToken = "plaid_processor_token"
+        case rawRoutingDetails = "raw_routing_details"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The name of the account. */
@@ -37,8 +38,13 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var plaidAccountMask: String?
     /** The name of the account. Required for 'plaid_processor_token' accounts. */
     public var plaidAccountName: String?
+    public var counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel?
+    public var counterpartyName: PostExternalBankAccountCounterpartyNameBankModel?
+    public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
+    /** The counterparty's email address on the account. */
+    public var counterpartyEmailAddress: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil) {
+    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.customerGuid = customerGuid
@@ -49,6 +55,10 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         self.plaidInstitutionId = plaidInstitutionId
         self.plaidAccountMask = plaidAccountMask
         self.plaidAccountName = plaidAccountName
+        self.counterpartyBankAccount = counterpartyBankAccount
+        self.counterpartyName = counterpartyName
+        self.counterpartyAddress = counterpartyAddress
+        self.counterpartyEmailAddress = counterpartyEmailAddress
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -62,6 +72,10 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         case plaidInstitutionId = "plaid_institution_id"
         case plaidAccountMask = "plaid_account_mask"
         case plaidAccountName = "plaid_account_name"
+        case counterpartyBankAccount = "counterparty_bank_account"
+        case counterpartyName = "counterparty_name"
+        case counterpartyAddress = "counterparty_address"
+        case counterpartyEmailAddress = "counterparty_email_address"
     }
 
     // Encodable protocol methods
@@ -78,6 +92,10 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         try container.encodeIfPresent(plaidInstitutionId, forKey: .plaidInstitutionId)
         try container.encodeIfPresent(plaidAccountMask, forKey: .plaidAccountMask)
         try container.encodeIfPresent(plaidAccountName, forKey: .plaidAccountName)
+        try container.encodeIfPresent(counterpartyBankAccount, forKey: .counterpartyBankAccount)
+        try container.encodeIfPresent(counterpartyName, forKey: .counterpartyName)
+        try container.encodeIfPresent(counterpartyAddress, forKey: .counterpartyAddress)
+        try container.encodeIfPresent(counterpartyEmailAddress, forKey: .counterpartyEmailAddress)
     }
 }
 

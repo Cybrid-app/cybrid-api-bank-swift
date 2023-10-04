@@ -20,6 +20,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case attestationIdentityRecords = "attestation_identity_records"
         case kycIdentityVerifications = "kyc_identity_verifications"
+        case rawRoutingDetails = "raw_routing_details"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the bank. */
