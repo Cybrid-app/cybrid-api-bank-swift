@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listIdentityVerifications**
 ```swift
-    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, completion: @escaping (_ data: IdentityVerificationListBankModel?, _ error: Error?) -> Void)
+    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: IdentityVerificationListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Identity Verifications
@@ -128,9 +128,10 @@ let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated guids to list identity verifications for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list identity verifications for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list identity verifications for. (optional)
+let state = "state_example" // String | Comma separated states to list identity verifications for. (optional)
 
 // List Identity Verifications
-IdentityVerificationsAPI.listIdentityVerifications(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid) { (response, error) in
+IdentityVerificationsAPI.listIdentityVerifications(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -151,6 +152,7 @@ Name | Type | Description  | Notes
  **guid** | **String** | Comma separated guids to list identity verifications for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list identity verifications for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list identity verifications for. | [optional] 
+ **state** | **String** | Comma separated states to list identity verifications for. | [optional] 
 
 ### Return type
 
