@@ -12,6 +12,11 @@ import AnyCodable
 
 public struct TradeBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum TradeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case platform = "platform"
+        case liquidation = "liquidation"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case buy = "buy"
         case sell = "sell"
@@ -28,6 +33,8 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     }
     /** Auto-generated unique identifier for the trade. */
     public var guid: String?
+    /** The type of trade. */
+    public var tradeType: TradeTypeBankModel?
     /** The associated customer's identifier. */
     public var customerGuid: String?
     /** The associated quote's identifier. */
@@ -51,8 +58,9 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the trade was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String? = nil, tradeType: TradeTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
+        self.tradeType = tradeType
         self.customerGuid = customerGuid
         self.quoteGuid = quoteGuid
         self.symbol = symbol
@@ -68,6 +76,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case tradeType = "trade_type"
         case customerGuid = "customer_guid"
         case quoteGuid = "quote_guid"
         case symbol
@@ -86,6 +95,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(tradeType, forKey: .tradeType)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(quoteGuid, forKey: .quoteGuid)
         try container.encodeIfPresent(symbol, forKey: .symbol)

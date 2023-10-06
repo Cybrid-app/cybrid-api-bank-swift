@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the trade. | [optional] 
+**tradeType** | **String** | The type of trade. | [optional] 
 **customerGuid** | **String** | The associated customer&#39;s identifier. | [optional] 
 **quoteGuid** | **String** | The associated quote&#39;s identifier. | [optional] 
 **symbol** | **String** | The trade symbol the pricing is related to. Format is asset-counter_asset, e.g., BTC-USD. | [optional] 
