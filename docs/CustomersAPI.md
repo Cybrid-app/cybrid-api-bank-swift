@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createCustomer**](CustomersAPI.md#createcustomer) | **POST** /api/customers | Create Customer
 [**getCustomer**](CustomersAPI.md#getcustomer) | **GET** /api/customers/{customer_guid} | Get Customer
 [**listCustomers**](CustomersAPI.md#listcustomers) | **GET** /api/customers | Get customers list
+[**updateCustomer**](CustomersAPI.md#updatecustomer) | **PATCH** /api/customers/{customer_guid} | Patch Customer
 
 
 # **createCustomer**
@@ -163,6 +164,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateCustomer**
+```swift
+    open class func updateCustomer(customerGuid: String, patchCustomerBankModel: PatchCustomerBankModel, completion: @escaping (_ data: CustomerBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Customer
+
+Update a customer.  Required scope: **customers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let customerGuid = "customerGuid_example" // String | Identifier for the customer.
+let patchCustomerBankModel = PatchCustomer(state: "state_example") // PatchCustomerBankModel | 
+
+// Patch Customer
+CustomersAPI.updateCustomer(customerGuid: customerGuid, patchCustomerBankModel: patchCustomerBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customerGuid** | **String** | Identifier for the customer. | 
+ **patchCustomerBankModel** | [**PatchCustomerBankModel**](PatchCustomerBankModel.md) |  | 
+
+### Return type
+
+[**CustomerBankModel**](CustomerBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

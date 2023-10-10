@@ -181,4 +181,59 @@ open class CustomersAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch Customer
+     
+     - parameter customerGuid: (path) Identifier for the customer. 
+     - parameter patchCustomerBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateCustomer(customerGuid: String, patchCustomerBankModel: PatchCustomerBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateCustomerWithRequestBuilder(customerGuid: customerGuid, patchCustomerBankModel: patchCustomerBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Customer
+     - PATCH /api/customers/{customer_guid}
+     - Update a customer.  Required scope: **customers:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter customerGuid: (path) Identifier for the customer. 
+     - parameter patchCustomerBankModel: (body)  
+     - returns: RequestBuilder<CustomerBankModel> 
+     */
+    open class func updateCustomerWithRequestBuilder(customerGuid: String, patchCustomerBankModel: PatchCustomerBankModel) -> RequestBuilder<CustomerBankModel> {
+        var localVariablePath = "/api/customers/{customer_guid}"
+        let customerGuidPreEscape = "\(APIHelper.mapValueToPathItem(customerGuid))"
+        let customerGuidPostEscape = customerGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{customer_guid}", with: customerGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchCustomerBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CustomerBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
