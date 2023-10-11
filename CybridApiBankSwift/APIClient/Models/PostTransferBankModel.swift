@@ -42,8 +42,10 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalBankAccountGuid: String?
     /** The optional expected error to simulate transfer failure. */
     public var expectedError: ExpectedErrorBankModel?
+    /** The labels associated with the transfer. */
+    public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.sourceAccountGuid = sourceAccountGuid
@@ -51,6 +53,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         self.externalWalletGuid = externalWalletGuid
         self.externalBankAccountGuid = externalBankAccountGuid
         self.expectedError = expectedError
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -61,6 +64,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case externalWalletGuid = "external_wallet_guid"
         case externalBankAccountGuid = "external_bank_account_guid"
         case expectedError = "expected_error"
+        case labels
     }
 
     // Encodable protocol methods
@@ -74,6 +78,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 
