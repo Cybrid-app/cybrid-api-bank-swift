@@ -41,8 +41,10 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var phoneNumber: String?
     /** The customer's email address. Only available for GET operations when 'include_pii' is set. */
     public var emailAddress: String?
+    /** The labels associated with the customer. */
+    public var labels: [String]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
@@ -53,6 +55,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         self.dateOfBirth = dateOfBirth
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -66,6 +69,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case dateOfBirth = "date_of_birth"
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
+        case labels
     }
 
     // Encodable protocol methods
@@ -82,6 +86,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 

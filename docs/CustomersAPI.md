@@ -24,7 +24,7 @@ Creates a customer.  ## Customer Type  Customer resources are an abstraction for
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postCustomerBankModel = PostCustomer(type: "type_example", name: PostCustomer_name(first: "first_example", middle: "middle_example", last: "last_example"), address: PostCustomer_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), dateOfBirth: Date(), phoneNumber: "phoneNumber_example", emailAddress: "emailAddress_example", identificationNumbers: [PostIdentificationNumber(type: "type_example", issuingCountryCode: "issuingCountryCode_example", identificationNumber: "identificationNumber_example")]) // PostCustomerBankModel | 
+let postCustomerBankModel = PostCustomer(type: "type_example", name: PostCustomer_name(first: "first_example", middle: "middle_example", last: "last_example"), address: PostCustomer_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), dateOfBirth: Date(), phoneNumber: "phoneNumber_example", emailAddress: "emailAddress_example", identificationNumbers: [PostIdentificationNumber(type: "type_example", issuingCountryCode: "issuingCountryCode_example", identificationNumber: "identificationNumber_example")], labels: ["labels_example"]) // PostCustomerBankModel | 
 
 // Create Customer
 CustomersAPI.createCustomer(postCustomerBankModel: postCustomerBankModel) { (response, error) in
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 # **listCustomers**
 ```swift
-    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, guid: String? = nil, completion: @escaping (_ data: CustomerListBankModel?, _ error: Error?) -> Void)
+    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil, completion: @escaping (_ data: CustomerListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get customers list
@@ -130,9 +130,10 @@ let page = 987 // Int |  (optional)
 let perPage = 987 // Int |  (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list customers for. (optional)
 let guid = "guid_example" // String | Comma separated customer_guids to list customers for. (optional)
+let label = "label_example" // String | Comma separated labels to list customers for. (optional)
 
 // Get customers list
-CustomersAPI.listCustomers(page: page, perPage: perPage, bankGuid: bankGuid, guid: guid) { (response, error) in
+CustomersAPI.listCustomers(page: page, perPage: perPage, bankGuid: bankGuid, guid: guid, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -152,6 +153,7 @@ Name | Type | Description  | Notes
  **perPage** | **Int** |  | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list customers for. | [optional] 
  **guid** | **String** | Comma separated customer_guids to list customers for. | [optional] 
+ **label** | **String** | Comma separated labels to list customers for. | [optional] 
 
 ### Return type
 
