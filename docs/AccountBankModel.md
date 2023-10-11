@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **platformBalance** | **Int** | The amount of funds that are in the account, in base units of the asset. | [optional] 
 **platformAvailable** | **Int** | The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. | [optional] 
 **state** | **String** | The account&#39;s state. | [optional] 
+**labels** | **[String]** | The labels associated with the account. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

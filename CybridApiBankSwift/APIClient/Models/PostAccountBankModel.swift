@@ -25,12 +25,15 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
     public var asset: String
     /** The name of the account. */
     public var name: String
+    /** The labels associated with the account. */
+    public var labels: [String]?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, asset: String, name: String) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, asset: String, name: String, labels: [String]? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.asset = asset
         self.name = name
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -38,6 +41,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
         case customerGuid = "customer_guid"
         case asset
         case name
+        case labels
     }
 
     // Encodable protocol methods
@@ -48,6 +52,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encode(asset, forKey: .asset)
         try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 

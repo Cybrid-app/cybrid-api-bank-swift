@@ -125,12 +125,13 @@ open class AccountsAPI {
      - parameter type: (query) Comma separated account_types to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list accounts for. (optional)
+     - parameter label: (query) Comma separated labels to list accounts for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listAccountsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid).execute(apiResponseQueue) { result in
+    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listAccountsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -157,9 +158,10 @@ open class AccountsAPI {
      - parameter type: (query) Comma separated account_types to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list accounts for. (optional)
+     - parameter label: (query) Comma separated labels to list accounts for. (optional)
      - returns: RequestBuilder<AccountListBankModel> 
      */
-    open class func listAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) -> RequestBuilder<AccountListBankModel> {
+    open class func listAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil) -> RequestBuilder<AccountListBankModel> {
         let localVariablePath = "/api/accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -173,6 +175,7 @@ open class AccountsAPI {
             "type": type?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
+            "label": label?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
