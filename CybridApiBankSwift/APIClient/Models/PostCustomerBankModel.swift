@@ -28,8 +28,10 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
     public var emailAddress: String?
     /** The customer's identification numbers. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
+    /** The labels associated with the customer. */
+    public var labels: [String]?
 
-    public init(type: TypeBankModel, name: PostCustomerNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil) {
+    public init(type: TypeBankModel, name: PostCustomerNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, labels: [String]? = nil) {
         self.type = type
         self.name = name
         self.address = address
@@ -37,6 +39,7 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
         self.identificationNumbers = identificationNumbers
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -47,6 +50,7 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
         case identificationNumbers = "identification_numbers"
+        case labels
     }
 
     // Encodable protocol methods
@@ -60,6 +64,7 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 
