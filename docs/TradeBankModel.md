@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **fee** | **Int** | The fee associated with the trade. Denominated in \&quot;counter_asset\&quot; base units | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the trade was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the trade was last updated at. | [optional] 
+**labels** | **[String]** | The labels associated with the trade. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
