@@ -42,8 +42,10 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
     public var format: FormatBankModel?
     /** The blockchain address tag. */
     public var tag: String?
+    /** The labels associated with the address. */
+    public var labels: [String]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, asset: String? = nil, state: StateBankModel? = nil, address: String? = nil, format: FormatBankModel? = nil, tag: String? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, asset: String? = nil, state: StateBankModel? = nil, address: String? = nil, format: FormatBankModel? = nil, tag: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -54,6 +56,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
         self.address = address
         self.format = format
         self.tag = tag
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -67,6 +70,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
         case address
         case format
         case tag
+        case labels
     }
 
     // Encodable protocol methods
@@ -83,6 +87,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(format, forKey: .format)
         try container.encodeIfPresent(tag, forKey: .tag)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 

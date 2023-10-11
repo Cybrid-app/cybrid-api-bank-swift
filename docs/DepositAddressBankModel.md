@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **address** | **String** | The blockchain address. | [optional] 
 **format** | **String** | The blockchain address format. | [optional] 
 **tag** | **String** | The blockchain address tag. | [optional] 
+**labels** | **[String]** | The labels associated with the address. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
