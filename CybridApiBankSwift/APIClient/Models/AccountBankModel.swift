@@ -44,8 +44,10 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     public var platformAvailable: String?
     /** The account's state. */
     public var state: StateBankModel?
+    /** The labels associated with the account. */
+    public var labels: [String]?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil) {
+    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil, labels: [String]? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
@@ -56,6 +58,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         self.platformBalance = platformBalance
         self.platformAvailable = platformAvailable
         self.state = state
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -69,6 +72,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case platformBalance = "platform_balance"
         case platformAvailable = "platform_available"
         case state
+        case labels
     }
 
     // Encodable protocol methods
@@ -85,6 +89,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(platformBalance, forKey: .platformBalance)
         try container.encodeIfPresent(platformAvailable, forKey: .platformAvailable)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 

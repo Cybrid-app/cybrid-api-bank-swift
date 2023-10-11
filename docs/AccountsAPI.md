@@ -23,7 +23,7 @@ Creates an account.  ## Account Type  An Account is tied to a specific cryptocur
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postAccountBankModel = PostAccount(type: "type_example", customerGuid: "customerGuid_example", asset: "asset_example", name: "name_example") // PostAccountBankModel | 
+let postAccountBankModel = PostAccount(type: "type_example", customerGuid: "customerGuid_example", asset: "asset_example", name: "name_example", labels: ["labels_example"]) // PostAccountBankModel | 
 
 // Create Account
 AccountsAPI.createAccount(postAccountBankModel: postAccountBankModel) { (response, error) in
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listAccounts**
 ```swift
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
+    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Accounts
@@ -130,9 +130,10 @@ let guid = "guid_example" // String | Comma separated account_guids to list acco
 let type = "type_example" // String | Comma separated account_types to list accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list accounts for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list accounts for. (optional)
+let label = "label_example" // String | Comma separated labels to list accounts for. (optional)
 
 // List Accounts
-AccountsAPI.listAccounts(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid) { (response, error) in
+AccountsAPI.listAccounts(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -155,6 +156,7 @@ Name | Type | Description  | Notes
  **type** | **String** | Comma separated account_types to list accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list accounts for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list accounts for. | [optional] 
+ **label** | **String** | Comma separated labels to list accounts for. | [optional] 
 
 ### Return type
 
