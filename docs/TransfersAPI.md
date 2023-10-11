@@ -23,7 +23,7 @@ Creates a transfer.  ## State  | State | Description | |-------|-------------| |
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTransferBankModel = PostTransfer(quoteGuid: "quoteGuid_example", transferType: "transferType_example", sourceAccountGuid: "sourceAccountGuid_example", destinationAccountGuid: "destinationAccountGuid_example", externalWalletGuid: "externalWalletGuid_example", externalBankAccountGuid: "externalBankAccountGuid_example", expectedError: "expectedError_example") // PostTransferBankModel | 
+let postTransferBankModel = PostTransfer(quoteGuid: "quoteGuid_example", transferType: "transferType_example", sourceAccountGuid: "sourceAccountGuid_example", destinationAccountGuid: "destinationAccountGuid_example", externalWalletGuid: "externalWalletGuid_example", externalBankAccountGuid: "externalBankAccountGuid_example", expectedError: "expectedError_example", labels: ["labels_example"]) // PostTransferBankModel | 
 
 // Create Transfer
 TransfersAPI.createTransfer(postTransferBankModel: postTransferBankModel) { (response, error) in
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTransfers**
 ```swift
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get transfers list
@@ -131,9 +131,10 @@ let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list transfers for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list transfers for. (optional)
 let state = "state_example" // String | Comma separated states to list transfers for. (optional)
+let label = "label_example" // String | Comma separated labels to list transfers for. (optional)
 
 // Get transfers list
-TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state) { (response, error) in
+TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -157,6 +158,7 @@ Name | Type | Description  | Notes
  **customerGuid** | **String** | Comma separated customer_guids to list transfers for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list transfers for. | [optional] 
  **state** | **String** | Comma separated states to list transfers for. | [optional] 
+ **label** | **String** | Comma separated labels to list transfers for. | [optional] 
 
 ### Return type
 

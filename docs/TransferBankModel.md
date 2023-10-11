@@ -26,7 +26,8 @@ Name | Type | Description | Notes
 **sourceAccount** | [**TransferSourceAccountBankModel**](TransferSourceAccountBankModel.md) |  | [optional] 
 **destinationAccount** | [**TransferDestinationAccountBankModel**](TransferDestinationAccountBankModel.md) |  | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | [optional] 
-**updatedAt** | **Date** | ISO8601 datetime the trade was last updated at. | [optional] 
+**updatedAt** | **Date** | ISO8601 datetime the transfer was last updated at. | [optional] 
+**labels** | **[String]** | The labels associated with the transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

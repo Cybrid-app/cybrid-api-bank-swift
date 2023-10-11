@@ -126,12 +126,13 @@ open class TransfersAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list transfers for. (optional)
      - parameter accountGuid: (query) Comma separated account_guids to list transfers for. (optional)
      - parameter state: (query) Comma separated states to list transfers for. (optional)
+     - parameter label: (query) Comma separated labels to list transfers for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listTransfersWithRequestBuilder(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state).execute(apiResponseQueue) { result in
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listTransfersWithRequestBuilder(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -159,9 +160,10 @@ open class TransfersAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list transfers for. (optional)
      - parameter accountGuid: (query) Comma separated account_guids to list transfers for. (optional)
      - parameter state: (query) Comma separated states to list transfers for. (optional)
+     - parameter label: (query) Comma separated labels to list transfers for. (optional)
      - returns: RequestBuilder<TransferListBankModel> 
      */
-    open class func listTransfersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil) -> RequestBuilder<TransferListBankModel> {
+    open class func listTransfersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil) -> RequestBuilder<TransferListBankModel> {
         let localVariablePath = "/api/transfers"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -176,6 +178,7 @@ open class TransfersAPI {
             "customer_guid": customerGuid?.encodeToJSON(),
             "account_guid": accountGuid?.encodeToJSON(),
             "state": state?.encodeToJSON(),
+            "label": label?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
