@@ -23,7 +23,7 @@ Creates a deposit address.  ## State  | State | Description | |-------|---------
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postDepositAddressBankModel = PostDepositAddress(accountGuid: "accountGuid_example") // PostDepositAddressBankModel | 
+let postDepositAddressBankModel = PostDepositAddress(accountGuid: "accountGuid_example", labels: ["labels_example"]) // PostDepositAddressBankModel | 
 
 // Create Deposit Address
 DepositAddressesAPI.createDepositAddress(postDepositAddressBankModel: postDepositAddressBankModel) { (response, error) in
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listDepositAddresses**
 ```swift
-    open class func listDepositAddresses(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, completion: @escaping (_ data: DepositAddressListBankModel?, _ error: Error?) -> Void)
+    open class func listDepositAddresses(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, completion: @escaping (_ data: DepositAddressListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Deposit Addresses
@@ -128,9 +128,10 @@ let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated guids to list deposit addresses for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list deposit addresses for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list deposit addresses for. (optional)
+let label = "label_example" // String | Comma separated labels to list deposit addresses for. (optional)
 
 // List Deposit Addresses
-DepositAddressesAPI.listDepositAddresses(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid) { (response, error) in
+DepositAddressesAPI.listDepositAddresses(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -151,6 +152,7 @@ Name | Type | Description  | Notes
  **guid** | **String** | Comma separated guids to list deposit addresses for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list deposit addresses for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list deposit addresses for. | [optional] 
+ **label** | **String** | Comma separated labels to list deposit addresses for. | [optional] 
 
 ### Return type
 

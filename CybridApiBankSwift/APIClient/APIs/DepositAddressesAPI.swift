@@ -123,12 +123,13 @@ open class DepositAddressesAPI {
      - parameter guid: (query) Comma separated guids to list deposit addresses for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list deposit addresses for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list deposit addresses for. (optional)
+     - parameter label: (query) Comma separated labels to list deposit addresses for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listDepositAddresses(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositAddressListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listDepositAddressesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid).execute(apiResponseQueue) { result in
+    open class func listDepositAddresses(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositAddressListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listDepositAddressesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -153,9 +154,10 @@ open class DepositAddressesAPI {
      - parameter guid: (query) Comma separated guids to list deposit addresses for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list deposit addresses for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list deposit addresses for. (optional)
+     - parameter label: (query) Comma separated labels to list deposit addresses for. (optional)
      - returns: RequestBuilder<DepositAddressListBankModel> 
      */
-    open class func listDepositAddressesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) -> RequestBuilder<DepositAddressListBankModel> {
+    open class func listDepositAddressesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil) -> RequestBuilder<DepositAddressListBankModel> {
         let localVariablePath = "/api/deposit_addresses"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -167,6 +169,7 @@ open class DepositAddressesAPI {
             "guid": guid?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
+            "label": label?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
