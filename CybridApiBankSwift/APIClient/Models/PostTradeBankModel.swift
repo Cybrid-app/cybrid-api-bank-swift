@@ -22,15 +22,19 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
     public var quoteGuid: String
     /** The optional expected error to simulate trade failure. */
     public var expectedError: ExpectedErrorBankModel?
+    /** The labels associated with the trade. */
+    public var labels: [String]?
 
-    public init(quoteGuid: String, expectedError: ExpectedErrorBankModel? = nil) {
+    public init(quoteGuid: String, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.expectedError = expectedError
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case quoteGuid = "quote_guid"
         case expectedError = "expected_error"
+        case labels
     }
 
     // Encodable protocol methods
@@ -39,6 +43,7 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(quoteGuid, forKey: .quoteGuid)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 

@@ -57,8 +57,10 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** ISO8601 datetime the trade was last updated at. */
     public var updatedAt: Date?
+    /** The labels associated with the trade. */
+    public var labels: [String]?
 
-    public init(guid: String? = nil, tradeType: TradeTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String? = nil, tradeType: TradeTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.tradeType = tradeType
         self.customerGuid = customerGuid
@@ -72,6 +74,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         self.fee = fee
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -88,6 +91,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         case fee
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case labels
     }
 
     // Encodable protocol methods
@@ -107,6 +111,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fee, forKey: .fee)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 

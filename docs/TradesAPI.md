@@ -23,7 +23,7 @@ Creates a trade.  ## State  | State | Description | |-------|-------------| | st
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTradeBankModel = PostTrade(quoteGuid: "quoteGuid_example", expectedError: "expectedError_example") // PostTradeBankModel | 
+let postTradeBankModel = PostTrade(quoteGuid: "quoteGuid_example", expectedError: "expectedError_example", labels: ["labels_example"]) // PostTradeBankModel | 
 
 // Create Trade
 TradesAPI.createTrade(postTradeBankModel: postTradeBankModel) { (response, error) in
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTrades**
 ```swift
-    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: TradeListBankModel?, _ error: Error?) -> Void)
+    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, completion: @escaping (_ data: TradeListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get trades list
@@ -130,9 +130,10 @@ let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list trades for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list trades for. (optional)
 let state = "state_example" // String | Comma separated states to list trades for. (optional)
+let label = "label_example" // String | Comma separated labels to list trades for. (optional)
 
 // Get trades list
-TradesAPI.listTrades(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state) { (response, error) in
+TradesAPI.listTrades(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -155,6 +156,7 @@ Name | Type | Description  | Notes
  **customerGuid** | **String** | Comma separated customer_guids to list trades for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list trades for. | [optional] 
  **state** | **String** | Comma separated states to list trades for. | [optional] 
+ **label** | **String** | Comma separated labels to list trades for. | [optional] 
 
 ### Return type
 
