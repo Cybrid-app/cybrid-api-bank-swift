@@ -35,24 +35,6 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case failed = "failed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum FailureCodesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case requestedFailure = "requested_failure"
-        case idCheckFailure = "id_check_failure"
-        case databaseCheckFailure = "database_check_failure"
-        case selfieFailure = "selfie_failure"
-        case pepCheckFailure = "pep_check_failure"
-        case mediaCheckFailure = "media_check_failure"
-        case watchlistCheckFailure = "watchlist_check_failure"
-        case nameCheckFailure = "name_check_failure"
-        case addressCheckFailure = "address_check_failure"
-        case dobCheckFailure = "dob_check_failure"
-        case idNumberCheckFailure = "id_number_check_failure"
-        case phoneNumberCheckFailure = "phone_number_check_failure"
-        case emailAddressCheckFailure = "email_address_check_failure"
-        case decisionTimeout = "decision_timeout"
-        case plaidFailure = "plaid_failure"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
     /** The customer's identifier. */
@@ -68,9 +50,9 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     /** The outcome of the verification process. */
     public var outcome: OutcomeBankModel?
     /** The reason codes explaining the outcome. */
-    public var failureCodes: [FailureCodesBankModel]?
+    public var failureCodes: [String]?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [FailureCodesBankModel]? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [String]? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
