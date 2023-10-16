@@ -19,15 +19,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case instantFunding = "instant_funding"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case pending = "pending"
-        case inProgress = "in_progress"
-        case completed = "completed"
-        case failed = "failed"
-        case cancelled = "cancelled"
-        case manualIntervention = "manual_intervention"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** The associated quote's identifier. */
     public var quoteGuid: String
     /** The type of transfer. */
@@ -41,11 +32,11 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
     public var externalBankAccountGuid: String?
     /** The optional expected error to simulate transfer failure. */
-    public var expectedError: ExpectedErrorBankModel?
+    public var expectedError: String?
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, expectedError: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.sourceAccountGuid = sourceAccountGuid
