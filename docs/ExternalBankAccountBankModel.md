@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **plaidAccountName** | **String** | The name for the account. | [optional] 
 **state** | **String** | The state of the external bank account. | [optional] 
 **failureCode** | **String** | The failure code for failed transfers. | [optional] 
+**balanceUpdatedAt** | **Date** | The timestamp that the balance information was last updated at. | [optional] 
+**balances** | [**ExternalBankAccountBalancesBankModel**](ExternalBankAccountBalancesBankModel.md) |  | [optional] 
+**pii** | [ExternalBankAccountPiiInnerBankModel] | The account holder information. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

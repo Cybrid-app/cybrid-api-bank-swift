@@ -119,12 +119,15 @@ open class ExternalBankAccountsAPI {
      Get External Bank Account
      
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - parameter forceBalanceRefresh: (query) Force the balance on the account to be updated. (optional)
+     - parameter includeBalances: (query) Include account balances in the response. (optional)
+     - parameter includePii: (query) Include account holder&#39;s PII in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getExternalBankAccount(externalBankAccountGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getExternalBankAccountWithRequestBuilder(externalBankAccountGuid: externalBankAccountGuid).execute(apiResponseQueue) { result in
+    open class func getExternalBankAccount(externalBankAccountGuid: String, forceBalanceRefresh: Bool? = nil, includeBalances: Bool? = nil, includePii: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getExternalBankAccountWithRequestBuilder(externalBankAccountGuid: externalBankAccountGuid, forceBalanceRefresh: forceBalanceRefresh, includeBalances: includeBalances, includePii: includePii).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -145,9 +148,12 @@ open class ExternalBankAccountsAPI {
        - type: oauth2
        - name: oauth2
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
+     - parameter forceBalanceRefresh: (query) Force the balance on the account to be updated. (optional)
+     - parameter includeBalances: (query) Include account balances in the response. (optional)
+     - parameter includePii: (query) Include account holder&#39;s PII in the response. (optional)
      - returns: RequestBuilder<ExternalBankAccountBankModel> 
      */
-    open class func getExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String) -> RequestBuilder<ExternalBankAccountBankModel> {
+    open class func getExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String, forceBalanceRefresh: Bool? = nil, includeBalances: Bool? = nil, includePii: Bool? = nil) -> RequestBuilder<ExternalBankAccountBankModel> {
         var localVariablePath = "/api/external_bank_accounts/{external_bank_account_guid}"
         let externalBankAccountGuidPreEscape = "\(APIHelper.mapValueToPathItem(externalBankAccountGuid))"
         let externalBankAccountGuidPostEscape = externalBankAccountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -155,7 +161,12 @@ open class ExternalBankAccountsAPI {
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "force_balance_refresh": forceBalanceRefresh?.encodeToJSON(),
+            "include_balances": includeBalances?.encodeToJSON(),
+            "include_pii": includePii?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
