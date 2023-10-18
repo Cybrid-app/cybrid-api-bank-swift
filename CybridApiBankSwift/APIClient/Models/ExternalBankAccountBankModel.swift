@@ -59,8 +59,13 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var state: StateBankModel?
     /** The failure code for failed transfers. */
     public var failureCode: String?
+    /** The timestamp that the balance information was last updated at. */
+    public var balanceUpdatedAt: Date?
+    public var balances: ExternalBankAccountBalancesBankModel?
+    /** The account holder information. */
+    public var pii: [ExternalBankAccountPiiInnerBankModel]?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, accountKind: AccountKindBankModel? = nil, environment: EnvironmentBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, state: StateBankModel? = nil, failureCode: String? = nil, balanceUpdatedAt: Date? = nil, balances: ExternalBankAccountBalancesBankModel? = nil, pii: [ExternalBankAccountPiiInnerBankModel]? = nil) {
         self.guid = guid
         self.name = name
         self.asset = asset
@@ -74,6 +79,9 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         self.plaidAccountName = plaidAccountName
         self.state = state
         self.failureCode = failureCode
+        self.balanceUpdatedAt = balanceUpdatedAt
+        self.balances = balances
+        self.pii = pii
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -90,6 +98,9 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         case plaidAccountName = "plaid_account_name"
         case state
         case failureCode = "failure_code"
+        case balanceUpdatedAt = "balance_updated_at"
+        case balances
+        case pii
     }
 
     // Encodable protocol methods
@@ -109,6 +120,9 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(plaidAccountName, forKey: .plaidAccountName)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
+        try container.encodeIfPresent(balanceUpdatedAt, forKey: .balanceUpdatedAt)
+        try container.encodeIfPresent(balances, forKey: .balances)
+        try container.encodeIfPresent(pii, forKey: .pii)
     }
 }
 

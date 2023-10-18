@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 # **getExternalBankAccount**
 ```swift
-    open class func getExternalBankAccount(externalBankAccountGuid: String, completion: @escaping (_ data: ExternalBankAccountBankModel?, _ error: Error?) -> Void)
+    open class func getExternalBankAccount(externalBankAccountGuid: String, forceBalanceRefresh: Bool? = nil, includeBalances: Bool? = nil, includePii: Bool? = nil, completion: @escaping (_ data: ExternalBankAccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Get External Bank Account
@@ -126,9 +126,12 @@ Retrieves an external bank account.  Required scope: **external_bank_accounts:re
 import CybridApiBankSwift
 
 let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
+let forceBalanceRefresh = true // Bool | Force the balance on the account to be updated. (optional)
+let includeBalances = true // Bool | Include account balances in the response. (optional)
+let includePii = true // Bool | Include account holder's PII in the response. (optional)
 
 // Get External Bank Account
-ExternalBankAccountsAPI.getExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid) { (response, error) in
+ExternalBankAccountsAPI.getExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid, forceBalanceRefresh: forceBalanceRefresh, includeBalances: includeBalances, includePii: includePii) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -145,6 +148,9 @@ ExternalBankAccountsAPI.getExternalBankAccount(externalBankAccountGuid: external
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **externalBankAccountGuid** | **String** | Identifier for the external bank account. | 
+ **forceBalanceRefresh** | **Bool** | Force the balance on the account to be updated. | [optional] 
+ **includeBalances** | **Bool** | Include account balances in the response. | [optional] 
+ **includePii** | **Bool** | Include account holder&#39;s PII in the response. | [optional] 
 
 ### Return type
 
