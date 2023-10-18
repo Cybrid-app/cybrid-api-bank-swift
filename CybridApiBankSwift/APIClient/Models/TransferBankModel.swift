@@ -28,6 +28,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
         case pending = "pending"
+        case reviewing = "reviewing"
         case completed = "completed"
         case failed = "failed"
         case unknownDefaultOpenApi = "unknown_default_open_api"
