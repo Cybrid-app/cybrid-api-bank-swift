@@ -119,9 +119,9 @@ open class ExternalBankAccountsAPI {
      Get External Bank Account
      
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
-     - parameter forceBalanceRefresh: (query) Force the balance on the account to be updated. (optional)
-     - parameter includeBalances: (query) Include account balances in the response. (optional)
-     - parameter includePii: (query) Include account holder&#39;s PII in the response. (optional)
+     - parameter forceBalanceRefresh: (query) Force the balance on the account to be retrieved. (optional)
+     - parameter includeBalances: (query) Include balance information in the response. If &#x60;force_balance_refresh&#x60; is &#x60;true&#x60;, the most up to date balance will be returned. If &#x60;force_balance_refresh&#x60; is &#x60;false&#x60;, the cached balance will be returned. &#x60;balance_updated_at&#x60; in the response will provide the timestamp the balance was last updated. (optional)
+     - parameter includePii: (query) Include the account holder&#39;s PII in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -148,9 +148,9 @@ open class ExternalBankAccountsAPI {
        - type: oauth2
        - name: oauth2
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
-     - parameter forceBalanceRefresh: (query) Force the balance on the account to be updated. (optional)
-     - parameter includeBalances: (query) Include account balances in the response. (optional)
-     - parameter includePii: (query) Include account holder&#39;s PII in the response. (optional)
+     - parameter forceBalanceRefresh: (query) Force the balance on the account to be retrieved. (optional)
+     - parameter includeBalances: (query) Include balance information in the response. If &#x60;force_balance_refresh&#x60; is &#x60;true&#x60;, the most up to date balance will be returned. If &#x60;force_balance_refresh&#x60; is &#x60;false&#x60;, the cached balance will be returned. &#x60;balance_updated_at&#x60; in the response will provide the timestamp the balance was last updated. (optional)
+     - parameter includePii: (query) Include the account holder&#39;s PII in the response. (optional)
      - returns: RequestBuilder<ExternalBankAccountBankModel> 
      */
     open class func getExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String, forceBalanceRefresh: Bool? = nil, includeBalances: Bool? = nil, includePii: Bool? = nil) -> RequestBuilder<ExternalBankAccountBankModel> {
