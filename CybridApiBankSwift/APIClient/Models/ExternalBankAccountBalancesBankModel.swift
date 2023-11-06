@@ -14,26 +14,26 @@ import AnyCodable
 public struct ExternalBankAccountBalancesBankModel: Codable, JSONEncodable, Hashable {
 
     /** The available balance in the account. */
-    public var availableBalance: Int?
+    public var available: Int?
     /** The current balance in the account including pending transactions. */
-    public var currentBalance: Int?
+    public var current: Int?
 
-    public init(availableBalance: Int? = nil, currentBalance: Int? = nil) {
-        self.availableBalance = availableBalance
-        self.currentBalance = currentBalance
+    public init(available: Int? = nil, current: Int? = nil) {
+        self.available = available
+        self.current = current
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case availableBalance = "available_balance"
-        case currentBalance = "current_balance"
+        case available
+        case current
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(availableBalance, forKey: .availableBalance)
-        try container.encodeIfPresent(currentBalance, forKey: .currentBalance)
+        try container.encodeIfPresent(available, forKey: .available)
+        try container.encodeIfPresent(current, forKey: .current)
     }
 }
 
