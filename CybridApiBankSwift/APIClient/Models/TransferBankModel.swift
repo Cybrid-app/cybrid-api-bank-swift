@@ -18,6 +18,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case crypto = "crypto"
         case instantFunding = "instant_funding"
         case fundingReturn = "funding_return"
+        case cryptoReturn = "crypto_return"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
