@@ -23,6 +23,12 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case rawRoutingDetails = "raw_routing_details"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum RoutableAccountsBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case unsupported = "unsupported"
+        case bank = "bank"
+        case customer = "customer"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the bank. */
     public var guid: String
     /** The organization's identifier. */
@@ -39,10 +45,12 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public var supportedCountryCodes: [String]?
     /** The bank's enabled features. */
     public var features: [FeaturesBankModel]
+    /** Configuration for supporting creating routable bank accounts. */
+    public var routableAccounts: RoutableAccountsBankModel?
     /** ISO8601 datetime the bank was created at. */
     public var createdAt: Date
 
-    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [FeaturesBankModel], createdAt: Date) {
+    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [FeaturesBankModel], routableAccounts: RoutableAccountsBankModel? = nil, createdAt: Date) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
@@ -51,6 +59,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
         self.features = features
+        self.routableAccounts = routableAccounts
         self.createdAt = createdAt
     }
 
@@ -63,6 +72,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
         case features
+        case routableAccounts = "routable_accounts"
         case createdAt = "created_at"
     }
 
@@ -78,6 +88,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
         try container.encode(features, forKey: .features)
+        try container.encodeIfPresent(routableAccounts, forKey: .routableAccounts)
         try container.encode(createdAt, forKey: .createdAt)
     }
 }
