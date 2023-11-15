@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **features** | **[String]** | The bank&#39;s enabled features. | 
 **supportedFiatAccountAssets** | **[String]** | The bank&#39;s list of supported fiat assets. | 
 **supportedCountryCodes** | **[String]** | The bank&#39;s list of supported country codes. | [optional] 
+**routableAccounts** | **String** | Configuration for supporting creating routable bank accounts. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

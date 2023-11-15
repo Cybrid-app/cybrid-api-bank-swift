@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **supportedFiatAccountAssets** | **[String]** | The bank&#39;s list of supported fiat symbols. | [optional] 
 **supportedCountryCodes** | **[String]** | The bank&#39;s list of supported country codes. | [optional] 
 **features** | **[String]** | The bank&#39;s enabled features. | 
+**routableAccounts** | **String** | Configuration for supporting creating routable bank accounts. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the bank was created at. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

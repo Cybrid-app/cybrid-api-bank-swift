@@ -21,6 +21,12 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case kycIdentityVerifications = "kyc_identity_verifications"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum RoutableAccountsBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case unsupported = "unsupported"
+        case bank = "bank"
+        case customer = "customer"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The bank's name. */
     public var name: String
     /** The bank's type. At present, only **sandbox** is supported. */
@@ -33,14 +39,17 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public var supportedFiatAccountAssets: [String]
     /** The bank's list of supported country codes. */
     public var supportedCountryCodes: [String]?
+    /** Configuration for supporting creating routable bank accounts. */
+    public var routableAccounts: RoutableAccountsBankModel?
 
-    public init(name: String, type: TypeBankModel, supportedTradingSymbols: [String], features: [FeaturesBankModel], supportedFiatAccountAssets: [String], supportedCountryCodes: [String]? = nil) {
+    public init(name: String, type: TypeBankModel, supportedTradingSymbols: [String], features: [FeaturesBankModel], supportedFiatAccountAssets: [String], supportedCountryCodes: [String]? = nil, routableAccounts: RoutableAccountsBankModel? = nil) {
         self.name = name
         self.type = type
         self.supportedTradingSymbols = supportedTradingSymbols
         self.features = features
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
+        self.routableAccounts = routableAccounts
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +59,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case features
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
+        case routableAccounts = "routable_accounts"
     }
 
     // Encodable protocol methods
@@ -62,6 +72,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(features, forKey: .features)
         try container.encode(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
+        try container.encodeIfPresent(routableAccounts, forKey: .routableAccounts)
     }
 }
 
