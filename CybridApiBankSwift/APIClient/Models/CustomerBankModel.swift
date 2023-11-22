@@ -21,6 +21,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case unverified = "unverified"
         case verified = "verified"
         case rejected = "rejected"
+        case frozen = "frozen"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the customer. */
