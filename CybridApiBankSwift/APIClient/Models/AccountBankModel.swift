@@ -28,8 +28,10 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     public var type: TypeBankModel?
     /** Auto-generated unique identifier for the account. */
     public var guid: String?
-    /** ISO8601 datetime the account was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
     /** The asset code. */
     public var asset: String?
     /** The name of the account. */
@@ -47,10 +49,11 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the account. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil, labels: [String]? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.asset = asset
         self.name = name
         self.bankGuid = bankGuid
@@ -65,6 +68,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case type
         case guid
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case asset
         case name
         case bankGuid = "bank_guid"
@@ -82,6 +86,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)

@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **supportedCountryCodes** | **[String]** | The bank&#39;s list of supported country codes. | [optional] 
 **features** | **[String]** | The bank&#39;s enabled features. | 
 **routableAccounts** | **String** | Configuration for supporting creating routable bank accounts. | [optional] 
-**createdAt** | **Date** | ISO8601 datetime the bank was created at. | 
+**createdAt** | **Date** | ISO8601 datetime the record was created at. | 
+**updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

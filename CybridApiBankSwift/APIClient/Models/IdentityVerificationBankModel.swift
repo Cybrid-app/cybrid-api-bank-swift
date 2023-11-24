@@ -43,8 +43,10 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var type: TypeBankModel?
     /** The identity verification method. */
     public var method: MethodBankModel?
-    /** ISO8601 datetime the customer was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
     /** The state of the verification process. */
     public var state: StateBankModel?
     /** The outcome of the verification process. */
@@ -52,12 +54,13 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [String]? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [String]? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
         self.method = method
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
@@ -69,6 +72,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case type
         case method
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case state
         case outcome
         case failureCodes = "failure_codes"
@@ -83,6 +87,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(method, forKey: .method)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)

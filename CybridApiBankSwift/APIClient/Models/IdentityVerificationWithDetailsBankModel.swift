@@ -53,8 +53,10 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var type: TypeBankModel?
     /** The identity verification method. */
     public var method: MethodBankModel?
-    /** ISO8601 datetime the customer was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
     /** The state of the verification process. */
     public var state: StateBankModel?
     /** The outcome of the verification process. */
@@ -68,12 +70,13 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     /** The external bank account's identifier. */
     public var externalBankAccountGuid: String?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [String]? = nil, personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil, externalBankAccountGuid: String? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [String]? = nil, personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil, externalBankAccountGuid: String? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
         self.method = method
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
@@ -88,6 +91,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case type
         case method
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case state
         case outcome
         case failureCodes = "failure_codes"
@@ -105,6 +109,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(method, forKey: .method)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)

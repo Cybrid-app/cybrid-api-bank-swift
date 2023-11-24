@@ -44,6 +44,10 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var deliverAmount: String?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units for trade quotes. */
     public var fee: String?
+    /** ISO8601 datetime the record was created at. */
+    public var createdAt: Date?
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
     /** ISO8601 datetime the quote was created at. */
     public var issuedAt: Date?
     /** ISO8601 datetime the quote is expiring at. Populated for trading quotes. */
@@ -55,7 +59,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The asset code of the network fee. */
     public var networkFeeAsset: String?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
+    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
         self.guid = guid
         self.productType = productType
         self.bankGuid = bankGuid
@@ -65,6 +69,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
         self.fee = fee
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.issuedAt = issuedAt
         self.expiresAt = expiresAt
         self.asset = asset
@@ -82,6 +88,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
         case fee
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case issuedAt = "issued_at"
         case expiresAt = "expires_at"
         case asset
@@ -102,6 +110,8 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(fee, forKey: .fee)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(issuedAt, forKey: .issuedAt)
         try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
         try container.encodeIfPresent(asset, forKey: .asset)

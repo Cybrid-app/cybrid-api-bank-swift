@@ -5,7 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The account type. | [optional] 
 **guid** | **String** | Auto-generated unique identifier for the account. | [optional] 
-**createdAt** | **Date** | ISO8601 datetime the account was created at. | [optional] 
+**createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
+**updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
 **asset** | **String** | The asset code. | [optional] 
 **name** | **String** | The name of the account. | [optional] 
 **bankGuid** | **String** | The bank identifier associated with the account. | [optional] 

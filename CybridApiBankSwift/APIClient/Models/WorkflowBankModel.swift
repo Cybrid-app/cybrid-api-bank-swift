@@ -32,16 +32,19 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
     public var state: StateBankModel?
     /** The failure code for failed workflows. */
     public var failureCode: String?
-    /** ISO8601 datetime the bank was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, createdAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
         self.state = state
         self.failureCode = failureCode
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -51,6 +54,7 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
         case state
         case failureCode = "failure_code"
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 
     // Encodable protocol methods
@@ -63,6 +67,7 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
 }
 
