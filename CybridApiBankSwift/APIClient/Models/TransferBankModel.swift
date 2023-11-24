@@ -76,9 +76,9 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var referenceTransferGuid: String?
     public var sourceAccount: TransferSourceAccountBankModel?
     public var destinationAccount: TransferDestinationAccountBankModel?
-    /** ISO8601 datetime the bank was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
-    /** ISO8601 datetime the transfer was last updated at. */
+    /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
     /** The labels associated with the transfer. */
     public var labels: [String]?

@@ -47,10 +47,12 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public var features: [FeaturesBankModel]
     /** Configuration for supporting creating routable bank accounts. */
     public var routableAccounts: RoutableAccountsBankModel?
-    /** ISO8601 datetime the bank was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [FeaturesBankModel], routableAccounts: RoutableAccountsBankModel? = nil, createdAt: Date) {
+    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [FeaturesBankModel], routableAccounts: RoutableAccountsBankModel? = nil, createdAt: Date, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
@@ -61,6 +63,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         self.features = features
         self.routableAccounts = routableAccounts
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -74,6 +77,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case features
         case routableAccounts = "routable_accounts"
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 
     // Encodable protocol methods
@@ -90,6 +94,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(features, forKey: .features)
         try container.encodeIfPresent(routableAccounts, forKey: .routableAccounts)
         try container.encode(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
 }
 

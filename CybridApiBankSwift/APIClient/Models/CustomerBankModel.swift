@@ -30,8 +30,10 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var bankGuid: String?
     /** The customer's type. */
     public var type: TypeBankModel?
-    /** ISO8601 datetime the customer was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
+    /** ISO8601 datetime the record was last updated at. */
+    public var updatedAt: Date?
     /** The customer's state. */
     public var state: StateBankModel?
     public var name: CustomerNameBankModel?
@@ -45,11 +47,12 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the customer. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.state = state
         self.name = name
         self.address = address
@@ -64,6 +67,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case bankGuid = "bank_guid"
         case type
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case state
         case name
         case address
@@ -81,6 +85,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)

@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **receiveAmount** | **Int** | The amount to be received in base units of the currency: currency is \&quot;asset\&quot; for buy and \&quot;counter_asset\&quot; for sell for trade quotes. | [optional] 
 **deliverAmount** | **Int** | The amount to be delivered in base units of the currency: currency is \&quot;counter_asset\&quot; for buy and \&quot;asset\&quot; for sell for trade quotes. | [optional] 
 **fee** | **Int** | The fee associated with the trade. Denominated in \&quot;counter_asset\&quot; base units for trade quotes. | [optional] 
+**createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
+**updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
 **issuedAt** | **Date** | ISO8601 datetime the quote was created at. | [optional] 
 **expiresAt** | **Date** | ISO8601 datetime the quote is expiring at. Populated for trading quotes. | [optional] 
 **asset** | **String** | The asset code the quote was requested for. Populated for book transfer and funding quotes. | [optional] 

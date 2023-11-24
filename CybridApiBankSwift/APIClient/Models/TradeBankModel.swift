@@ -53,9 +53,9 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public var deliverAmount: String?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units */
     public var fee: String?
-    /** ISO8601 datetime the trade was created at. */
+    /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
-    /** ISO8601 datetime the trade was last updated at. */
+    /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
     /** The labels associated with the trade. */
     public var labels: [String]?
