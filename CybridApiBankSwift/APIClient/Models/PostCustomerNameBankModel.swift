@@ -13,13 +13,13 @@ import AnyCodable
 public struct PostCustomerNameBankModel: Codable, JSONEncodable, Hashable {
 
     /** The customer's first name. */
-    public var first: String
+    public var first: String?
     /** The customer's middle name. */
     public var middle: String?
     /** The customer's last name. */
-    public var last: String
+    public var last: String?
 
-    public init(first: String, middle: String? = nil, last: String) {
+    public init(first: String? = nil, middle: String? = nil, last: String? = nil) {
         self.first = first
         self.middle = middle
         self.last = last
@@ -35,9 +35,9 @@ public struct PostCustomerNameBankModel: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(first, forKey: .first)
+        try container.encodeIfPresent(first, forKey: .first)
         try container.encodeIfPresent(middle, forKey: .middle)
-        try container.encode(last, forKey: .last)
+        try container.encodeIfPresent(last, forKey: .last)
     }
 }
 

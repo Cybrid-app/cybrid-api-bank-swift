@@ -13,6 +13,7 @@ import AnyCodable
 public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case business = "business"
         case individual = "individual"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
