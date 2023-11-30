@@ -18,6 +18,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case businessRegistration = "business_registration"
         case idAndSelfie = "id_and_selfie"
         case attested = "attested"
         case plaidIdentityMatch = "plaid_identity_match"
