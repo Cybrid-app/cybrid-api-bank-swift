@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **destinationAccount** | [**TransferDestinationAccountBankModel**](TransferDestinationAccountBankModel.md) |  | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
+**transferDetails** | [**AnyCodableBankModel**](.md) | The raw details on the transfer from the bank. | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
