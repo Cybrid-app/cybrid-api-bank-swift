@@ -47,8 +47,10 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var emailAddress: String?
     /** The labels associated with the customer. */
     public var labels: [String]?
+    /** The verification checks associated with the customer. */
+    public var verificationChecks: [VerificationCheckBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
@@ -61,6 +63,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
         self.labels = labels
+        self.verificationChecks = verificationChecks
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -76,6 +79,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
         case labels
+        case verificationChecks = "verification_checks"
     }
 
     // Encodable protocol methods
@@ -94,6 +98,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(labels, forKey: .labels)
+        try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
     }
 }
 
