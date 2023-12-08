@@ -126,12 +126,14 @@ open class TradesAPI {
      - parameter accountGuid: (query) Comma separated account_guids to list trades for. (optional)
      - parameter state: (query) Comma separated states to list trades for. (optional)
      - parameter label: (query) Comma separated labels to list trades for. (optional)
+     - parameter createdAtGte: (query) Created at start date inclusive lower bound, ISO8601. (optional)
+     - parameter createdAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradeListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listTradesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label).execute(apiResponseQueue) { result in
+    open class func listTrades(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TradeListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listTradesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -159,9 +161,11 @@ open class TradesAPI {
      - parameter accountGuid: (query) Comma separated account_guids to list trades for. (optional)
      - parameter state: (query) Comma separated states to list trades for. (optional)
      - parameter label: (query) Comma separated labels to list trades for. (optional)
+     - parameter createdAtGte: (query) Created at start date inclusive lower bound, ISO8601. (optional)
+     - parameter createdAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
      - returns: RequestBuilder<TradeListBankModel> 
      */
-    open class func listTradesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil) -> RequestBuilder<TradeListBankModel> {
+    open class func listTradesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil) -> RequestBuilder<TradeListBankModel> {
         let localVariablePath = "/api/trades"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -176,6 +180,8 @@ open class TradesAPI {
             "account_guid": accountGuid?.encodeToJSON(),
             "state": state?.encodeToJSON(),
             "label": label?.encodeToJSON(),
+            "created_at_gte": createdAtGte?.encodeToJSON(),
+            "created_at_lt": createdAtLt?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

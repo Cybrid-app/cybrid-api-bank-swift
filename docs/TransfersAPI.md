@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTransfers**
 ```swift
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get transfers list
@@ -132,9 +132,11 @@ let customerGuid = "customerGuid_example" // String | Comma separated customer_g
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list transfers for. (optional)
 let state = "state_example" // String | Comma separated states to list transfers for. (optional)
 let label = "label_example" // String | Comma separated labels to list transfers for. (optional)
+let createdAtGte = "createdAtGte_example" // String | Created at start date inclusive lower bound, ISO8601 (optional)
+let createdAtLt = "createdAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
 
 // Get transfers list
-TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label) { (response, error) in
+TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -159,6 +161,8 @@ Name | Type | Description  | Notes
  **accountGuid** | **String** | Comma separated account_guids to list transfers for. | [optional] 
  **state** | **String** | Comma separated states to list transfers for. | [optional] 
  **label** | **String** | Comma separated labels to list transfers for. | [optional] 
+ **createdAtGte** | **String** | Created at start date inclusive lower bound, ISO8601 | [optional] 
+ **createdAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
 
 ### Return type
 
