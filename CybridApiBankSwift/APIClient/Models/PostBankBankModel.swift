@@ -19,6 +19,8 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case attestationIdentityRecords = "attestation_identity_records"
         case kycIdentityVerifications = "kyc_identity_verifications"
+        case businessCustomers = "business_customers"
+        case individualCustomers = "individual_customers"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum RoutableAccountsBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
