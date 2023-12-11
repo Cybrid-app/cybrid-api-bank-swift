@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTransfers**
 ```swift
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get transfers list
@@ -134,9 +134,11 @@ let state = "state_example" // String | Comma separated states to list transfers
 let label = "label_example" // String | Comma separated labels to list transfers for. (optional)
 let createdAtGte = "createdAtGte_example" // String | Created at start date inclusive lower bound, ISO8601 (optional)
 let createdAtLt = "createdAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
+let updatedAtGte = "updatedAtGte_example" // String | Created at start date inclusive lower bound, ISO8601 (optional)
+let updatedAtLt = "updatedAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
 
 // Get transfers list
-TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt) { (response, error) in
+TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -163,6 +165,8 @@ Name | Type | Description  | Notes
  **label** | **String** | Comma separated labels to list transfers for. | [optional] 
  **createdAtGte** | **String** | Created at start date inclusive lower bound, ISO8601 | [optional] 
  **createdAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
+ **updatedAtGte** | **String** | Created at start date inclusive lower bound, ISO8601 | [optional] 
+ **updatedAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
 
 ### Return type
 
