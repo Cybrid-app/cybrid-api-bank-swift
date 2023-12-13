@@ -82,10 +82,12 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date?
     /** The raw details on the transfer from the bank. */
     public var transferDetails: String?
+    /** The rail the payment was done on. One of: ach, eft, wire, rtp */
+    public var paymentRail: String?
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, transferDetails: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, transferDetails: String? = nil, paymentRail: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.bankGuid = bankGuid
@@ -111,6 +113,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.transferDetails = transferDetails
+        self.paymentRail = paymentRail
         self.labels = labels
     }
 
@@ -140,6 +143,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case transferDetails = "transfer_details"
+        case paymentRail = "payment_rail"
         case labels
     }
 
@@ -172,6 +176,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(transferDetails, forKey: .transferDetails)
+        try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
