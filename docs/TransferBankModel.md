@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
 **transferDetails** | [**AnyCodableBankModel**](.md) | The raw details on the transfer from the bank. | [optional] 
+**paymentRail** | **String** | The rail the payment was done on. One of: ach, eft, wire, rtp | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
