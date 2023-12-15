@@ -12,33 +12,14 @@ import AnyCodable
 
 public struct BankBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case sandbox = "sandbox"
-        case production = "production"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case attestationIdentityRecords = "attestation_identity_records"
-        case kycIdentityVerifications = "kyc_identity_verifications"
-        case rawRoutingDetails = "raw_routing_details"
-        case individualCustomers = "individual_customers"
-        case businessCustomers = "business_customers"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum RoutableAccountsBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case unsupported = "unsupported"
-        case bank = "bank"
-        case customer = "customer"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the bank. */
     public var guid: String
     /** The organization's identifier. */
     public var organizationGuid: String
     /** The bank's name. */
     public var name: String
-    /** The bank's type. */
-    public var type: TypeBankModel
+    /** The bank type; one of sandbox or production. */
+    public var type: String
     /** The bank's list of supported trading symbols. */
     public var supportedTradingSymbols: [String]?
     /** The bank's list of supported fiat symbols. */
@@ -46,15 +27,15 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     /** The bank's list of supported country codes. */
     public var supportedCountryCodes: [String]?
     /** The bank's enabled features. */
-    public var features: [FeaturesBankModel]
-    /** Configuration for supporting creating routable bank accounts. */
-    public var routableAccounts: RoutableAccountsBankModel?
+    public var features: [String]
+    /** Configuration for supporting creating routable bank accounts: one of unsupported, bank, or customer. */
+    public var routableAccounts: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String, name: String, type: TypeBankModel, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [FeaturesBankModel], routableAccounts: RoutableAccountsBankModel? = nil, createdAt: Date, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String, name: String, type: String, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [String], routableAccounts: String? = nil, createdAt: Date, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name

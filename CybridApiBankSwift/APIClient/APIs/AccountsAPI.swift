@@ -130,7 +130,7 @@ open class AccountsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listAccountsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -161,7 +161,7 @@ open class AccountsAPI {
      - parameter label: (query) Comma separated labels to list accounts for. (optional)
      - returns: RequestBuilder<AccountListBankModel> 
      */
-    open class func listAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil) -> RequestBuilder<AccountListBankModel> {
+    open class func listAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil) -> RequestBuilder<AccountListBankModel> {
         let localVariablePath = "/api/accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

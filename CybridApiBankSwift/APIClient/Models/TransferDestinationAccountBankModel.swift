@@ -13,20 +13,12 @@ import AnyCodable
 /** The destination account in the transfer. */
 public struct TransferDestinationAccountBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case trading = "trading"
-        case fiat = "fiat"
-        case externalBankAccount = "external_bank_account"
-        case externalWallet = "external_wallet"
-        case oneTimeAddress = "one_time_address"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the transfer account. */
     public var guid: String?
-    /** The type of transfer account. */
-    public var type: TypeBankModel?
+    /** The type of transfer account; one of trading, fiat, external_bank_account, external_wallet, or one_time_address. */
+    public var type: String?
 
-    public init(guid: String? = nil, type: TypeBankModel? = nil) {
+    public init(guid: String? = nil, type: String? = nil) {
         self.guid = guid
         self.type = type
     }

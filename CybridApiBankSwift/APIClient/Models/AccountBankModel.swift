@@ -12,20 +12,8 @@ import AnyCodable
 
 public struct AccountBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case trading = "trading"
-        case fee = "fee"
-        case fiat = "fiat"
-        case gas = "gas"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case created = "created"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    /** The account type. */
-    public var type: TypeBankModel?
+    /** The account type; one of trading, fee, fiat, or gas. */
+    public var type: String?
     /** Auto-generated unique identifier for the account. */
     public var guid: String?
     /** ISO8601 datetime the record was created at. */
@@ -44,12 +32,12 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     public var platformBalance: String?
     /** The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. */
     public var platformAvailable: String?
-    /** The account's state. */
-    public var state: StateBankModel?
+    /** The state of the account; one of storing or created. */
+    public var state: String?
     /** The labels associated with the account. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel? = nil, guid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: StateBankModel? = nil, labels: [String]? = nil) {
+    public init(type: String? = nil, guid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: String? = nil, labels: [String]? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt

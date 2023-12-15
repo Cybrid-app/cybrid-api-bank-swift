@@ -12,18 +12,12 @@ import AnyCodable
 
 public struct DepositBankAccountRoutingDetailsInnerBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum RoutingNumberTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case cpa = "CPA"
-        case aba = "ABA"
-        case swift = "SWIFT"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    /** The type of routing number. */
-    public var routingNumberType: RoutingNumberTypeBankModel
+    /** The type of routing number; one of CPA, ABA, or SWIFT. */
+    public var routingNumberType: String
     /** The routing number. */
     public var routingNumber: String
 
-    public init(routingNumberType: RoutingNumberTypeBankModel, routingNumber: String) {
+    public init(routingNumberType: String, routingNumber: String) {
         self.routingNumberType = routingNumberType
         self.routingNumber = routingNumber
     }

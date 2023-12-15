@@ -12,39 +12,20 @@ import AnyCodable
 
 public struct TradeBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TradeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case platform = "platform"
-        case liquidation = "liquidation"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case buy = "buy"
-        case sell = "sell"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case pending = "pending"
-        case cancelled = "cancelled"
-        case completed = "completed"
-        case settling = "settling"
-        case failed = "failed"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the trade. */
     public var guid: String?
-    /** The type of trade. */
-    public var tradeType: TradeTypeBankModel?
+    /** The type of trade; one of platform or liquidation. */
+    public var tradeType: String?
     /** The associated customer's identifier. */
     public var customerGuid: String?
     /** The associated quote's identifier. */
     public var quoteGuid: String?
     /** The trade symbol the pricing is related to. Format is asset-counter_asset, e.g., BTC-USD. */
     public var symbol: String?
-    /** The direction of the quote: either 'buy' or 'sell'. */
-    public var side: SideBankModel?
-    /** The trade's state */
-    public var state: StateBankModel?
+    /** The direction of the trade; one of buy or sell. */
+    public var side: String?
+    /** The state of the trade; one of storing, pending, cancelled, completed, settling, or failed. */
+    public var state: String?
     /** The failure code for failed trades. */
     public var failureCode: String?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
@@ -60,7 +41,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the trade. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, tradeType: TradeTypeBankModel? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, tradeType: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.tradeType = tradeType
         self.customerGuid = customerGuid

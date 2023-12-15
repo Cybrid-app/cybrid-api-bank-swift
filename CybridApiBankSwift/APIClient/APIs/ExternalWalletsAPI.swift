@@ -182,7 +182,7 @@ open class ExternalWalletsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listExternalWalletsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -212,7 +212,7 @@ open class ExternalWalletsAPI {
      - parameter state: (query) Comma separated states to list external_wallets for. (optional)
      - returns: RequestBuilder<ExternalWalletListBankModel> 
      */
-    open class func listExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<ExternalWalletListBankModel> {
+    open class func listExternalWalletsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<ExternalWalletListBankModel> {
         let localVariablePath = "/api/external_wallets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

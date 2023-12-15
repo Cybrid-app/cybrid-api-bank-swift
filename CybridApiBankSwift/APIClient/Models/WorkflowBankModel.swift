@@ -12,24 +12,14 @@ import AnyCodable
 
 public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case plaid = "plaid"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case completed = "completed"
-        case failed = "failed"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the workflow. */
     public var guid: String?
     /** The associated customer's identifier. */
     public var customerGuid: String?
-    /** The type of workflow. */
-    public var type: TypeBankModel?
-    /** The state of the workflow. */
-    public var state: StateBankModel?
+    /** The type of workflow; one of plaid. */
+    public var type: String?
+    /** The state of the workflow; one of storing, completed, or failed. */
+    public var state: String?
     /** The failure code for failed workflows. */
     public var failureCode: String?
     /** ISO8601 datetime the record was created at. */
@@ -37,7 +27,7 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type

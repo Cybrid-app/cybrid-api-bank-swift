@@ -12,24 +12,14 @@ import AnyCodable
 
 public struct IdentityVerificationWithDetailsAllOfBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum PersonaStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case waiting = "waiting"
-        case pending = "pending"
-        case reviewing = "reviewing"
-        case processing = "processing"
-        case expired = "expired"
-        case completed = "completed"
-        case unknown = "unknown"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** The Persona identifier of the backing inquiry. */
     public var personaInquiryId: String?
-    /** The Persona state of the backing inquiry. */
-    public var personaState: PersonaStateBankModel?
+    /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
+    public var personaState: String?
     /** The external bank account's identifier. */
     public var externalBankAccountGuid: String?
 
-    public init(personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil, externalBankAccountGuid: String? = nil) {
+    public init(personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil) {
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
         self.externalBankAccountGuid = externalBankAccountGuid

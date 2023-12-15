@@ -12,13 +12,8 @@ import AnyCodable
 
 public struct AssetBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case fiat = "fiat"
-        case crypto = "crypto"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    /** The asset type. */
-    public var type: TypeBankModel
+    /** The asset type; one of fiat or crypto. */
+    public var type: String
     /** The unique code for the asset. */
     public var code: String
     /** The name of the asset. */
@@ -28,7 +23,7 @@ public struct AssetBankModel: Codable, JSONEncodable, Hashable {
     /** The number of decimals for the default unit of the asset. */
     public var decimals: Int
 
-    public init(type: TypeBankModel, code: String, name: String, symbol: String, decimals: Int) {
+    public init(type: String, code: String, name: String, symbol: String, decimals: Int) {
         self.type = type
         self.code = code
         self.name = name

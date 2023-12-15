@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listAccounts**
 ```swift
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
+    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Accounts
@@ -125,7 +125,7 @@ import CybridApiBankSwift
 
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
-let owner = ListRequestOwner() // ListRequestOwnerBankModel | The owner of the entity. (optional)
+let owner = "owner_example" // String | The owner of the entity. (optional)
 let guid = "guid_example" // String | Comma separated account_guids to list accounts for. (optional)
 let type = "type_example" // String | Comma separated account_types to list accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list accounts for. (optional)
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
- **owner** | [**ListRequestOwnerBankModel**](.md) | The owner of the entity. | [optional] 
+ **owner** | **String** | The owner of the entity. | [optional] 
  **guid** | **String** | Comma separated account_guids to list accounts for. | [optional] 
  **type** | **String** | Comma separated account_types to list accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list accounts for. | [optional] 

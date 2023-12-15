@@ -12,28 +12,14 @@ import AnyCodable
 
 public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum EnvironmentBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case sandbox = "sandbox"
-        case production = "production"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case pending = "pending"
-        case failed = "failed"
-        case completed = "completed"
-        case deleting = "deleting"
-        case deleted = "deleted"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the wallet. */
     public var guid: String?
     /** The name of the wallet. */
     public var name: String?
     /** The asset code. */
     public var asset: String?
-    /** The environment that the wallet is configured for. */
-    public var environment: EnvironmentBankModel?
+    /** The environment that the wallet is configured for; one of sandbox or production. */
+    public var environment: String?
     /** The bank identifier. */
     public var bankGuid: String?
     /** The customer identifier. */
@@ -46,12 +32,12 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
-    /** The state of an external wallet */
-    public var state: StateBankModel?
+    /** The state of the external wallet; one of storing, pending, failed, completed, deleting, or deleted. */
+    public var state: String?
     /** The failure code of an external wallet (if any) */
     public var failureCode: String?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: EnvironmentBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.name = name
         self.asset = asset

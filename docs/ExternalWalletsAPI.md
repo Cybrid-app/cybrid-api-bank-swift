@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 # **listExternalWallets**
 ```swift
-    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, owner: ListRequestOwnerBankModel? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: ExternalWalletListBankModel?, _ error: Error?) -> Void)
+    open class func listExternalWallets(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, completion: @escaping (_ data: ExternalWalletListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get external wallets list
@@ -176,7 +176,7 @@ import CybridApiBankSwift
 
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
-let owner = ListRequestOwner() // ListRequestOwnerBankModel | The owner of the entity. (optional)
+let owner = "owner_example" // String | The owner of the entity. (optional)
 let guid = "guid_example" // String | Comma separated external_wallet_guids to list external_wallets for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list external_wallets for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list external_wallets for. (optional)
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
- **owner** | [**ListRequestOwnerBankModel**](.md) | The owner of the entity. | [optional] 
+ **owner** | **String** | The owner of the entity. | [optional] 
  **guid** | **String** | Comma separated external_wallet_guids to list external_wallets for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list external_wallets for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list external_wallets for. | [optional] 

@@ -12,32 +12,10 @@ import AnyCodable
 
 public struct TransferBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TransferTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case funding = "funding"
-        case book = "book"
-        case crypto = "crypto"
-        case instantFunding = "instant_funding"
-        case fundingReturn = "funding_return"
-        case cryptoReturn = "crypto_return"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case deposit = "deposit"
-        case withdrawal = "withdrawal"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case pending = "pending"
-        case reviewing = "reviewing"
-        case completed = "completed"
-        case failed = "failed"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the transfer. */
     public var guid: String?
-    /** The type of transfer. */
-    public var transferType: TransferTypeBankModel?
+    /** The type of transfer; one of funding, book, crypto, instant_funding, funding_return, or crypto_return. */
+    public var transferType: String?
     /** The associated bank's identifier. */
     public var bankGuid: String?
     /** The associated customer's identifier. */
@@ -48,10 +26,10 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalBankAccountGuid: String?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
-    /** The direction of the quote: 'deposit' or 'withdrawal'. */
-    public var side: SideBankModel?
-    /** The transfer's state */
-    public var state: StateBankModel?
+    /** The direction of the quote; one of deposit or withdrawal. */
+    public var side: String?
+    /** The state of the transfer; one of storing, pending, reviewing, completed, or failed. */
+    public var state: String?
     /** The failure code for failed transfers. */
     public var failureCode: String?
     /** The actual amount in base units of the asset. */
@@ -87,7 +65,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, transferType: TransferTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: SideBankModel? = nil, state: StateBankModel? = nil, failureCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, transferDetails: String? = nil, paymentRail: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, transferDetails: String? = nil, paymentRail: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.bankGuid = bankGuid

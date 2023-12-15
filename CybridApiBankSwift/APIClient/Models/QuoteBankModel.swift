@@ -12,32 +12,18 @@ import AnyCodable
 
 public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum ProductTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case trading = "trading"
-        case funding = "funding"
-        case bookTransfer = "book_transfer"
-        case cryptoTransfer = "crypto_transfer"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case buy = "buy"
-        case sell = "sell"
-        case deposit = "deposit"
-        case withdrawal = "withdrawal"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the quote. */
     public var guid: String?
-    /** The type of product the quote is for. */
-    public var productType: ProductTypeBankModel?
+    /** The type of product the quote is for; one of trading, funding, book_transfer, or crypto_transfer. */
+    public var productType: String?
     /** The unique identifier for the bank. */
     public var bankGuid: String?
     /** The unique identifier for the customer. */
     public var customerGuid: String?
     /** Symbol the quote was requested for. Format is \"asset-counter_asset\" in uppercase. Populated for trade quotes. */
     public var symbol: String?
-    /** The direction of the quote: either 'buy' or 'sell' for trade quotes. */
-    public var side: SideBankModel?
+    /** The direction of the quote; one of buy, sell, deposit, or withdrawal. */
+    public var side: String?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes. */
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
@@ -59,7 +45,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The asset code of the network fee. */
     public var networkFeeAsset: String?
 
-    public init(guid: String? = nil, productType: ProductTypeBankModel? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
+    public init(guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
         self.guid = guid
         self.productType = productType
         self.bankGuid = bankGuid
