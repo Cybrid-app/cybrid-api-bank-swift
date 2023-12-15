@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the identity verification. | [optional] 
-**customerGuid** | **String** | The customer&#39;s identifier. | [optional] 
-**type** | **String** | The type of identity verification. | [optional] 
-**method** | **String** | The identity verification method. | [optional] 
+**customerGuid** | **String** | The identity verification&#39;s identifier. | [optional] 
+**type** | **String** | The identity verification type; one of kyc or bank_account. | [optional] 
+**method** | **String** | The identity verification method; one of business_registration, id_and_selfie, attested, plaid_identity_match, or document_submission. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
-**state** | **String** | The state of the verification process. | [optional] 
-**outcome** | **String** | The outcome of the verification process. | [optional] 
+**state** | **String** | The identity verification state; one of storing, waiting, expired, or completed. | [optional] 
+**outcome** | **String** | The identity verification outcome; one of passed or failed. | [optional] 
 **failureCodes** | **[String]** | The reason codes explaining the outcome. | [optional] 
 **personaInquiryId** | **String** | The Persona identifier of the backing inquiry. | [optional] 
-**personaState** | **String** | The Persona state of the backing inquiry. | [optional] 
+**personaState** | **String** | The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. | [optional] 
 **externalBankAccountGuid** | **String** | The external bank account&#39;s identifier. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

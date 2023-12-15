@@ -19,13 +19,6 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case cryptoTransfer = "crypto_transfer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case buy = "buy"
-        case sell = "sell"
-        case deposit = "deposit"
-        case withdrawal = "withdrawal"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** The type of product the quote is for. */
     public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the bank. */
@@ -37,13 +30,13 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported. Populated for trade quotes. */
     public var symbol: String?
     /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. The direction for crypto transfer quotes: 'withdrawal'. Book transfers do not require a side. They are all 'deposit's.  */
-    public var side: SideBankModel?
+    public var side: String?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell for trade quotes. */
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: SideBankModel? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid

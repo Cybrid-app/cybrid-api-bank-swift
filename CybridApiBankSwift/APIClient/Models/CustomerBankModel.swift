@@ -12,31 +12,18 @@ import AnyCodable
 
 public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case business = "business"
-        case individual = "individual"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case unverified = "unverified"
-        case verified = "verified"
-        case rejected = "rejected"
-        case frozen = "frozen"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the customer. */
     public var guid: String?
     /** Auto-generated unique identifier for the customer's bank. */
     public var bankGuid: String?
-    /** The customer's type. */
-    public var type: TypeBankModel?
+    /** The customer type; one of business or individual. */
+    public var type: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
-    /** The customer's state. */
-    public var state: StateBankModel?
+    /** The customer state; one of storing, unverified, verified, rejected, or frozen. */
+    public var state: String?
     public var name: CustomerNameBankModel?
     public var address: CustomerAddressBankModel?
     /** The customer's DOB. Only available for GET operations when 'include_pii' is set. */
@@ -50,7 +37,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     /** The verification checks associated with the customer. */
     public var verificationChecks: [VerificationCheckBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: TypeBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type

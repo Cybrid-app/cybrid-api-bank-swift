@@ -12,11 +12,6 @@ import AnyCodable
 
 public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case created = "created"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
     /** The address' bank identifier. */
@@ -31,8 +26,8 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
-    /** The state of the address. */
-    public var state: StateBankModel?
+    /** The state of the address; one of storing or created. */
+    public var state: String?
     /** The unique memo identifier for the address. This is used to identify the recipient when sending funds to the account. This value MUST be included in all wire transfers to this account. */
     public var uniqueMemoId: String?
     /** The name of the account holder. */
@@ -45,7 +40,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: StateBankModel? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid

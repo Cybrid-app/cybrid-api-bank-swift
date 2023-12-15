@@ -12,34 +12,14 @@ import AnyCodable
 
 public struct VerificationCheckBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case businessWatchlists = "business_watchlists"
-        case businessVerification = "business_verification"
-        case businessTaxIdVerification = "business_tax_id_verification"
-        case personAttested = "person_attested"
-        case personTaxIdAttested = "person_tax_id_attested"
-        case personWatchlists = "person_watchlists"
-        case personVerification = "person_verification"
-        case personAuthentication = "person_authentication"
-        case personGovIdVerification = "person_gov_id_verification"
-        case personTaxIdVerification = "person_tax_id_verification"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case passed = "passed"
-        case failed = "failed"
-        case expired = "expired"
-        case invalidated = "invalidated"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    /** The type of verification check. */
-    public var type: TypeBankModel
-    /** The state of the verification check. */
-    public var state: StateBankModel
+    /** The type of verification check; one of business_watchlists, business_verification, business_tax_id_verification, person_attested, person_tax_id_attested, person_watchlists, person_verification, person_authentication, person_gov_id_verification, or person_tax_id_verification. */
+    public var type: String
+    /** The state of the verification check; one of passed, failed, expired, or invalidated. */
+    public var state: String
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
 
-    public init(type: TypeBankModel, state: StateBankModel, failureCodes: [String]? = nil) {
+    public init(type: String, state: String, failureCodes: [String]? = nil) {
         self.type = type
         self.state = state
         self.failureCodes = failureCodes

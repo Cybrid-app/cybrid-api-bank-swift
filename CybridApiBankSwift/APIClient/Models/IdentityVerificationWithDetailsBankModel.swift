@@ -12,66 +12,32 @@ import AnyCodable
 
 public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case kyc = "kyc"
-        case bankAccount = "bank_account"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case businessRegistration = "business_registration"
-        case idAndSelfie = "id_and_selfie"
-        case attested = "attested"
-        case plaidIdentityMatch = "plaid_identity_match"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case storing = "storing"
-        case waiting = "waiting"
-        case expired = "expired"
-        case completed = "completed"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum OutcomeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case passed = "passed"
-        case failed = "failed"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum PersonaStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case waiting = "waiting"
-        case pending = "pending"
-        case reviewing = "reviewing"
-        case processing = "processing"
-        case expired = "expired"
-        case completed = "completed"
-        case unknown = "unknown"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
-    /** The customer's identifier. */
+    /** The identity verification's identifier. */
     public var customerGuid: String?
-    /** The type of identity verification. */
-    public var type: TypeBankModel?
-    /** The identity verification method. */
-    public var method: MethodBankModel?
+    /** The identity verification type; one of kyc or bank_account. */
+    public var type: String?
+    /** The identity verification method; one of business_registration, id_and_selfie, attested, plaid_identity_match, or document_submission. */
+    public var method: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
-    /** The state of the verification process. */
-    public var state: StateBankModel?
-    /** The outcome of the verification process. */
-    public var outcome: OutcomeBankModel?
+    /** The identity verification state; one of storing, waiting, expired, or completed. */
+    public var state: String?
+    /** The identity verification outcome; one of passed or failed. */
+    public var outcome: String?
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
     /** The Persona identifier of the backing inquiry. */
     public var personaInquiryId: String?
-    /** The Persona state of the backing inquiry. */
-    public var personaState: PersonaStateBankModel?
+    /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
+    public var personaState: String?
     /** The external bank account's identifier. */
     public var externalBankAccountGuid: String?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: TypeBankModel? = nil, method: MethodBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: StateBankModel? = nil, outcome: OutcomeBankModel? = nil, failureCodes: [String]? = nil, personaInquiryId: String? = nil, personaState: PersonaStateBankModel? = nil, externalBankAccountGuid: String? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
