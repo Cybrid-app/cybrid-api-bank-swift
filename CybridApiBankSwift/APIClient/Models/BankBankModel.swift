@@ -28,14 +28,12 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public var supportedCountryCodes: [String]?
     /** The bank's enabled features. */
     public var features: [String]
-    /** Configuration for supporting creating routable bank accounts: one of unsupported, bank, or customer. */
-    public var routableAccounts: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String, name: String, type: String, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [String], routableAccounts: String? = nil, createdAt: Date, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String, name: String, type: String, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [String], createdAt: Date, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
@@ -44,7 +42,6 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
         self.features = features
-        self.routableAccounts = routableAccounts
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -58,7 +55,6 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
         case features
-        case routableAccounts = "routable_accounts"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -75,7 +71,6 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
         try container.encode(features, forKey: .features)
-        try container.encodeIfPresent(routableAccounts, forKey: .routableAccounts)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
