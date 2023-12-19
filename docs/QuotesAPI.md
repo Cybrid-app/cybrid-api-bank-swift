@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create Quote
 
-Creates a quote.  Required scope: **quotes:execute**
+Creates a quote.  ## Quote creation  Quotes can be created for a Bank or a Customer.  To create quotes for your Bank, omit the `customer_guid` parameter in the request body. To create quotes for your Customers, include the `customer_guid` parameter in the request body.    Required scope: **quotes:execute**
 
 ### Example
 ```swift
