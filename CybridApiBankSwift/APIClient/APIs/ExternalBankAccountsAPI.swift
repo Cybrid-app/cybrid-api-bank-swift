@@ -187,13 +187,14 @@ open class ExternalBankAccountsAPI {
      - parameter guid: (query) Comma separated external_bank_account_guids to list external_bank_accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list external_bank_accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list external_bank_accounts for. (optional)
+     - parameter asset: (query) Comma separated assets to list external_bank_accounts for. (optional)
      - parameter state: (query) Comma separated states to list external_bank_accounts for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listExternalBankAccountsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state).execute(apiResponseQueue) { result in
+    open class func listExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listExternalBankAccountsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, asset: asset, state: state).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -218,10 +219,11 @@ open class ExternalBankAccountsAPI {
      - parameter guid: (query) Comma separated external_bank_account_guids to list external_bank_accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list external_bank_accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list external_bank_accounts for. (optional)
+     - parameter asset: (query) Comma separated assets to list external_bank_accounts for. (optional)
      - parameter state: (query) Comma separated states to list external_bank_accounts for. (optional)
      - returns: RequestBuilder<ExternalBankAccountListBankModel> 
      */
-    open class func listExternalBankAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<ExternalBankAccountListBankModel> {
+    open class func listExternalBankAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, state: String? = nil) -> RequestBuilder<ExternalBankAccountListBankModel> {
         let localVariablePath = "/api/external_bank_accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -233,6 +235,7 @@ open class ExternalBankAccountsAPI {
             "guid": guid?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
+            "asset": asset?.encodeToJSON(),
             "state": state?.encodeToJSON(),
         ])
 
