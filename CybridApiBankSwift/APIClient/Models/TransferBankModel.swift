@@ -60,7 +60,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date?
     /** The raw details on the transfer from the bank. */
     public var transferDetails: String?
-    /** The rail the payment was done on. One of: ach, eft, wire, rtp, book */
+    /** The rail the payment was done on. One of: ach, eft, wire, rtp */
     public var paymentRail: String?
     /** The labels associated with the transfer. */
     public var labels: [String]?
