@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listQuotes**
 ```swift
-    open class func listQuotes(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, completion: @escaping (_ data: QuoteListBankModel?, _ error: Error?) -> Void)
+    open class func listQuotes(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, side: String? = nil, completion: @escaping (_ data: QuoteListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get quotes list
@@ -129,9 +129,10 @@ let guid = "guid_example" // String | Comma separated quote_guids to list quotes
 let productType = "productType_example" // String | Comma separated product_types to list accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list quotes for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list quotes for. (optional)
+let side = "side_example" // String | Comma separated sides to list quotes for. (optional)
 
 // Get quotes list
-QuotesAPI.listQuotes(page: page, perPage: perPage, guid: guid, productType: productType, bankGuid: bankGuid, customerGuid: customerGuid) { (response, error) in
+QuotesAPI.listQuotes(page: page, perPage: perPage, guid: guid, productType: productType, bankGuid: bankGuid, customerGuid: customerGuid, side: side) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -153,6 +154,7 @@ Name | Type | Description  | Notes
  **productType** | **String** | Comma separated product_types to list accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list quotes for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list quotes for. | [optional] 
+ **side** | **String** | Comma separated sides to list quotes for. | [optional] 
 
 ### Return type
 

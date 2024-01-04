@@ -124,12 +124,13 @@ open class QuotesAPI {
      - parameter productType: (query) Comma separated product_types to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list quotes for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list quotes for. (optional)
+     - parameter side: (query) Comma separated sides to list quotes for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listQuotes(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuoteListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listQuotesWithRequestBuilder(page: page, perPage: perPage, guid: guid, productType: productType, bankGuid: bankGuid, customerGuid: customerGuid).execute(apiResponseQueue) { result in
+    open class func listQuotes(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, side: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuoteListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listQuotesWithRequestBuilder(page: page, perPage: perPage, guid: guid, productType: productType, bankGuid: bankGuid, customerGuid: customerGuid, side: side).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -155,9 +156,10 @@ open class QuotesAPI {
      - parameter productType: (query) Comma separated product_types to list accounts for. (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list quotes for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list quotes for. (optional)
+     - parameter side: (query) Comma separated sides to list quotes for. (optional)
      - returns: RequestBuilder<QuoteListBankModel> 
      */
-    open class func listQuotesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) -> RequestBuilder<QuoteListBankModel> {
+    open class func listQuotesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, side: String? = nil) -> RequestBuilder<QuoteListBankModel> {
         let localVariablePath = "/api/quotes"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -170,6 +172,7 @@ open class QuotesAPI {
             "product_type": productType?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
+            "side": side?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

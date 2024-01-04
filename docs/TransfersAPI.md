@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listTransfers**
 ```swift
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, side: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, completion: @escaping (_ data: TransferListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get transfers list
@@ -131,6 +131,7 @@ let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list transfers for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list transfers for. (optional)
 let state = "state_example" // String | Comma separated states to list transfers for. (optional)
+let side = "side_example" // String | Comma separated sides to list transfers for. (optional)
 let label = "label_example" // String | Comma separated labels to list transfers for. (optional)
 let createdAtGte = "createdAtGte_example" // String | Created at start date inclusive lower bound, ISO8601 (optional)
 let createdAtLt = "createdAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
@@ -138,7 +139,7 @@ let updatedAtGte = "updatedAtGte_example" // String | Created at start date incl
 let updatedAtLt = "updatedAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
 
 // Get transfers list
-TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
+TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, side: side, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -162,6 +163,7 @@ Name | Type | Description  | Notes
  **customerGuid** | **String** | Comma separated customer_guids to list transfers for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list transfers for. | [optional] 
  **state** | **String** | Comma separated states to list transfers for. | [optional] 
+ **side** | **String** | Comma separated sides to list transfers for. | [optional] 
  **label** | **String** | Comma separated labels to list transfers for. | [optional] 
  **createdAtGte** | **String** | Created at start date inclusive lower bound, ISO8601 | [optional] 
  **createdAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
