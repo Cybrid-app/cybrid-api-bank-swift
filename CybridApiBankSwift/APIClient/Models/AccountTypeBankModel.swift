@@ -15,5 +15,6 @@ public enum AccountTypeBankModel: String, Codable, CaseIterable, CaseIterableDef
     case fee = "fee"
     case fiat = "fiat"
     case gas = "gas"
+    case reserve = "reserve"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
