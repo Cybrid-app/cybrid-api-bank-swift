@@ -17,15 +17,23 @@ public struct TransferSourceAccountBankModel: Codable, JSONEncodable, Hashable {
     public var guid: String?
     /** The type of transfer account; one of trading, fiat, external_bank_account, external_wallet, or one_time_address. */
     public var type: String?
+    /** The account's identifier. */
+    public var bankGuid: String?
+    /** The account's identifier. */
+    public var customerGuid: String?
 
-    public init(guid: String? = nil, type: String? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil) {
         self.guid = guid
         self.type = type
+        self.bankGuid = bankGuid
+        self.customerGuid = customerGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case type
+        case bankGuid = "bank_guid"
+        case customerGuid = "customer_guid"
     }
 
     // Encodable protocol methods
@@ -34,6 +42,8 @@ public struct TransferSourceAccountBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
     }
 }
 
