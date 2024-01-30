@@ -41,7 +41,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel?
     public var counterpartyName: PostExternalBankAccountCounterpartyNameBankModel?
     public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
-    /** The counterparty's email address on the account. */
+    /** The counterparty's email address on their checking account. */
     public var counterpartyEmailAddress: String?
 
     public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
