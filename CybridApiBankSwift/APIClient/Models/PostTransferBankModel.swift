@@ -31,16 +31,19 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
     public var externalBankAccountGuid: String?
+    /** The desired payment rail to initiate the transfer for. Valid values are: ach, eft, wire. Valid for funding transfers only. */
+    public var paymentRail: String?
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, paymentRail: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.sourceAccountGuid = sourceAccountGuid
         self.destinationAccountGuid = destinationAccountGuid
         self.externalWalletGuid = externalWalletGuid
         self.externalBankAccountGuid = externalBankAccountGuid
+        self.paymentRail = paymentRail
         self.labels = labels
     }
 
@@ -51,6 +54,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case destinationAccountGuid = "destination_account_guid"
         case externalWalletGuid = "external_wallet_guid"
         case externalBankAccountGuid = "external_bank_account_guid"
+        case paymentRail = "payment_rail"
         case labels
     }
 
@@ -64,6 +68,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
+        try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
