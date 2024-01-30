@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The counterparty&#39;s name on the account. */
+/** The counterparty&#39;s name on their checking account. */
 public struct PostExternalBankAccountCounterpartyNameBankModel: Codable, JSONEncodable, Hashable {
 
     /** The customer's first name. Used for individual accounts. */

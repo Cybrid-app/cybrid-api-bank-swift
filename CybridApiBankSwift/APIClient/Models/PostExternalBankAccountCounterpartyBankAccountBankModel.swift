@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The counterparty&#39;s bank account information. */
+/** The counterparty&#39;s checking bank account information. */
 public struct PostExternalBankAccountCounterpartyBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum RoutingNumberTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
