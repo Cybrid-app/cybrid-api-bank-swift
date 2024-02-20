@@ -20,6 +20,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case businessRegistration = "business_registration"
         case idAndSelfie = "id_and_selfie"
+        case taxIdAndSelfie = "tax_id_and_selfie"
         case attested = "attested"
         case plaidIdentityMatch = "plaid_identity_match"
         case documentSubmission = "document_submission"
