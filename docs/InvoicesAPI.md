@@ -4,10 +4,61 @@ All URIs are relative to *https://bank.sandbox.cybrid.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**cancelInvoice**](InvoicesAPI.md#cancelinvoice) | **DELETE** /api/invoices/{invoice_guid} | Cancel Invoice
 [**createInvoice**](InvoicesAPI.md#createinvoice) | **POST** /api/invoices | Create Invoice
 [**getInvoice**](InvoicesAPI.md#getinvoice) | **GET** /api/invoices/{invoice_guid} | Get Invoice
 [**listInvoices**](InvoicesAPI.md#listinvoices) | **GET** /api/invoices | List Invoices
 
+
+# **cancelInvoice**
+```swift
+    open class func cancelInvoice(invoiceGuid: String, completion: @escaping (_ data: InvoiceBankModel?, _ error: Error?) -> Void)
+```
+
+Cancel Invoice
+
+Cancels an invoice.  Required scope: **invoices:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let invoiceGuid = "invoiceGuid_example" // String | Identifier for the invoice.
+
+// Cancel Invoice
+InvoicesAPI.cancelInvoice(invoiceGuid: invoiceGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceGuid** | **String** | Identifier for the invoice. | 
+
+### Return type
+
+[**InvoiceBankModel**](InvoiceBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createInvoice**
 ```swift

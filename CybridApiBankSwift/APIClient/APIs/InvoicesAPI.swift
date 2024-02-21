@@ -13,6 +13,59 @@ import AnyCodable
 open class InvoicesAPI {
 
     /**
+     Cancel Invoice
+     
+     - parameter invoiceGuid: (path) Identifier for the invoice. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func cancelInvoice(invoiceGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InvoiceBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return cancelInvoiceWithRequestBuilder(invoiceGuid: invoiceGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Cancel Invoice
+     - DELETE /api/invoices/{invoice_guid}
+     - Cancels an invoice.  Required scope: **invoices:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter invoiceGuid: (path) Identifier for the invoice. 
+     - returns: RequestBuilder<InvoiceBankModel> 
+     */
+    open class func cancelInvoiceWithRequestBuilder(invoiceGuid: String) -> RequestBuilder<InvoiceBankModel> {
+        var localVariablePath = "/api/invoices/{invoice_guid}"
+        let invoiceGuidPreEscape = "\(APIHelper.mapValueToPathItem(invoiceGuid))"
+        let invoiceGuidPostEscape = invoiceGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{invoice_guid}", with: invoiceGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InvoiceBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create Invoice
      
      - parameter postInvoiceBankModel: (body)  
