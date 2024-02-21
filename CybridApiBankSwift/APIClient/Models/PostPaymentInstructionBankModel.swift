@@ -14,17 +14,13 @@ public struct PostPaymentInstructionBankModel: Codable, JSONEncodable, Hashable 
 
     /** The invoice guid. */
     public var invoiceGuid: String
-    /** The unique identifier for the customer. */
-    public var customerGuid: String?
 
-    public init(invoiceGuid: String, customerGuid: String? = nil) {
+    public init(invoiceGuid: String) {
         self.invoiceGuid = invoiceGuid
-        self.customerGuid = customerGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case invoiceGuid = "invoice_guid"
-        case customerGuid = "customer_guid"
     }
 
     // Encodable protocol methods
@@ -32,7 +28,6 @@ public struct PostPaymentInstructionBankModel: Codable, JSONEncodable, Hashable 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(invoiceGuid, forKey: .invoiceGuid)
-        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
     }
 }
 

@@ -23,7 +23,7 @@ Creates a payment instruction.  ## State  | State | Description | |-------|-----
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postPaymentInstructionBankModel = PostPaymentInstruction(invoiceGuid: "invoiceGuid_example", customerGuid: "customerGuid_example") // PostPaymentInstructionBankModel | 
+let postPaymentInstructionBankModel = PostPaymentInstruction(invoiceGuid: "invoiceGuid_example") // PostPaymentInstructionBankModel | 
 
 // Create Payment Instruction
 PaymentInstructionsAPI.createPaymentInstruction(postPaymentInstructionBankModel: postPaymentInstructionBankModel) { (response, error) in
