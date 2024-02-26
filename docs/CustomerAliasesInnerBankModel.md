@@ -1,4 +1,4 @@
-# CustomerNameBankModel
+# CustomerAliasesInnerBankModel
 
 ## Properties
 Name | Type | Description | Notes
