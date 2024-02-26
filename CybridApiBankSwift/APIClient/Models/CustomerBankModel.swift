@@ -26,6 +26,10 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var state: String?
     public var name: CustomerNameBankModel?
     public var address: CustomerAddressBankModel?
+    /** The customer's aliases. Only available for GET operations when 'include_pii' is set. */
+    public var aliases: [CustomerAliasesInnerBankModel]?
+    /** The customer's website. Only available for GET operations when 'include_pii' is set. */
+    public var website: String?
     /** The customer's DOB. Only available for GET operations when 'include_pii' is set. */
     public var dateOfBirth: Date?
     /** The customer's phone number. Only available for GET operations when 'include_pii' is set. */
@@ -37,7 +41,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     /** The verification checks associated with the customer. */
     public var verificationChecks: [VerificationCheckBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
@@ -46,6 +50,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         self.state = state
         self.name = name
         self.address = address
+        self.aliases = aliases
+        self.website = website
         self.dateOfBirth = dateOfBirth
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
@@ -62,6 +68,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case state
         case name
         case address
+        case aliases
+        case website
         case dateOfBirth = "date_of_birth"
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
@@ -81,6 +89,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(aliases, forKey: .aliases)
+        try container.encodeIfPresent(website, forKey: .website)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
