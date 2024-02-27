@@ -35,8 +35,10 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
+    /** The custom fees associated with the quote */
+    public var fees: [PostFeeBankModel]?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fees: [PostFeeBankModel]? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -45,6 +47,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         self.side = side
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
+        self.fees = fees
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -56,6 +59,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case side
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
+        case fees
     }
 
     // Encodable protocol methods
@@ -70,6 +74,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
+        try container.encodeIfPresent(fees, forKey: .fees)
     }
 }
 
