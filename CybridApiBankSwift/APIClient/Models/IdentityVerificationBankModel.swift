@@ -30,8 +30,10 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var outcome: String?
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
+    /** The checks associated with the identity verification. */
+    public var verificationChecks: [VerificationCheckBankModel]?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
@@ -41,6 +43,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
+        self.verificationChecks = verificationChecks
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -53,6 +56,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case state
         case outcome
         case failureCodes = "failure_codes"
+        case verificationChecks = "verification_checks"
     }
 
     // Encodable protocol methods
@@ -68,6 +72,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
+        try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
     }
 }
 
