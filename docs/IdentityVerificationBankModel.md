@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **state** | **String** | The identity verification state; one of storing, waiting, expired, or completed. | [optional] 
 **outcome** | **String** | The identity verification outcome; one of passed or failed. | [optional] 
 **failureCodes** | **[String]** | The reason codes explaining the outcome. | [optional] 
+**verificationChecks** | [VerificationCheckBankModel] | The checks associated with the identity verification. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

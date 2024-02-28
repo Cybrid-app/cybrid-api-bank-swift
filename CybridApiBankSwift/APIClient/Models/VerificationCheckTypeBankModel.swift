@@ -21,5 +21,7 @@ public enum VerificationCheckTypeBankModel: String, Codable, CaseIterable, CaseI
     case personAuthentication = "person_authentication"
     case personGovIdVerification = "person_gov_id_verification"
     case personTaxIdVerification = "person_tax_id_verification"
+    case externalBankAccountVerification = "external_bank_account_verification"
+    case externalBankAccountAttested = "external_bank_account_attested"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **state** | **String** | The identity verification state; one of storing, waiting, expired, or completed. | [optional] 
 **outcome** | **String** | The identity verification outcome; one of passed or failed. | [optional] 
 **failureCodes** | **[String]** | The reason codes explaining the outcome. | [optional] 
+**verificationChecks** | [VerificationCheckBankModel] | The checks associated with the identity verification. | [optional] 
 **personaInquiryId** | **String** | The Persona identifier of the backing inquiry. | [optional] 
 **personaState** | **String** | The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. | [optional] 
 **externalBankAccountGuid** | **String** | The external bank account&#39;s identifier. | [optional] 
