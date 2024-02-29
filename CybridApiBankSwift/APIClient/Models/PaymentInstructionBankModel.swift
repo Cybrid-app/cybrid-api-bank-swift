@@ -24,25 +24,31 @@ public struct PaymentInstructionBankModel: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date?
     /** ISO8601 datetime the instructions expired at. */
     public var expiredAt: Date?
+    /** ISO8601 datetime the instructions failed to be created at. */
+    public var failedAt: Date?
     /** The network address to pay the invoice to. */
     public var networkAddress: String?
     /** The asset the payor must pay the invoice in, e.g., BTC. */
     public var expectedPaymentAsset: String?
     /** The amount to be paid in base units of expected_payment_asset. */
     public var expectedPaymentAmount: Int?
-    /** The state of the payment instruction; one of storing, created, or expired. */
+    /** The reason code explaining the failure; ond of invoice_paid, invoice_cancelled, or invalid_amount. */
+    public var failureCode: String?
+    /** The state of the payment instruction; one of storing, created, expired, or failed. */
     public var state: String?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, invoiceGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, expiredAt: Date? = nil, networkAddress: String? = nil, expectedPaymentAsset: String? = nil, expectedPaymentAmount: Int? = nil, state: String? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, invoiceGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, expiredAt: Date? = nil, failedAt: Date? = nil, networkAddress: String? = nil, expectedPaymentAsset: String? = nil, expectedPaymentAmount: Int? = nil, failureCode: String? = nil, state: String? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.invoiceGuid = invoiceGuid
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.expiredAt = expiredAt
+        self.failedAt = failedAt
         self.networkAddress = networkAddress
         self.expectedPaymentAsset = expectedPaymentAsset
         self.expectedPaymentAmount = expectedPaymentAmount
+        self.failureCode = failureCode
         self.state = state
     }
 
@@ -53,9 +59,11 @@ public struct PaymentInstructionBankModel: Codable, JSONEncodable, Hashable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case expiredAt = "expired_at"
+        case failedAt = "failed_at"
         case networkAddress = "network_address"
         case expectedPaymentAsset = "expected_payment_asset"
         case expectedPaymentAmount = "expected_payment_amount"
+        case failureCode = "failure_code"
         case state
     }
 
@@ -69,9 +77,11 @@ public struct PaymentInstructionBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(expiredAt, forKey: .expiredAt)
+        try container.encodeIfPresent(failedAt, forKey: .failedAt)
         try container.encodeIfPresent(networkAddress, forKey: .networkAddress)
         try container.encodeIfPresent(expectedPaymentAsset, forKey: .expectedPaymentAsset)
         try container.encodeIfPresent(expectedPaymentAmount, forKey: .expectedPaymentAmount)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(state, forKey: .state)
     }
 }
