@@ -23,7 +23,7 @@ public struct InvoiceBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
     /** The type of invoice; one of lightning. */
-    public var invoiceType: String?
+    public var type: String?
     /** The asset code the customer will receive the funds in. */
     public var asset: String?
     /** The amount to be received in base units of the asset, i.e., the amount the customer will receive after fees. ONLY one of receive_amount or deliver_amount is required. */
@@ -37,13 +37,13 @@ public struct InvoiceBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the invoice. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, invoiceType: String? = nil, asset: String? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, fee: Int? = nil, state: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, type: String? = nil, asset: String? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, fee: Int? = nil, state: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.accountGuid = accountGuid
         self.createdAt = createdAt
         self.updatedAt = updatedAt
-        self.invoiceType = invoiceType
+        self.type = type
         self.asset = asset
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
@@ -58,7 +58,7 @@ public struct InvoiceBankModel: Codable, JSONEncodable, Hashable {
         case accountGuid = "account_guid"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case invoiceType = "invoice_type"
+        case type
         case asset
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
@@ -76,7 +76,7 @@ public struct InvoiceBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(accountGuid, forKey: .accountGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-        try container.encodeIfPresent(invoiceType, forKey: .invoiceType)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
