@@ -17,5 +17,6 @@ public enum TransferTypeBankModel: String, Codable, CaseIterable, CaseIterableDe
     case instantFunding = "instant_funding"
     case fundingReturn = "funding_return"
     case cryptoReturn = "crypto_return"
+    case lossRecovery = "loss_recovery"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

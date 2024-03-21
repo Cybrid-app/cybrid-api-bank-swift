@@ -16,5 +16,6 @@ public enum TransferAccountTypeBankModel: String, Codable, CaseIterable, CaseIte
     case externalBankAccount = "external_bank_account"
     case externalWallet = "external_wallet"
     case oneTimeAddress = "one_time_address"
+    case reserve = "reserve"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
