@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The trading account guid. */
+    /** The fiat account guid. */
     public var accountGuid: String
     /** The unique identifier for the customer. */
     public var customerGuid: String?

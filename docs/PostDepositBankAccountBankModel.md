@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accountGuid** | **String** | The trading account guid. | 
+**accountGuid** | **String** | The fiat account guid. | 
 **customerGuid** | **String** | The unique identifier for the customer. | [optional] 
 **labels** | **[String]** | The labels associated with the address. | [optional] 
 
