@@ -42,13 +42,13 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var countryCode: String?
     public var name: PostIdentityVerificationNameBankModel?
     public var address: PostIdentityVerificationAddressBankModel?
-    /** The customer's date of birth; required when method is set to 'attested'. */
+    /** The customer's date of birth; required when type is set to 'kyc' and method is set to 'attested'. */
     public var dateOfBirth: Date?
     /** The customer's phone number. */
     public var phoneNumber: String?
     /** The customer's email address. */
     public var emailAddress: String?
-    /** The customer's identification numbers; required when method is set to 'attested'. */
+    /** The customer's identification numbers; required when type is set to 'kyc' and method is set to 'attested'. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
     /** The external bank account's identifier. Required for 'bank_account' type. */
     public var externalBankAccountGuid: String?
