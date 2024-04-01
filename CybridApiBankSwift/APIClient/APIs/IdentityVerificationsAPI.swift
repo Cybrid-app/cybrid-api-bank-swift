@@ -66,12 +66,13 @@ open class IdentityVerificationsAPI {
      Get Identity Verification
      
      - parameter identityVerificationGuid: (path) Identifier for the identity verification. 
+     - parameter includePii: (query) Include PII in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getIdentityVerification(identityVerificationGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationWithDetailsBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getIdentityVerificationWithRequestBuilder(identityVerificationGuid: identityVerificationGuid).execute(apiResponseQueue) { result in
+    open class func getIdentityVerification(identityVerificationGuid: String, includePii: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationWithDetailsBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getIdentityVerificationWithRequestBuilder(identityVerificationGuid: identityVerificationGuid, includePii: includePii).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -92,9 +93,10 @@ open class IdentityVerificationsAPI {
        - type: oauth2
        - name: oauth2
      - parameter identityVerificationGuid: (path) Identifier for the identity verification. 
+     - parameter includePii: (query) Include PII in the response. (optional)
      - returns: RequestBuilder<IdentityVerificationWithDetailsBankModel> 
      */
-    open class func getIdentityVerificationWithRequestBuilder(identityVerificationGuid: String) -> RequestBuilder<IdentityVerificationWithDetailsBankModel> {
+    open class func getIdentityVerificationWithRequestBuilder(identityVerificationGuid: String, includePii: Bool? = nil) -> RequestBuilder<IdentityVerificationWithDetailsBankModel> {
         var localVariablePath = "/api/identity_verifications/{identity_verification_guid}"
         let identityVerificationGuidPreEscape = "\(APIHelper.mapValueToPathItem(identityVerificationGuid))"
         let identityVerificationGuidPostEscape = identityVerificationGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -102,7 +104,10 @@ open class IdentityVerificationsAPI {
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include_pii": includePii?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
