@@ -38,8 +38,9 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var personaState: String?
     /** The external bank account's identifier. */
     public var externalBankAccountGuid: String?
+    public var pii: IdentityVerificationWithDetailsPiiBankModel?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
@@ -53,6 +54,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
         self.externalBankAccountGuid = externalBankAccountGuid
+        self.pii = pii
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -69,6 +71,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
         case externalBankAccountGuid = "external_bank_account_guid"
+        case pii
     }
 
     // Encodable protocol methods
@@ -88,6 +91,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
+        try container.encodeIfPresent(pii, forKey: .pii)
     }
 }
 

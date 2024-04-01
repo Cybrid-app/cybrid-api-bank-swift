@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **getIdentityVerification**
 ```swift
-    open class func getIdentityVerification(identityVerificationGuid: String, completion: @escaping (_ data: IdentityVerificationWithDetailsBankModel?, _ error: Error?) -> Void)
+    open class func getIdentityVerification(identityVerificationGuid: String, includePii: Bool? = nil, completion: @escaping (_ data: IdentityVerificationWithDetailsBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Identity Verification
@@ -74,9 +74,10 @@ Retrieves an identity verification.  Required scope: **customers:read**
 import CybridApiBankSwift
 
 let identityVerificationGuid = "identityVerificationGuid_example" // String | Identifier for the identity verification.
+let includePii = true // Bool | Include PII in the response. (optional)
 
 // Get Identity Verification
-IdentityVerificationsAPI.getIdentityVerification(identityVerificationGuid: identityVerificationGuid) { (response, error) in
+IdentityVerificationsAPI.getIdentityVerification(identityVerificationGuid: identityVerificationGuid, includePii: includePii) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -93,6 +94,7 @@ IdentityVerificationsAPI.getIdentityVerification(identityVerificationGuid: ident
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identityVerificationGuid** | **String** | Identifier for the identity verification. | 
+ **includePii** | **Bool** | Include PII in the response. | [optional] 
 
 ### Return type
 
