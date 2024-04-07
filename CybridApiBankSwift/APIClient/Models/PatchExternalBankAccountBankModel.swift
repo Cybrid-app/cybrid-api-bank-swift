@@ -17,7 +17,7 @@ public struct PatchExternalBankAccountBankModel: Codable, JSONEncodable, Hashabl
         case refreshRequired = "refresh_required"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The state of the external bank account. */
+    /** The state of the external bank account. If set to \"completed,\" the returned state of the external bank account will be either \"completed\", if the bank account has been verified, or \"unverified\" if the bank account has not been verified. */
     public var state: StateBankModel
 
     public init(state: StateBankModel) {
