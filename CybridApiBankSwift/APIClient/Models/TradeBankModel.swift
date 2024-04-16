@@ -26,7 +26,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public var side: String?
     /** The state of the trade; one of storing, pending, cancelled, completed, settling, or failed. */
     public var state: String?
-    /** The failure code for failed trades. */
+    /** The failure code for failed trades; one of non_sufficient_funds, unsupported, limit_exceeded, expired_quote, or market_volatility. */
     public var failureCode: String?
     /** The amount to be received in base units of the currency: currency is \"asset\" for buy and \"counter_asset\" for sell. */
     public var receiveAmount: String?

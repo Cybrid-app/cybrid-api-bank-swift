@@ -30,7 +30,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var side: String?
     /** The state of the transfer; one of storing, pending, reviewing, completed, or failed. */
     public var state: String?
-    /** The failure code for failed transfers. */
+    /** The failure code for failed transfers; one of non_sufficient_funds, refresh_required, party_name_invalid, payment_rail_invalid, compliance_rejection, cancelled, reversed, limit_exceeded, network_fee_too_low, or amount_too_low. */
     public var failureCode: String?
     /** The actual amount in base units of the asset. */
     public var amount: Int?
