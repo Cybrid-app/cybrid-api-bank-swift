@@ -12,15 +12,23 @@ import AnyCodable
 
 public struct PostPaymentInstructionBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum ExpectedBehaviourBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case invoicePaidImmediately = "invoice_paid_immediately"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The invoice guid. */
     public var invoiceGuid: String
+    /** The optional expected behaviour to simulate. */
+    public var expectedBehaviour: ExpectedBehaviourBankModel?
 
-    public init(invoiceGuid: String) {
+    public init(invoiceGuid: String, expectedBehaviour: ExpectedBehaviourBankModel? = nil) {
         self.invoiceGuid = invoiceGuid
+        self.expectedBehaviour = expectedBehaviour
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case invoiceGuid = "invoice_guid"
+        case expectedBehaviour = "expected_behaviour"
     }
 
     // Encodable protocol methods
@@ -28,6 +36,7 @@ public struct PostPaymentInstructionBankModel: Codable, JSONEncodable, Hashable 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(invoiceGuid, forKey: .invoiceGuid)
+        try container.encodeIfPresent(expectedBehaviour, forKey: .expectedBehaviour)
     }
 }
 
