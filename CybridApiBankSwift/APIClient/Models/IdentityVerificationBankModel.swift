@@ -30,10 +30,12 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var outcome: String?
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
-    /** The checks associated with the identity verification. */
-    public var verificationChecks: [VerificationCheckBankModel]?
+    /** The compliance decisions associated with the identity verification. */
+    public var complianceDecisions: [ComplianceDecisionBankModel]?
+    /** Deprecated; use compliance_decisions instead. */
+    public var verificationChecks: [ComplianceDecisionBankModel]?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
@@ -43,6 +45,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
+        self.complianceDecisions = complianceDecisions
         self.verificationChecks = verificationChecks
     }
 
@@ -56,6 +59,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case state
         case outcome
         case failureCodes = "failure_codes"
+        case complianceDecisions = "compliance_decisions"
         case verificationChecks = "verification_checks"
     }
 
@@ -72,6 +76,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
+        try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
         try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
     }
 }

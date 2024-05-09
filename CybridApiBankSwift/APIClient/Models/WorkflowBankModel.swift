@@ -14,6 +14,8 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the workflow. */
     public var guid: String?
+    /** The associated banks's identifier. */
+    public var bankGuid: String?
     /** The associated customer's identifier. */
     public var customerGuid: String?
     /** The type of workflow; one of plaid. */
@@ -27,8 +29,9 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
+        self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.type = type
         self.state = state
@@ -39,6 +42,7 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case type
         case state
@@ -52,6 +56,7 @@ public struct WorkflowBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(state, forKey: .state)
