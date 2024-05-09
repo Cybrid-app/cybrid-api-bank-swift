@@ -32,12 +32,14 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var aliases: [CounterpartyAliasesInnerBankModel]?
     /** The counterparty's DOB. Only available for GET operations when 'include_pii' is set. */
     public var dateOfBirth: Date?
-    /** The labels associated with the customer. */
+    /** The labels associated with the counterparty. */
     public var labels: [String]?
-    /** The verification checks associated with the customer. */
-    public var verificationChecks: [VerificationCheckBankModel]?
+    /** The compliance decisions associated with the counterparty. */
+    public var complianceDecisions: [ComplianceDecisionBankModel]?
+    /** Deprecated; use compliance_decisions instead. */
+    public var verificationChecks: [ComplianceDecisionBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -50,6 +52,7 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         self.aliases = aliases
         self.dateOfBirth = dateOfBirth
         self.labels = labels
+        self.complianceDecisions = complianceDecisions
         self.verificationChecks = verificationChecks
     }
 
@@ -66,6 +69,7 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case aliases
         case dateOfBirth = "date_of_birth"
         case labels
+        case complianceDecisions = "compliance_decisions"
         case verificationChecks = "verification_checks"
     }
 
@@ -85,6 +89,7 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(aliases, forKey: .aliases)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(labels, forKey: .labels)
+        try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
         try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
     }
 }

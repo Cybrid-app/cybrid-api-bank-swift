@@ -1,4 +1,4 @@
-# VerificationCheckStateBankModel
+# ComplianceDecisionStateBankModel
 
 ## Properties
 Name | Type | Description | Notes

@@ -30,8 +30,12 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var outcome: String?
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
-    /** The checks associated with the identity verification. */
-    public var verificationChecks: [VerificationCheckBankModel]?
+    /** The compliance checks associated with the identity verification. */
+    public var complianceChecks: [ComplianceCheckBankModel]?
+    /** The compliance decisions associated with the identity verification. */
+    public var complianceDecisions: [ComplianceDecisionBankModel]?
+    /** Deprecated; use compliance_decisions instead. */
+    public var verificationChecks: [ComplianceDecisionBankModel]?
     /** The Persona identifier of the backing inquiry. */
     public var personaInquiryId: String?
     /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
@@ -40,7 +44,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var externalBankAccountGuid: String?
     public var pii: IdentityVerificationWithDetailsPiiBankModel?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, verificationChecks: [VerificationCheckBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil) {
+    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil) {
         self.guid = guid
         self.customerGuid = customerGuid
         self.type = type
@@ -50,6 +54,8 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
+        self.complianceChecks = complianceChecks
+        self.complianceDecisions = complianceDecisions
         self.verificationChecks = verificationChecks
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
@@ -67,6 +73,8 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case state
         case outcome
         case failureCodes = "failure_codes"
+        case complianceChecks = "compliance_checks"
+        case complianceDecisions = "compliance_decisions"
         case verificationChecks = "verification_checks"
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
@@ -87,6 +95,8 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
+        try container.encodeIfPresent(complianceChecks, forKey: .complianceChecks)
+        try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
         try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)

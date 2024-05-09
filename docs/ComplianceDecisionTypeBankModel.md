@@ -1,4 +1,4 @@
-# VerificationCheckTypeBankModel
+# ComplianceDecisionTypeBankModel
 
 ## Properties
 Name | Type | Description | Notes
