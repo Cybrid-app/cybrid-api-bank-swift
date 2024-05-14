@@ -17,6 +17,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case funding = "funding"
         case bookTransfer = "book_transfer"
         case cryptoTransfer = "crypto_transfer"
+        case interAccount = "inter_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The type of product the quote is for. */

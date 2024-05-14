@@ -15,7 +15,7 @@ public struct TransferSourceAccountBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the transfer account. */
     public var guid: String?
-    /** The type of transfer account; one of trading, fiat, external_bank_account, external_wallet, one_time_address, or reserve. */
+    /** The type of transfer account; one of trading, fiat, external_bank_account, external_wallet, one_time_address, reserve, or invoice_operations. */
     public var type: String?
     /** The account's identifier. */
     public var bankGuid: String?

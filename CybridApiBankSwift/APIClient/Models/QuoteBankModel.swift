@@ -14,7 +14,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the quote. */
     public var guid: String?
-    /** The type of product the quote is for; one of trading, funding, book_transfer, or crypto_transfer. */
+    /** The type of product the quote is for; one of trading, funding, book_transfer, crypto_transfer, or inter_account. */
     public var productType: String?
     /** The unique identifier for the bank. */
     public var bankGuid: String?

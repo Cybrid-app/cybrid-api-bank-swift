@@ -17,6 +17,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case book = "book"
         case crypto = "crypto"
         case instantFunding = "instant_funding"
+        case interAccount = "inter_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The associated quote's identifier. */
