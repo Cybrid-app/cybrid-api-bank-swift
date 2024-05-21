@@ -14,7 +14,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the quote. */
     public var guid: String?
-    /** The type of product the quote is for; one of trading, funding, book_transfer, crypto_transfer, or inter_account. */
+    /** The type of product the quote is for; one of trading, funding, book_transfer, crypto_transfer, inter_account, or lightning_transfer. */
     public var productType: String?
     /** The unique identifier for the bank. */
     public var bankGuid: String?
@@ -44,8 +44,10 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var networkFee: String?
     /** The asset code of the network fee. */
     public var networkFeeAsset: String?
+    /** The network address to pay the invoice to. Populated for lightning_transfer quotes. */
+    public var networkAddress: String?
 
-    public init(guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil) {
+    public init(guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil, networkAddress: String? = nil) {
         self.guid = guid
         self.productType = productType
         self.bankGuid = bankGuid
@@ -62,6 +64,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         self.asset = asset
         self.networkFee = networkFee
         self.networkFeeAsset = networkFeeAsset
+        self.networkAddress = networkAddress
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -81,6 +84,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case asset
         case networkFee = "network_fee"
         case networkFeeAsset = "network_fee_asset"
+        case networkAddress = "network_address"
     }
 
     // Encodable protocol methods
@@ -103,6 +107,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(networkFee, forKey: .networkFee)
         try container.encodeIfPresent(networkFeeAsset, forKey: .networkFeeAsset)
+        try container.encodeIfPresent(networkAddress, forKey: .networkAddress)
     }
 }
 

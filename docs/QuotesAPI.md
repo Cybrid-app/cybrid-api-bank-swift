@@ -23,7 +23,7 @@ Creates a quote.  ## Quote creation  Quotes can be created for a Bank or a Custo
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postQuoteBankModel = PostQuote(productType: "productType_example", bankGuid: "bankGuid_example", customerGuid: "customerGuid_example", asset: "asset_example", symbol: "symbol_example", side: "side_example", receiveAmount: 123, deliverAmount: 123, fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostQuoteBankModel | 
+let postQuoteBankModel = PostQuote(productType: "productType_example", bankGuid: "bankGuid_example", customerGuid: "customerGuid_example", asset: "asset_example", networkAddress: "networkAddress_example", symbol: "symbol_example", side: "side_example", receiveAmount: 123, deliverAmount: 123, fees: [PostFee(type: "type_example", spreadFee: 123, fixedFee: 123)]) // PostQuoteBankModel | 
 
 // Create Quote
 QuotesAPI.createQuote(postQuoteBankModel: postQuoteBankModel) { (response, error) in
