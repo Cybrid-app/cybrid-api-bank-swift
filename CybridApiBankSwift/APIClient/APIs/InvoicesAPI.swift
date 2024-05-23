@@ -169,6 +169,14 @@ open class InvoicesAPI {
     }
 
     /**
+     * enum for parameter environment
+     */
+    public enum EnvironmentBankModel_listInvoices: String, CaseIterable {
+        case sandbox = "sandbox"
+        case production = "production"
+    }
+
+    /**
      List Invoices
      
      - parameter page: (query) The page index to retrieve. (optional)
@@ -177,13 +185,15 @@ open class InvoicesAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list invoices for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list invoices for. (optional)
      - parameter accountGuid: (query) Comma separated account_guids to list invoices for. (optional)
+     - parameter state: (query) Comma separated states to list invoices for. (optional)
+     - parameter environment: (query)  (optional)
      - parameter label: (query) Comma separated labels to list invoices for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listInvoices(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InvoiceListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listInvoicesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, label: label).execute(apiResponseQueue) { result in
+    open class func listInvoices(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, environment: EnvironmentBankModel_listInvoices? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<InvoiceListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listInvoicesWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, environment: environment, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -209,10 +219,12 @@ open class InvoicesAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list invoices for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list invoices for. (optional)
      - parameter accountGuid: (query) Comma separated account_guids to list invoices for. (optional)
+     - parameter state: (query) Comma separated states to list invoices for. (optional)
+     - parameter environment: (query)  (optional)
      - parameter label: (query) Comma separated labels to list invoices for. (optional)
      - returns: RequestBuilder<InvoiceListBankModel> 
      */
-    open class func listInvoicesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, label: String? = nil) -> RequestBuilder<InvoiceListBankModel> {
+    open class func listInvoicesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, environment: EnvironmentBankModel_listInvoices? = nil, label: String? = nil) -> RequestBuilder<InvoiceListBankModel> {
         let localVariablePath = "/api/invoices"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -225,6 +237,8 @@ open class InvoicesAPI {
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
             "account_guid": accountGuid?.encodeToJSON(),
+            "state": state?.encodeToJSON(),
+            "environment": environment?.encodeToJSON(),
             "label": label?.encodeToJSON(),
         ])
 
