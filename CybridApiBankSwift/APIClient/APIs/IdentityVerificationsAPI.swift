@@ -129,12 +129,13 @@ open class IdentityVerificationsAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list identity verifications for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list identity verifications for. (optional)
      - parameter state: (query) Comma separated states to list identity verifications for. (optional)
+     - parameter type: (query) Comma separated types to list identity verifications for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listIdentityVerificationsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state).execute(apiResponseQueue) { result in
+    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, type: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<IdentityVerificationListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listIdentityVerificationsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state, type: type).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -160,9 +161,10 @@ open class IdentityVerificationsAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list identity verifications for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list identity verifications for. (optional)
      - parameter state: (query) Comma separated states to list identity verifications for. (optional)
+     - parameter type: (query) Comma separated types to list identity verifications for. (optional)
      - returns: RequestBuilder<IdentityVerificationListBankModel> 
      */
-    open class func listIdentityVerificationsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil) -> RequestBuilder<IdentityVerificationListBankModel> {
+    open class func listIdentityVerificationsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, type: String? = nil) -> RequestBuilder<IdentityVerificationListBankModel> {
         let localVariablePath = "/api/identity_verifications"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -175,6 +177,7 @@ open class IdentityVerificationsAPI {
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
             "state": state?.encodeToJSON(),
+            "type": type?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
