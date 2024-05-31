@@ -128,6 +128,7 @@ open class TransfersAPI {
      - parameter state: (query) Comma separated states to list transfers for. (optional)
      - parameter side: (query) Comma separated sides to list transfers for. (optional)
      - parameter label: (query) Comma separated labels to list transfers for. (optional)
+     - parameter txnHash: (query) Comma separated transaction hashes to list transfers for. (optional)
      - parameter createdAtGte: (query) Created at start date inclusive lower bound, ISO8601 (optional)
      - parameter createdAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
      - parameter updatedAtGte: (query) Created at start date inclusive lower bound, ISO8601 (optional)
@@ -136,8 +137,8 @@ open class TransfersAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, side: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listTransfersWithRequestBuilder(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, side: side, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt).execute(apiResponseQueue) { result in
+    open class func listTransfers(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, side: String? = nil, label: String? = nil, txnHash: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listTransfersWithRequestBuilder(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, side: side, label: label, txnHash: txnHash, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -167,13 +168,14 @@ open class TransfersAPI {
      - parameter state: (query) Comma separated states to list transfers for. (optional)
      - parameter side: (query) Comma separated sides to list transfers for. (optional)
      - parameter label: (query) Comma separated labels to list transfers for. (optional)
+     - parameter txnHash: (query) Comma separated transaction hashes to list transfers for. (optional)
      - parameter createdAtGte: (query) Created at start date inclusive lower bound, ISO8601 (optional)
      - parameter createdAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
      - parameter updatedAtGte: (query) Created at start date inclusive lower bound, ISO8601 (optional)
      - parameter updatedAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
      - returns: RequestBuilder<TransferListBankModel> 
      */
-    open class func listTransfersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, side: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil) -> RequestBuilder<TransferListBankModel> {
+    open class func listTransfersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, side: String? = nil, label: String? = nil, txnHash: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil) -> RequestBuilder<TransferListBankModel> {
         let localVariablePath = "/api/transfers"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -190,6 +192,7 @@ open class TransfersAPI {
             "state": state?.encodeToJSON(),
             "side": side?.encodeToJSON(),
             "label": label?.encodeToJSON(),
+            "txn_hash": txnHash?.encodeToJSON(),
             "created_at_gte": createdAtGte?.encodeToJSON(),
             "created_at_lt": createdAtLt?.encodeToJSON(),
             "updated_at_gte": updatedAtGte?.encodeToJSON(),
