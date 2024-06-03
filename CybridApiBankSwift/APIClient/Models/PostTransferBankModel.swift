@@ -18,12 +18,15 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case crypto = "crypto"
         case instantFunding = "instant_funding"
         case interAccount = "inter_account"
+        case lightning = "lightning"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The associated quote's identifier. */
     public var quoteGuid: String
     /** The type of transfer. */
     public var transferType: TransferTypeBankModel
+    /** The customer's identifier. */
+    public var customerGuid: String?
     /** The source account's identifier. Required for book transfers. */
     public var sourceAccountGuid: String?
     /** The destination account's identifier. Required for book transfers. */
@@ -32,6 +35,8 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
     public var externalBankAccountGuid: String?
+    /** The network fee account's identifier. Required for network fee transfers. Must be the identifier for the customer's or bank's fiat account. For customer's to pay the network fees, include the customer's fiat account guid. For bank's to pay the network fees, include the bank's fiat account guid. */
+    public var networkFeeAccountGuid: String?
     /** The desired payment rail to initiate the transfer for. Valid values are: ach, eft, wire. Valid for funding transfers only. */
     public var paymentRail: String?
     /** The memo to send to the counterparty. */
@@ -39,13 +44,15 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
+        self.customerGuid = customerGuid
         self.sourceAccountGuid = sourceAccountGuid
         self.destinationAccountGuid = destinationAccountGuid
         self.externalWalletGuid = externalWalletGuid
         self.externalBankAccountGuid = externalBankAccountGuid
+        self.networkFeeAccountGuid = networkFeeAccountGuid
         self.paymentRail = paymentRail
         self.beneficiaryMemo = beneficiaryMemo
         self.labels = labels
@@ -54,10 +61,12 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case quoteGuid = "quote_guid"
         case transferType = "transfer_type"
+        case customerGuid = "customer_guid"
         case sourceAccountGuid = "source_account_guid"
         case destinationAccountGuid = "destination_account_guid"
         case externalWalletGuid = "external_wallet_guid"
         case externalBankAccountGuid = "external_bank_account_guid"
+        case networkFeeAccountGuid = "network_fee_account_guid"
         case paymentRail = "payment_rail"
         case beneficiaryMemo = "beneficiary_memo"
         case labels
@@ -69,10 +78,12 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(quoteGuid, forKey: .quoteGuid)
         try container.encode(transferType, forKey: .transferType)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
+        try container.encodeIfPresent(networkFeeAccountGuid, forKey: .networkFeeAccountGuid)
         try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
         try container.encodeIfPresent(beneficiaryMemo, forKey: .beneficiaryMemo)
         try container.encodeIfPresent(labels, forKey: .labels)
