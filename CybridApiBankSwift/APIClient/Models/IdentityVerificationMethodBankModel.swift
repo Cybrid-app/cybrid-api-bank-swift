@@ -19,5 +19,6 @@ public enum IdentityVerificationMethodBankModel: String, Codable, CaseIterable, 
     case accountOwnership = "account_ownership"
     case plaidIdentityMatch = "plaid_identity_match"
     case documentSubmission = "document_submission"
+    case watchlists = "watchlists"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

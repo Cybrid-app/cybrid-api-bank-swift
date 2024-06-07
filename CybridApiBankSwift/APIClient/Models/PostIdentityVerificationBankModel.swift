@@ -15,6 +15,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case kyc = "kyc"
         case bankAccount = "bank_account"
+        case counterparty = "counterparty"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -26,6 +27,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case accountOwnership = "account_ownership"
         case plaidIdentityMatch = "plaid_identity_match"
         case documentSubmission = "document_submission"
+        case watchlists = "watchlists"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
