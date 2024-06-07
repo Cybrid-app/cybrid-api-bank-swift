@@ -14,17 +14,21 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
 
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
-    /** The identity verification's identifier. */
-    public var customerGuid: String?
-    /** The identity verification type; one of kyc or bank_account. */
+    /** The identity verification type; one of kyc, bank_account, or counterparty. */
     public var type: String?
-    /** The identity verification method; one of business_registration, id_and_selfie, tax_id_and_selfie, attested, attested_ownership, account_ownership, plaid_identity_match, or document_submission. */
+    /** The identity verification method; one of business_registration, id_and_selfie, tax_id_and_selfie, attested, attested_ownership, account_ownership, plaid_identity_match, document_submission, or watchlists. */
     public var method: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
-    /** The identity verification state; one of storing, waiting, expired, or completed. */
+    /** The identity verification's identifier. */
+    public var customerGuid: String?
+    /** The identity verification's identifier. */
+    public var counterpartyGuid: String?
+    /** The identity verification's identifier. */
+    public var externalBankAccountGuid: String?
+    /** The identity verification state; one of storing, waiting, pending, reviewing, expired, or completed. */
     public var state: String?
     /** The identity verification outcome; one of passed or failed. */
     public var outcome: String?
@@ -40,17 +44,17 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var personaInquiryId: String?
     /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
     public var personaState: String?
-    /** The external bank account's identifier. */
-    public var externalBankAccountGuid: String?
     public var pii: IdentityVerificationWithDetailsPiiBankModel?
 
-    public init(guid: String? = nil, customerGuid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, externalBankAccountGuid: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil) {
+    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil) {
         self.guid = guid
-        self.customerGuid = customerGuid
         self.type = type
         self.method = method
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.customerGuid = customerGuid
+        self.counterpartyGuid = counterpartyGuid
+        self.externalBankAccountGuid = externalBankAccountGuid
         self.state = state
         self.outcome = outcome
         self.failureCodes = failureCodes
@@ -59,17 +63,18 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.verificationChecks = verificationChecks
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
-        self.externalBankAccountGuid = externalBankAccountGuid
         self.pii = pii
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
-        case customerGuid = "customer_guid"
         case type
         case method
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case customerGuid = "customer_guid"
+        case counterpartyGuid = "counterparty_guid"
+        case externalBankAccountGuid = "external_bank_account_guid"
         case state
         case outcome
         case failureCodes = "failure_codes"
@@ -78,7 +83,6 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case verificationChecks = "verification_checks"
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
-        case externalBankAccountGuid = "external_bank_account_guid"
         case pii
     }
 
@@ -87,11 +91,13 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
-        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(method, forKey: .method)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
+        try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
@@ -100,7 +106,6 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)
-        try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(pii, forKey: .pii)
     }
 }

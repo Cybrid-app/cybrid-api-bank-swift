@@ -13,5 +13,6 @@ import AnyCodable
 public enum IdentityVerificationTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case kyc = "kyc"
     case bankAccount = "bank_account"
+    case counterparty = "counterparty"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
