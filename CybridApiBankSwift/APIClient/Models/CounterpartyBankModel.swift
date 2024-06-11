@@ -36,10 +36,8 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var labels: [String]?
     /** The compliance decisions associated with the counterparty. */
     public var complianceDecisions: [ComplianceDecisionBankModel]?
-    /** Deprecated; use compliance_decisions instead. */
-    public var verificationChecks: [ComplianceDecisionBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -53,7 +51,6 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         self.dateOfBirth = dateOfBirth
         self.labels = labels
         self.complianceDecisions = complianceDecisions
-        self.verificationChecks = verificationChecks
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -70,7 +67,6 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case dateOfBirth = "date_of_birth"
         case labels
         case complianceDecisions = "compliance_decisions"
-        case verificationChecks = "verification_checks"
     }
 
     // Encodable protocol methods
@@ -90,7 +86,6 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
-        try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
     }
 }
 
