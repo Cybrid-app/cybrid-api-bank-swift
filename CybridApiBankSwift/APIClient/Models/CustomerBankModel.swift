@@ -40,10 +40,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var labels: [String]?
     /** The compliance decisions associated with the customer. */
     public var complianceDecisions: [ComplianceDecisionBankModel]?
-    /** Deprecated; use compliance_decisions instead. */
-    public var verificationChecks: [ComplianceDecisionBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, verificationChecks: [ComplianceDecisionBankModel]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
@@ -59,7 +57,6 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         self.emailAddress = emailAddress
         self.labels = labels
         self.complianceDecisions = complianceDecisions
-        self.verificationChecks = verificationChecks
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -78,7 +75,6 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case emailAddress = "email_address"
         case labels
         case complianceDecisions = "compliance_decisions"
-        case verificationChecks = "verification_checks"
     }
 
     // Encodable protocol methods
@@ -100,7 +96,6 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
-        try container.encodeIfPresent(verificationChecks, forKey: .verificationChecks)
     }
 }
 
