@@ -18,5 +18,6 @@ public enum BankFeatureBankModel: String, Codable, CaseIterable, CaseIterableDef
     case businessCustomers = "business_customers"
     case routableAccountsBank = "routable_accounts_bank"
     case routableAccountsCustomer = "routable_accounts_customer"
+    case accessibleIdentificationNumbers = "accessible_identification_numbers"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

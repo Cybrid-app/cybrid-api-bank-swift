@@ -40,8 +40,12 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var labels: [String]?
     /** The compliance decisions associated with the customer. */
     public var complianceDecisions: [ComplianceDecisionBankModel]?
+    /** The customer's identification numbers. Only available for GET operations when 'include_pii' is set and bank has access. */
+    public var identificationNumbers: [IdentificationNumberBankModel]?
+    /** The asset limits associated with the customer. */
+    public var activityLimits: [ActivityLimitBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil, activityLimits: [ActivityLimitBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
@@ -57,6 +61,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         self.emailAddress = emailAddress
         self.labels = labels
         self.complianceDecisions = complianceDecisions
+        self.identificationNumbers = identificationNumbers
+        self.activityLimits = activityLimits
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -75,6 +81,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case emailAddress = "email_address"
         case labels
         case complianceDecisions = "compliance_decisions"
+        case identificationNumbers = "identification_numbers"
+        case activityLimits = "activity_limits"
     }
 
     // Encodable protocol methods
@@ -96,6 +104,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
+        try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
+        try container.encodeIfPresent(activityLimits, forKey: .activityLimits)
     }
 }
 
