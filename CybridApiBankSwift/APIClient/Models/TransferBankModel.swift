@@ -14,7 +14,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the transfer. */
     public var guid: String?
-    /** The type of transfer; one of funding, book, crypto, instant_funding, funding_return, crypto_return, loss_recovery, inter_account, or lightning. */
+    /** The type of transfer; one of funding, book, crypto, instant_funding, funding_return, crypto_return, loss_recovery, inter_account, lightning, or instant_funding_return. */
     public var transferType: String?
     /** The associated bank's identifier. */
     public var bankGuid: String?
