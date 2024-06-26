@@ -29,8 +29,12 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     /** The source account's identifier. Required for book transfers. */
     public var sourceAccountGuid: String?
+    /** The source participants for the transfer. */
+    public var sourceParticipants: [TransferParticipantBankModel]?
     /** The destination account's identifier. Required for book transfers. */
     public var destinationAccountGuid: String?
+    /** The destination participants for the transfer. */
+    public var destinationParticipants: [TransferParticipantBankModel]?
     /** The customer's external wallet's identifier. */
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
@@ -44,12 +48,14 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, sourceAccountGuid: String? = nil, sourceParticipants: [TransferParticipantBankModel]? = nil, destinationAccountGuid: String? = nil, destinationParticipants: [TransferParticipantBankModel]? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.customerGuid = customerGuid
         self.sourceAccountGuid = sourceAccountGuid
+        self.sourceParticipants = sourceParticipants
         self.destinationAccountGuid = destinationAccountGuid
+        self.destinationParticipants = destinationParticipants
         self.externalWalletGuid = externalWalletGuid
         self.externalBankAccountGuid = externalBankAccountGuid
         self.networkFeeAccountGuid = networkFeeAccountGuid
@@ -63,7 +69,9 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case transferType = "transfer_type"
         case customerGuid = "customer_guid"
         case sourceAccountGuid = "source_account_guid"
+        case sourceParticipants = "source_participants"
         case destinationAccountGuid = "destination_account_guid"
+        case destinationParticipants = "destination_participants"
         case externalWalletGuid = "external_wallet_guid"
         case externalBankAccountGuid = "external_bank_account_guid"
         case networkFeeAccountGuid = "network_fee_account_guid"
@@ -80,7 +88,9 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(transferType, forKey: .transferType)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
+        try container.encodeIfPresent(sourceParticipants, forKey: .sourceParticipants)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
+        try container.encodeIfPresent(destinationParticipants, forKey: .destinationParticipants)
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
         try container.encodeIfPresent(networkFeeAccountGuid, forKey: .networkFeeAccountGuid)
