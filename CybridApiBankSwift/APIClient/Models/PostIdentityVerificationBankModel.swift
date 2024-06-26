@@ -42,6 +42,8 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var method: MethodBankModel
     /** The customer's identifier. */
     public var customerGuid: String?
+    /** The counterparty's identifier. */
+    public var counterpartyGuid: String?
     /** The ISO 3166 country 2-Alpha country the customer is being verified in; required when method is set to 'id_and_selfie'. If not present, will default to the Bank's configured country code. */
     public var countryCode: String?
     public var name: PostIdentityVerificationNameBankModel?
@@ -59,10 +61,11 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     /** The optional expected behaviour to simulate. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
 
-    public init(type: TypeBankModel, method: MethodBankModel, customerGuid: String? = nil, countryCode: String? = nil, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, externalBankAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
+    public init(type: TypeBankModel, method: MethodBankModel, customerGuid: String? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, externalBankAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
         self.type = type
         self.method = method
         self.customerGuid = customerGuid
+        self.counterpartyGuid = counterpartyGuid
         self.countryCode = countryCode
         self.name = name
         self.address = address
@@ -78,6 +81,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case type
         case method
         case customerGuid = "customer_guid"
+        case counterpartyGuid = "counterparty_guid"
         case countryCode = "country_code"
         case name
         case address
@@ -96,6 +100,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         try container.encode(type, forKey: .type)
         try container.encode(method, forKey: .method)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encodeIfPresent(countryCode, forKey: .countryCode)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)

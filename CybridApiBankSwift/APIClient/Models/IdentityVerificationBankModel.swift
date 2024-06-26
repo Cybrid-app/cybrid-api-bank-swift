@@ -22,11 +22,11 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
-    /** The identity verification's identifier. */
+    /** The customer's identifier. */
     public var customerGuid: String?
-    /** The identity verification's identifier. */
+    /** The counterparty's identifier. */
     public var counterpartyGuid: String?
-    /** The identity verification's identifier. */
+    /** The external bank account's identifier. */
     public var externalBankAccountGuid: String?
     /** The identity verification state; one of storing, waiting, pending, reviewing, expired, or completed. */
     public var state: String?
