@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The counterparty&#39;s type. | 
+**customerGuid** | **String** | The owning customer&#39;s identifier. | [optional] 
 **name** | [**PostCounterpartyNameBankModel**](PostCounterpartyNameBankModel.md) |  | [optional] 
 **address** | [**PostCustomerAddressBankModel**](PostCustomerAddressBankModel.md) |  | [optional] 
 **dateOfBirth** | **Date** | The counterparty&#39;s date of birth. | [optional] 

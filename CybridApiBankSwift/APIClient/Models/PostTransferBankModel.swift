@@ -30,11 +30,11 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The source account's identifier. Required for book transfers. */
     public var sourceAccountGuid: String?
     /** The source participants for the transfer. */
-    public var sourceParticipants: [TransferParticipantBankModel]?
+    public var sourceParticipants: [PostTransferParticipantBankModel]?
     /** The destination account's identifier. Required for book transfers. */
     public var destinationAccountGuid: String?
     /** The destination participants for the transfer. */
-    public var destinationParticipants: [TransferParticipantBankModel]?
+    public var destinationParticipants: [PostTransferParticipantBankModel]?
     /** The customer's external wallet's identifier. */
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
@@ -48,7 +48,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, sourceAccountGuid: String? = nil, sourceParticipants: [TransferParticipantBankModel]? = nil, destinationAccountGuid: String? = nil, destinationParticipants: [TransferParticipantBankModel]? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, sourceAccountGuid: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationAccountGuid: String? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.customerGuid = customerGuid

@@ -19,6 +19,8 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The counterparty's type. */
     public var type: TypeBankModel
+    /** The owning customer's identifier. */
+    public var customerGuid: String?
     public var name: PostCounterpartyNameBankModel?
     public var address: PostCustomerAddressBankModel?
     /** The counterparty's date of birth. */
@@ -26,8 +28,9 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the counterparty. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, name: PostCounterpartyNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, name: PostCounterpartyNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
         self.type = type
+        self.customerGuid = customerGuid
         self.name = name
         self.address = address
         self.dateOfBirth = dateOfBirth
@@ -36,6 +39,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
+        case customerGuid = "customer_guid"
         case name
         case address
         case dateOfBirth = "date_of_birth"
@@ -47,6 +51,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
