@@ -23,7 +23,7 @@ Creates a transfer.  ## State  | State | Description | |-------|-------------| |
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postTransferBankModel = PostTransfer(quoteGuid: "quoteGuid_example", transferType: "transferType_example", customerGuid: "customerGuid_example", sourceAccountGuid: "sourceAccountGuid_example", sourceParticipants: [TransferParticipant(type: "type_example", amount: 123, guid: "guid_example")], destinationAccountGuid: "destinationAccountGuid_example", destinationParticipants: [nil], externalWalletGuid: "externalWalletGuid_example", externalBankAccountGuid: "externalBankAccountGuid_example", networkFeeAccountGuid: "networkFeeAccountGuid_example", paymentRail: "paymentRail_example", beneficiaryMemo: "beneficiaryMemo_example", labels: ["labels_example"]) // PostTransferBankModel | 
+let postTransferBankModel = PostTransfer(quoteGuid: "quoteGuid_example", transferType: "transferType_example", customerGuid: "customerGuid_example", sourceAccountGuid: "sourceAccountGuid_example", sourceParticipants: [PostTransferParticipant(type: "type_example", amount: 123, guid: "guid_example")], destinationAccountGuid: "destinationAccountGuid_example", destinationParticipants: [nil], externalWalletGuid: "externalWalletGuid_example", externalBankAccountGuid: "externalBankAccountGuid_example", networkFeeAccountGuid: "networkFeeAccountGuid_example", paymentRail: "paymentRail_example", beneficiaryMemo: "beneficiaryMemo_example", labels: ["labels_example"]) // PostTransferBankModel | 
 
 // Create Transfer
 TransfersAPI.createTransfer(postTransferBankModel: postTransferBankModel) { (response, error) in
