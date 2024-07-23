@@ -19,14 +19,14 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum MethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case businessRegistration = "business_registration"
+        case attested = "attested"
+        case documentSubmission = "document_submission"
         case idAndSelfie = "id_and_selfie"
         case taxIdAndSelfie = "tax_id_and_selfie"
-        case attested = "attested"
+        case businessRegistration = "business_registration"
+        case plaidIdentityMatch = "plaid_identity_match"
         case attestedOwnership = "attested_ownership"
         case accountOwnership = "account_ownership"
-        case plaidIdentityMatch = "plaid_identity_match"
-        case documentSubmission = "document_submission"
         case watchlists = "watchlists"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
