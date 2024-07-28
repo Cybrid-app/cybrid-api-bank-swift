@@ -12,6 +12,7 @@ import AnyCodable
 
 public enum QuoteTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case trading = "trading"
+    case tradingExit = "trading_exit"
     case funding = "funding"
     case bookTransfer = "book_transfer"
     case cryptoTransfer = "crypto_transfer"

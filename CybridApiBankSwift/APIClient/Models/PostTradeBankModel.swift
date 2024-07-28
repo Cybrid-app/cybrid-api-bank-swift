@@ -12,11 +12,18 @@ import AnyCodable
 
 public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum TradeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case platform = "platform"
+        case exit = "exit"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case expiredQuote = "expired_quote"
         case nonSufficientFunds = "non_sufficient_funds"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    /** The type of trade. */
+    public var tradeType: TradeTypeBankModel? = .platform
     /** The associated quote's identifier. */
     public var quoteGuid: String
     /** The optional expected error to simulate trade failure. */
@@ -24,13 +31,15 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the trade. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
+    public init(tradeType: TradeTypeBankModel? = .platform, quoteGuid: String, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
+        self.tradeType = tradeType
         self.quoteGuid = quoteGuid
         self.expectedError = expectedError
         self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case tradeType = "trade_type"
         case quoteGuid = "quote_guid"
         case expectedError = "expected_error"
         case labels
@@ -40,6 +49,7 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(tradeType, forKey: .tradeType)
         try container.encode(quoteGuid, forKey: .quoteGuid)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
         try container.encodeIfPresent(labels, forKey: .labels)

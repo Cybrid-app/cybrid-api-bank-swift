@@ -13,5 +13,6 @@ import AnyCodable
 public enum TradeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case platform = "platform"
     case liquidation = "liquidation"
+    case exit = "exit"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

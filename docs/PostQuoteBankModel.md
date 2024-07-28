@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **receiveAmount** | **Int** | The amount to be received in base units of the currency: currency is \&quot;asset\&quot; for buy and \&quot;counter_asset\&quot; for sell for trade quotes. | [optional] 
 **deliverAmount** | **Int** | The amount to be delivered in base units of the currency: currency is \&quot;counter_asset\&quot; for buy and \&quot;asset\&quot; for sell for trade quotes. | [optional] 
 **fees** | [PostFeeBankModel] | The custom fees associated with the quote | [optional] 
+**referenceTradeGuid** | **String** | The guid of the related trade. Only present on &#x60;exit&#x60; trades. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
