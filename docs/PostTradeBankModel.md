@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**tradeType** | **String** | The type of trade. | [optional] [default to .platform]
 **quoteGuid** | **String** | The associated quote&#39;s identifier. | 
 **expectedError** | **String** | The optional expected error to simulate trade failure. | [optional] 
 **labels** | **[String]** | The labels associated with the trade. | [optional] 

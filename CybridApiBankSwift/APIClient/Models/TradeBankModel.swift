@@ -14,7 +14,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the trade. */
     public var guid: String?
-    /** The type of trade; one of platform or liquidation. */
+    /** The type of trade; one of platform, liquidation, or exit. */
     public var tradeType: String?
     /** The associated customer's identifier. */
     public var customerGuid: String?
@@ -34,6 +34,8 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     public var deliverAmount: String?
     /** The fee associated with the trade. Denominated in \"counter_asset\" base units */
     public var fee: String?
+    /** The guid of the related trade. Only present on `exit` trades. */
+    public var referenceTradeGuid: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
@@ -41,7 +43,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the trade. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, tradeType: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, tradeType: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, symbol: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, referenceTradeGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.tradeType = tradeType
         self.customerGuid = customerGuid
@@ -53,6 +55,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
         self.fee = fee
+        self.referenceTradeGuid = referenceTradeGuid
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.labels = labels
@@ -70,6 +73,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
         case fee
+        case referenceTradeGuid = "reference_trade_guid"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case labels
@@ -90,6 +94,7 @@ public struct TradeBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(fee, forKey: .fee)
+        try container.encodeIfPresent(referenceTradeGuid, forKey: .referenceTradeGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(labels, forKey: .labels)
