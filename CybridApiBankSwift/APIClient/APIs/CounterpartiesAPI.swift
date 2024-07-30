@@ -126,6 +126,7 @@ open class CounterpartiesAPI {
      - parameter page: (query)  (optional)
      - parameter perPage: (query)  (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list counterparties for. (optional)
+     - parameter type: (query) Comma separated counterparty_types to list counterparties for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list counterparties for. (optional)
      - parameter guid: (query) Comma separated counterparty_guids to list counterparties for. (optional)
      - parameter label: (query) Comma separated labels to list counterparties for. (optional)
@@ -133,8 +134,8 @@ open class CounterpartiesAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listCounterparties(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CounterpartyListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listCounterpartiesWithRequestBuilder(page: page, perPage: perPage, bankGuid: bankGuid, customerGuid: customerGuid, guid: guid, label: label).execute(apiResponseQueue) { result in
+    open class func listCounterparties(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, type: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CounterpartyListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listCounterpartiesWithRequestBuilder(page: page, perPage: perPage, bankGuid: bankGuid, type: type, customerGuid: customerGuid, guid: guid, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -157,12 +158,13 @@ open class CounterpartiesAPI {
      - parameter page: (query)  (optional)
      - parameter perPage: (query)  (optional)
      - parameter bankGuid: (query) Comma separated bank_guids to list counterparties for. (optional)
+     - parameter type: (query) Comma separated counterparty_types to list counterparties for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list counterparties for. (optional)
      - parameter guid: (query) Comma separated counterparty_guids to list counterparties for. (optional)
      - parameter label: (query) Comma separated labels to list counterparties for. (optional)
      - returns: RequestBuilder<CounterpartyListBankModel> 
      */
-    open class func listCounterpartiesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil) -> RequestBuilder<CounterpartyListBankModel> {
+    open class func listCounterpartiesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, type: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil) -> RequestBuilder<CounterpartyListBankModel> {
         let localVariablePath = "/api/counterparties"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -172,6 +174,7 @@ open class CounterpartiesAPI {
             "page": page?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
+            "type": type?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
             "label": label?.encodeToJSON(),
