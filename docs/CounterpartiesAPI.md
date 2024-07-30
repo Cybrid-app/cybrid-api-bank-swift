@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 # **listCounterparties**
 ```swift
-    open class func listCounterparties(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, completion: @escaping (_ data: CounterpartyListBankModel?, _ error: Error?) -> Void)
+    open class func listCounterparties(page: Int? = nil, perPage: Int? = nil, bankGuid: String? = nil, type: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, completion: @escaping (_ data: CounterpartyListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get counterparties list
@@ -128,12 +128,13 @@ import CybridApiBankSwift
 let page = 987 // Int |  (optional)
 let perPage = 987 // Int |  (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list counterparties for. (optional)
+let type = "type_example" // String | Comma separated counterparty_types to list counterparties for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list counterparties for. (optional)
 let guid = "guid_example" // String | Comma separated counterparty_guids to list counterparties for. (optional)
 let label = "label_example" // String | Comma separated labels to list counterparties for. (optional)
 
 // Get counterparties list
-CounterpartiesAPI.listCounterparties(page: page, perPage: perPage, bankGuid: bankGuid, customerGuid: customerGuid, guid: guid, label: label) { (response, error) in
+CounterpartiesAPI.listCounterparties(page: page, perPage: perPage, bankGuid: bankGuid, type: type, customerGuid: customerGuid, guid: guid, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -152,6 +153,7 @@ Name | Type | Description  | Notes
  **page** | **Int** |  | [optional] 
  **perPage** | **Int** |  | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list counterparties for. | [optional] 
+ **type** | **String** | Comma separated counterparty_types to list counterparties for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list counterparties for. | [optional] 
  **guid** | **String** | Comma separated counterparty_guids to list counterparties for. | [optional] 
  **label** | **String** | Comma separated labels to list counterparties for. | [optional] 
