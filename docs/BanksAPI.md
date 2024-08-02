@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 # **listBanks**
 ```swift
-    open class func listBanks(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, completion: @escaping (_ data: BankListBankModel?, _ error: Error?) -> Void)
+    open class func listBanks(page: Int? = nil, perPage: Int? = nil, type: String? = nil, guid: String? = nil, completion: @escaping (_ data: BankListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get banks list
@@ -126,10 +126,11 @@ import CybridApiBankSwift
 
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
+let type = "type_example" // String | Comma separated types to list banks for. (optional)
 let guid = "guid_example" // String | Comma separated bank_guids to list banks for. (optional)
 
 // Get banks list
-BanksAPI.listBanks(page: page, perPage: perPage, guid: guid) { (response, error) in
+BanksAPI.listBanks(page: page, perPage: perPage, type: type, guid: guid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -147,6 +148,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
+ **type** | **String** | Comma separated types to list banks for. | [optional] 
  **guid** | **String** | Comma separated bank_guids to list banks for. | [optional] 
 
 ### Return type

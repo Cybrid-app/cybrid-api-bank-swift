@@ -120,13 +120,14 @@ open class BanksAPI {
      
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter type: (query) Comma separated types to list banks for. (optional)
      - parameter guid: (query) Comma separated bank_guids to list banks for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listBanks(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BankListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listBanksWithRequestBuilder(page: page, perPage: perPage, guid: guid).execute(apiResponseQueue) { result in
+    open class func listBanks(page: Int? = nil, perPage: Int? = nil, type: String? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BankListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listBanksWithRequestBuilder(page: page, perPage: perPage, type: type, guid: guid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -148,10 +149,11 @@ open class BanksAPI {
        - name: oauth2
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter type: (query) Comma separated types to list banks for. (optional)
      - parameter guid: (query) Comma separated bank_guids to list banks for. (optional)
      - returns: RequestBuilder<BankListBankModel> 
      */
-    open class func listBanksWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil) -> RequestBuilder<BankListBankModel> {
+    open class func listBanksWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, type: String? = nil, guid: String? = nil) -> RequestBuilder<BankListBankModel> {
         let localVariablePath = "/api/banks"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -160,6 +162,7 @@ open class BanksAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "page": page?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
+            "type": type?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
         ])
 
