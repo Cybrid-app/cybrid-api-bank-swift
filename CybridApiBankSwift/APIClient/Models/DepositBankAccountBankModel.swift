@@ -39,10 +39,12 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]?
     /** The account details for the bank account. */
     public var routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]?
+    /** The unique identifier for the bank-level deposit bank account. This is only set for sub-accounts. */
+    public var parentDepositBankAccountGuid: String?
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -57,6 +59,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         self.counterpartyAddress = counterpartyAddress
         self.accountDetails = accountDetails
         self.routingDetails = routingDetails
+        self.parentDepositBankAccountGuid = parentDepositBankAccountGuid
         self.labels = labels
     }
 
@@ -75,6 +78,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         case counterpartyAddress = "counterparty_address"
         case accountDetails = "account_details"
         case routingDetails = "routing_details"
+        case parentDepositBankAccountGuid = "parent_deposit_bank_account_guid"
         case labels
     }
 
@@ -96,6 +100,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(counterpartyAddress, forKey: .counterpartyAddress)
         try container.encodeIfPresent(accountDetails, forKey: .accountDetails)
         try container.encodeIfPresent(routingDetails, forKey: .routingDetails)
+        try container.encodeIfPresent(parentDepositBankAccountGuid, forKey: .parentDepositBankAccountGuid)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
