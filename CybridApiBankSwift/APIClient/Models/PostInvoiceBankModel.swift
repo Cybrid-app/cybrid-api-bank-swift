@@ -20,14 +20,17 @@ public struct PostInvoiceBankModel: Codable, JSONEncodable, Hashable {
     public var receiveAmount: Int?
     /** The amount to be delivered in base units of the asset, i.e., the amount the customer will receive before fees. ONLY one of receive_amount or deliver_amount is required. */
     public var deliverAmount: Int?
+    /** The identifier for the account to use for the transfer. Required if the customer has multiple fiat accounts. Currently only valid for invoices paid to a fiat account. */
+    public var accountGuid: String?
     /** The labels associated with the customer. */
     public var labels: [String]?
 
-    public init(asset: String, customerGuid: String? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, labels: [String]? = nil) {
+    public init(asset: String, customerGuid: String? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, accountGuid: String? = nil, labels: [String]? = nil) {
         self.asset = asset
         self.customerGuid = customerGuid
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
+        self.accountGuid = accountGuid
         self.labels = labels
     }
 
@@ -36,6 +39,7 @@ public struct PostInvoiceBankModel: Codable, JSONEncodable, Hashable {
         case customerGuid = "customer_guid"
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
+        case accountGuid = "account_guid"
         case labels
     }
 
@@ -47,6 +51,7 @@ public struct PostInvoiceBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
+        try container.encodeIfPresent(accountGuid, forKey: .accountGuid)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }

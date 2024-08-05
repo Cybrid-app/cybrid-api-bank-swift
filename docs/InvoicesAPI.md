@@ -74,7 +74,7 @@ Creates a invoice.  ## State  | State | Description | |-------|-------------| | 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postInvoiceBankModel = PostInvoice(asset: "asset_example", customerGuid: "customerGuid_example", receiveAmount: 123, deliverAmount: 123, labels: ["labels_example"]) // PostInvoiceBankModel | 
+let postInvoiceBankModel = PostInvoice(asset: "asset_example", customerGuid: "customerGuid_example", receiveAmount: 123, deliverAmount: 123, accountGuid: "accountGuid_example", labels: ["labels_example"]) // PostInvoiceBankModel | 
 
 // Create Invoice
 InvoicesAPI.createInvoice(postInvoiceBankModel: postInvoiceBankModel) { (response, error) in

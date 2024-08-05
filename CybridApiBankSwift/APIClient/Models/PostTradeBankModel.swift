@@ -26,14 +26,17 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
     public var tradeType: TradeTypeBankModel? = .platform
     /** The associated quote's identifier. */
     public var quoteGuid: String
+    /** The identifier for the fiat account to use for the trade. Required if the customer or bank has multiple fiat accounts. */
+    public var fiatAccountGuid: String?
     /** The optional expected error to simulate trade failure. */
     public var expectedError: ExpectedErrorBankModel?
     /** The labels associated with the trade. */
     public var labels: [String]?
 
-    public init(tradeType: TradeTypeBankModel? = .platform, quoteGuid: String, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
+    public init(tradeType: TradeTypeBankModel? = .platform, quoteGuid: String, fiatAccountGuid: String? = nil, expectedError: ExpectedErrorBankModel? = nil, labels: [String]? = nil) {
         self.tradeType = tradeType
         self.quoteGuid = quoteGuid
+        self.fiatAccountGuid = fiatAccountGuid
         self.expectedError = expectedError
         self.labels = labels
     }
@@ -41,6 +44,7 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case tradeType = "trade_type"
         case quoteGuid = "quote_guid"
+        case fiatAccountGuid = "fiat_account_guid"
         case expectedError = "expected_error"
         case labels
     }
@@ -51,6 +55,7 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(tradeType, forKey: .tradeType)
         try container.encode(quoteGuid, forKey: .quoteGuid)
+        try container.encodeIfPresent(fiatAccountGuid, forKey: .fiatAccountGuid)
         try container.encodeIfPresent(expectedError, forKey: .expectedError)
         try container.encodeIfPresent(labels, forKey: .labels)
     }

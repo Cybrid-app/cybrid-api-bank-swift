@@ -12,22 +12,35 @@ import AnyCodable
 
 public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case main = "main"
+        case subAccount = "sub_account"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    /** The account type. */
+    public var type: TypeBankModel?
     /** The fiat account guid. */
     public var accountGuid: String
     /** The unique identifier for the customer. */
     public var customerGuid: String?
+    /** The unique identifier for the bank-level deposit bank account. This is only required for sub-accounts. */
+    public var parentDepositBankAccountGuid: String?
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(accountGuid: String, customerGuid: String? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel? = nil, accountGuid: String, customerGuid: String? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
+        self.type = type
         self.accountGuid = accountGuid
         self.customerGuid = customerGuid
+        self.parentDepositBankAccountGuid = parentDepositBankAccountGuid
         self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case type
         case accountGuid = "account_guid"
         case customerGuid = "customer_guid"
+        case parentDepositBankAccountGuid = "parent_deposit_bank_account_guid"
         case labels
     }
 
@@ -35,8 +48,10 @@ public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable 
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encode(accountGuid, forKey: .accountGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(parentDepositBankAccountGuid, forKey: .parentDepositBankAccountGuid)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
