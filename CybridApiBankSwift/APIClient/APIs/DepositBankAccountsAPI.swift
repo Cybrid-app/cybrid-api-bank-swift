@@ -125,12 +125,14 @@ open class DepositBankAccountsAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list deposit bank accounts for. (optional)
      - parameter label: (query) Comma separated labels to list deposit bank accounts for. (optional)
      - parameter uniqueMemoId: (query) Comma separated unique memo ids to list deposit bank accounts for. (optional)
+     - parameter type: (query) Comma separated types to list deposit bank accounts for. (optional)
+     - parameter parentDepositBankAccountGuid: (query) Comma separated guids for parent accounts to list deposit bank accounts for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listDepositBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, uniqueMemoId: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listDepositBankAccountsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, label: label, uniqueMemoId: uniqueMemoId).execute(apiResponseQueue) { result in
+    open class func listDepositBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, uniqueMemoId: String? = nil, type: String? = nil, parentDepositBankAccountGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositBankAccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listDepositBankAccountsWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, label: label, uniqueMemoId: uniqueMemoId, type: type, parentDepositBankAccountGuid: parentDepositBankAccountGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -157,9 +159,11 @@ open class DepositBankAccountsAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list deposit bank accounts for. (optional)
      - parameter label: (query) Comma separated labels to list deposit bank accounts for. (optional)
      - parameter uniqueMemoId: (query) Comma separated unique memo ids to list deposit bank accounts for. (optional)
+     - parameter type: (query) Comma separated types to list deposit bank accounts for. (optional)
+     - parameter parentDepositBankAccountGuid: (query) Comma separated guids for parent accounts to list deposit bank accounts for. (optional)
      - returns: RequestBuilder<DepositBankAccountListBankModel> 
      */
-    open class func listDepositBankAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, uniqueMemoId: String? = nil) -> RequestBuilder<DepositBankAccountListBankModel> {
+    open class func listDepositBankAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, uniqueMemoId: String? = nil, type: String? = nil, parentDepositBankAccountGuid: String? = nil) -> RequestBuilder<DepositBankAccountListBankModel> {
         let localVariablePath = "/api/deposit_bank_accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -173,6 +177,8 @@ open class DepositBankAccountsAPI {
             "customer_guid": customerGuid?.encodeToJSON(),
             "label": label?.encodeToJSON(),
             "unique_memo_id": uniqueMemoId?.encodeToJSON(),
+            "type": type?.encodeToJSON(),
+            "parent_deposit_bank_account_guid": parentDepositBankAccountGuid?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

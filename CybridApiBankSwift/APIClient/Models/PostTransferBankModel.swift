@@ -27,6 +27,12 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var transferType: TransferTypeBankModel
     /** The customer's identifier. */
     public var customerGuid: String?
+    /** The identifier for the fiat account to use for the transfer. Required if the customer or bank has multiple fiat accounts. Only valid for funding transfers. */
+    public var fiatAccountGuid: String?
+    /** The identifier for the fiat account to use for the transfer. Required if the customer has multiple fiat accounts. Only valid for instant funding and lightning transfers. */
+    public var customerFiatAccountGuid: String?
+    /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Only valid for instant funding and lightning transfers. */
+    public var bankFiatAccountGuid: String?
     /** The source account's identifier. Required for book transfers. */
     public var sourceAccountGuid: String?
     /** The source participants for the transfer. */
@@ -45,13 +51,18 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var paymentRail: String?
     /** The memo to send to the counterparty. */
     public var beneficiaryMemo: String?
+    /** The deposit bank account's identifier. Optional for funding transfers. Only valid for withdrawals. The deposit bank account must be owned by the customer or bank initiating the transfer. */
+    public var sendAsDepositBankAccountGuid: String?
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, sourceAccountGuid: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationAccountGuid: String? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, customerGuid: String? = nil, fiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, bankFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationAccountGuid: String? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, externalWalletGuid: String? = nil, externalBankAccountGuid: String? = nil, networkFeeAccountGuid: String? = nil, paymentRail: String? = nil, beneficiaryMemo: String? = nil, sendAsDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.customerGuid = customerGuid
+        self.fiatAccountGuid = fiatAccountGuid
+        self.customerFiatAccountGuid = customerFiatAccountGuid
+        self.bankFiatAccountGuid = bankFiatAccountGuid
         self.sourceAccountGuid = sourceAccountGuid
         self.sourceParticipants = sourceParticipants
         self.destinationAccountGuid = destinationAccountGuid
@@ -61,6 +72,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         self.networkFeeAccountGuid = networkFeeAccountGuid
         self.paymentRail = paymentRail
         self.beneficiaryMemo = beneficiaryMemo
+        self.sendAsDepositBankAccountGuid = sendAsDepositBankAccountGuid
         self.labels = labels
     }
 
@@ -68,6 +80,9 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case quoteGuid = "quote_guid"
         case transferType = "transfer_type"
         case customerGuid = "customer_guid"
+        case fiatAccountGuid = "fiat_account_guid"
+        case customerFiatAccountGuid = "customer_fiat_account_guid"
+        case bankFiatAccountGuid = "bank_fiat_account_guid"
         case sourceAccountGuid = "source_account_guid"
         case sourceParticipants = "source_participants"
         case destinationAccountGuid = "destination_account_guid"
@@ -77,6 +92,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case networkFeeAccountGuid = "network_fee_account_guid"
         case paymentRail = "payment_rail"
         case beneficiaryMemo = "beneficiary_memo"
+        case sendAsDepositBankAccountGuid = "send_as_deposit_bank_account_guid"
         case labels
     }
 
@@ -87,6 +103,9 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(quoteGuid, forKey: .quoteGuid)
         try container.encode(transferType, forKey: .transferType)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(fiatAccountGuid, forKey: .fiatAccountGuid)
+        try container.encodeIfPresent(customerFiatAccountGuid, forKey: .customerFiatAccountGuid)
+        try container.encodeIfPresent(bankFiatAccountGuid, forKey: .bankFiatAccountGuid)
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
         try container.encodeIfPresent(sourceParticipants, forKey: .sourceParticipants)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
@@ -96,6 +115,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(networkFeeAccountGuid, forKey: .networkFeeAccountGuid)
         try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
         try container.encodeIfPresent(beneficiaryMemo, forKey: .beneficiaryMemo)
+        try container.encodeIfPresent(sendAsDepositBankAccountGuid, forKey: .sendAsDepositBankAccountGuid)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }

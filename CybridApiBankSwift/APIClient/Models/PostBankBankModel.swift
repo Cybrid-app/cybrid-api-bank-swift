@@ -21,8 +21,6 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case kycIdentityVerifications = "kyc_identity_verifications"
         case businessCustomers = "business_customers"
         case individualCustomers = "individual_customers"
-        case routableAccountsBank = "routable_accounts_bank"
-        case routableAccountsCustomer = "routable_accounts_customer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The bank's name. */
