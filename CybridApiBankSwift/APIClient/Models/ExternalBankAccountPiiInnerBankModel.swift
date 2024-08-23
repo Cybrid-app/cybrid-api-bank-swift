@@ -20,12 +20,18 @@ public struct ExternalBankAccountPiiInnerBankModel: Codable, JSONEncodable, Hash
     public var emailAddresses: [String]?
     /** Array of phone numbers associated to the account */
     public var phoneNumbers: [String]?
+    /** The account details for the bank account. */
+    public var accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]?
+    /** The routing details for the bank account. */
+    public var routingDetails: [ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel]?
 
-    public init(names: [String]? = nil, addresses: [ExternalBankAccountPiiInnerAddressesInnerBankModel]? = nil, emailAddresses: [String]? = nil, phoneNumbers: [String]? = nil) {
+    public init(names: [String]? = nil, addresses: [ExternalBankAccountPiiInnerAddressesInnerBankModel]? = nil, emailAddresses: [String]? = nil, phoneNumbers: [String]? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel]? = nil) {
         self.names = names
         self.addresses = addresses
         self.emailAddresses = emailAddresses
         self.phoneNumbers = phoneNumbers
+        self.accountDetails = accountDetails
+        self.routingDetails = routingDetails
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -33,6 +39,8 @@ public struct ExternalBankAccountPiiInnerBankModel: Codable, JSONEncodable, Hash
         case addresses
         case emailAddresses = "email_addresses"
         case phoneNumbers = "phone_numbers"
+        case accountDetails = "account_details"
+        case routingDetails = "routing_details"
     }
 
     // Encodable protocol methods
@@ -43,6 +51,8 @@ public struct ExternalBankAccountPiiInnerBankModel: Codable, JSONEncodable, Hash
         try container.encodeIfPresent(addresses, forKey: .addresses)
         try container.encodeIfPresent(emailAddresses, forKey: .emailAddresses)
         try container.encodeIfPresent(phoneNumbers, forKey: .phoneNumbers)
+        try container.encodeIfPresent(accountDetails, forKey: .accountDetails)
+        try container.encodeIfPresent(routingDetails, forKey: .routingDetails)
     }
 }
 
