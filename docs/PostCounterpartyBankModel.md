@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **customerGuid** | **String** | The owning customer&#39;s identifier. | [optional] 
 **name** | [**PostCounterpartyNameBankModel**](PostCounterpartyNameBankModel.md) |  | [optional] 
 **address** | [**PostCustomerAddressBankModel**](PostCustomerAddressBankModel.md) |  | [optional] 
+**aliases** | [CounterpartyAliasesInnerBankModel] | The counterparty&#39;s aliases. | [optional] 
 **dateOfBirth** | **Date** | The counterparty&#39;s date of birth. | [optional] 
 **labels** | **[String]** | The labels associated with the counterparty. | [optional] 
 
