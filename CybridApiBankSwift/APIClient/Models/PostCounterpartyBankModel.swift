@@ -23,16 +23,19 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     public var name: PostCounterpartyNameBankModel?
     public var address: PostCustomerAddressBankModel?
+    /** The counterparty's aliases. */
+    public var aliases: [CounterpartyAliasesInnerBankModel]?
     /** The counterparty's date of birth. */
     public var dateOfBirth: Date?
     /** The labels associated with the counterparty. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, name: PostCounterpartyNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, name: PostCounterpartyNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.name = name
         self.address = address
+        self.aliases = aliases
         self.dateOfBirth = dateOfBirth
         self.labels = labels
     }
@@ -42,6 +45,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case customerGuid = "customer_guid"
         case name
         case address
+        case aliases
         case dateOfBirth = "date_of_birth"
         case labels
     }
@@ -54,6 +58,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(aliases, forKey: .aliases)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
