@@ -22,5 +22,6 @@ public enum TransferFailureCodeBankModel: String, Codable, CaseIterable, CaseIte
     case networkFeeTooLow = "network_fee_too_low"
     case amountTooLow = "amount_too_low"
     case internalError = "internal_error"
+    case invalidAddress = "invalid_address"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
