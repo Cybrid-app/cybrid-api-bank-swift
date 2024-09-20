@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 # **listInvoices**
 ```swift
-    open class func listInvoices(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, environment: EnvironmentBankModel_listInvoices? = nil, label: String? = nil, completion: @escaping (_ data: InvoiceListBankModel?, _ error: Error?) -> Void)
+    open class func listInvoices(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, asset: String? = nil, environment: EnvironmentBankModel_listInvoices? = nil, label: String? = nil, completion: @escaping (_ data: InvoiceListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Invoices
@@ -181,11 +181,12 @@ let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list invoices for. (optional)
 let accountGuid = "accountGuid_example" // String | Comma separated account_guids to list invoices for. (optional)
 let state = "state_example" // String | Comma separated states to list invoices for. (optional)
+let asset = "asset_example" // String | Comma separated assets to list invoices for. (optional)
 let environment = "environment_example" // String |  (optional)
 let label = "label_example" // String | Comma separated labels to list invoices for. (optional)
 
 // List Invoices
-InvoicesAPI.listInvoices(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, environment: environment, label: label) { (response, error) in
+InvoicesAPI.listInvoices(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, asset: asset, environment: environment, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -208,6 +209,7 @@ Name | Type | Description  | Notes
  **customerGuid** | **String** | Comma separated customer_guids to list invoices for. | [optional] 
  **accountGuid** | **String** | Comma separated account_guids to list invoices for. | [optional] 
  **state** | **String** | Comma separated states to list invoices for. | [optional] 
+ **asset** | **String** | Comma separated assets to list invoices for. | [optional] 
  **environment** | **String** |  | [optional] 
  **label** | **String** | Comma separated labels to list invoices for. | [optional] 
 
