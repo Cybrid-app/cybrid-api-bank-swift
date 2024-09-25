@@ -44,8 +44,12 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var fees: [PostFeeBankModel]?
     /** The guid of the related trade. Only present on `exit` trades. */
     public var referenceTradeGuid: String?
+    /** The source account's identifier. Required for inter-account transfers. */
+    public var sourceAccountGuid: String?
+    /** The destination account's identifier. Required for inter-account transfers. */
+    public var destinationAccountGuid: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, networkAddress: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fees: [PostFeeBankModel]? = nil, referenceTradeGuid: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, networkAddress: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fees: [PostFeeBankModel]? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -57,6 +61,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         self.deliverAmount = deliverAmount
         self.fees = fees
         self.referenceTradeGuid = referenceTradeGuid
+        self.sourceAccountGuid = sourceAccountGuid
+        self.destinationAccountGuid = destinationAccountGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -71,6 +77,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case deliverAmount = "deliver_amount"
         case fees
         case referenceTradeGuid = "reference_trade_guid"
+        case sourceAccountGuid = "source_account_guid"
+        case destinationAccountGuid = "destination_account_guid"
     }
 
     // Encodable protocol methods
@@ -88,6 +96,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(fees, forKey: .fees)
         try container.encodeIfPresent(referenceTradeGuid, forKey: .referenceTradeGuid)
+        try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
+        try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
     }
 }
 
