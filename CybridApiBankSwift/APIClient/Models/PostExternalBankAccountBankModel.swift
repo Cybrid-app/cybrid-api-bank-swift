@@ -43,8 +43,10 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
     /** The counterparty's email address on their checking account. */
     public var counterpartyEmailAddress: String?
+    /** The counterparty identifier. */
+    public var counterpartyGuid: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
+    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil, counterpartyGuid: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.customerGuid = customerGuid
@@ -59,6 +61,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         self.counterpartyName = counterpartyName
         self.counterpartyAddress = counterpartyAddress
         self.counterpartyEmailAddress = counterpartyEmailAddress
+        self.counterpartyGuid = counterpartyGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -76,6 +79,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         case counterpartyName = "counterparty_name"
         case counterpartyAddress = "counterparty_address"
         case counterpartyEmailAddress = "counterparty_email_address"
+        case counterpartyGuid = "counterparty_guid"
     }
 
     // Encodable protocol methods
@@ -96,6 +100,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         try container.encodeIfPresent(counterpartyName, forKey: .counterpartyName)
         try container.encodeIfPresent(counterpartyAddress, forKey: .counterpartyAddress)
         try container.encodeIfPresent(counterpartyEmailAddress, forKey: .counterpartyEmailAddress)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
     }
 }
 
