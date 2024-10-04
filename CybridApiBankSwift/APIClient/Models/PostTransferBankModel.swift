@@ -45,7 +45,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalWalletGuid: String?
     /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. */
     public var externalBankAccountGuid: String?
-    /** The network fee account's identifier. Required for network fee transfers. Must be the identifier for the customer's or bank's fiat account. For customer's to pay the network fees, include the customer's fiat account guid. For bank's to pay the network fees, include the bank's fiat account guid. */
+    /** The network fee account's identifier. Required for network fee transfers. Must be the identifier for the customer's or bank's fiat or trading account. For customer's to pay the network fees, include the customer's fiat or trading account guid. For bank's to pay the network fees, include the bank's fiat or trading account guid. */
     public var networkFeeAccountGuid: String?
     /** The desired payment rail to initiate the transfer for. Valid values are: ach, eft, wire. Valid for funding transfers only. */
     public var paymentRail: String?
