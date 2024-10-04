@@ -35,11 +35,11 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var bankFiatAccountGuid: String?
     /** The source account's identifier. Required for book transfers. */
     public var sourceAccountGuid: String?
-    /** The source participants for the transfer. */
+    /** The source participants for the transfer. Not supported for \"inter_account\" transfers. */
     public var sourceParticipants: [PostTransferParticipantBankModel]?
     /** The destination account's identifier. Required for book transfers. */
     public var destinationAccountGuid: String?
-    /** The destination participants for the transfer. */
+    /** The destination participants for the transfer. Not supported for \"inter_account\" transfers. */
     public var destinationParticipants: [PostTransferParticipantBankModel]?
     /** The customer's external wallet's identifier. */
     public var externalWalletGuid: String?
