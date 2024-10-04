@@ -14,19 +14,19 @@ import AnyCodable
 public struct IdentityVerificationWithDetailsPiiAddressBankModel: Codable, JSONEncodable, Hashable {
 
     /** The first line of the address. */
-    public var street: String
+    public var street: String?
     /** The optional second line of the address. */
     public var street2: String?
     /** The city of the address. */
-    public var city: String
+    public var city: String?
     /** The provide/state/region of the address; not used by all countries. */
     public var subdivision: String?
     /** The postal/post/zip code of the address; not used by all countries. */
     public var postalCode: String?
     /** The ISO 3166 country 2-Alpha country code of the address. */
-    public var countryCode: String
+    public var countryCode: String?
 
-    public init(street: String, street2: String? = nil, city: String, subdivision: String? = nil, postalCode: String? = nil, countryCode: String) {
+    public init(street: String?, street2: String? = nil, city: String?, subdivision: String? = nil, postalCode: String? = nil, countryCode: String?) {
         self.street = street
         self.street2 = street2
         self.city = city
