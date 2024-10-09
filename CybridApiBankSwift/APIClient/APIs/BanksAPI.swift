@@ -34,7 +34,7 @@ open class BanksAPI {
     /**
      Create Bank
      - POST /api/banks
-     - Creates a bank.  ## Bank Type  Bank's can be created in either `sandbox` or `production` mode. Sandbox Banks will not transact in real fiat dollars or cryptocurrencies.  Via the API, only `sandbox` banks can be created. In order to enable a `production` bank please contact [Support](mailto:support@cybrid.app).  ## Attestation Identity Records  Attestation Identity Records is a method the Cybrid Platform uses to verify the identity of a Bank's customers. Please see the documentation under the create Identity Record API for more technical detail.  This feature must specifically be enabled in the Bank's `features` array by including the `attestation_identity_records` flag. At present, attestation identity records is the supported method for verifying a customer's identity on the platform.  Please contact [Support](mailto:support@cybrid.app) to inquire about enabling this option for your Organization.    Required scope: **banks:execute**
+     - Creates a bank.  ## Bank Type  Bank's can be created in either `sandbox` or `production` mode. Sandbox Banks will not transact in real fiat dollars or cryptocurrencies.  Via the API, only `sandbox` banks can be created. In order to enable a `production` bank please contact [Support](mailto:support@cybrid.app).    Required scope: **banks:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
