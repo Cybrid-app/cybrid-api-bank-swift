@@ -15,11 +15,11 @@ public struct IdentificationNumberBankModel: Codable, JSONEncodable, Hashable {
     /** The source of the identification number; one of drivers_license, passport, passport_card, residence_card, social_security_number, tax_identification_number, or identification_card. */
     public var type: String
     /** The ISO 3166 country 2-Alpha country code of the identification number issuer. */
-    public var issuingCountryCode: String
+    public var issuingCountryCode: String?
     /** The identification number. */
     public var identificationNumber: String
 
-    public init(type: String, issuingCountryCode: String, identificationNumber: String) {
+    public init(type: String, issuingCountryCode: String?, identificationNumber: String) {
         self.type = type
         self.issuingCountryCode = issuingCountryCode
         self.identificationNumber = identificationNumber
