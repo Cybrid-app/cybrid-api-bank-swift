@@ -22,15 +22,15 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     /** The owning customer's identifier. */
     public var customerGuid: String?
     public var name: PostCounterpartyNameBankModel?
-    public var address: PostCustomerAddressBankModel?
+    public var address: PostCounterpartyAddressBankModel?
     /** The counterparty's aliases. */
-    public var aliases: [CounterpartyAliasesInnerBankModel]?
-    /** The counterparty's date of birth. */
+    public var aliases: [PostCounterpartyAliasesInnerBankModel]?
+    /** The counterparty's date of birth; optional for individual counterparties.. */
     public var dateOfBirth: Date?
     /** The labels associated with the counterparty. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, name: PostCounterpartyNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, name: PostCounterpartyNameBankModel? = nil, address: PostCounterpartyAddressBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.name = name

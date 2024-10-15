@@ -23,7 +23,7 @@ Creates a counterparty.  ## Counterparty Type  Counterparty resources are an abs
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postCounterpartyBankModel = PostCounterparty(type: "type_example", customerGuid: "customerGuid_example", name: PostCounterparty_name(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example"), address: PostCustomer_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), aliases: [Counterparty_aliases_inner(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example")], dateOfBirth: Date(), labels: ["labels_example"]) // PostCounterpartyBankModel | 
+let postCounterpartyBankModel = PostCounterparty(type: "type_example", customerGuid: "customerGuid_example", name: PostCounterparty_name(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example"), address: PostCounterparty_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), aliases: [PostCounterparty_aliases_inner(full: "full_example")], dateOfBirth: Date(), labels: ["labels_example"]) // PostCounterpartyBankModel | 
 
 // Create Counterparty
 CounterpartiesAPI.createCounterparty(postCounterpartyBankModel: postCounterpartyBankModel) { (response, error) in
