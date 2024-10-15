@@ -12,13 +12,13 @@ import AnyCodable
 
 public struct PostCounterpartyNameBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The counterparty's first name. */
+    /** The counterparty's first name; required for individual counterparties. */
     public var first: String?
-    /** The counterparty's middle name. */
+    /** The counterparty's middle name; optional for individual counterparties. */
     public var middle: String?
-    /** The counterparty's last name. */
+    /** The counterparty's last name; required for individual counterparties. */
     public var last: String?
-    /** The counterparty's full name. */
+    /** The counterparty's full name; required for business counterparties. */
     public var full: String?
 
     public init(first: String? = nil, middle: String? = nil, last: String? = nil, full: String? = nil) {
