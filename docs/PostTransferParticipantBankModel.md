@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **String** | The type of participant | 
+**type** | **String** | The type of participant. | 
 **amount** | **Int** | The amount in base units of the asset. | 
 **guid** | **String** | The participant&#39;s identifier. | 
 

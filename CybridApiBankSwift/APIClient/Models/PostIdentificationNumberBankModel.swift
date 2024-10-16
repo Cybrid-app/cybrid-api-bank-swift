@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Identification number details. */
 public struct PostIdentificationNumberBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

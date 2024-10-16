@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for trade creation. */
 public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TradeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

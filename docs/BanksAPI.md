@@ -24,7 +24,7 @@ Creates a bank.  ## Bank Type  Bank's can be created in either `sandbox` or `pro
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postBankBankModel = PostBank(name: "name_example", type: "type_example", supportedTradingSymbols: ["supportedTradingSymbols_example"], features: ["features_example"], supportedFiatAccountAssets: ["supportedFiatAccountAssets_example"], supportedCountryCodes: ["supportedCountryCodes_example"]) // PostBankBankModel | 
+let postBankBankModel = PostBank(type: "type_example", name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"], supportedFiatAccountAssets: ["supportedFiatAccountAssets_example"], supportedCountryCodes: ["supportedCountryCodes_example"], features: ["features_example"]) // PostBankBankModel | 
 
 // Create Bank
 BanksAPI.createBank(postBankBankModel: postBankBankModel) { (response, error) in

@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for account creation. */
 public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -20,7 +21,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The account type. */
     public var type: TypeBankModel
-    /** The customer identifier associated with the account. */
+    /** TThe customer identifier associated with the account. */
     public var customerGuid: String?
     /** The asset code. */
     public var asset: String

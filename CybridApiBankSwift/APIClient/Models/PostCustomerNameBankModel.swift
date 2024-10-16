@@ -10,13 +10,14 @@ import Foundation
 import AnyCodable
 #endif
 
+/** The customer&#39;s name. Optional when type is individual. */
 public struct PostCustomerNameBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The customer's first name. */
+    /** The customer's first name. Required when type is individual. */
     public var first: String?
-    /** The customer's middle name. */
+    /** The customer's middle name. Optional when type is individual. */
     public var middle: String?
-    /** The customer's last name. */
+    /** The customer's last name. Required when type is individual. */
     public var last: String?
 
     public init(first: String? = nil, middle: String? = nil, last: String? = nil) {

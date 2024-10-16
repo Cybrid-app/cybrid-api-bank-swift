@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for payment instruction creation. */
 public struct PostPaymentInstructionBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ExpectedBehaviourBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

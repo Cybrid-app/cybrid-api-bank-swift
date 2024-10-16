@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The account type. | 
-**customerGuid** | **String** | The customer identifier associated with the account. | [optional] 
+**customerGuid** | **String** | TThe customer identifier associated with the account. | [optional] 
 **asset** | **String** | The asset code. | 
 **name** | **String** | The name of the account. | 
 **labels** | **[String]** | The labels associated with the account. | [optional] 

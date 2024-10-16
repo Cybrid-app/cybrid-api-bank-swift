@@ -10,22 +10,23 @@ import Foundation
 import AnyCodable
 #endif
 
+/** The customer&#39;s address. Optional when type is individual. */
 public struct PostCustomerAddressBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The first line of the address. */
-    public var street: String
-    /** The optional second line of the address. */
+    /** The first line of the address. Required when type is individual. */
+    public var street: String?
+    /** The optional second line of the address. Optional when type is individual. */
     public var street2: String?
-    /** The city of the address. */
-    public var city: String
-    /** The provide/state/region of the address; not used by all countries. */
+    /** The city of the address. Required when type is individual. */
+    public var city: String?
+    /** The ISO 3166-2 subdivision code of the address; not used by all countries. Optional when type is individual. */
     public var subdivision: String?
-    /** The postal/post/zip code of the address; not used by all countries. */
+    /** The postal/post/zip code of the address; not used by all countries. Optional when type is individual. */
     public var postalCode: String?
-    /** The ISO 3166 country 2-Alpha country code of the address. */
-    public var countryCode: String
+    /** The ISO 3166 country 2-Alpha country code of the address. Required when type is individual. */
+    public var countryCode: String?
 
-    public init(street: String, street2: String? = nil, city: String, subdivision: String? = nil, postalCode: String? = nil, countryCode: String) {
+    public init(street: String? = nil, street2: String? = nil, city: String? = nil, subdivision: String? = nil, postalCode: String? = nil, countryCode: String? = nil) {
         self.street = street
         self.street2 = street2
         self.city = city
@@ -47,12 +48,12 @@ public struct PostCustomerAddressBankModel: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(street, forKey: .street)
+        try container.encodeIfPresent(street, forKey: .street)
         try container.encodeIfPresent(street2, forKey: .street2)
-        try container.encode(city, forKey: .city)
+        try container.encodeIfPresent(city, forKey: .city)
         try container.encodeIfPresent(subdivision, forKey: .subdivision)
         try container.encodeIfPresent(postalCode, forKey: .postalCode)
-        try container.encode(countryCode, forKey: .countryCode)
+        try container.encodeIfPresent(countryCode, forKey: .countryCode)
     }
 }
 

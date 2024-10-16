@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for invoice creation. */
 public struct PostInvoiceBankModel: Codable, JSONEncodable, Hashable {
 
     /** The asset code the customer will receive the funds in. */
@@ -22,7 +23,7 @@ public struct PostInvoiceBankModel: Codable, JSONEncodable, Hashable {
     public var deliverAmount: Int?
     /** The identifier for the account to use for the transfer. Required if the customer has multiple fiat accounts. Currently only valid for invoices paid to a fiat account. */
     public var accountGuid: String?
-    /** The labels associated with the customer. */
+    /** The labels associated with the invoice. */
     public var labels: [String]?
 
     public init(asset: String, customerGuid: String? = nil, receiveAmount: Int? = nil, deliverAmount: Int? = nil, accountGuid: String? = nil, labels: [String]? = nil) {

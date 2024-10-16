@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The counterparty&#39;s checking bank account information. */
+/** The counterparty&#39;s checking bank account information. Required when account_kind is raw_routing_details. */
 public struct PostExternalBankAccountCounterpartyBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum RoutingNumberTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -18,14 +18,14 @@ public struct PostExternalBankAccountCounterpartyBankAccountBankModel: Codable, 
         case aba = "ABA"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The type of routing number. */
-    public var routingNumberType: RoutingNumberTypeBankModel
-    /** The routing number. */
-    public var routingNumber: String
-    /** The account number. */
-    public var accountNumber: String
+    /** The type of routing number. Required when account_kind is raw_routing_details. */
+    public var routingNumberType: RoutingNumberTypeBankModel?
+    /** The routing number. Required when account_kind is raw_routing_details. */
+    public var routingNumber: String?
+    /** The account number. Required when account_kind is raw_routing_details. */
+    public var accountNumber: String?
 
-    public init(routingNumberType: RoutingNumberTypeBankModel, routingNumber: String, accountNumber: String) {
+    public init(routingNumberType: RoutingNumberTypeBankModel? = nil, routingNumber: String? = nil, accountNumber: String? = nil) {
         self.routingNumberType = routingNumberType
         self.routingNumber = routingNumber
         self.accountNumber = accountNumber
@@ -41,9 +41,9 @@ public struct PostExternalBankAccountCounterpartyBankAccountBankModel: Codable, 
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(routingNumberType, forKey: .routingNumberType)
-        try container.encode(routingNumber, forKey: .routingNumber)
-        try container.encode(accountNumber, forKey: .accountNumber)
+        try container.encodeIfPresent(routingNumberType, forKey: .routingNumberType)
+        try container.encodeIfPresent(routingNumber, forKey: .routingNumber)
+        try container.encodeIfPresent(accountNumber, forKey: .accountNumber)
     }
 }
 

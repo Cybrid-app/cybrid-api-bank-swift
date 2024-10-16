@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct PostCounterpartyAliasesInnerBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The counterparty's full name; optional for business counterparties.. */
+    /** The counterparty's full name. Required when type is business. */
     public var full: String?
 
     public init(full: String? = nil) {

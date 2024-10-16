@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for counterparty creation. */
 public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -21,20 +22,20 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var type: TypeBankModel
     /** The owning customer's identifier. */
     public var customerGuid: String?
+    public var address: PostCounterpartyAddressBankModel
     public var name: PostCounterpartyNameBankModel?
-    public var address: PostCounterpartyAddressBankModel?
-    /** The counterparty's aliases. */
+    /** The aliases of the counterparty. Optional when type is business. */
     public var aliases: [PostCounterpartyAliasesInnerBankModel]?
-    /** The counterparty's date of birth; optional for individual counterparties.. */
+    /** The counterparty's date of birth. Optional when type is individual. */
     public var dateOfBirth: Date?
     /** The labels associated with the counterparty. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, name: PostCounterpartyNameBankModel? = nil, address: PostCounterpartyAddressBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, address: PostCounterpartyAddressBankModel, name: PostCounterpartyNameBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil) {
         self.type = type
         self.customerGuid = customerGuid
-        self.name = name
         self.address = address
+        self.name = name
         self.aliases = aliases
         self.dateOfBirth = dateOfBirth
         self.labels = labels
@@ -43,8 +44,8 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case customerGuid = "customer_guid"
-        case name
         case address
+        case name
         case aliases
         case dateOfBirth = "date_of_birth"
         case labels
@@ -56,8 +57,8 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encode(address, forKey: .address)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(aliases, forKey: .aliases)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(labels, forKey: .labels)

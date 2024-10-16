@@ -10,9 +10,10 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for external wallet creation. */
 public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The name of the account. */
+    /** Name of the external wallet. */
     public var name: String
     /** The customer identifier. */
     public var customerGuid: String?
