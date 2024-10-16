@@ -10,16 +10,16 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The customer&#39;s name; required when method is set to &#39;attested&#39;. Either full or first and last are required. */
+/** The customer&#39;s name. Required when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
 public struct PostIdentityVerificationNameBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The customer's first name. */
+    /** The customer's first name. Required when type is kyc and method is attested. Optional when type is bank_account and method is attested or type is bank_account and method is attested_ownership. */
     public var first: String?
-    /** The customer's middle name. */
+    /** The customer's middle name. Optional when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
     public var middle: String?
-    /** The customer's last name. */
+    /** The customer's last name. Required when type is kyc and method is attested. Optional when type is bank_account and method is attested or type is bank_account and method is attested_ownership. */
     public var last: String?
-    /** The customer's full name. */
+    /** The customer's full name. Required when type is bank_account and method is attested or type is bank_account and method is attested_ownership. Optional when type is kyc and method is attested. */
     public var full: String?
 
     public init(first: String? = nil, middle: String? = nil, last: String? = nil, full: String? = nil) {

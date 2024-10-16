@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for customer modification. */
 public struct PatchCustomerBankModel: Codable, JSONEncodable, Hashable {
 
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

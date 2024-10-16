@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for a transfer participant. */
 public struct PostTransferParticipantBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -18,7 +19,7 @@ public struct PostTransferParticipantBankModel: Codable, JSONEncodable, Hashable
         case counterparty = "counterparty"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The type of participant */
+    /** The type of participant. */
     public var type: TypeBankModel
     /** The amount in base units of the asset. */
     public var amount: Int

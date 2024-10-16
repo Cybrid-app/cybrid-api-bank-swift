@@ -10,11 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for bank modification. */
 public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The bank's name. */
+    /** The name of the bank. */
     public var name: String?
-    /** The bank's list of supported trading symbols. */
+    /** The trading symbols supported by the bank. */
     public var supportedTradingSymbols: [String]?
 
     public init(name: String? = nil, supportedTradingSymbols: [String]? = nil) {

@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for fee creation. */
 public struct PostFeeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -19,9 +20,9 @@ public struct PostFeeBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The fee's type */
     public var type: TypeBankModel
-    /** The percentage amount, in basis points, to apply when charging a fee. */
+    /** The percentage amount, in basis points, to apply when charging a fee. Required when type is spread. */
     public var spreadFee: Int?
-    /** The fixed amount to apply when charging a fee; for trades, the fiat asset is used. */
+    /** The fixed amount to apply when charging a fee; for trades, the fiat asset is used. Required when type is fixed. */
     public var fixedFee: Int?
 
     public init(type: TypeBankModel, spreadFee: Int? = nil, fixedFee: Int? = nil) {

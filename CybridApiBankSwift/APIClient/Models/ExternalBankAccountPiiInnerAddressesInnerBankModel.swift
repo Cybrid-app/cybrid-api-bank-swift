@@ -18,7 +18,7 @@ public struct ExternalBankAccountPiiInnerAddressesInnerBankModel: Codable, JSONE
     public var street2: String?
     /** The city of the address. */
     public var city: String?
-    /** The provide/state/region of the address; not used by all countries. */
+    /** The ISO 3166-2 subdivision code of the address; not used by all countries. */
     public var subdivision: String?
     /** The postal/post/zip code of the address; not used by all countries. */
     public var postalCode: String?

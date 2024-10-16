@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for external bank account creation. */
 public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -26,27 +27,27 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var customerGuid: String?
     /** The asset code. If not set will try and default to the Bank's configured fiat asset. */
     public var asset: String?
-    /** The public token for the account. Required for 'plaid' accounts. */
+    /** The public token for the account. Required for 'plaid' accounts. Required when account_kind is plaid. */
     public var plaidPublicToken: String?
-    /** The account identifier in plaid. Required for 'plaid' accounts. */
+    /** The account identifier in plaid. Required for 'plaid' accounts. Required when account_kind is plaid. */
     public var plaidAccountId: String?
-    /** The Plaid processor token used to access the account. Required for 'plaid_processor_token' accounts. */
+    /** The Plaid processor token used to access the account. Required when account_kind is plaid_processor_token. */
     public var plaidProcessorToken: String?
-    /** Plaid's institution ID for the account's institution. Required for 'plaid_processor_token' accounts. */
+    /** Plaid's institution ID for the account's institution. Required when account_kind is plaid_processor_token. */
     public var plaidInstitutionId: String?
-    /** The account mask for the account. Required for 'plaid_processor_token' accounts. */
+    /** The account mask for the account. Required when account_kind is plaid_processor_token. */
     public var plaidAccountMask: String?
-    /** The name of the account. Required for 'plaid_processor_token' accounts. */
+    /** The name of the account. Required when account_kind is plaid_processor_token. */
     public var plaidAccountName: String?
+    /** The counterparty identifier. Optional when account_kind is raw_routing_details. */
+    public var counterpartyGuid: String?
     public var counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel?
     public var counterpartyName: PostExternalBankAccountCounterpartyNameBankModel?
     public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
-    /** The counterparty's email address on their checking account. */
+    /** The counterparty's email address on their checking account. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var counterpartyEmailAddress: String?
-    /** The counterparty identifier. */
-    public var counterpartyGuid: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String?, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil, counterpartyGuid: String? = nil) {
+    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String? = nil, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyGuid: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.customerGuid = customerGuid
@@ -57,11 +58,11 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         self.plaidInstitutionId = plaidInstitutionId
         self.plaidAccountMask = plaidAccountMask
         self.plaidAccountName = plaidAccountName
+        self.counterpartyGuid = counterpartyGuid
         self.counterpartyBankAccount = counterpartyBankAccount
         self.counterpartyName = counterpartyName
         self.counterpartyAddress = counterpartyAddress
         self.counterpartyEmailAddress = counterpartyEmailAddress
-        self.counterpartyGuid = counterpartyGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -75,11 +76,11 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         case plaidInstitutionId = "plaid_institution_id"
         case plaidAccountMask = "plaid_account_mask"
         case plaidAccountName = "plaid_account_name"
+        case counterpartyGuid = "counterparty_guid"
         case counterpartyBankAccount = "counterparty_bank_account"
         case counterpartyName = "counterparty_name"
         case counterpartyAddress = "counterparty_address"
         case counterpartyEmailAddress = "counterparty_email_address"
-        case counterpartyGuid = "counterparty_guid"
     }
 
     // Encodable protocol methods
@@ -89,18 +90,18 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         try container.encode(name, forKey: .name)
         try container.encode(accountKind, forKey: .accountKind)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
-        try container.encode(asset, forKey: .asset)
+        try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(plaidPublicToken, forKey: .plaidPublicToken)
         try container.encodeIfPresent(plaidAccountId, forKey: .plaidAccountId)
         try container.encodeIfPresent(plaidProcessorToken, forKey: .plaidProcessorToken)
         try container.encodeIfPresent(plaidInstitutionId, forKey: .plaidInstitutionId)
         try container.encodeIfPresent(plaidAccountMask, forKey: .plaidAccountMask)
         try container.encodeIfPresent(plaidAccountName, forKey: .plaidAccountName)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encodeIfPresent(counterpartyBankAccount, forKey: .counterpartyBankAccount)
         try container.encodeIfPresent(counterpartyName, forKey: .counterpartyName)
         try container.encodeIfPresent(counterpartyAddress, forKey: .counterpartyAddress)
         try container.encodeIfPresent(counterpartyEmailAddress, forKey: .counterpartyEmailAddress)
-        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
     }
 }
 

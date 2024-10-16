@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** The address of the counterparty. */
 public struct PostCounterpartyAddressBankModel: Codable, JSONEncodable, Hashable {
 
     /** The first line of the address. */

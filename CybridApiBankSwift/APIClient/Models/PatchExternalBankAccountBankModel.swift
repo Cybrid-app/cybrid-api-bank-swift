@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for external bank account modification. */
 public struct PatchExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

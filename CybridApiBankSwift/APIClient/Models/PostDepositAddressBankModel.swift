@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for deposit address creation. */
 public struct PostDepositAddressBankModel: Codable, JSONEncodable, Hashable {
 
     /** The trading account guid. */

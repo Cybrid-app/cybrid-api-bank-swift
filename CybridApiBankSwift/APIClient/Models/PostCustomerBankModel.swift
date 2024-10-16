@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for customer creation. */
 public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -17,17 +18,17 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
         case individual = "individual"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The customer's type. */
+    /** The type of customer. */
     public var type: TypeBankModel
     public var name: PostCustomerNameBankModel?
     public var address: PostCustomerAddressBankModel?
-    /** The customer's date of birth. */
+    /** The customer's date of birth. Optional when type is individual. */
     public var dateOfBirth: Date?
-    /** The customer's phone number. */
+    /** The customer's phone number. Optional when type is individual. */
     public var phoneNumber: String?
-    /** The customer's email address. */
+    /** The customer's email address. Optional when type is individual. */
     public var emailAddress: String?
-    /** The customer's identification numbers. */
+    /** The customer's identification numbers. Optional when type is individual. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
     /** The labels associated with the customer. */
     public var labels: [String]?

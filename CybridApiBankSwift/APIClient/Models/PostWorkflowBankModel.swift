@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for workflow creation. */
 public struct PostWorkflowBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -31,19 +32,19 @@ public struct PostWorkflowBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The workflow type. */
     public var type: TypeBankModel
-    /** The Plaid workflow kind. */
+    /** The Plaid workflow kind. Required when type is plaid. */
     public var kind: KindBankModel?
-    /** The customer identifier associated with the workflow. */
+    /** The customer identifier associated with the workflow. Optional when type is plaid and kind is link_token_create. */
     public var customerGuid: String?
-    /** The external bank account identifier associated with the workflow. */
+    /** The external bank account identifier associated with the workflow. Required when type is plaid and kind is link_token_update. */
     public var externalBankAccountGuid: String?
-    /** The language to initialize Plaid link. */
+    /** The language to initialize Plaid link. Required when type is plaid. */
     public var language: LanguageBankModel?
-    /** The customization name for Plaid link. Currently only supports the value \"default\". */
+    /** The customization name for Plaid link. Currently only supports the value \"default\". Required when type is plaid. */
     public var linkCustomizationName: String?
-    /** The redirect URI for Plaid link. */
+    /** The redirect URI for Plaid link. Optional when type is plaid. */
     public var redirectUri: String?
-    /** The Android package name for Plaid link. */
+    /** The Android package name for Plaid link. Optional when type is plaid. */
     public var androidPackageName: String?
 
     public init(type: TypeBankModel, kind: KindBankModel? = nil, customerGuid: String? = nil, externalBankAccountGuid: String? = nil, language: LanguageBankModel? = nil, linkCustomizationName: String? = nil, redirectUri: String? = nil, androidPackageName: String? = nil) {

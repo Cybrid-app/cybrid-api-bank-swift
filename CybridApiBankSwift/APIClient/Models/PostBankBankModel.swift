@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for bank creation. */
 public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -23,47 +24,47 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case individualCustomers = "individual_customers"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The bank's name. */
-    public var name: String
-    /** The bank's type. At present, only **sandbox** is supported. */
+    /** The type of bank. */
     public var type: TypeBankModel
-    /** The bank's list of supported trading symbols. */
+    /** The name of the bank. */
+    public var name: String
+    /** The trading symbols supported by the bank. */
     public var supportedTradingSymbols: [String]
-    /** The bank's enabled features. */
-    public var features: [FeaturesBankModel]
-    /** The bank's list of supported fiat assets. */
+    /** The fiat account assets supported by the bank. */
     public var supportedFiatAccountAssets: [String]
-    /** The bank's list of supported country codes. */
-    public var supportedCountryCodes: [String]?
+    /** The country codes supported by the bank. */
+    public var supportedCountryCodes: [String]
+    /** The features supported by the bank. */
+    public var features: [FeaturesBankModel]
 
-    public init(name: String, type: TypeBankModel, supportedTradingSymbols: [String], features: [FeaturesBankModel], supportedFiatAccountAssets: [String], supportedCountryCodes: [String]? = nil) {
-        self.name = name
+    public init(type: TypeBankModel, name: String, supportedTradingSymbols: [String], supportedFiatAccountAssets: [String], supportedCountryCodes: [String], features: [FeaturesBankModel]) {
         self.type = type
+        self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
-        self.features = features
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
+        self.features = features
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case name
         case type
+        case name
         case supportedTradingSymbols = "supported_trading_symbols"
-        case features
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
+        case features
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
+        try container.encode(name, forKey: .name)
         try container.encode(supportedTradingSymbols, forKey: .supportedTradingSymbols)
-        try container.encode(features, forKey: .features)
         try container.encode(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
-        try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
+        try container.encode(supportedCountryCodes, forKey: .supportedCountryCodes)
+        try container.encode(features, forKey: .features)
     }
 }
 
