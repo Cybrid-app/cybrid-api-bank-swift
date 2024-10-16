@@ -26,6 +26,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case ach = "ach"
         case eft = "eft"
         case wire = "wire"
+        case rtp = "rtp"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The associated quote's identifier. */
