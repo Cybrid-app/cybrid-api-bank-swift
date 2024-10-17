@@ -47,8 +47,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var sourceParticipants: [PostTransferParticipantBankModel]?
     /** The destination participants for the transfer. Optional when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
     public var destinationParticipants: [PostTransferParticipantBankModel]?
-    /** The optional expected error to simulate transfer failure. Optional when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, transfer_type is inter_account, or transfer_type is lightning. */
-    public var expectedError: String?
     /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
     public var bankFiatAccountGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the customer has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
@@ -66,7 +64,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, expectedError: String? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.externalBankAccountGuid = externalBankAccountGuid
@@ -76,7 +74,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         self.beneficiaryMemo = beneficiaryMemo
         self.sourceParticipants = sourceParticipants
         self.destinationParticipants = destinationParticipants
-        self.expectedError = expectedError
         self.bankFiatAccountGuid = bankFiatAccountGuid
         self.customerFiatAccountGuid = customerFiatAccountGuid
         self.sourceAccountGuid = sourceAccountGuid
@@ -97,7 +94,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case beneficiaryMemo = "beneficiary_memo"
         case sourceParticipants = "source_participants"
         case destinationParticipants = "destination_participants"
-        case expectedError = "expected_error"
         case bankFiatAccountGuid = "bank_fiat_account_guid"
         case customerFiatAccountGuid = "customer_fiat_account_guid"
         case sourceAccountGuid = "source_account_guid"
@@ -121,7 +117,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(beneficiaryMemo, forKey: .beneficiaryMemo)
         try container.encodeIfPresent(sourceParticipants, forKey: .sourceParticipants)
         try container.encodeIfPresent(destinationParticipants, forKey: .destinationParticipants)
-        try container.encodeIfPresent(expectedError, forKey: .expectedError)
         try container.encodeIfPresent(bankFiatAccountGuid, forKey: .bankFiatAccountGuid)
         try container.encodeIfPresent(customerFiatAccountGuid, forKey: .customerFiatAccountGuid)
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
