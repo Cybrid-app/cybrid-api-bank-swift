@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **transferDetails** | [**AnyCodableBankModel**](.md) | The raw details on the transfer from the bank. | [optional] 
 **paymentRail** | **String** | The rail the payment was done on. One of: ach, eft, wire, rtp | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
+**entries** | [TransferEntryBankModel] | Transfer entries associated with the batch transfer | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

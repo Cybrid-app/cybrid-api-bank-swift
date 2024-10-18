@@ -46,8 +46,10 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
     public var networkFeeAsset: String?
     /** The network address to pay the invoice to. Populated for lightning_transfer quotes. */
     public var networkAddress: String?
+    /** The quote entries for a batch transfer quote */
+    public var entries: [QuoteEntryBankModel]?
 
-    public init(guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil, networkAddress: String? = nil) {
+    public init(guid: String? = nil, productType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, symbol: String? = nil, side: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, fee: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, issuedAt: Date? = nil, expiresAt: Date? = nil, asset: String? = nil, networkFee: String? = nil, networkFeeAsset: String? = nil, networkAddress: String? = nil, entries: [QuoteEntryBankModel]? = nil) {
         self.guid = guid
         self.productType = productType
         self.bankGuid = bankGuid
@@ -65,6 +67,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         self.networkFee = networkFee
         self.networkFeeAsset = networkFeeAsset
         self.networkAddress = networkAddress
+        self.entries = entries
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -85,6 +88,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         case networkFee = "network_fee"
         case networkFeeAsset = "network_fee_asset"
         case networkAddress = "network_address"
+        case entries
     }
 
     // Encodable protocol methods
@@ -108,6 +112,7 @@ public struct QuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(networkFee, forKey: .networkFee)
         try container.encodeIfPresent(networkFeeAsset, forKey: .networkFeeAsset)
         try container.encodeIfPresent(networkAddress, forKey: .networkAddress)
+        try container.encodeIfPresent(entries, forKey: .entries)
     }
 }
 

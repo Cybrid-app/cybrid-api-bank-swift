@@ -55,7 +55,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var sourceAccountGuid: String?
     /** The destination account's identifier. Required when transfer_type is book or transfer_type is inter_account. */
     public var destinationAccountGuid: String?
-    /** The customer's external wallet's identifier. Required when transfer_type is crypto. */
+    /** The customer's external wallet's identifier. Optional when transfer_type is crypto. */
     public var externalWalletGuid: String?
     /** The customer's identifier. Required when transfer_type is lightning. */
     public var customerGuid: String?
