@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **networkFee** | **Int** | The network fee in base units of network_fee_asset. Only present on &#x60;crypto_transfer&#x60; quotes. | [optional] 
 **networkFeeAsset** | **String** | The asset code of the network fee. | [optional] 
 **networkAddress** | **String** | The network address to pay the invoice to. Populated for lightning_transfer quotes. | [optional] 
+**entries** | [QuoteEntryBankModel] | The quote entries for a batch transfer quote | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

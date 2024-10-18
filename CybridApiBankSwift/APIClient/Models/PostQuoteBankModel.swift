@@ -50,6 +50,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var side: SideBankModel?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported.  Required when product_type is trading. */
     public var symbol: String?
+    /** Destination accounts for batch transactions Optional when product_type is crypto_transfer. */
+    public var destinationAccounts: [PostQuoteEntryBankModel]?
     /** The guid of the related trade. Only present on `exit` trades. Required when product_type is trading_exit. */
     public var referenceTradeGuid: String?
     /** The source account's identifier. Required when product_type is inter_account. */
@@ -57,7 +59,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The destination account's identifier. Required when product_type is inter_account. */
     public var destinationAccountGuid: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, asset: String? = nil, networkAddress: String? = nil, fees: [PostFeeBankModel]? = nil, side: SideBankModel? = nil, symbol: String? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, asset: String? = nil, networkAddress: String? = nil, fees: [PostFeeBankModel]? = nil, side: SideBankModel? = nil, symbol: String? = nil, destinationAccounts: [PostQuoteEntryBankModel]? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -68,6 +70,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         self.fees = fees
         self.side = side
         self.symbol = symbol
+        self.destinationAccounts = destinationAccounts
         self.referenceTradeGuid = referenceTradeGuid
         self.sourceAccountGuid = sourceAccountGuid
         self.destinationAccountGuid = destinationAccountGuid
@@ -84,6 +87,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case fees
         case side
         case symbol
+        case destinationAccounts = "destination_accounts"
         case referenceTradeGuid = "reference_trade_guid"
         case sourceAccountGuid = "source_account_guid"
         case destinationAccountGuid = "destination_account_guid"
@@ -103,6 +107,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fees, forKey: .fees)
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(symbol, forKey: .symbol)
+        try container.encodeIfPresent(destinationAccounts, forKey: .destinationAccounts)
         try container.encodeIfPresent(referenceTradeGuid, forKey: .referenceTradeGuid)
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
