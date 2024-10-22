@@ -19,9 +19,9 @@ public struct PostCustomerAddressBankModel: Codable, JSONEncodable, Hashable {
     public var street2: String?
     /** The city of the address. Required when type is individual. */
     public var city: String?
-    /** The ISO 3166-2 subdivision code of the address; not used by all countries. Optional when type is individual. */
+    /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. Optional when type is individual. */
     public var subdivision: String?
-    /** The postal/post/zip code of the address; not used by all countries. Optional when type is individual. */
+    /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. Optional when type is individual. */
     public var postalCode: String?
     /** The ISO 3166 country 2-Alpha country code of the address. Required when type is individual. */
     public var countryCode: String?

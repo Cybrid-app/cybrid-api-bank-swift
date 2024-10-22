@@ -19,9 +19,9 @@ public struct PostIdentityVerificationAddressBankModel: Codable, JSONEncodable, 
     public var street2: String?
     /** The city of the address. Required when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
     public var city: String?
-    /** The ISO 3166-2 subdivision code of the address; not used by all countries. Optional when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
+    /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. Optional when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
     public var subdivision: String?
-    /** The postal/post/zip code of the address; not used by all countries. Optional when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
+    /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. Optional when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
     public var postalCode: String?
     /** The ISO 3166 country 2-Alpha country code of the address. Required when type is kyc and method is attested, type is bank_account and method is attested, or type is bank_account and method is attested_ownership. */
     public var countryCode: String?
