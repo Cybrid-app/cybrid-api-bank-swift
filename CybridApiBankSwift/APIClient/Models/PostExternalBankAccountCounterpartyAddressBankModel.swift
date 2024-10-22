@@ -19,9 +19,9 @@ public struct PostExternalBankAccountCounterpartyAddressBankModel: Codable, JSON
     public var street2: String?
     /** The city of the address. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var city: String?
-    /** The ISO 3166-2 subdivision code of the address; not used by all countries. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var subdivision: String?
-    /** The postal/post/zip code of the address; not used by all countries. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var postalCode: String?
     /** The ISO 3166 country 2-Alpha country code of the address. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var countryCode: String?

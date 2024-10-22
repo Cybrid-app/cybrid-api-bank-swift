@@ -19,9 +19,9 @@ public struct PostCounterpartyAddressBankModel: Codable, JSONEncodable, Hashable
     public var street2: String?
     /** The city of the address. */
     public var city: String
-    /** The ISO 3166-2 subdivision code of the address; not used by all countries. */
+    /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. */
     public var subdivision: String?
-    /** The postal/post/zip code of the address; not used by all countries. */
+    /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. */
     public var postalCode: String?
     /** The ISO 3166 country 2-Alpha country code of the address. */
     public var countryCode: String
