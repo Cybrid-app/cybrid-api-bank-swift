@@ -29,6 +29,10 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case rtp = "rtp"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case forceReview = "force_review"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The associated quote's identifier. */
     public var quoteGuid: String
     /** The type of transfer. */
@@ -61,10 +65,12 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     /** The network fee account's identifier. Required for network fee transfers. Must be the identifier for the customer's or bank's fiat or trading account. For customer's to pay the network fees, include the customer's fiat or trading account guid. For bank's to pay the network fees, include the bank's fiat or trading account guid. Required when transfer_type is lightning. */
     public var networkFeeAccountGuid: String?
+    /** The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding and instant_funding transfers. */
+    public var expectedBehaviours: [ExpectedBehavioursBankModel]?
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.externalBankAccountGuid = externalBankAccountGuid
@@ -81,6 +87,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         self.externalWalletGuid = externalWalletGuid
         self.customerGuid = customerGuid
         self.networkFeeAccountGuid = networkFeeAccountGuid
+        self.expectedBehaviours = expectedBehaviours
         self.labels = labels
     }
 
@@ -101,6 +108,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case externalWalletGuid = "external_wallet_guid"
         case customerGuid = "customer_guid"
         case networkFeeAccountGuid = "network_fee_account_guid"
+        case expectedBehaviours = "expected_behaviours"
         case labels
     }
 
@@ -124,6 +132,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(networkFeeAccountGuid, forKey: .networkFeeAccountGuid)
+        try container.encodeIfPresent(expectedBehaviours, forKey: .expectedBehaviours)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }

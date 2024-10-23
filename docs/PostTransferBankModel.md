@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **externalWalletGuid** | **String** | The customer&#39;s external wallet&#39;s identifier. Optional when transfer_type is crypto. | [optional] 
 **customerGuid** | **String** | The customer&#39;s identifier. Required when transfer_type is lightning. | [optional] 
 **networkFeeAccountGuid** | **String** | The network fee account&#39;s identifier. Required for network fee transfers. Must be the identifier for the customer&#39;s or bank&#39;s fiat or trading account. For customer&#39;s to pay the network fees, include the customer&#39;s fiat or trading account guid. For bank&#39;s to pay the network fees, include the bank&#39;s fiat or trading account guid. Required when transfer_type is lightning. | [optional] 
+**expectedBehaviours** | **[String]** | The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding and instant_funding transfers. | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
