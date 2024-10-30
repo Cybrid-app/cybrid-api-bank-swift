@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct AccountBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The account type; one of trading, fee, fiat, gas, reserve, or invoice_operations. */
+    /** The account type; one of trading, fee, fiat, gas, reserve, invoice_operations, or storage. */
     public var type: String?
     /** Auto-generated unique identifier for the account. */
     public var guid: String?
