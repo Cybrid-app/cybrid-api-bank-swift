@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **String** | The account type; one of trading, fee, fiat, gas, reserve, or invoice_operations. | [optional] 
+**type** | **String** | The account type; one of trading, fee, fiat, gas, reserve, invoice_operations, or storage. | [optional] 
 **guid** | **String** | Auto-generated unique identifier for the account. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 

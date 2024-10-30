@@ -17,6 +17,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
         case trading = "trading"
         case fiat = "fiat"
         case invoiceOperations = "invoice_operations"
+        case storage = "storage"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The account type. */
