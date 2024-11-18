@@ -20,5 +20,6 @@ public enum TransferAccountTypeBankModel: String, Codable, CaseIterable, CaseIte
     case invoiceOperations = "invoice_operations"
     case fee = "fee"
     case gas = "gas"
+    case storage = "storage"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
