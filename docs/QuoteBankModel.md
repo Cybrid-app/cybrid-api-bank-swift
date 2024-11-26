@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **networkFeeAsset** | **String** | The asset code of the network fee. | [optional] 
 **networkAddress** | **String** | The network address to pay the invoice to. Populated for lightning_transfer quotes. | [optional] 
 **entries** | [QuoteEntryBankModel] | The quote entries for a batch transfer quote | [optional] 
+**tradeGuid** | **String** | The unique identifier for the trade. | [optional] 
+**transferGuid** | **String** | The unique identifier for the transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
