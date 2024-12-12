@@ -57,9 +57,9 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
     /** The external bank account's identifier. Required when type is bank_account. */
     public var externalBankAccountGuid: String?
-    /** The customer's phone number. Optional when type is bank_account and method is attested or type is bank_account and method is attested_ownership. */
+    /** The customer's phone number. Optional when type is bank_account and method is attested_ownership. */
     public var phoneNumber: String?
-    /** The customer's email address. Optional when type is bank_account and method is attested or type is bank_account and method is attested_ownership. */
+    /** The customer's email address. Optional when type is bank_account and method is attested_ownership. */
     public var emailAddress: String?
 
     public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, externalBankAccountGuid: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil) {
