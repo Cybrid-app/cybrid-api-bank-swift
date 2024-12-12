@@ -24,7 +24,7 @@ Creates a bank.  ## Bank Type  Bank's can be created in either `sandbox` or `pro
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postBankBankModel = PostBank(type: "type_example", name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"], supportedFiatAccountAssets: ["supportedFiatAccountAssets_example"], supportedCountryCodes: ["supportedCountryCodes_example"], features: ["features_example"]) // PostBankBankModel | 
+let postBankBankModel = PostBank(type: "type_example", name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"], supportedFiatAccountAssets: ["supportedFiatAccountAssets_example"], supportedCountryCodes: ["supportedCountryCodes_example"], features: ["features_example"], corsAllowedOrigins: ["corsAllowedOrigins_example"]) // PostBankBankModel | 
 
 // Create Bank
 BanksAPI.createBank(postBankBankModel: postBankBankModel) { (response, error) in
@@ -181,7 +181,7 @@ Update a bank.  Required scope: **banks:write**
 import CybridApiBankSwift
 
 let bankGuid = "bankGuid_example" // String | Identifier for the bank.
-let patchBankBankModel = PatchBank(name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"]) // PatchBankBankModel | 
+let patchBankBankModel = PatchBank(name: "name_example", supportedTradingSymbols: ["supportedTradingSymbols_example"], corsAllowedOrigins: ["corsAllowedOrigins_example"]) // PatchBankBankModel | 
 
 // Patch Bank
 BanksAPI.updateBank(bankGuid: bankGuid, patchBankBankModel: patchBankBankModel) { (response, error) in

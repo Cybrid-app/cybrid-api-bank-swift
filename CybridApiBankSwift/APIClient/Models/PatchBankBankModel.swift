@@ -17,15 +17,19 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** The trading symbols supported by the bank. */
     public var supportedTradingSymbols: [String]?
+    /** The list of allowed CORS origin URIs. */
+    public var corsAllowedOrigins: [String]?
 
-    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil) {
+    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil, corsAllowedOrigins: [String]? = nil) {
         self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
+        self.corsAllowedOrigins = corsAllowedOrigins
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case supportedTradingSymbols = "supported_trading_symbols"
+        case corsAllowedOrigins = "cors_allowed_origins"
     }
 
     // Encodable protocol methods
@@ -34,6 +38,7 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
+        try container.encodeIfPresent(corsAllowedOrigins, forKey: .corsAllowedOrigins)
     }
 }
 

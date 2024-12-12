@@ -36,14 +36,17 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public var supportedCountryCodes: [String]
     /** The features supported by the bank. */
     public var features: [FeaturesBankModel]
+    /** The list of allowed CORS origin URIs. */
+    public var corsAllowedOrigins: [String]?
 
-    public init(type: TypeBankModel, name: String, supportedTradingSymbols: [String], supportedFiatAccountAssets: [String], supportedCountryCodes: [String], features: [FeaturesBankModel]) {
+    public init(type: TypeBankModel, name: String, supportedTradingSymbols: [String], supportedFiatAccountAssets: [String], supportedCountryCodes: [String], features: [FeaturesBankModel], corsAllowedOrigins: [String]? = nil) {
         self.type = type
         self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
         self.features = features
+        self.corsAllowedOrigins = corsAllowedOrigins
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -53,6 +56,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
         case features
+        case corsAllowedOrigins = "cors_allowed_origins"
     }
 
     // Encodable protocol methods
@@ -65,6 +69,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encode(supportedCountryCodes, forKey: .supportedCountryCodes)
         try container.encode(features, forKey: .features)
+        try container.encodeIfPresent(corsAllowedOrigins, forKey: .corsAllowedOrigins)
     }
 }
 
