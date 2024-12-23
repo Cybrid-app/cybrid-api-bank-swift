@@ -17,6 +17,8 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var name: String
     /** The customer identifier. */
     public var customerGuid: String?
+    /** The counterparty identifier. */
+    public var counterpartyGuid: String?
     /** The asset code. */
     public var asset: String
     /** The blockchain wallet address for the wallet. */
@@ -24,9 +26,10 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     /** The blockchain tag to use when transferring crypto to the wallet. */
     public var tag: String?
 
-    public init(name: String, customerGuid: String? = nil, asset: String, address: String, tag: String? = nil) {
+    public init(name: String, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, address: String, tag: String? = nil) {
         self.name = name
         self.customerGuid = customerGuid
+        self.counterpartyGuid = counterpartyGuid
         self.asset = asset
         self.address = address
         self.tag = tag
@@ -35,6 +38,7 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case customerGuid = "customer_guid"
+        case counterpartyGuid = "counterparty_guid"
         case asset
         case address
         case tag
@@ -46,6 +50,7 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encode(asset, forKey: .asset)
         try container.encode(address, forKey: .address)
         try container.encodeIfPresent(tag, forKey: .tag)
