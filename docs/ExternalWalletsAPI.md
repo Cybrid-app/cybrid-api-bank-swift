@@ -24,7 +24,7 @@ Create an ExternalWallet.  ## Wallet creation  External Wallets can be created f
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postExternalWalletBankModel = PostExternalWallet(name: "name_example", customerGuid: "customerGuid_example", asset: "asset_example", address: "address_example", tag: "tag_example") // PostExternalWalletBankModel | 
+let postExternalWalletBankModel = PostExternalWallet(name: "name_example", customerGuid: "customerGuid_example", counterpartyGuid: "counterpartyGuid_example", asset: "asset_example", address: "address_example", tag: "tag_example") // PostExternalWalletBankModel | 
 
 // Create ExternalWallet
 ExternalWalletsAPI.createExternalWallet(postExternalWalletBankModel: postExternalWalletBankModel) { (response, error) in
