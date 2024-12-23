@@ -47,9 +47,9 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var paymentRail: PaymentRailBankModel?
     /** The memo to send to the counterparty. Optional when transfer_type is funding. */
     public var beneficiaryMemo: String?
-    /** The source participants for the transfer. Optional when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
+    /** The source participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
     public var sourceParticipants: [PostTransferParticipantBankModel]?
-    /** The destination participants for the transfer. Optional when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
+    /** The destination participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
     public var destinationParticipants: [PostTransferParticipantBankModel]?
     /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
     public var bankFiatAccountGuid: String?
