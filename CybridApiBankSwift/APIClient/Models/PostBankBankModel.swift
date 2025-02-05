@@ -19,6 +19,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     }
     public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case attestationIdentityRecords = "attestation_identity_records"
+        case attestationIdentityRecordsV2 = "attestation_identity_records_v2"
         case kycIdentityVerifications = "kyc_identity_verifications"
         case businessCustomers = "business_customers"
         case individualCustomers = "individual_customers"
@@ -30,6 +31,8 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public var name: String
     /** The trading symbols supported by the bank. */
     public var supportedTradingSymbols: [String]
+    /** The payout symbols supported by the bank. This is not yet supported and should be nil or empty. */
+    public var supportedPayoutSymbols: [PostSupportedPayoutSymbolsBankModel]?
     /** The fiat account assets supported by the bank. */
     public var supportedFiatAccountAssets: [String]
     /** The country codes supported by the bank. */
@@ -39,10 +42,11 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     /** The list of allowed CORS origin URIs. */
     public var corsAllowedOrigins: [String]?
 
-    public init(type: TypeBankModel, name: String, supportedTradingSymbols: [String], supportedFiatAccountAssets: [String], supportedCountryCodes: [String], features: [FeaturesBankModel], corsAllowedOrigins: [String]? = nil) {
+    public init(type: TypeBankModel, name: String, supportedTradingSymbols: [String], supportedPayoutSymbols: [PostSupportedPayoutSymbolsBankModel]? = nil, supportedFiatAccountAssets: [String], supportedCountryCodes: [String], features: [FeaturesBankModel], corsAllowedOrigins: [String]? = nil) {
         self.type = type
         self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
+        self.supportedPayoutSymbols = supportedPayoutSymbols
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
         self.features = features
@@ -53,6 +57,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         case type
         case name
         case supportedTradingSymbols = "supported_trading_symbols"
+        case supportedPayoutSymbols = "supported_payout_symbols"
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
         case features
@@ -66,6 +71,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(name, forKey: .name)
         try container.encode(supportedTradingSymbols, forKey: .supportedTradingSymbols)
+        try container.encodeIfPresent(supportedPayoutSymbols, forKey: .supportedPayoutSymbols)
         try container.encode(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encode(supportedCountryCodes, forKey: .supportedCountryCodes)
         try container.encode(features, forKey: .features)

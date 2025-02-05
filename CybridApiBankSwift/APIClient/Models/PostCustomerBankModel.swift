@@ -20,38 +20,46 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The type of customer. */
     public var type: TypeBankModel
-    public var name: PostCustomerNameBankModel?
     public var address: PostCustomerAddressBankModel?
+    /** The customer's phone number. */
+    public var phoneNumber: String?
+    /** The customer's email address. */
+    public var emailAddress: String?
+    /** The customer's identification numbers. */
+    public var identificationNumbers: [PostIdentificationNumberBankModel]?
+    public var name: PostCustomerNameBankModel?
     /** The customer's date of birth. Optional when type is individual. */
     public var dateOfBirth: Date?
-    /** The customer's phone number. Optional when type is individual. */
-    public var phoneNumber: String?
-    /** The customer's email address. Optional when type is individual. */
-    public var emailAddress: String?
-    /** The customer's identification numbers. Optional when type is individual. */
-    public var identificationNumbers: [PostIdentificationNumberBankModel]?
+    /** The aliases of the customer. Optional when type is business. */
+    public var aliases: [PostCustomerAliasesInnerBankModel]?
+    /** The customer's website. Optional when type is business. */
+    public var website: String?
     /** The labels associated with the customer. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, name: PostCustomerNameBankModel? = nil, address: PostCustomerAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, address: PostCustomerAddressBankModel? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, name: PostCustomerNameBankModel? = nil, dateOfBirth: Date? = nil, aliases: [PostCustomerAliasesInnerBankModel]? = nil, website: String? = nil, labels: [String]? = nil) {
         self.type = type
-        self.name = name
         self.address = address
-        self.dateOfBirth = dateOfBirth
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
         self.identificationNumbers = identificationNumbers
+        self.name = name
+        self.dateOfBirth = dateOfBirth
+        self.aliases = aliases
+        self.website = website
         self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
-        case name
         case address
-        case dateOfBirth = "date_of_birth"
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
         case identificationNumbers = "identification_numbers"
+        case name
+        case dateOfBirth = "date_of_birth"
+        case aliases
+        case website
         case labels
     }
 
@@ -60,12 +68,14 @@ public struct PostCustomerBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)
-        try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
+        try container.encodeIfPresent(aliases, forKey: .aliases)
+        try container.encodeIfPresent(website, forKey: .website)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
 }

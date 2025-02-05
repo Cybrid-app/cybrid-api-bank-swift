@@ -17,18 +17,22 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** The trading symbols supported by the bank. */
     public var supportedTradingSymbols: [String]?
+    /** The payout symbols supported by the bank. This is not yet supported and should be nil or empty. */
+    public var supportedPayoutSymbols: [PostSupportedPayoutSymbolsBankModel]?
     /** The list of allowed CORS origin URIs. */
     public var corsAllowedOrigins: [String]?
 
-    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil, corsAllowedOrigins: [String]? = nil) {
+    public init(name: String? = nil, supportedTradingSymbols: [String]? = nil, supportedPayoutSymbols: [PostSupportedPayoutSymbolsBankModel]? = nil, corsAllowedOrigins: [String]? = nil) {
         self.name = name
         self.supportedTradingSymbols = supportedTradingSymbols
+        self.supportedPayoutSymbols = supportedPayoutSymbols
         self.corsAllowedOrigins = corsAllowedOrigins
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case supportedTradingSymbols = "supported_trading_symbols"
+        case supportedPayoutSymbols = "supported_payout_symbols"
         case corsAllowedOrigins = "cors_allowed_origins"
     }
 
@@ -38,6 +42,7 @@ public struct PatchBankBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
+        try container.encodeIfPresent(supportedPayoutSymbols, forKey: .supportedPayoutSymbols)
         try container.encodeIfPresent(corsAllowedOrigins, forKey: .corsAllowedOrigins)
     }
 }

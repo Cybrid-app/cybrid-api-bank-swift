@@ -16,9 +16,10 @@ public enum IdentityVerificationMethodBankModel: String, Codable, CaseIterable, 
     case idAndSelfie = "id_and_selfie"
     case taxIdAndSelfie = "tax_id_and_selfie"
     case businessRegistration = "business_registration"
-    case plaidIdentityMatch = "plaid_identity_match"
+    case attestedIdAndSelfie = "attested_id_and_selfie"
+    case attestedBusinessRegistration = "attested_business_registration"
+    case watchlists = "watchlists"
     case attestedOwnership = "attested_ownership"
     case accountOwnership = "account_ownership"
-    case watchlists = "watchlists"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

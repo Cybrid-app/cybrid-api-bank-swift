@@ -13,6 +13,7 @@ import AnyCodable
 public enum BankFeatureBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case kycIdentityVerifications = "kyc_identity_verifications"
     case attestationIdentityRecords = "attestation_identity_records"
+    case attestationIdentityRecordsV2 = "attestation_identity_records_v2"
     case rawRoutingDetails = "raw_routing_details"
     case individualCustomers = "individual_customers"
     case businessCustomers = "business_customers"

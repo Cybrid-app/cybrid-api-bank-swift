@@ -15,14 +15,19 @@ open class PricesAPI {
     /**
      Get Price
      
-     - parameter symbol: (query) Comma separated symbols to list prices for. (optional)
+     - parameter symbol: (query) Comma separated trading symbols to list prices for. (optional)
+     - parameter tradingSymbol: (query) Comma separated trading symbols to list prices for. (optional)
+     - parameter payoutSymbol: (query) Comma separated payout symbols to list prices for. (optional)
+     - parameter payoutCountryCode: (query) Comma separated payout country codes to list prices for. (optional)
+     - parameter payoutParticipantsType: (query) Comma separated payout participants types to list prices for. (optional)
+     - parameter payoutRoute: (query) Comma separated payout routes to list prices for. (optional)
      - parameter bankGuid: (query) The bank identifier to retrieve prices for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listPrices(symbol: String? = nil, bankGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[SymbolPriceBankModel], ErrorResponse>) -> Void)) -> RequestTask {
-        return listPricesWithRequestBuilder(symbol: symbol, bankGuid: bankGuid).execute(apiResponseQueue) { result in
+    open class func listPrices(symbol: String? = nil, tradingSymbol: String? = nil, payoutSymbol: String? = nil, payoutCountryCode: String? = nil, payoutParticipantsType: String? = nil, payoutRoute: String? = nil, bankGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[SymbolPriceBankModel], ErrorResponse>) -> Void)) -> RequestTask {
+        return listPricesWithRequestBuilder(symbol: symbol, tradingSymbol: tradingSymbol, payoutSymbol: payoutSymbol, payoutCountryCode: payoutCountryCode, payoutParticipantsType: payoutParticipantsType, payoutRoute: payoutRoute, bankGuid: bankGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -42,11 +47,16 @@ open class PricesAPI {
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter symbol: (query) Comma separated symbols to list prices for. (optional)
+     - parameter symbol: (query) Comma separated trading symbols to list prices for. (optional)
+     - parameter tradingSymbol: (query) Comma separated trading symbols to list prices for. (optional)
+     - parameter payoutSymbol: (query) Comma separated payout symbols to list prices for. (optional)
+     - parameter payoutCountryCode: (query) Comma separated payout country codes to list prices for. (optional)
+     - parameter payoutParticipantsType: (query) Comma separated payout participants types to list prices for. (optional)
+     - parameter payoutRoute: (query) Comma separated payout routes to list prices for. (optional)
      - parameter bankGuid: (query) The bank identifier to retrieve prices for. (optional)
      - returns: RequestBuilder<[SymbolPriceBankModel]> 
      */
-    open class func listPricesWithRequestBuilder(symbol: String? = nil, bankGuid: String? = nil) -> RequestBuilder<[SymbolPriceBankModel]> {
+    open class func listPricesWithRequestBuilder(symbol: String? = nil, tradingSymbol: String? = nil, payoutSymbol: String? = nil, payoutCountryCode: String? = nil, payoutParticipantsType: String? = nil, payoutRoute: String? = nil, bankGuid: String? = nil) -> RequestBuilder<[SymbolPriceBankModel]> {
         let localVariablePath = "/api/prices"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -54,6 +64,11 @@ open class PricesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "symbol": symbol?.encodeToJSON(),
+            "trading_symbol": tradingSymbol?.encodeToJSON(),
+            "payout_symbol": payoutSymbol?.encodeToJSON(),
+            "payout_country_code": payoutCountryCode?.encodeToJSON(),
+            "payout_participants_type": payoutParticipantsType?.encodeToJSON(),
+            "payout_route": payoutRoute?.encodeToJSON(),
             "bank_guid": bankGuid?.encodeToJSON(),
         ])
 

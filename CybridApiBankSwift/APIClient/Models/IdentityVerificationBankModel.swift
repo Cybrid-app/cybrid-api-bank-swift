@@ -16,7 +16,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var guid: String?
     /** The identity verification type; one of kyc, bank_account, or counterparty. */
     public var type: String?
-    /** The identity verification method; one of attested, document_submission, id_and_selfie, tax_id_and_selfie, business_registration, plaid_identity_match, attested_ownership, account_ownership, or watchlists. */
+    /** The identity verification method; one of attested, document_submission, id_and_selfie, tax_id_and_selfie, business_registration, attested_id_and_selfie, attested_business_registration, watchlists, attested_ownership, or account_ownership. */
     public var method: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?

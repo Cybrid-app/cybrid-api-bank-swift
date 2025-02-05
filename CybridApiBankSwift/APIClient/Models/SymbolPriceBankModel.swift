@@ -14,6 +14,8 @@ public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
 
     /** The trade symbol the pricing is related to. Format is asset-counter_asset, e.g., BTC-USD. */
     public var symbol: String?
+    /** The type of price; one of trading or payout. */
+    public var type: String?
     /** The purchase price (in base units) for the asset denominated in the counter asset currency. */
     public var buyPrice: String?
     /** The sale price (in base units) for the asset denominated in the counter asset currency. */
@@ -22,21 +24,35 @@ public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
     public var buyPriceLastUpdatedAt: Date?
     /** ISO8601 datetime the sale price was generated at. */
     public var sellPriceLastUpdatedAt: Date?
+    /** The ISO 3166 country 2-Alpha country code of the price. */
+    public var countryCode: String?
+    /** The type of participants the price is for; one of C2C, C2B, B2C, or B2B. */
+    public var participantsType: String?
+    /** The route the price is for; one of bank_account or mobile_wallet. */
+    public var route: String?
 
-    public init(symbol: String? = nil, buyPrice: String? = nil, sellPrice: String? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil) {
+    public init(symbol: String? = nil, type: String? = nil, buyPrice: String? = nil, sellPrice: String? = nil, buyPriceLastUpdatedAt: Date? = nil, sellPriceLastUpdatedAt: Date? = nil, countryCode: String? = nil, participantsType: String? = nil, route: String? = nil) {
         self.symbol = symbol
+        self.type = type
         self.buyPrice = buyPrice
         self.sellPrice = sellPrice
         self.buyPriceLastUpdatedAt = buyPriceLastUpdatedAt
         self.sellPriceLastUpdatedAt = sellPriceLastUpdatedAt
+        self.countryCode = countryCode
+        self.participantsType = participantsType
+        self.route = route
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case symbol
+        case type
         case buyPrice = "buy_price"
         case sellPrice = "sell_price"
         case buyPriceLastUpdatedAt = "buy_price_last_updated_at"
         case sellPriceLastUpdatedAt = "sell_price_last_updated_at"
+        case countryCode = "country_code"
+        case participantsType = "participants_type"
+        case route
     }
 
     // Encodable protocol methods
@@ -44,10 +60,14 @@ public struct SymbolPriceBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(symbol, forKey: .symbol)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(buyPrice, forKey: .buyPrice)
         try container.encodeIfPresent(sellPrice, forKey: .sellPrice)
         try container.encodeIfPresent(buyPriceLastUpdatedAt, forKey: .buyPriceLastUpdatedAt)
         try container.encodeIfPresent(sellPriceLastUpdatedAt, forKey: .sellPriceLastUpdatedAt)
+        try container.encodeIfPresent(countryCode, forKey: .countryCode)
+        try container.encodeIfPresent(participantsType, forKey: .participantsType)
+        try container.encodeIfPresent(route, forKey: .route)
     }
 }
 
