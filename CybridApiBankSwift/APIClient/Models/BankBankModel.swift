@@ -22,6 +22,8 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     public var type: String
     /** The bank's list of supported trading symbols. */
     public var supportedTradingSymbols: [String]?
+    /** The bank's list of supported payout symbols. */
+    public var supportedPayoutSymbols: [BankSupportedPayoutSymbolsInnerBankModel]?
     /** The bank's list of supported fiat symbols. */
     public var supportedFiatAccountAssets: [String]?
     /** The bank's list of supported country codes. */
@@ -35,12 +37,13 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String, name: String, type: String, supportedTradingSymbols: [String]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [String], corsAllowedOrigins: [String]? = nil, createdAt: Date, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String, name: String, type: String, supportedTradingSymbols: [String]? = nil, supportedPayoutSymbols: [BankSupportedPayoutSymbolsInnerBankModel]? = nil, supportedFiatAccountAssets: [String]? = nil, supportedCountryCodes: [String]? = nil, features: [String], corsAllowedOrigins: [String]? = nil, createdAt: Date, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
         self.type = type
         self.supportedTradingSymbols = supportedTradingSymbols
+        self.supportedPayoutSymbols = supportedPayoutSymbols
         self.supportedFiatAccountAssets = supportedFiatAccountAssets
         self.supportedCountryCodes = supportedCountryCodes
         self.features = features
@@ -55,6 +58,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         case name
         case type
         case supportedTradingSymbols = "supported_trading_symbols"
+        case supportedPayoutSymbols = "supported_payout_symbols"
         case supportedFiatAccountAssets = "supported_fiat_account_assets"
         case supportedCountryCodes = "supported_country_codes"
         case features
@@ -72,6 +76,7 @@ public struct BankBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(supportedTradingSymbols, forKey: .supportedTradingSymbols)
+        try container.encodeIfPresent(supportedPayoutSymbols, forKey: .supportedPayoutSymbols)
         try container.encodeIfPresent(supportedFiatAccountAssets, forKey: .supportedFiatAccountAssets)
         try container.encodeIfPresent(supportedCountryCodes, forKey: .supportedCountryCodes)
         try container.encode(features, forKey: .features)

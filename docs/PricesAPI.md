@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **listPrices**
 ```swift
-    open class func listPrices(symbol: String? = nil, bankGuid: String? = nil, completion: @escaping (_ data: [SymbolPriceBankModel]?, _ error: Error?) -> Void)
+    open class func listPrices(symbol: String? = nil, tradingSymbol: String? = nil, payoutSymbol: String? = nil, payoutCountryCode: String? = nil, payoutParticipantsType: String? = nil, payoutRoute: String? = nil, bankGuid: String? = nil, completion: @escaping (_ data: [SymbolPriceBankModel]?, _ error: Error?) -> Void)
 ```
 
 Get Price
@@ -21,11 +21,16 @@ Retrieves a listing of symbol prices.  ## Symbols  Symbol are pairs and are in t
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let symbol = "symbol_example" // String | Comma separated symbols to list prices for. (optional)
+let symbol = "symbol_example" // String | Comma separated trading symbols to list prices for. (optional)
+let tradingSymbol = "tradingSymbol_example" // String | Comma separated trading symbols to list prices for. (optional)
+let payoutSymbol = "payoutSymbol_example" // String | Comma separated payout symbols to list prices for. (optional)
+let payoutCountryCode = "payoutCountryCode_example" // String | Comma separated payout country codes to list prices for. (optional)
+let payoutParticipantsType = "payoutParticipantsType_example" // String | Comma separated payout participants types to list prices for. (optional)
+let payoutRoute = "payoutRoute_example" // String | Comma separated payout routes to list prices for. (optional)
 let bankGuid = "bankGuid_example" // String | The bank identifier to retrieve prices for. (optional)
 
 // Get Price
-PricesAPI.listPrices(symbol: symbol, bankGuid: bankGuid) { (response, error) in
+PricesAPI.listPrices(symbol: symbol, tradingSymbol: tradingSymbol, payoutSymbol: payoutSymbol, payoutCountryCode: payoutCountryCode, payoutParticipantsType: payoutParticipantsType, payoutRoute: payoutRoute, bankGuid: bankGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -41,7 +46,12 @@ PricesAPI.listPrices(symbol: symbol, bankGuid: bankGuid) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String** | Comma separated symbols to list prices for. | [optional] 
+ **symbol** | **String** | Comma separated trading symbols to list prices for. | [optional] 
+ **tradingSymbol** | **String** | Comma separated trading symbols to list prices for. | [optional] 
+ **payoutSymbol** | **String** | Comma separated payout symbols to list prices for. | [optional] 
+ **payoutCountryCode** | **String** | Comma separated payout country codes to list prices for. | [optional] 
+ **payoutParticipantsType** | **String** | Comma separated payout participants types to list prices for. | [optional] 
+ **payoutRoute** | **String** | Comma separated payout routes to list prices for. | [optional] 
  **bankGuid** | **String** | The bank identifier to retrieve prices for. | [optional] 
 
 ### Return type

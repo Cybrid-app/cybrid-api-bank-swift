@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **String** | The bank&#39;s name. | 
 **type** | **String** | The bank type; one of sandbox or production. | 
 **supportedTradingSymbols** | **[String]** | The bank&#39;s list of supported trading symbols. | [optional] 
+**supportedPayoutSymbols** | [BankSupportedPayoutSymbolsInnerBankModel] | The bank&#39;s list of supported payout symbols. | [optional] 
 **supportedFiatAccountAssets** | **[String]** | The bank&#39;s list of supported fiat symbols. | [optional] 
 **supportedCountryCodes** | **[String]** | The bank&#39;s list of supported country codes. | [optional] 
 **features** | **[String]** | The bank&#39;s enabled features. | 

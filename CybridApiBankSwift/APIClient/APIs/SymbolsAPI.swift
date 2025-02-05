@@ -33,7 +33,7 @@ open class SymbolsAPI {
     /**
      Get Symbols list
      - GET /api/symbols
-     - Retrieves a listing of symbols.
+     - Retrieves a listing of symbols.Required scope: **prices:read**
      - BASIC:
        - type: http
        - name: BearerAuth

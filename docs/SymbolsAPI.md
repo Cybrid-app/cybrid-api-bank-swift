@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Get Symbols list
 
-Retrieves a listing of symbols.
+Retrieves a listing of symbols.Required scope: **prices:read**
 
 ### Example
 ```swift

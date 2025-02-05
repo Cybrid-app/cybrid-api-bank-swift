@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct ComplianceCheckBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The type of compliance check; one of business_watchlists, business_verification, business_tax_id_verification, person_attested, person_tax_id_attested, person_watchlists, person_verification, person_authentication, person_gov_id_verification, person_tax_id_verification, external_bank_account_verification, or external_bank_account_attested. */
+    /** The type of compliance check; one of business_watchlists, business_verification, business_tax_id_verification, business_attested, person_attested, person_tax_id_attested, person_watchlists, person_verification, person_authentication, person_gov_id_verification, person_tax_id_verification, external_bank_account_verification, or external_bank_account_attested. */
     public var type: String
     /** The outcome of the compliance check; one of passed, failed, or inconclusive. */
     public var outcome: String
