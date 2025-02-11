@@ -11,7 +11,6 @@ import AnyCodable
 #endif
 
 public enum ExternalBankAccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-    case modernTreasuryExternalAccount = "modern_treasury_external_account"
     case plaid = "plaid"
     case plaidProcessorToken = "plaid_processor_token"
     case rawRoutingDetails = "raw_routing_details"
