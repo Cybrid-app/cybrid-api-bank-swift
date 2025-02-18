@@ -132,10 +132,10 @@ let accountGuid = "accountGuid_example" // String | Comma separated account_guid
 let state = "state_example" // String | Comma separated states to list trades for. (optional)
 let side = "side_example" // String | Comma separated sides to list trades for. (optional)
 let label = "label_example" // String | Comma separated labels to list trades for. (optional)
-let createdAtGte = "createdAtGte_example" // String | Created at start date inclusive lower bound, ISO8601. (optional)
-let createdAtLt = "createdAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
-let updatedAtGte = "updatedAtGte_example" // String | Updated at start date inclusive lower bound, ISO8601. (optional)
-let updatedAtLt = "updatedAtLt_example" // String | Updated at end date exclusive upper bound, ISO8601. (optional)
+let createdAtGte = "createdAtGte_example" // String | Created at start date-time inclusive lower bound, ISO8601. (optional)
+let createdAtLt = "createdAtLt_example" // String | Created at end date-time exclusive upper bound, ISO8601. (optional)
+let updatedAtGte = "updatedAtGte_example" // String | Updated at start date-time inclusive lower bound, ISO8601. (optional)
+let updatedAtLt = "updatedAtLt_example" // String | Updated at end date-time exclusive upper bound, ISO8601. (optional)
 
 // Get trades list
 TradesAPI.listTrades(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, side: side, label: label, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
@@ -163,10 +163,10 @@ Name | Type | Description  | Notes
  **state** | **String** | Comma separated states to list trades for. | [optional] 
  **side** | **String** | Comma separated sides to list trades for. | [optional] 
  **label** | **String** | Comma separated labels to list trades for. | [optional] 
- **createdAtGte** | **String** | Created at start date inclusive lower bound, ISO8601. | [optional] 
- **createdAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
- **updatedAtGte** | **String** | Updated at start date inclusive lower bound, ISO8601. | [optional] 
- **updatedAtLt** | **String** | Updated at end date exclusive upper bound, ISO8601. | [optional] 
+ **createdAtGte** | **String** | Created at start date-time inclusive lower bound, ISO8601. | [optional] 
+ **createdAtLt** | **String** | Created at end date-time exclusive upper bound, ISO8601. | [optional] 
+ **updatedAtGte** | **String** | Updated at start date-time inclusive lower bound, ISO8601. | [optional] 
+ **updatedAtLt** | **String** | Updated at end date-time exclusive upper bound, ISO8601. | [optional] 
 
 ### Return type
 

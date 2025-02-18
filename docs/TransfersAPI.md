@@ -134,10 +134,10 @@ let state = "state_example" // String | Comma separated states to list transfers
 let side = "side_example" // String | Comma separated sides to list transfers for. (optional)
 let label = "label_example" // String | Comma separated labels to list transfers for. (optional)
 let txnHash = "txnHash_example" // String | Comma separated transaction hashes to list transfers for. (optional)
-let createdAtGte = "createdAtGte_example" // String | Created at start date inclusive lower bound, ISO8601 (optional)
-let createdAtLt = "createdAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
-let updatedAtGte = "updatedAtGte_example" // String | Created at start date inclusive lower bound, ISO8601 (optional)
-let updatedAtLt = "updatedAtLt_example" // String | Created at end date exclusive upper bound, ISO8601. (optional)
+let createdAtGte = "createdAtGte_example" // String | Created at start date-time inclusive lower bound, ISO8601 (optional)
+let createdAtLt = "createdAtLt_example" // String | Created at end date-time exclusive upper bound, ISO8601. (optional)
+let updatedAtGte = "updatedAtGte_example" // String | Created at start date-time inclusive lower bound, ISO8601 (optional)
+let updatedAtLt = "updatedAtLt_example" // String | Created at end date-time exclusive upper bound, ISO8601. (optional)
 
 // Get transfers list
 TransfersAPI.listTransfers(page: page, perPage: perPage, guid: guid, transferType: transferType, bankGuid: bankGuid, customerGuid: customerGuid, accountGuid: accountGuid, state: state, side: side, label: label, txnHash: txnHash, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
@@ -167,10 +167,10 @@ Name | Type | Description  | Notes
  **side** | **String** | Comma separated sides to list transfers for. | [optional] 
  **label** | **String** | Comma separated labels to list transfers for. | [optional] 
  **txnHash** | **String** | Comma separated transaction hashes to list transfers for. | [optional] 
- **createdAtGte** | **String** | Created at start date inclusive lower bound, ISO8601 | [optional] 
- **createdAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
- **updatedAtGte** | **String** | Created at start date inclusive lower bound, ISO8601 | [optional] 
- **updatedAtLt** | **String** | Created at end date exclusive upper bound, ISO8601. | [optional] 
+ **createdAtGte** | **String** | Created at start date-time inclusive lower bound, ISO8601 | [optional] 
+ **createdAtLt** | **String** | Created at end date-time exclusive upper bound, ISO8601. | [optional] 
+ **updatedAtGte** | **String** | Created at start date-time inclusive lower bound, ISO8601 | [optional] 
+ **updatedAtLt** | **String** | Created at end date-time exclusive upper bound, ISO8601. | [optional] 
 
 ### Return type
 
