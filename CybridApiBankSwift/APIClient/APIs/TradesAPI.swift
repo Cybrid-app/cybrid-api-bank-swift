@@ -127,10 +127,10 @@ open class TradesAPI {
      - parameter state: (query) Comma separated states to list trades for. (optional)
      - parameter side: (query) Comma separated sides to list trades for. (optional)
      - parameter label: (query) Comma separated labels to list trades for. (optional)
-     - parameter createdAtGte: (query) Created at start date inclusive lower bound, ISO8601. (optional)
-     - parameter createdAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
-     - parameter updatedAtGte: (query) Updated at start date inclusive lower bound, ISO8601. (optional)
-     - parameter updatedAtLt: (query) Updated at end date exclusive upper bound, ISO8601. (optional)
+     - parameter createdAtGte: (query) Created at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter createdAtLt: (query) Created at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter updatedAtGte: (query) Updated at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter updatedAtLt: (query) Updated at end date-time exclusive upper bound, ISO8601. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -165,10 +165,10 @@ open class TradesAPI {
      - parameter state: (query) Comma separated states to list trades for. (optional)
      - parameter side: (query) Comma separated sides to list trades for. (optional)
      - parameter label: (query) Comma separated labels to list trades for. (optional)
-     - parameter createdAtGte: (query) Created at start date inclusive lower bound, ISO8601. (optional)
-     - parameter createdAtLt: (query) Created at end date exclusive upper bound, ISO8601. (optional)
-     - parameter updatedAtGte: (query) Updated at start date inclusive lower bound, ISO8601. (optional)
-     - parameter updatedAtLt: (query) Updated at end date exclusive upper bound, ISO8601. (optional)
+     - parameter createdAtGte: (query) Created at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter createdAtLt: (query) Created at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter updatedAtGte: (query) Updated at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter updatedAtLt: (query) Updated at end date-time exclusive upper bound, ISO8601. (optional)
      - returns: RequestBuilder<TradeListBankModel> 
      */
     open class func listTradesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, state: String? = nil, side: String? = nil, label: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil) -> RequestBuilder<TradeListBankModel> {
