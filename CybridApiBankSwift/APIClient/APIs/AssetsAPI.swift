@@ -17,12 +17,13 @@ open class AssetsAPI {
      
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter code: (query) Comma separated codes to list assets for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listAssets(page: Int? = nil, perPage: Int? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AssetListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listAssetsWithRequestBuilder(page: page, perPage: perPage).execute(apiResponseQueue) { result in
+    open class func listAssets(page: Int? = nil, perPage: Int? = nil, code: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AssetListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listAssetsWithRequestBuilder(page: page, perPage: perPage, code: code).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -38,9 +39,10 @@ open class AssetsAPI {
      - Retrieves a listing of assets.
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter code: (query) Comma separated codes to list assets for. (optional)
      - returns: RequestBuilder<AssetListBankModel> 
      */
-    open class func listAssetsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil) -> RequestBuilder<AssetListBankModel> {
+    open class func listAssetsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, code: String? = nil) -> RequestBuilder<AssetListBankModel> {
         let localVariablePath = "/api/assets"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -49,6 +51,7 @@ open class AssetsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "page": page?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
+            "code": code?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
