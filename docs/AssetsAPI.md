@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **listAssets**
 ```swift
-    open class func listAssets(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ data: AssetListBankModel?, _ error: Error?) -> Void)
+    open class func listAssets(page: Int? = nil, perPage: Int? = nil, code: String? = nil, completion: @escaping (_ data: AssetListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get assets list
@@ -23,9 +23,10 @@ import CybridApiBankSwift
 
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
+let code = "code_example" // String | Comma separated codes to list assets for. (optional)
 
 // Get assets list
-AssetsAPI.listAssets(page: page, perPage: perPage) { (response, error) in
+AssetsAPI.listAssets(page: page, perPage: perPage, code: code) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,6 +44,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
+ **code** | **String** | Comma separated codes to list assets for. | [optional] 
 
 ### Return type
 
