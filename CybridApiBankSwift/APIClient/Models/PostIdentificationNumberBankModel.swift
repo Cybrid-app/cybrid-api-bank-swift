@@ -18,6 +18,7 @@ public struct PostIdentificationNumberBankModel: Codable, JSONEncodable, Hashabl
         case passport = "passport"
         case passportCard = "passport_card"
         case residenceCard = "residence_card"
+        case visa = "visa"
         case socialSecurityNumber = "social_security_number"
         case taxIdentificationNumber = "tax_identification_number"
         case identificationCard = "identification_card"

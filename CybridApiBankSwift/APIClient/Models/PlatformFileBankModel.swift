@@ -16,9 +16,11 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         case driversLicenseFront = "drivers_license_front"
         case driversLicenseBack = "drivers_license_back"
         case passport = "passport"
+        case visa = "visa"
         case identificationCard = "identification_card"
         case residenceCard = "residence_card"
         case selfie = "selfie"
+        case selfieVideo = "selfie_video"
         case selfieLeft = "selfie_left"
         case selfieRight = "selfie_right"
         case utilityBill = "utility_bill"
@@ -33,6 +35,7 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         case imageSlashJpeg = "image/jpeg"
         case imageSlashPng = "image/png"
         case applicationSlashPdf = "application/pdf"
+        case videoSlashMp4 = "video/mp4"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -43,9 +46,9 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The unique identifier for the file. */
     public var guid: String?
-    /** The file type; one of drivers_license_front, drivers_license_back, passport, identification_card, residence_card, selfie, selfie_left, selfie_right, utility_bill, bank_statement, property_tax, tax_document, ein_letter, or incorporation_certificate. */
+    /** The file type; one of drivers_license_front, drivers_license_back, passport, visa, identification_card, residence_card, selfie, selfie_video, selfie_left, selfie_right, utility_bill, bank_statement, property_tax, tax_document, ein_letter, or incorporation_certificate. */
     public var fileType: FileTypeBankModel?
-    /** The media type; one of image/jpeg, image/png, or application/pdf. */
+    /** The media type; one of image/jpeg, image/png, application/pdf, or video/mp4. */
     public var contentType: ContentTypeBankModel?
     /** The ISO8601 datetime the file was completed at. */
     public var completedAt: Date?
