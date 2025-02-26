@@ -17,9 +17,11 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         case driversLicenseFront = "drivers_license_front"
         case driversLicenseBack = "drivers_license_back"
         case passport = "passport"
+        case visa = "visa"
         case identificationCard = "identification_card"
         case residenceCard = "residence_card"
         case selfie = "selfie"
+        case selfieVideo = "selfie_video"
         case selfieLeft = "selfie_left"
         case selfieRight = "selfie_right"
         case utilityBill = "utility_bill"
@@ -34,6 +36,7 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         case imageSlashJpeg = "image/jpeg"
         case imageSlashPng = "image/png"
         case applicationSlashPdf = "application/pdf"
+        case videoSlashMp4 = "video/mp4"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The type of file. */
