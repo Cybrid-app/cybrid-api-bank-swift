@@ -14,7 +14,6 @@ public enum QuoteTypeBankModel: String, Codable, CaseIterable, CaseIterableDefau
     case trading = "trading"
     case tradingExit = "trading_exit"
     case funding = "funding"
-    case bookTransfer = "book_transfer"
     case cryptoTransfer = "crypto_transfer"
     case interAccount = "inter_account"
     case lightningTransfer = "lightning_transfer"

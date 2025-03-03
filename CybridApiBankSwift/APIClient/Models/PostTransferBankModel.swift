@@ -15,11 +15,11 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TransferTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case funding = "funding"
-        case book = "book"
         case crypto = "crypto"
         case instantFunding = "instant_funding"
         case interAccount = "inter_account"
         case lightning = "lightning"
+        case book = "book"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
