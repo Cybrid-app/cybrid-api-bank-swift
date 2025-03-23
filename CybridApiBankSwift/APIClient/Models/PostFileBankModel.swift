@@ -30,12 +30,15 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         case taxDocument = "tax_document"
         case einLetter = "ein_letter"
         case incorporationCertificate = "incorporation_certificate"
+        case personaInquiryReport = "persona_inquiry_report"
+        case personaInquiryExport = "persona_inquiry_export"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ContentTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case imageSlashJpeg = "image/jpeg"
         case imageSlashPng = "image/png"
         case applicationSlashPdf = "application/pdf"
+        case applicationSlashJson = "application/json"
         case videoSlashMp4 = "video/mp4"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
