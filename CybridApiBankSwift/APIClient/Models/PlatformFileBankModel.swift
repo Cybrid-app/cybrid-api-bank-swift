@@ -12,32 +12,6 @@ import AnyCodable
 
 public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum FileTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case driversLicenseFront = "drivers_license_front"
-        case driversLicenseBack = "drivers_license_back"
-        case passport = "passport"
-        case visa = "visa"
-        case identificationCard = "identification_card"
-        case residenceCard = "residence_card"
-        case selfie = "selfie"
-        case selfieVideo = "selfie_video"
-        case selfieLeft = "selfie_left"
-        case selfieRight = "selfie_right"
-        case utilityBill = "utility_bill"
-        case bankStatement = "bank_statement"
-        case propertyTax = "property_tax"
-        case taxDocument = "tax_document"
-        case einLetter = "ein_letter"
-        case incorporationCertificate = "incorporation_certificate"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
-    public enum ContentTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case imageSlashJpeg = "image/jpeg"
-        case imageSlashPng = "image/png"
-        case applicationSlashPdf = "application/pdf"
-        case videoSlashMp4 = "video/mp4"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     public enum StateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case storing = "storing"
         case completed = "completed"
@@ -46,10 +20,10 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The unique identifier for the file. */
     public var guid: String?
-    /** The file type; one of drivers_license_front, drivers_license_back, passport, visa, identification_card, residence_card, selfie, selfie_video, selfie_left, selfie_right, utility_bill, bank_statement, property_tax, tax_document, ein_letter, or incorporation_certificate. */
-    public var fileType: FileTypeBankModel?
-    /** The media type; one of image/jpeg, image/png, application/pdf, or video/mp4. */
-    public var contentType: ContentTypeBankModel?
+    /** The file type; one of drivers_license_front, drivers_license_back, passport, visa, identification_card, residence_card, selfie, selfie_video, selfie_left, selfie_right, utility_bill, bank_statement, property_tax, tax_document, ein_letter, incorporation_certificate, persona_inquiry_report, or persona_inquiry_export. */
+    public var fileType: String?
+    /** The media type; one of image/jpeg, image/png, application/pdf, application/json, or video/mp4. */
+    public var contentType: String?
     /** The ISO8601 datetime the file was completed at. */
     public var completedAt: Date?
     /** The ISO8601 datetime the file failed at. */
@@ -59,7 +33,7 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     /** The failure code for failed files. */
     public var failureCode: String?
 
-    public init(guid: String? = nil, fileType: FileTypeBankModel? = nil, contentType: ContentTypeBankModel? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, fileType: String? = nil, contentType: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.fileType = fileType
         self.contentType = contentType
