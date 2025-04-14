@@ -72,7 +72,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]?
     /** File guids supporting the verification Required when type is kyc and method is attested_business_registration or type is kyc and method is attested_id_and_selfie. */
     public var supportingFileGuids: [String]?
-    /** The customer's occupation. Required when type is kyc and method is attested_id_and_selfie. */
+    /** The customer's occupation. Optional when type is kyc and method is attested_id_and_selfie. */
     public var occupation: String?
     /** The external bank account's identifier. Required when type is bank_account. */
     public var externalBankAccountGuid: String?

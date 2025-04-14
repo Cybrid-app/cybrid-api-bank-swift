@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **directorCustomerGuids** | **[String]** | The customer guids of the directors of the business Required when type is kyc and method is attested_business_registration. | [optional] 
 **ultimateBeneficialOwners** | [PostUltimateBeneficialOwnerBankModel] | The ultimate beneficial owners of the business with 10% or more ownership Required when type is kyc and method is attested_business_registration. | [optional] 
 **supportingFileGuids** | **[String]** | File guids supporting the verification Required when type is kyc and method is attested_business_registration or type is kyc and method is attested_id_and_selfie. | [optional] 
-**occupation** | **String** | The customer&#39;s occupation. Required when type is kyc and method is attested_id_and_selfie. | [optional] 
+**occupation** | **String** | The customer&#39;s occupation. Optional when type is kyc and method is attested_id_and_selfie. | [optional] 
 **externalBankAccountGuid** | **String** | The external bank account&#39;s identifier. Required when type is bank_account. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
