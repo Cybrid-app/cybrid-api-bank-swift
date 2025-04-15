@@ -209,4 +209,59 @@ open class TransfersAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch Transfer
+     
+     - parameter transferGuid: (path) Identifier for the transfer. 
+     - parameter patchTransferBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateTransfer(transferGuid: String, patchTransferBankModel: PatchTransferBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateTransferWithRequestBuilder(transferGuid: transferGuid, patchTransferBankModel: patchTransferBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Transfer
+     - PATCH /api/transfers/{transfer_guid}
+     - Update a transfer.  Required scope: **transfers:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter transferGuid: (path) Identifier for the transfer. 
+     - parameter patchTransferBankModel: (body)  
+     - returns: RequestBuilder<TransferBankModel> 
+     */
+    open class func updateTransferWithRequestBuilder(transferGuid: String, patchTransferBankModel: PatchTransferBankModel) -> RequestBuilder<TransferBankModel> {
+        var localVariablePath = "/api/transfers/{transfer_guid}"
+        let transferGuidPreEscape = "\(APIHelper.mapValueToPathItem(transferGuid))"
+        let transferGuidPostEscape = transferGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{transfer_guid}", with: transferGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchTransferBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TransferBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
