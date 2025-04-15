@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createTransfer**](TransfersAPI.md#createtransfer) | **POST** /api/transfers | Create Transfer
 [**getTransfer**](TransfersAPI.md#gettransfer) | **GET** /api/transfers/{transfer_guid} | Get Transfer
 [**listTransfers**](TransfersAPI.md#listtransfers) | **GET** /api/transfers | Get transfers list
+[**updateTransfer**](TransfersAPI.md#updatetransfer) | **PATCH** /api/transfers/{transfer_guid} | Patch Transfer
 
 
 # **createTransfer**
@@ -183,6 +184,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateTransfer**
+```swift
+    open class func updateTransfer(transferGuid: String, patchTransferBankModel: PatchTransferBankModel, completion: @escaping (_ data: TransferBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Transfer
+
+Update a transfer.  Required scope: **transfers:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let transferGuid = "transferGuid_example" // String | Identifier for the transfer.
+let patchTransferBankModel = PatchTransfer(sourceParticipants: [PatchTransferParticipant(type: "type_example", amount: 123, guid: "guid_example")], destinationParticipants: [nil]) // PatchTransferBankModel | 
+
+// Patch Transfer
+TransfersAPI.updateTransfer(transferGuid: transferGuid, patchTransferBankModel: patchTransferBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transferGuid** | **String** | Identifier for the transfer. | 
+ **patchTransferBankModel** | [**PatchTransferBankModel**](PatchTransferBankModel.md) |  | 
+
+### Return type
+
+[**TransferBankModel**](TransferBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
