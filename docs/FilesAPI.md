@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **getFile**
 ```swift
-    open class func getFile(fileGuid: String, completion: @escaping (_ data: PlatformFileBankModel?, _ error: Error?) -> Void)
+    open class func getFile(fileGuid: String, includeDownloadUrl: String? = nil, completion: @escaping (_ data: PlatformFileBankModel?, _ error: Error?) -> Void)
 ```
 
 Get File
@@ -74,9 +74,10 @@ Retrieves a file.  Required scope: **files:read**
 import CybridApiBankSwift
 
 let fileGuid = "fileGuid_example" // String | Identifier for the file.
+let includeDownloadUrl = "includeDownloadUrl_example" // String | Include download information in response. (optional)
 
 // Get File
-FilesAPI.getFile(fileGuid: fileGuid) { (response, error) in
+FilesAPI.getFile(fileGuid: fileGuid, includeDownloadUrl: includeDownloadUrl) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -93,6 +94,7 @@ FilesAPI.getFile(fileGuid: fileGuid) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fileGuid** | **String** | Identifier for the file. | 
+ **includeDownloadUrl** | **String** | Include download information in response. | [optional] 
 
 ### Return type
 
