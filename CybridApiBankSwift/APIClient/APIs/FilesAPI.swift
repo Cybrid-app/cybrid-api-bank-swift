@@ -66,12 +66,13 @@ open class FilesAPI {
      Get File
      
      - parameter fileGuid: (path) Identifier for the file. 
+     - parameter includeDownloadUrl: (query) Include download information in response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getFile(fileGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlatformFileBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getFileWithRequestBuilder(fileGuid: fileGuid).execute(apiResponseQueue) { result in
+    open class func getFile(fileGuid: String, includeDownloadUrl: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlatformFileBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getFileWithRequestBuilder(fileGuid: fileGuid, includeDownloadUrl: includeDownloadUrl).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -92,9 +93,10 @@ open class FilesAPI {
        - type: oauth2
        - name: oauth2
      - parameter fileGuid: (path) Identifier for the file. 
+     - parameter includeDownloadUrl: (query) Include download information in response. (optional)
      - returns: RequestBuilder<PlatformFileBankModel> 
      */
-    open class func getFileWithRequestBuilder(fileGuid: String) -> RequestBuilder<PlatformFileBankModel> {
+    open class func getFileWithRequestBuilder(fileGuid: String, includeDownloadUrl: String? = nil) -> RequestBuilder<PlatformFileBankModel> {
         var localVariablePath = "/api/files/{file_guid}"
         let fileGuidPreEscape = "\(APIHelper.mapValueToPathItem(fileGuid))"
         let fileGuidPostEscape = fileGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -102,7 +104,10 @@ open class FilesAPI {
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include_download_url": includeDownloadUrl?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
