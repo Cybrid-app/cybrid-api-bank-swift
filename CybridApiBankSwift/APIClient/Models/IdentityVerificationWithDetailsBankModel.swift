@@ -43,8 +43,10 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
     public var personaState: String?
     public var pii: IdentityVerificationWithDetailsPiiBankModel?
+    /** The documents associated with the identity verification. */
+    public var documents: [IdentityVerificationDocumentBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil) {
+    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil, documents: [IdentityVerificationDocumentBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.method = method
@@ -61,6 +63,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
         self.pii = pii
+        self.documents = documents
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -80,6 +83,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
         case pii
+        case documents
     }
 
     // Encodable protocol methods
@@ -102,6 +106,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)
         try container.encodeIfPresent(pii, forKey: .pii)
+        try container.encodeIfPresent(documents, forKey: .documents)
     }
 }
 

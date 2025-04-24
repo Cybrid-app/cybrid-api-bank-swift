@@ -20,8 +20,8 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The unique identifier for the file. */
     public var guid: String?
-    /** The file type; one of drivers_license_front, drivers_license_back, passport, visa, identification_card, residence_card, selfie, selfie_video, selfie_left, selfie_right, utility_bill, bank_statement, property_tax, tax_document, ein_letter, incorporation_certificate, persona_inquiry_report, or persona_inquiry_export. */
-    public var fileType: String?
+    /** The file type; one of drivers_license_front, drivers_license_back, passport, visa, identification_card, residence_card, selfie, selfie_video, selfie_left, selfie_right, utility_bill, proof_of_address, bank_statement, property_tax, tax_document, ein_letter, incorporation_certificate, persona_inquiry_report, or persona_inquiry_export. */
+    public var type: String?
     /** The media type; one of image/jpeg, image/png, application/pdf, application/json, or video/mp4. */
     public var contentType: String?
     /** The ISO8601 datetime the file was completed at. */
@@ -33,9 +33,9 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     /** The failure code for failed files. */
     public var failureCode: String?
 
-    public init(guid: String? = nil, fileType: String? = nil, contentType: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
         self.guid = guid
-        self.fileType = fileType
+        self.type = type
         self.contentType = contentType
         self.completedAt = completedAt
         self.failedAt = failedAt
@@ -45,7 +45,7 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
-        case fileType = "file_type"
+        case type
         case contentType = "content_type"
         case completedAt = "completed_at"
         case failedAt = "failed_at"
@@ -58,7 +58,7 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
-        try container.encodeIfPresent(fileType, forKey: .fileType)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(contentType, forKey: .contentType)
         try container.encodeIfPresent(completedAt, forKey: .completedAt)
         try container.encodeIfPresent(failedAt, forKey: .failedAt)
