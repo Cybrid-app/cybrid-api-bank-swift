@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The activity type  */
+/** The activity type */
 public enum ActivityTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case trading = "trading"
     case funding = "funding"

@@ -22,13 +22,16 @@ public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
     public var interval: Int?
     /** The activities associated with the limit. */
     public var activities: [String]?
+    /** The sides associated with the limit. */
+    public var sides: [String]?
 
-    public init(name: String? = nil, asset: String? = nil, amount: Int? = nil, interval: Int? = nil, activities: [String]? = nil) {
+    public init(name: String? = nil, asset: String? = nil, amount: Int? = nil, interval: Int? = nil, activities: [String]? = nil, sides: [String]? = nil) {
         self.name = name
         self.asset = asset
         self.amount = amount
         self.interval = interval
         self.activities = activities
+        self.sides = sides
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -37,6 +40,7 @@ public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
         case amount
         case interval
         case activities
+        case sides
     }
 
     // Encodable protocol methods
@@ -48,6 +52,7 @@ public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(amount, forKey: .amount)
         try container.encodeIfPresent(interval, forKey: .interval)
         try container.encodeIfPresent(activities, forKey: .activities)
+        try container.encodeIfPresent(sides, forKey: .sides)
     }
 }
 
