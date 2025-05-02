@@ -10,6 +10,10 @@ Name | Type | Description | Notes
 **failedAt** | **Date** | The ISO8601 datetime the file failed at. | [optional] 
 **state** | **String** | The state of the file. One of storing, completed, or failed. | [optional] 
 **failureCode** | **String** | The failure code for failed files. | [optional] 
+**uploadUrl** | **String** | The URL to upload the file to. | [optional] 
+**uploadExpiresAt** | **Date** | The ISO8601 datetime the upload URL expires at. | [optional] 
+**downloadUrl** | **String** | The URL to download the file from. | [optional] 
+**downloadExpiresAt** | **Date** | The ISO8601 datetime the download URL expires at. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

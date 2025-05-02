@@ -32,8 +32,16 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     public var state: StateBankModel?
     /** The failure code for failed files. */
     public var failureCode: String?
+    /** The URL to upload the file to. */
+    public var uploadUrl: String?
+    /** The ISO8601 datetime the upload URL expires at. */
+    public var uploadExpiresAt: Date?
+    /** The URL to download the file from. */
+    public var downloadUrl: String?
+    /** The ISO8601 datetime the download URL expires at. */
+    public var downloadExpiresAt: Date?
 
-    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil, uploadUrl: String? = nil, uploadExpiresAt: Date? = nil, downloadUrl: String? = nil, downloadExpiresAt: Date? = nil) {
         self.guid = guid
         self.type = type
         self.contentType = contentType
@@ -41,6 +49,10 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         self.failedAt = failedAt
         self.state = state
         self.failureCode = failureCode
+        self.uploadUrl = uploadUrl
+        self.uploadExpiresAt = uploadExpiresAt
+        self.downloadUrl = downloadUrl
+        self.downloadExpiresAt = downloadExpiresAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -51,6 +63,10 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         case failedAt = "failed_at"
         case state
         case failureCode = "failure_code"
+        case uploadUrl = "upload_url"
+        case uploadExpiresAt = "upload_expires_at"
+        case downloadUrl = "download_url"
+        case downloadExpiresAt = "download_expires_at"
     }
 
     // Encodable protocol methods
@@ -64,6 +80,10 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(failedAt, forKey: .failedAt)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
+        try container.encodeIfPresent(uploadUrl, forKey: .uploadUrl)
+        try container.encodeIfPresent(uploadExpiresAt, forKey: .uploadExpiresAt)
+        try container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
+        try container.encodeIfPresent(downloadExpiresAt, forKey: .downloadExpiresAt)
     }
 }
 
