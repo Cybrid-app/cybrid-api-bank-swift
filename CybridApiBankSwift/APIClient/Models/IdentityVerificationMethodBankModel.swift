@@ -13,6 +13,7 @@ import AnyCodable
 public enum IdentityVerificationMethodBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case attested = "attested"
     case documentSubmission = "document_submission"
+    case enhancedDueDiligence = "enhanced_due_diligence"
     case idAndSelfie = "id_and_selfie"
     case taxIdAndSelfie = "tax_id_and_selfie"
     case businessRegistration = "business_registration"
