@@ -24,6 +24,8 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     public var type: String?
     /** The media type; one of image/jpeg, image/png, application/pdf, application/json, or video/mp4. */
     public var contentType: String?
+    /** The name of the file. */
+    public var filename: String?
     /** The ISO8601 datetime the file was completed at. */
     public var completedAt: Date?
     /** The ISO8601 datetime the file failed at. */
@@ -41,10 +43,11 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
     /** The ISO8601 datetime the download URL expires at. */
     public var downloadExpiresAt: Date?
 
-    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil, uploadUrl: String? = nil, uploadExpiresAt: Date? = nil, downloadUrl: String? = nil, downloadExpiresAt: Date? = nil) {
+    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, filename: String? = nil, completedAt: Date? = nil, failedAt: Date? = nil, state: StateBankModel? = nil, failureCode: String? = nil, uploadUrl: String? = nil, uploadExpiresAt: Date? = nil, downloadUrl: String? = nil, downloadExpiresAt: Date? = nil) {
         self.guid = guid
         self.type = type
         self.contentType = contentType
+        self.filename = filename
         self.completedAt = completedAt
         self.failedAt = failedAt
         self.state = state
@@ -59,6 +62,7 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         case guid
         case type
         case contentType = "content_type"
+        case filename
         case completedAt = "completed_at"
         case failedAt = "failed_at"
         case state
@@ -76,6 +80,7 @@ public struct PlatformFileBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(guid, forKey: .guid)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(contentType, forKey: .contentType)
+        try container.encodeIfPresent(filename, forKey: .filename)
         try container.encodeIfPresent(completedAt, forKey: .completedAt)
         try container.encodeIfPresent(failedAt, forKey: .failedAt)
         try container.encodeIfPresent(state, forKey: .state)
