@@ -21,9 +21,9 @@ public struct IdentityVerificationDocumentBankModel: Codable, JSONEncodable, Has
     /** The document expiration date. */
     public var expirationDate: Date?
     /** The files associated with the document. */
-    public var files: [PlatformFileBankModel]?
+    public var files: [IdentityVerificationDocumentFileBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, validated: Bool? = nil, expirationDate: Date? = nil, files: [PlatformFileBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, validated: Bool? = nil, expirationDate: Date? = nil, files: [IdentityVerificationDocumentFileBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.validated = validated
