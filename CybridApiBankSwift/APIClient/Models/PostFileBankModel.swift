@@ -17,6 +17,7 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         case driversLicenseFront = "drivers_license_front"
         case driversLicenseBack = "drivers_license_back"
         case passport = "passport"
+        case passportCard = "passport_card"
         case visa = "visa"
         case identificationCard = "identification_card"
         case residenceCard = "residence_card"
