@@ -40,7 +40,7 @@ public struct PostWorkflowBankModel: Codable, JSONEncodable, Hashable {
     public var externalBankAccountGuid: String?
     /** The language to initialize Plaid link. Required when type is plaid. */
     public var language: LanguageBankModel?
-    /** The customization name for Plaid link. Currently only supports the value \"default\". Required when type is plaid. */
+    /** The customization name for Plaid link. For English, use \"default\". For Spanish, use \"spanish_customization\". Required when type is plaid. */
     public var linkCustomizationName: String?
     /** The redirect URI for Plaid link. Optional when type is plaid. */
     public var redirectUri: String?
