@@ -66,7 +66,7 @@ open class FilesAPI {
      Get File
      
      - parameter fileGuid: (path) Identifier for the file. 
-     - parameter includeDownloadUrl: (query) Include download information in response. (optional)
+     - parameter includeDownloadUrl: (query) Include download information in response. Note, the files:pii:read scope is required if this parameter is set. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -93,7 +93,7 @@ open class FilesAPI {
        - type: oauth2
        - name: oauth2
      - parameter fileGuid: (path) Identifier for the file. 
-     - parameter includeDownloadUrl: (query) Include download information in response. (optional)
+     - parameter includeDownloadUrl: (query) Include download information in response. Note, the files:pii:read scope is required if this parameter is set. (optional)
      - returns: RequestBuilder<PlatformFileBankModel> 
      */
     open class func getFileWithRequestBuilder(fileGuid: String, includeDownloadUrl: String? = nil) -> RequestBuilder<PlatformFileBankModel> {

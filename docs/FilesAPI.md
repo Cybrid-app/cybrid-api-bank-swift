@@ -74,7 +74,7 @@ Retrieves a file.  Required scope: **files:read**
 import CybridApiBankSwift
 
 let fileGuid = "fileGuid_example" // String | Identifier for the file.
-let includeDownloadUrl = "includeDownloadUrl_example" // String | Include download information in response. (optional)
+let includeDownloadUrl = "includeDownloadUrl_example" // String | Include download information in response. Note, the files:pii:read scope is required if this parameter is set. (optional)
 
 // Get File
 FilesAPI.getFile(fileGuid: fileGuid, includeDownloadUrl: includeDownloadUrl) { (response, error) in
@@ -94,7 +94,7 @@ FilesAPI.getFile(fileGuid: fileGuid, includeDownloadUrl: includeDownloadUrl) { (
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fileGuid** | **String** | Identifier for the file. | 
- **includeDownloadUrl** | **String** | Include download information in response. | [optional] 
+ **includeDownloadUrl** | **String** | Include download information in response. Note, the files:pii:read scope is required if this parameter is set. | [optional] 
 
 ### Return type
 
