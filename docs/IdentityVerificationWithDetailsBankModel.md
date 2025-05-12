@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **personaState** | **String** | The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. | [optional] 
 **pii** | [**IdentityVerificationWithDetailsPiiBankModel**](IdentityVerificationWithDetailsPiiBankModel.md) |  | [optional] 
 **documents** | [IdentityVerificationDocumentBankModel] | The documents associated with the identity verification. | [optional] 
+**supportingFiles** | [IdentityVerificationDocumentBankModel] | The supporting documents associated with the attested identity verification. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
