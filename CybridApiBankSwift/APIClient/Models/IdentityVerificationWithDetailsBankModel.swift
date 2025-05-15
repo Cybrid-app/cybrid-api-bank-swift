@@ -42,13 +42,15 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var personaInquiryId: String?
     /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
     public var personaState: String?
+    /** List of associates declared for the business customer. */
+    public var businessAssociates: [IdentityVerificationBusinessAssociateBankModel]?
     public var pii: IdentityVerificationWithDetailsPiiBankModel?
     /** The documents associated with the identity verification. */
     public var documents: [IdentityVerificationDocumentBankModel]?
     /** The supporting documents associated with the attested identity verification. */
     public var supportingFiles: [IdentityVerificationDocumentBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil, documents: [IdentityVerificationDocumentBankModel]? = nil, supportingFiles: [IdentityVerificationDocumentBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, businessAssociates: [IdentityVerificationBusinessAssociateBankModel]? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil, documents: [IdentityVerificationDocumentBankModel]? = nil, supportingFiles: [IdentityVerificationDocumentBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.method = method
@@ -64,6 +66,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.complianceDecisions = complianceDecisions
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
+        self.businessAssociates = businessAssociates
         self.pii = pii
         self.documents = documents
         self.supportingFiles = supportingFiles
@@ -85,6 +88,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case complianceDecisions = "compliance_decisions"
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
+        case businessAssociates = "business_associates"
         case pii
         case documents
         case supportingFiles = "supporting_files"
@@ -109,6 +113,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)
+        try container.encodeIfPresent(businessAssociates, forKey: .businessAssociates)
         try container.encodeIfPresent(pii, forKey: .pii)
         try container.encodeIfPresent(documents, forKey: .documents)
         try container.encodeIfPresent(supportingFiles, forKey: .supportingFiles)

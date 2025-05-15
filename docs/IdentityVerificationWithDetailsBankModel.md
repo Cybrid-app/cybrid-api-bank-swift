@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **complianceDecisions** | [ComplianceDecisionBankModel] | The compliance decisions associated with the identity verification. | [optional] 
 **personaInquiryId** | **String** | The Persona identifier of the backing inquiry. | [optional] 
 **personaState** | **String** | The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. | [optional] 
+**businessAssociates** | [IdentityVerificationBusinessAssociateBankModel] | List of associates declared for the business customer. | [optional] 
 **pii** | [**IdentityVerificationWithDetailsPiiBankModel**](IdentityVerificationWithDetailsPiiBankModel.md) |  | [optional] 
 **documents** | [IdentityVerificationDocumentBankModel] | The documents associated with the identity verification. | [optional] 
 **supportingFiles** | [IdentityVerificationDocumentBankModel] | The supporting documents associated with the attested identity verification. | [optional] 
