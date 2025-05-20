@@ -60,6 +60,8 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var destinationAccount: TransferDestinationAccountBankModel?
     /** The participants in the source account. */
     public var destinationParticipants: [TransferParticipantBankModel]?
+    /** The guid of the deposit address. Only present on crypto deposits. */
+    public var depositAddressGuid: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
@@ -73,7 +75,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     /** Transfer entries associated with the batch transfer */
     public var entries: [TransferEntryBankModel]?
 
-    public init(guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, returnCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, sourceParticipants: [TransferParticipantBankModel]? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, destinationParticipants: [TransferParticipantBankModel]? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, transferDetails: String? = nil, paymentRail: String? = nil, labels: [String]? = nil, entries: [TransferEntryBankModel]? = nil) {
+    public init(guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, returnCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, sourceParticipants: [TransferParticipantBankModel]? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, destinationParticipants: [TransferParticipantBankModel]? = nil, depositAddressGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, transferDetails: String? = nil, paymentRail: String? = nil, labels: [String]? = nil, entries: [TransferEntryBankModel]? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.bankGuid = bankGuid
@@ -99,6 +101,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         self.sourceParticipants = sourceParticipants
         self.destinationAccount = destinationAccount
         self.destinationParticipants = destinationParticipants
+        self.depositAddressGuid = depositAddressGuid
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.transferDetails = transferDetails
@@ -133,6 +136,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case sourceParticipants = "source_participants"
         case destinationAccount = "destination_account"
         case destinationParticipants = "destination_participants"
+        case depositAddressGuid = "deposit_address_guid"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case transferDetails = "transfer_details"
@@ -170,6 +174,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(sourceParticipants, forKey: .sourceParticipants)
         try container.encodeIfPresent(destinationAccount, forKey: .destinationAccount)
         try container.encodeIfPresent(destinationParticipants, forKey: .destinationParticipants)
+        try container.encodeIfPresent(depositAddressGuid, forKey: .depositAddressGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(transferDetails, forKey: .transferDetails)

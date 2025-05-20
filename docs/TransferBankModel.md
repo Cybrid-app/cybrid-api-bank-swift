@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **sourceParticipants** | [TransferParticipantBankModel] | The participants in the source account. | [optional] 
 **destinationAccount** | [**TransferDestinationAccountBankModel**](TransferDestinationAccountBankModel.md) |  | [optional] 
 **destinationParticipants** | [TransferParticipantBankModel] | The participants in the source account. | [optional] 
+**depositAddressGuid** | **String** | The guid of the deposit address. Only present on crypto deposits. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
 **transferDetails** | [**AnyCodableBankModel**](.md) | The raw details on the transfer from the bank. | [optional] 
