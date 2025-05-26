@@ -12,18 +12,21 @@ import AnyCodable
 
 public struct IdentityVerificationBusinessAssociateBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The Persona identifier of the business associate backing inquiry. */
+    /** The Persona identifier of the business associate backing inquiry. Available only for attested_business_registration verification method */
     public var personaInquiryId: String?
-    /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. */
+    /** The Persona state of the backing inquiry; one of waiting, pending, reviewing, processing, expired, completed, or unknown. Available only for attested_business_registration verification method */
     public var personaState: String?
+    /** The business associate's customer identifier. Available only for attested_business_registration verification method */
+    public var customerGuid: String?
     /** The business associate role; one of director or owner. */
     public var role: String?
-    /** The business associate email address. */
+    /** The business associate email address. Available only for business_registration verification method */
     public var emailAddress: String?
 
-    public init(personaInquiryId: String? = nil, personaState: String? = nil, role: String? = nil, emailAddress: String? = nil) {
+    public init(personaInquiryId: String? = nil, personaState: String? = nil, customerGuid: String? = nil, role: String? = nil, emailAddress: String? = nil) {
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
+        self.customerGuid = customerGuid
         self.role = role
         self.emailAddress = emailAddress
     }
@@ -31,6 +34,7 @@ public struct IdentityVerificationBusinessAssociateBankModel: Codable, JSONEncod
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case personaInquiryId = "persona_inquiry_id"
         case personaState = "persona_state"
+        case customerGuid = "customer_guid"
         case role
         case emailAddress = "email_address"
     }
@@ -41,6 +45,7 @@ public struct IdentityVerificationBusinessAssociateBankModel: Codable, JSONEncod
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(personaInquiryId, forKey: .personaInquiryId)
         try container.encodeIfPresent(personaState, forKey: .personaState)
+        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(role, forKey: .role)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
     }

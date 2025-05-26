@@ -14,6 +14,8 @@ import AnyCodable
 public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodable, Hashable {
 
     public var name: IdentityVerificationWithDetailsPiiNameBankModel?
+    /** The business attested aliases. */
+    public var aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]?
     public var address: IdentityVerificationWithDetailsPiiAddressBankModel?
     /** The attested date of birth. */
     public var dateOfBirth: Date?
@@ -21,21 +23,39 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     public var phoneNumber: String?
     /** The attested email address. */
     public var emailAddress: String?
+    /** The attested occupation. */
+    public var occupation: String?
+    /** The attested website. */
+    public var website: String?
+    /** The attested nature of business. */
+    public var natureOfBusiness: String?
+    /** The attested identification numbers. */
+    public var identificationNumbers: [IdentificationNumberBankModel]?
 
-    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil) {
+    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
         self.name = name
+        self.aliases = aliases
         self.address = address
         self.dateOfBirth = dateOfBirth
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
+        self.occupation = occupation
+        self.website = website
+        self.natureOfBusiness = natureOfBusiness
+        self.identificationNumbers = identificationNumbers
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
+        case aliases
         case address
         case dateOfBirth = "date_of_birth"
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
+        case occupation
+        case website
+        case natureOfBusiness = "nature_of_business"
+        case identificationNumbers = "identification_numbers"
     }
 
     // Encodable protocol methods
@@ -43,10 +63,15 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(aliases, forKey: .aliases)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
+        try container.encodeIfPresent(occupation, forKey: .occupation)
+        try container.encodeIfPresent(website, forKey: .website)
+        try container.encodeIfPresent(natureOfBusiness, forKey: .natureOfBusiness)
+        try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
     }
 }
 
