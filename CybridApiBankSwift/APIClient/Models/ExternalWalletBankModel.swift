@@ -24,6 +24,8 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var bankGuid: String?
     /** The customer identifier. */
     public var customerGuid: String?
+    /** The counterparty identifier. */
+    public var counterpartyGuid: String?
     /** The blockchain wallet address for the wallet. */
     public var address: String?
     /** The blockchain tag to use when transferring crypto to the wallet. */
@@ -37,13 +39,14 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     /** The failure code of an external wallet (if any) */
     public var failureCode: String?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.name = name
         self.asset = asset
         self.environment = environment
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
+        self.counterpartyGuid = counterpartyGuid
         self.address = address
         self.tag = tag
         self.createdAt = createdAt
@@ -59,6 +62,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         case environment
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
+        case counterpartyGuid = "counterparty_guid"
         case address
         case tag
         case createdAt = "created_at"
@@ -77,6 +81,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(environment, forKey: .environment)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(tag, forKey: .tag)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)

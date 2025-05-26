@@ -26,6 +26,8 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var bankGuid: String?
     /** The customer identifier. */
     public var customerGuid: String?
+    /** The counterparty identifier. */
+    public var counterpartyGuid: String?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
@@ -46,7 +48,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The account holder information. */
     public var pii: [ExternalBankAccountPiiInnerBankModel]?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, accountKind: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, state: String? = nil, failureCode: String? = nil, balanceUpdatedAt: Date? = nil, balances: ExternalBankAccountBalancesBankModel? = nil, pii: [ExternalBankAccountPiiInnerBankModel]? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, accountKind: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, state: String? = nil, failureCode: String? = nil, balanceUpdatedAt: Date? = nil, balances: ExternalBankAccountBalancesBankModel? = nil, pii: [ExternalBankAccountPiiInnerBankModel]? = nil) {
         self.guid = guid
         self.name = name
         self.asset = asset
@@ -54,6 +56,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         self.environment = environment
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
+        self.counterpartyGuid = counterpartyGuid
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.plaidInstitutionId = plaidInstitutionId
@@ -74,6 +77,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         case environment
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
+        case counterpartyGuid = "counterparty_guid"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case plaidInstitutionId = "plaid_institution_id"
@@ -97,6 +101,7 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(environment, forKey: .environment)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(plaidInstitutionId, forKey: .plaidInstitutionId)
