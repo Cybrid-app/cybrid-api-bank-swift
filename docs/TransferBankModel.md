@@ -31,6 +31,8 @@ Name | Type | Description | Notes
 **depositAddressGuid** | **String** | The guid of the deposit address. Only present on crypto deposits. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
+**holdStartedAt** | **Date** | ISO8601 datetime the transfer hold was started at. | [optional] 
+**holdDuration** | **Int** | The approximate time (in seconds) that the transfer will be held for. | [optional] 
 **transferDetails** | [**AnyCodableBankModel**](.md) | The raw details on the transfer from the bank. | [optional] 
 **paymentRail** | **String** | The rail the payment was done on. One of: ach, eft, wire, rtp | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
