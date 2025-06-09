@@ -14,20 +14,16 @@ public struct PostPersonaSessionBankModel: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier for the Persona inquiry. */
     public var personaInquiryId: String
-    /** The unique identifier for the customer. */
-    public var customerGuid: String
     /** The unique identifier for the identity verification. */
     public var identityVerificationGuid: String
 
-    public init(personaInquiryId: String, customerGuid: String, identityVerificationGuid: String) {
+    public init(personaInquiryId: String, identityVerificationGuid: String) {
         self.personaInquiryId = personaInquiryId
-        self.customerGuid = customerGuid
         self.identityVerificationGuid = identityVerificationGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case personaInquiryId = "persona_inquiry_id"
-        case customerGuid = "customer_guid"
         case identityVerificationGuid = "identity_verification_guid"
     }
 
@@ -36,7 +32,6 @@ public struct PostPersonaSessionBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(personaInquiryId, forKey: .personaInquiryId)
-        try container.encode(customerGuid, forKey: .customerGuid)
         try container.encode(identityVerificationGuid, forKey: .identityVerificationGuid)
     }
 }

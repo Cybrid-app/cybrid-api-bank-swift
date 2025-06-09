@@ -21,7 +21,7 @@ Create a Persona session.  Required scope: **persona_sessions:execute**
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postPersonaSessionBankModel = PostPersonaSession(personaInquiryId: "personaInquiryId_example", customerGuid: "customerGuid_example", identityVerificationGuid: "identityVerificationGuid_example") // PostPersonaSessionBankModel | 
+let postPersonaSessionBankModel = PostPersonaSession(personaInquiryId: "personaInquiryId_example", identityVerificationGuid: "identityVerificationGuid_example") // PostPersonaSessionBankModel | 
 
 // Create Persona Session
 PersonaSessionsAPI.createPersonaSession(postPersonaSessionBankModel: postPersonaSessionBankModel) { (response, error) in
