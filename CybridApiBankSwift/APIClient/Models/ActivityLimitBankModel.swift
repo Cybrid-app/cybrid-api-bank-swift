@@ -12,6 +12,8 @@ import AnyCodable
 
 public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
 
+    /** The type of the limit; one of rolling, daily, weekly, or monthly. */
+    public var type: String?
     /** The name of the limit. */
     public var name: String?
     /** The asset code for the limit. */
@@ -25,7 +27,8 @@ public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
     /** The sides associated with the limit. */
     public var sides: [String]?
 
-    public init(name: String? = nil, asset: String? = nil, amount: Int? = nil, interval: Int? = nil, activities: [String]? = nil, sides: [String]? = nil) {
+    public init(type: String? = nil, name: String? = nil, asset: String? = nil, amount: Int? = nil, interval: Int? = nil, activities: [String]? = nil, sides: [String]? = nil) {
+        self.type = type
         self.name = name
         self.asset = asset
         self.amount = amount
@@ -35,6 +38,7 @@ public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case type
         case name
         case asset
         case amount
@@ -47,6 +51,7 @@ public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(amount, forKey: .amount)
