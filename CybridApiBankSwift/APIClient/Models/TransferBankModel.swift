@@ -28,7 +28,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var asset: String?
     /** The direction of the quote; one of deposit or withdrawal. */
     public var side: String?
-    /** The state of the transfer; one of storing, pending, reviewing, completed, or failed. */
+    /** The state of the transfer; one of storing, pending, holding, reviewing, completed, or failed. */
     public var state: String?
     /** The failure code for failed transfers; one of non_sufficient_funds, refresh_required, party_name_invalid, payment_rail_invalid, compliance_rejection, cancelled, reversed, limit_exceeded, network_fee_too_low, amount_too_low, internal_error, invalid_address, invalid_destination, customer_action_required, or external_vendor_error. */
     public var failureCode: String?
