@@ -22,13 +22,16 @@ public struct IdentityVerificationBusinessAssociateBankModel: Codable, JSONEncod
     public var role: String?
     /** The business associate email address. Available only for business_registration verification method */
     public var emailAddress: String?
+    /** The business associate state; one of completed, waiting, or pending. */
+    public var state: String?
 
-    public init(personaInquiryId: String? = nil, personaState: String? = nil, customerGuid: String? = nil, role: String? = nil, emailAddress: String? = nil) {
+    public init(personaInquiryId: String? = nil, personaState: String? = nil, customerGuid: String? = nil, role: String? = nil, emailAddress: String? = nil, state: String? = nil) {
         self.personaInquiryId = personaInquiryId
         self.personaState = personaState
         self.customerGuid = customerGuid
         self.role = role
         self.emailAddress = emailAddress
+        self.state = state
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -37,6 +40,7 @@ public struct IdentityVerificationBusinessAssociateBankModel: Codable, JSONEncod
         case customerGuid = "customer_guid"
         case role
         case emailAddress = "email_address"
+        case state
     }
 
     // Encodable protocol methods
@@ -48,6 +52,7 @@ public struct IdentityVerificationBusinessAssociateBankModel: Codable, JSONEncod
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(role, forKey: .role)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
+        try container.encodeIfPresent(state, forKey: .state)
     }
 }
 
