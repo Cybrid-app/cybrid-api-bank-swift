@@ -26,7 +26,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
-    /** The state of the address; one of storing or created. */
+    /** The state of the address; one of storing, created, or failed. */
     public var state: String?
     /** The blockchain address. */
     public var address: String?
