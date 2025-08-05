@@ -50,7 +50,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var side: SideBankModel?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported.  Required when product_type is trading. */
     public var symbol: String?
-    /** Destination accounts for batch transactions Optional when product_type is crypto_transfer. */
+    /** Destination accounts for batch transactions on UTXO-based blockchains. A single destination account is required for Base blockchain assets. Optional when product_type is crypto_transfer. */
     public var destinationAccounts: [PostQuoteEntryBankModel]?
     /** The guid of the related trade. Only present on `exit` trades. Required when product_type is trading_exit. */
     public var referenceTradeGuid: String?
