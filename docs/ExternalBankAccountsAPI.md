@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 # **listExternalBankAccounts**
 ```swift
-    open class func listExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, asset: String? = nil, state: String? = nil, completion: @escaping (_ data: ExternalBankAccountListBankModel?, _ error: Error?) -> Void)
+    open class func listExternalBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String? = nil, state: String? = nil, completion: @escaping (_ data: ExternalBankAccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get external bank accounts list
@@ -186,11 +186,12 @@ let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated external_bank_account_guids to list external_bank_accounts for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list external_bank_accounts for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list external_bank_accounts for. (optional)
+let counterpartyGuid = "counterpartyGuid_example" // String | Comma separated counterparty_guids to list external_bank_accounts for. (optional)
 let asset = "asset_example" // String | Comma separated assets to list external_bank_accounts for. (optional)
 let state = "state_example" // String | Comma separated states to list external_bank_accounts for. Filtering by \"completed\" and \"unverified\" states is only supported for individual customer accounts. (optional)
 
 // Get external bank accounts list
-ExternalBankAccountsAPI.listExternalBankAccounts(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, asset: asset, state: state) { (response, error) in
+ExternalBankAccountsAPI.listExternalBankAccounts(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, counterpartyGuid: counterpartyGuid, asset: asset, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -211,6 +212,7 @@ Name | Type | Description  | Notes
  **guid** | **String** | Comma separated external_bank_account_guids to list external_bank_accounts for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list external_bank_accounts for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list external_bank_accounts for. | [optional] 
+ **counterpartyGuid** | **String** | Comma separated counterparty_guids to list external_bank_accounts for. | [optional] 
  **asset** | **String** | Comma separated assets to list external_bank_accounts for. | [optional] 
  **state** | **String** | Comma separated states to list external_bank_accounts for. Filtering by \&quot;completed\&quot; and \&quot;unverified\&quot; states is only supported for individual customer accounts. | [optional] 
 
