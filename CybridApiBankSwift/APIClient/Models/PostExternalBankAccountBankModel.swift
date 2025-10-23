@@ -41,13 +41,14 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var plaidAccountName: String?
     /** The counterparty identifier. Optional when account_kind is raw_routing_details. */
     public var counterpartyGuid: String?
-    public var counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel?
+    /** The counterparty's checking bank account information. Required when account_kind is raw_routing_details. */
+    public var counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]?
     public var counterpartyName: PostExternalBankAccountCounterpartyNameBankModel?
     public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
     /** The counterparty's email address on their checking account. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var counterpartyEmailAddress: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String? = nil, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyGuid: String? = nil, counterpartyBankAccount: PostExternalBankAccountCounterpartyBankAccountBankModel? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
+    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String? = nil, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyGuid: String? = nil, counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.customerGuid = customerGuid
@@ -59,7 +60,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         self.plaidAccountMask = plaidAccountMask
         self.plaidAccountName = plaidAccountName
         self.counterpartyGuid = counterpartyGuid
-        self.counterpartyBankAccount = counterpartyBankAccount
+        self.counterpartyBankAccountDetails = counterpartyBankAccountDetails
         self.counterpartyName = counterpartyName
         self.counterpartyAddress = counterpartyAddress
         self.counterpartyEmailAddress = counterpartyEmailAddress
@@ -77,7 +78,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         case plaidAccountMask = "plaid_account_mask"
         case plaidAccountName = "plaid_account_name"
         case counterpartyGuid = "counterparty_guid"
-        case counterpartyBankAccount = "counterparty_bank_account"
+        case counterpartyBankAccountDetails = "counterparty_bank_account_details"
         case counterpartyName = "counterparty_name"
         case counterpartyAddress = "counterparty_address"
         case counterpartyEmailAddress = "counterparty_email_address"
@@ -98,7 +99,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         try container.encodeIfPresent(plaidAccountMask, forKey: .plaidAccountMask)
         try container.encodeIfPresent(plaidAccountName, forKey: .plaidAccountName)
         try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
-        try container.encodeIfPresent(counterpartyBankAccount, forKey: .counterpartyBankAccount)
+        try container.encodeIfPresent(counterpartyBankAccountDetails, forKey: .counterpartyBankAccountDetails)
         try container.encodeIfPresent(counterpartyName, forKey: .counterpartyName)
         try container.encodeIfPresent(counterpartyAddress, forKey: .counterpartyAddress)
         try container.encodeIfPresent(counterpartyEmailAddress, forKey: .counterpartyEmailAddress)

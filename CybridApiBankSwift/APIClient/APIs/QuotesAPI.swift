@@ -143,7 +143,7 @@ open class QuotesAPI {
     /**
      Get quotes list
      - GET /api/quotes
-     - Retrieves a listing of quotes for all customers of a bank.  Required scope: **quotes:read**
+     - Retrieves a listing of quotes. Records are sorted by creation date in descending order.  Required scope: **quotes:read**
      - BASIC:
        - type: http
        - name: BearerAuth

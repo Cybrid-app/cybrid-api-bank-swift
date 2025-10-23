@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 Get workflows list
 
-Retrieves a listing of workflows.  Required scope: **workflows:read**
+Retrieves a listing of workflows. Records are sorted by creation date in descending order.  Required scope: **workflows:read**
 
 ### Example
 ```swift

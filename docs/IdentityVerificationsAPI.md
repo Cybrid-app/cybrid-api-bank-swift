@@ -23,7 +23,7 @@ Creates an Identity Verification.  ## Identity Verifications  Identity Verificat
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postIdentityVerificationBankModel = PostIdentityVerification(type: "type_example", customerGuid: "customerGuid_example", expectedBehaviours: ["expectedBehaviours_example"], method: "method_example", counterpartyGuid: "counterpartyGuid_example", countryCode: "countryCode_example", name: PostIdentityVerification_name(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example"), address: PostIdentityVerification_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), dateOfBirth: Date(), identificationNumbers: [PostIdentificationNumber(type: "type_example", issuingCountryCode: "issuingCountryCode_example", identificationNumber: "identificationNumber_example")], aliases: [PostIdentityVerification_aliases_inner(full: "full_example")], phoneNumber: "phoneNumber_example", emailAddress: "emailAddress_example", website: "website_example", natureOfBusiness: "natureOfBusiness_example", directorCustomerGuids: ["directorCustomerGuids_example"], ultimateBeneficialOwners: [PostUltimateBeneficialOwner(customerGuid: "customerGuid_example", ownershipPercentage: 123)], supportingFileGuids: ["supportingFileGuids_example"], occupation: "occupation_example", externalBankAccountGuid: "externalBankAccountGuid_example") // PostIdentityVerificationBankModel | 
+let postIdentityVerificationBankModel = PostIdentityVerification(type: "type_example", customerGuid: "customerGuid_example", expectedBehaviours: ["expectedBehaviours_example"], method: "method_example", counterpartyGuid: "counterpartyGuid_example", countryCode: "countryCode_example", requireTaxId: false, name: PostIdentityVerification_name(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example"), address: PostIdentityVerification_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), dateOfBirth: Date(), identificationNumbers: [PostIdentificationNumber(type: "type_example", issuingCountryCode: "issuingCountryCode_example", identificationNumber: "identificationNumber_example")], aliases: [PostIdentityVerification_aliases_inner(full: "full_example")], phoneNumber: "phoneNumber_example", emailAddress: "emailAddress_example", website: "website_example", natureOfBusiness: "natureOfBusiness_example", directorCustomerGuids: ["directorCustomerGuids_example"], ultimateBeneficialOwners: [PostUltimateBeneficialOwner(customerGuid: "customerGuid_example", ownershipPercentage: 123)], supportingFileGuids: ["supportingFileGuids_example"], occupation: "occupation_example", externalBankAccountGuid: "externalBankAccountGuid_example") // PostIdentityVerificationBankModel | 
 
 // Create Identity Verification
 IdentityVerificationsAPI.createIdentityVerification(postIdentityVerificationBankModel: postIdentityVerificationBankModel) { (response, error) in
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 Get Identity Verification
 
-Retrieves an identity verification.  Required scope: **identity_verifications:read**
+Retrieves an identity verification.  Required scope: **identity_verifications:read** Optional scope: **identity_verifications:pii:read**.
 
 ### Example
 ```swift
@@ -74,7 +74,7 @@ Retrieves an identity verification.  Required scope: **identity_verifications:re
 import CybridApiBankSwift
 
 let identityVerificationGuid = "identityVerificationGuid_example" // String | Identifier for the identity verification.
-let includePii = true // Bool | Include PII in the response. (optional)
+let includePii = true // Bool | Include PII in the response (requires **identity_verifications:pii:read** scope). (optional)
 
 // Get Identity Verification
 IdentityVerificationsAPI.getIdentityVerification(identityVerificationGuid: identityVerificationGuid, includePii: includePii) { (response, error) in
@@ -94,7 +94,7 @@ IdentityVerificationsAPI.getIdentityVerification(identityVerificationGuid: ident
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identityVerificationGuid** | **String** | Identifier for the identity verification. | 
- **includePii** | **Bool** | Include PII in the response. | [optional] 
+ **includePii** | **Bool** | Include PII in the response (requires **identity_verifications:pii:read** scope). | [optional] 
 
 ### Return type
 
@@ -113,12 +113,12 @@ Name | Type | Description  | Notes
 
 # **listIdentityVerifications**
 ```swift
-    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, state: String? = nil, type: String? = nil, completion: @escaping (_ data: IdentityVerificationListBankModel?, _ error: Error?) -> Void)
+    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, state: String? = nil, type: String? = nil, method: String? = nil, completion: @escaping (_ data: IdentityVerificationListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Identity Verifications
 
-Retrieves a list of identity verifications.  Required scope: **identity_verifications:read**
+Retrieves a list of identity verifications. Records are sorted by creation date in descending order.  Required scope: **identity_verifications:read**
 
 ### Example
 ```swift
@@ -130,11 +130,13 @@ let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated guids to list identity verifications for. (optional)
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list identity verifications for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list identity verifications for. (optional)
+let counterpartyGuid = "counterpartyGuid_example" // String | Comma separated counterparty_guids to list identity verifications for. (optional)
 let state = "state_example" // String | Comma separated states to list identity verifications for. (optional)
 let type = "type_example" // String | Comma separated types to list identity verifications for. (optional)
+let method = "method_example" // String | Comma separated methods to list identity verifications for. (optional)
 
 // List Identity Verifications
-IdentityVerificationsAPI.listIdentityVerifications(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, state: state, type: type) { (response, error) in
+IdentityVerificationsAPI.listIdentityVerifications(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, counterpartyGuid: counterpartyGuid, state: state, type: type, method: method) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -155,8 +157,10 @@ Name | Type | Description  | Notes
  **guid** | **String** | Comma separated guids to list identity verifications for. | [optional] 
  **bankGuid** | **String** | Comma separated bank_guids to list identity verifications for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list identity verifications for. | [optional] 
+ **counterpartyGuid** | **String** | Comma separated counterparty_guids to list identity verifications for. | [optional] 
  **state** | **String** | Comma separated states to list identity verifications for. | [optional] 
  **type** | **String** | Comma separated types to list identity verifications for. | [optional] 
+ **method** | **String** | Comma separated methods to list identity verifications for. | [optional] 
 
 ### Return type
 

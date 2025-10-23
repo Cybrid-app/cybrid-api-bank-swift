@@ -36,8 +36,9 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
     public var failureCodes: [String]?
     /** The compliance decisions associated with the identity verification. */
     public var complianceDecisions: [ComplianceDecisionBankModel]?
+    public var options: IdentityVerificationOptionsBankModel?
 
-    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, options: IdentityVerificationOptionsBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.method = method
@@ -50,6 +51,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         self.outcome = outcome
         self.failureCodes = failureCodes
         self.complianceDecisions = complianceDecisions
+        self.options = options
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -65,6 +67,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         case outcome
         case failureCodes = "failure_codes"
         case complianceDecisions = "compliance_decisions"
+        case options
     }
 
     // Encodable protocol methods
@@ -83,6 +86,7 @@ public struct IdentityVerificationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(outcome, forKey: .outcome)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
+        try container.encodeIfPresent(options, forKey: .options)
     }
 }
 

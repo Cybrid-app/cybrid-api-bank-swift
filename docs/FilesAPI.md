@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 Get File
 
-Retrieves a file.  Required scope: **files:read**
+Retrieves a file.  Required scopes: **files:read,  files:pii:read**
 
 ### Example
 ```swift
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 List Files
 
-Retrieves a list of files.  Required scope: **files:read**
+Retrieves a list of files. Records are sorted by creation date in descending order.  Required scope: **files:read**
 
 ### Example
 ```swift

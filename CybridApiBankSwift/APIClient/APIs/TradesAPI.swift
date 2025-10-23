@@ -34,7 +34,7 @@ open class TradesAPI {
     /**
      Create Trade
      - POST /api/trades
-     - Creates a trade.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the trade details in our private store | | pending | The Platform is executing the trade | | cancelled | The Platform has cancelled the trade | | settling | The Platform is settling the trade | | completed | The Platform has successfully completed the trade | | failed | The Platform was not able to successfully complete the trade |  ## Failure codes  | Code | Description | |------|-------------| | non_sufficient_funds | The delivery account does not have enough funds to complete the trade | | unsupported | The trading pair is not supported for this customer | | limit_exceeded | The customer is over the limits that have been set for them for this activity | | expired_quote | The quote expired before it could be executed | | market_volatility | The quote could not be executed due to market volatility |    Required scope: **trades:execute**
+     - Creates a trade.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the trade details in our private store | | pending | The Platform has stored the trade details and is processing it | | executed | The Platform has processed the trade and needs to settle it | | settling | The Platform has executed the trade and is settling the funds | | cancelled | The Platform has cancelled the trade | | completed | The Platform has successfully completed the trade | | failed | The Platform was not able to successfully complete the trade |  ## Failure codes  | Code | Description | |------|-------------| | non_sufficient_funds | The delivery account does not have enough funds to complete the trade | | unsupported | The trading pair is not supported for this customer | | limit_exceeded | The customer is over the limits that have been set for them for this activity | | expired_quote | The quote expired before it could be executed | | market_volatility | The quote could not be executed due to market volatility | | not_filled | The trade could not be filled based on the amounts specified |    Required scope: **trades:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -149,7 +149,7 @@ open class TradesAPI {
     /**
      Get trades list
      - GET /api/trades
-     - Retrieves a listing of trades.  Required scope: **trades:read**
+     - Retrieves a listing of trades. Records are sorted by creation date in descending order.  Required scope: **trades:read**
      - BASIC:
        - type: http
        - name: BearerAuth

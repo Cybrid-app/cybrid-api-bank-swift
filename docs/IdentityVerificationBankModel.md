@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **outcome** | **String** | The identity verification outcome; one of passed or failed. | [optional] 
 **failureCodes** | **[String]** | The reason codes explaining the outcome. | [optional] 
 **complianceDecisions** | [ComplianceDecisionBankModel] | The compliance decisions associated with the identity verification. | [optional] 
+**options** | [**IdentityVerificationOptionsBankModel**](IdentityVerificationOptionsBankModel.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

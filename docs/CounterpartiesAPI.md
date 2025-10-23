@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 Get Counterparty
 
-Retrieves a counterparty.  Required scope: **counterparties:read**
+Retrieves a counterparty.  Required scope: **counterparties:read** Optional scope: **counterparties:pii:read**.
 
 ### Example
 ```swift
@@ -74,7 +74,7 @@ Retrieves a counterparty.  Required scope: **counterparties:read**
 import CybridApiBankSwift
 
 let counterpartyGuid = "counterpartyGuid_example" // String | Identifier for the counterparty.
-let includePii = true // Bool | Include PII in the response. (optional)
+let includePii = true // Bool | Include PII in the response (requires **counterparties:pii:read** scope). (optional)
 
 // Get Counterparty
 CounterpartiesAPI.getCounterparty(counterpartyGuid: counterpartyGuid, includePii: includePii) { (response, error) in
@@ -94,7 +94,7 @@ CounterpartiesAPI.getCounterparty(counterpartyGuid: counterpartyGuid, includePii
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **counterpartyGuid** | **String** | Identifier for the counterparty. | 
- **includePii** | **Bool** | Include PII in the response. | [optional] 
+ **includePii** | **Bool** | Include PII in the response (requires **counterparties:pii:read** scope). | [optional] 
 
 ### Return type
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 Get counterparties list
 
-Retrieves a listing of counterparties.  Required scope: **counterparties:read**
+Retrieves a listing of counterparties. Records are sorted by creation date in descending order.  Required scope: **counterparties:read**
 
 ### Example
 ```swift

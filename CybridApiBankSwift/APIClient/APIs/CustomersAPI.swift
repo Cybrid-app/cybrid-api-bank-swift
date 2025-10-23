@@ -66,7 +66,7 @@ open class CustomersAPI {
      Get Customer
      
      - parameter customerGuid: (path) Identifier for the customer. 
-     - parameter includePii: (query) Include PII in the response. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **customers:pii:read** scope). (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -85,7 +85,7 @@ open class CustomersAPI {
     /**
      Get Customer
      - GET /api/customers/{customer_guid}
-     - Retrieves a customer.  Required scope: **customers:read**
+     - Retrieves a customer.  Required scope: **customers:read** Optional scope: **customers:pii:read**.
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -93,7 +93,7 @@ open class CustomersAPI {
        - type: oauth2
        - name: oauth2
      - parameter customerGuid: (path) Identifier for the customer. 
-     - parameter includePii: (query) Include PII in the response. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **customers:pii:read** scope). (optional)
      - returns: RequestBuilder<CustomerBankModel> 
      */
     open class func getCustomerWithRequestBuilder(customerGuid: String, includePii: Bool? = nil) -> RequestBuilder<CustomerBankModel> {
@@ -147,7 +147,7 @@ open class CustomersAPI {
     /**
      Get customers list
      - GET /api/customers
-     - Retrieves a listing of customers.  Required scope: **customers:read**
+     - Retrieves a listing of customers. Records are sorted by creation date in descending order.  Required scope: **customers:read**
      - BASIC:
        - type: http
        - name: BearerAuth

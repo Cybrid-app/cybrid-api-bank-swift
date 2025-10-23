@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 Get banks list
 
-Retrieves a listing of bank.  Required scope: **banks:read**
+Retrieves a listing of bank. Records are sorted by creation date in descending order.  Required scope: **banks:read**
 
 ### Example
 ```swift

@@ -13,6 +13,7 @@ import AnyCodable
 public enum TradeStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case storing = "storing"
     case pending = "pending"
+    case executed = "executed"
     case cancelled = "cancelled"
     case completed = "completed"
     case settling = "settling"

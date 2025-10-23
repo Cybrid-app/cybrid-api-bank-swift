@@ -15,7 +15,6 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
 
     public enum ProductTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case trading = "trading"
-        case tradingExit = "trading_exit"
         case funding = "funding"
         case cryptoTransfer = "crypto_transfer"
         case interAccount = "inter_account"

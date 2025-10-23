@@ -26,6 +26,8 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
+    /** ISO8601 datetime the record was last deleted at. */
+    public var deletedAt: Date?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
     /** The state of the address; one of storing or created. */
@@ -44,7 +46,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -52,6 +54,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         self.accountGuid = accountGuid
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.deletedAt = deletedAt
         self.asset = asset
         self.state = state
         self.uniqueMemoId = uniqueMemoId
@@ -71,6 +74,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         case accountGuid = "account_guid"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case deletedAt = "deleted_at"
         case asset
         case state
         case uniqueMemoId = "unique_memo_id"
@@ -93,6 +97,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(accountGuid, forKey: .accountGuid)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(deletedAt, forKey: .deletedAt)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(uniqueMemoId, forKey: .uniqueMemoId)

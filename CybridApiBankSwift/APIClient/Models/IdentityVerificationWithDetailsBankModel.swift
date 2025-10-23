@@ -49,8 +49,9 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
     public var documents: [IdentityVerificationDocumentBankModel]?
     /** The supporting documents associated with the attested identity verification. */
     public var supportingFiles: [IdentityVerificationDocumentBankModel]?
+    public var options: IdentityVerificationOptionsBankModel?
 
-    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, businessAssociates: [IdentityVerificationBusinessAssociateBankModel]? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil, documents: [IdentityVerificationDocumentBankModel]? = nil, supportingFiles: [IdentityVerificationDocumentBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, method: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, outcome: String? = nil, failureCodes: [String]? = nil, complianceChecks: [ComplianceCheckBankModel]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, personaInquiryId: String? = nil, personaState: String? = nil, businessAssociates: [IdentityVerificationBusinessAssociateBankModel]? = nil, pii: IdentityVerificationWithDetailsPiiBankModel? = nil, documents: [IdentityVerificationDocumentBankModel]? = nil, supportingFiles: [IdentityVerificationDocumentBankModel]? = nil, options: IdentityVerificationOptionsBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.method = method
@@ -70,6 +71,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         self.pii = pii
         self.documents = documents
         self.supportingFiles = supportingFiles
+        self.options = options
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -92,6 +94,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         case pii
         case documents
         case supportingFiles = "supporting_files"
+        case options
     }
 
     // Encodable protocol methods
@@ -117,6 +120,7 @@ public struct IdentityVerificationWithDetailsBankModel: Codable, JSONEncodable, 
         try container.encodeIfPresent(pii, forKey: .pii)
         try container.encodeIfPresent(documents, forKey: .documents)
         try container.encodeIfPresent(supportingFiles, forKey: .supportingFiles)
+        try container.encodeIfPresent(options, forKey: .options)
     }
 }
 
