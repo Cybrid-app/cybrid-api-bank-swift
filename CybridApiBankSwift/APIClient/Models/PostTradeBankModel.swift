@@ -15,7 +15,6 @@ public struct PostTradeBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TradeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case platform = "platform"
-        case exit = "exit"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedErrorBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

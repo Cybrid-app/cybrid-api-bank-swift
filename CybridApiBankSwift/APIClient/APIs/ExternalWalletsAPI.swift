@@ -198,7 +198,7 @@ open class ExternalWalletsAPI {
     /**
      Get external wallets list
      - GET /api/external_wallets
-     - Retrieves a listing of external wallets.  Required scope: **external_wallets:read**
+     - Retrieves a listing of external wallets. Records are sorted by creation date in descending order.  Required scope: **external_wallets:read**
      - BASIC:
        - type: http
        - name: BearerAuth

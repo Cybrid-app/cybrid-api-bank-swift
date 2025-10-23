@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **pii** | [**IdentityVerificationWithDetailsPiiBankModel**](IdentityVerificationWithDetailsPiiBankModel.md) |  | [optional] 
 **documents** | [IdentityVerificationDocumentBankModel] | The documents associated with the identity verification. | [optional] 
 **supportingFiles** | [IdentityVerificationDocumentBankModel] | The supporting documents associated with the attested identity verification. | [optional] 
+**options** | [**IdentityVerificationOptionsBankModel**](IdentityVerificationOptionsBankModel.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

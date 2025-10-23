@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 List Deposit Addresses
 
-Retrieves a list of deposit addresses.  Required scope: **deposit_addresses:read**
+Retrieves a list of deposit addresses. Records are sorted by creation date in descending order.  Required scope: **deposit_addresses:read**
 
 ### Example
 ```swift

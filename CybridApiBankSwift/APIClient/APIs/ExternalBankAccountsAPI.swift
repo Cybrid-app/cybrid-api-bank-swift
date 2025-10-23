@@ -121,7 +121,7 @@ open class ExternalBankAccountsAPI {
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
      - parameter forceBalanceRefresh: (query) Force the balance on the account to be retrieved. (optional)
      - parameter includeBalances: (query) Include balance information in the response. If &#x60;force_balance_refresh&#x60; is &#x60;true&#x60;, the most up to date balance will be returned. If &#x60;force_balance_refresh&#x60; is &#x60;false&#x60;, the cached balance will be returned. &#x60;balance_updated_at&#x60; in the response will provide the timestamp the balance was last updated. (optional)
-     - parameter includePii: (query) Include the account holder&#39;s PII in the response. (optional)
+     - parameter includePii: (query) Include the account holder&#39;s PII in the response (requires **external_bank_accounts:pii:read** scope). (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -140,7 +140,7 @@ open class ExternalBankAccountsAPI {
     /**
      Get External Bank Account
      - GET /api/external_bank_accounts/{external_bank_account_guid}
-     - Retrieves an external bank account.  ## ExternalBankAccount retrieval  When retrieving an external bank account and include_balances is set to true, the Platform will attempt to retrieve the balance from the account's financial institution.  If force_balance_refresh is set to true, the Platform will always attempt to retrieve the most up to date balance from the account's financial institution. If force_balance_refresh is set to false, the Platform will return the cached balance.  If while getting the balance the Platform determines that the account needs to be refreshed, the Platform will return a 422 status code with the message \"Bank account refresh required\" and the ExternalBankAccount will be put into the refresh_required state.  If while getting the balance the Platform determines that the account is no longer valid, the Platform will return a 422 status code with the message \"Bank account can no longer be used and is being deleted. It must be re-added\" and the ExternalBankAccount will be deleted.  When retrieving an external bank account and include_pii is set to true, the Platform will include the account holder's information in the response.    Required scope: **external_bank_accounts:read**
+     - Retrieves an external bank account.  ## ExternalBankAccount retrieval  When retrieving an external bank account and include_balances is set to true, the Platform will attempt to retrieve the balance from the account's financial institution.  If force_balance_refresh is set to true, the Platform will always attempt to retrieve the most up to date balance from the account's financial institution. If force_balance_refresh is set to false, the Platform will return the cached balance.  If while getting the balance the Platform determines that the account needs to be refreshed, the Platform will return a 422 status code with the message \"Bank account refresh required\" and the ExternalBankAccount will be put into the refresh_required state.  If while getting the balance the Platform determines that the account is no longer valid, the Platform will return a 422 status code with the message \"Bank account can no longer be used and is being deleted. It must be re-added\" and the ExternalBankAccount will be deleted.  When retrieving an external bank account and include_pii is set to true, the Platform will include the account holder's information in the response.    Required scope: **external_bank_accounts:read** Optional scope: **external_bank_accounts:pii:read**.
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -150,7 +150,7 @@ open class ExternalBankAccountsAPI {
      - parameter externalBankAccountGuid: (path) Identifier for the external bank account. 
      - parameter forceBalanceRefresh: (query) Force the balance on the account to be retrieved. (optional)
      - parameter includeBalances: (query) Include balance information in the response. If &#x60;force_balance_refresh&#x60; is &#x60;true&#x60;, the most up to date balance will be returned. If &#x60;force_balance_refresh&#x60; is &#x60;false&#x60;, the cached balance will be returned. &#x60;balance_updated_at&#x60; in the response will provide the timestamp the balance was last updated. (optional)
-     - parameter includePii: (query) Include the account holder&#39;s PII in the response. (optional)
+     - parameter includePii: (query) Include the account holder&#39;s PII in the response (requires **external_bank_accounts:pii:read** scope). (optional)
      - returns: RequestBuilder<ExternalBankAccountBankModel> 
      */
     open class func getExternalBankAccountWithRequestBuilder(externalBankAccountGuid: String, forceBalanceRefresh: Bool? = nil, includeBalances: Bool? = nil, includePii: Bool? = nil) -> RequestBuilder<ExternalBankAccountBankModel> {
@@ -208,7 +208,7 @@ open class ExternalBankAccountsAPI {
     /**
      Get external bank accounts list
      - GET /api/external_bank_accounts
-     - Retrieves a listing of external bank accounts.  Required scope: **external_bank_accounts:read**
+     - Retrieves a listing of external bank accounts. Records are sorted by creation date in descending order.  Required scope: **external_bank_accounts:read**
      - BASIC:
        - type: http
        - name: BearerAuth

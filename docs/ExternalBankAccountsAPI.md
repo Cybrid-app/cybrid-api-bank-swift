@@ -25,7 +25,7 @@ Create an ExternalBankAccount.  ## Account creation  Accounts can be created for
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postExternalBankAccountBankModel = PostExternalBankAccount(name: "name_example", accountKind: "accountKind_example", customerGuid: "customerGuid_example", asset: "asset_example", plaidPublicToken: "plaidPublicToken_example", plaidAccountId: "plaidAccountId_example", plaidProcessorToken: "plaidProcessorToken_example", plaidInstitutionId: "plaidInstitutionId_example", plaidAccountMask: "plaidAccountMask_example", plaidAccountName: "plaidAccountName_example", counterpartyGuid: "counterpartyGuid_example", counterpartyBankAccount: PostExternalBankAccount_counterparty_bank_account(routingNumberType: "routingNumberType_example", routingNumber: "routingNumber_example", accountNumber: "accountNumber_example"), counterpartyName: PostExternalBankAccount_counterparty_name(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example"), counterpartyAddress: PostExternalBankAccount_counterparty_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), counterpartyEmailAddress: "counterpartyEmailAddress_example") // PostExternalBankAccountBankModel | 
+let postExternalBankAccountBankModel = PostExternalBankAccount(name: "name_example", accountKind: "accountKind_example", customerGuid: "customerGuid_example", asset: "asset_example", plaidPublicToken: "plaidPublicToken_example", plaidAccountId: "plaidAccountId_example", plaidProcessorToken: "plaidProcessorToken_example", plaidInstitutionId: "plaidInstitutionId_example", plaidAccountMask: "plaidAccountMask_example", plaidAccountName: "plaidAccountName_example", counterpartyGuid: "counterpartyGuid_example", counterpartyBankAccountDetails: [PostBankAccountDetails(bankCodeType: "bankCodeType_example", bankCode: "bankCode_example", accountIdentifier: "accountIdentifier_example", accountIdentifierType: "accountIdentifierType_example", paymentRail: "paymentRail_example")], counterpartyName: PostExternalBankAccount_counterparty_name(first: "first_example", middle: "middle_example", last: "last_example", full: "full_example"), counterpartyAddress: PostExternalBankAccount_counterparty_address(street: "street_example", street2: "street2_example", city: "city_example", subdivision: "subdivision_example", postalCode: "postalCode_example", countryCode: "countryCode_example"), counterpartyEmailAddress: "counterpartyEmailAddress_example") // PostExternalBankAccountBankModel | 
 
 // Create ExternalBankAccount
 ExternalBankAccountsAPI.createExternalBankAccount(postExternalBankAccountBankModel: postExternalBankAccountBankModel) { (response, error) in
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 Get External Bank Account
 
-Retrieves an external bank account.  ## ExternalBankAccount retrieval  When retrieving an external bank account and include_balances is set to true, the Platform will attempt to retrieve the balance from the account's financial institution.  If force_balance_refresh is set to true, the Platform will always attempt to retrieve the most up to date balance from the account's financial institution. If force_balance_refresh is set to false, the Platform will return the cached balance.  If while getting the balance the Platform determines that the account needs to be refreshed, the Platform will return a 422 status code with the message \"Bank account refresh required\" and the ExternalBankAccount will be put into the refresh_required state.  If while getting the balance the Platform determines that the account is no longer valid, the Platform will return a 422 status code with the message \"Bank account can no longer be used and is being deleted. It must be re-added\" and the ExternalBankAccount will be deleted.  When retrieving an external bank account and include_pii is set to true, the Platform will include the account holder's information in the response.    Required scope: **external_bank_accounts:read**
+Retrieves an external bank account.  ## ExternalBankAccount retrieval  When retrieving an external bank account and include_balances is set to true, the Platform will attempt to retrieve the balance from the account's financial institution.  If force_balance_refresh is set to true, the Platform will always attempt to retrieve the most up to date balance from the account's financial institution. If force_balance_refresh is set to false, the Platform will return the cached balance.  If while getting the balance the Platform determines that the account needs to be refreshed, the Platform will return a 422 status code with the message \"Bank account refresh required\" and the ExternalBankAccount will be put into the refresh_required state.  If while getting the balance the Platform determines that the account is no longer valid, the Platform will return a 422 status code with the message \"Bank account can no longer be used and is being deleted. It must be re-added\" and the ExternalBankAccount will be deleted.  When retrieving an external bank account and include_pii is set to true, the Platform will include the account holder's information in the response.    Required scope: **external_bank_accounts:read** Optional scope: **external_bank_accounts:pii:read**.
 
 ### Example
 ```swift
@@ -128,7 +128,7 @@ import CybridApiBankSwift
 let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
 let forceBalanceRefresh = true // Bool | Force the balance on the account to be retrieved. (optional)
 let includeBalances = true // Bool | Include balance information in the response. If `force_balance_refresh` is `true`, the most up to date balance will be returned. If `force_balance_refresh` is `false`, the cached balance will be returned. `balance_updated_at` in the response will provide the timestamp the balance was last updated. (optional)
-let includePii = true // Bool | Include the account holder's PII in the response. (optional)
+let includePii = true // Bool | Include the account holder's PII in the response (requires **external_bank_accounts:pii:read** scope). (optional)
 
 // Get External Bank Account
 ExternalBankAccountsAPI.getExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid, forceBalanceRefresh: forceBalanceRefresh, includeBalances: includeBalances, includePii: includePii) { (response, error) in
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
  **externalBankAccountGuid** | **String** | Identifier for the external bank account. | 
  **forceBalanceRefresh** | **Bool** | Force the balance on the account to be retrieved. | [optional] 
  **includeBalances** | **Bool** | Include balance information in the response. If &#x60;force_balance_refresh&#x60; is &#x60;true&#x60;, the most up to date balance will be returned. If &#x60;force_balance_refresh&#x60; is &#x60;false&#x60;, the cached balance will be returned. &#x60;balance_updated_at&#x60; in the response will provide the timestamp the balance was last updated. | [optional] 
- **includePii** | **Bool** | Include the account holder&#39;s PII in the response. | [optional] 
+ **includePii** | **Bool** | Include the account holder&#39;s PII in the response (requires **external_bank_accounts:pii:read** scope). | [optional] 
 
 ### Return type
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 Get external bank accounts list
 
-Retrieves a listing of external bank accounts.  Required scope: **external_bank_accounts:read**
+Retrieves a listing of external bank accounts. Records are sorted by creation date in descending order.  Required scope: **external_bank_accounts:read**
 
 ### Example
 ```swift

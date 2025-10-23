@@ -51,6 +51,8 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var counterpartyGuid: String?
     /** The ISO 3166 country 2-Alpha country the customer is being verified in. If not present, will default to the Bank's configured country code. Optional when type is kyc and method is id_and_selfie, type is kyc and method is tax_id_and_selfie, or type is kyc and method is business_registration. */
     public var countryCode: String?
+    /** Whether the collection of the tax id is required during identity verification. This will default to SSN in USA and SIN in Canada. It's not used elsewhere. Optional when type is kyc and method is id_and_selfie. */
+    public var requireTaxId: Bool? = false
     public var name: PostIdentityVerificationNameBankModel?
     public var address: PostIdentityVerificationAddressBankModel?
     /** The customer's date of birth. Required when type is kyc and method is attested or type is kyc and method is attested_id_and_selfie. */
@@ -78,13 +80,14 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     /** The external bank account's identifier. Required when type is bank_account. */
     public var externalBankAccountGuid: String?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, aliases: [PostIdentityVerificationAliasesInnerBankModel]? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, directorCustomerGuids: [String]? = nil, ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]? = nil, supportingFileGuids: [String]? = nil, occupation: String? = nil, externalBankAccountGuid: String? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, requireTaxId: Bool? = false, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, aliases: [PostIdentityVerificationAliasesInnerBankModel]? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, directorCustomerGuids: [String]? = nil, ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]? = nil, supportingFileGuids: [String]? = nil, occupation: String? = nil, externalBankAccountGuid: String? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.expectedBehaviours = expectedBehaviours
         self.method = method
         self.counterpartyGuid = counterpartyGuid
         self.countryCode = countryCode
+        self.requireTaxId = requireTaxId
         self.name = name
         self.address = address
         self.dateOfBirth = dateOfBirth
@@ -108,6 +111,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case method
         case counterpartyGuid = "counterparty_guid"
         case countryCode = "country_code"
+        case requireTaxId = "require_tax_id"
         case name
         case address
         case dateOfBirth = "date_of_birth"
@@ -134,6 +138,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         try container.encodeIfPresent(method, forKey: .method)
         try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encodeIfPresent(countryCode, forKey: .countryCode)
+        try container.encodeIfPresent(requireTaxId, forKey: .requireTaxId)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)

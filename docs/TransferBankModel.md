@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **holdDetails** | [**TransferHoldDetailsBankModel**](TransferHoldDetailsBankModel.md) |  | [optional] 
 **transferDetails** | [**AnyCodableBankModel**](.md) | The raw details on the transfer from the bank. | [optional] 
 **paymentRail** | **String** | The rail the payment was done on. One of: ach, eft, wire, rtp | [optional] 
+**externalId** | **String** | The external identifier for the transfer. | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
 **entries** | [TransferEntryBankModel] | Transfer entries associated with the batch transfer | [optional] 
 

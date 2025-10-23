@@ -85,7 +85,7 @@ open class FilesAPI {
     /**
      Get File
      - GET /api/files/{file_guid}
-     - Retrieves a file.  Required scope: **files:read**
+     - Retrieves a file.  Required scopes: **files:read,  files:pii:read**
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -148,7 +148,7 @@ open class FilesAPI {
     /**
      List Files
      - GET /api/files
-     - Retrieves a list of files.  Required scope: **files:read**
+     - Retrieves a list of files. Records are sorted by creation date in descending order.  Required scope: **files:read**
      - BASIC:
        - type: http
        - name: BearerAuth

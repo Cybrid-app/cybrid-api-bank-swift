@@ -142,7 +142,7 @@ open class PaymentInstructionsAPI {
     /**
      List Payment Instructions
      - GET /api/payment_instructions
-     - Retrieves a list of payment instructions.  Required scope: **invoices:read**
+     - Retrieves a list of payment instructions. Records are sorted by creation date in descending order.  Required scope: **invoices:read**
      - BASIC:
        - type: http
        - name: BearerAuth

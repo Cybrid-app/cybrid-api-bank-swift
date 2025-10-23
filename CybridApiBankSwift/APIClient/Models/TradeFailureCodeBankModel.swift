@@ -16,5 +16,6 @@ public enum TradeFailureCodeBankModel: String, Codable, CaseIterable, CaseIterab
     case limitExceeded = "limit_exceeded"
     case expiredQuote = "expired_quote"
     case marketVolatility = "market_volatility"
+    case notFilled = "not_filled"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

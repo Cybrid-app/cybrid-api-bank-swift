@@ -141,7 +141,7 @@ open class WorkflowsAPI {
     /**
      Get workflows list
      - GET /api/workflows
-     - Retrieves a listing of workflows.  Required scope: **workflows:read**
+     - Retrieves a listing of workflows. Records are sorted by creation date in descending order.  Required scope: **workflows:read**
      - BASIC:
        - type: http
        - name: BearerAuth

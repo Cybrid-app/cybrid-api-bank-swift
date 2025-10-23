@@ -142,7 +142,7 @@ open class DepositAddressesAPI {
     /**
      List Deposit Addresses
      - GET /api/deposit_addresses
-     - Retrieves a list of deposit addresses.  Required scope: **deposit_addresses:read**
+     - Retrieves a list of deposit addresses. Records are sorted by creation date in descending order.  Required scope: **deposit_addresses:read**
      - BASIC:
        - type: http
        - name: BearerAuth

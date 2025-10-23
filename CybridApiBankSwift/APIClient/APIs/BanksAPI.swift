@@ -140,7 +140,7 @@ open class BanksAPI {
     /**
      Get banks list
      - GET /api/banks
-     - Retrieves a listing of bank.  Required scope: **banks:read**
+     - Retrieves a listing of bank. Records are sorted by creation date in descending order.  Required scope: **banks:read**
      - BASIC:
        - type: http
        - name: BearerAuth

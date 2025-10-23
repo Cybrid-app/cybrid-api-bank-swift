@@ -66,7 +66,7 @@ open class CounterpartiesAPI {
      Get Counterparty
      
      - parameter counterpartyGuid: (path) Identifier for the counterparty. 
-     - parameter includePii: (query) Include PII in the response. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **counterparties:pii:read** scope). (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -85,7 +85,7 @@ open class CounterpartiesAPI {
     /**
      Get Counterparty
      - GET /api/counterparties/{counterparty_guid}
-     - Retrieves a counterparty.  Required scope: **counterparties:read**
+     - Retrieves a counterparty.  Required scope: **counterparties:read** Optional scope: **counterparties:pii:read**.
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -93,7 +93,7 @@ open class CounterpartiesAPI {
        - type: oauth2
        - name: oauth2
      - parameter counterpartyGuid: (path) Identifier for the counterparty. 
-     - parameter includePii: (query) Include PII in the response. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **counterparties:pii:read** scope). (optional)
      - returns: RequestBuilder<CounterpartyBankModel> 
      */
     open class func getCounterpartyWithRequestBuilder(counterpartyGuid: String, includePii: Bool? = nil) -> RequestBuilder<CounterpartyBankModel> {
@@ -148,7 +148,7 @@ open class CounterpartiesAPI {
     /**
      Get counterparties list
      - GET /api/counterparties
-     - Retrieves a listing of counterparties.  Required scope: **counterparties:read**
+     - Retrieves a listing of counterparties. Records are sorted by creation date in descending order.  Required scope: **counterparties:read**
      - BASIC:
        - type: http
        - name: BearerAuth

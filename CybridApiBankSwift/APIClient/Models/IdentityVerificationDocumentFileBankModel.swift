@@ -14,7 +14,7 @@ public struct IdentityVerificationDocumentFileBankModel: Codable, JSONEncodable,
 
     /** The unique identifier for the file. */
     public var guid: String?
-    /** The file type; one of drivers_license_front, drivers_license_back, passport, passport_card, identification_card, residence_card, selfie, selfie_video, selfie_left, selfie_right, proof_of_address, or incorporation_certificate. */
+    /** The file type; one of drivers_license_front, drivers_license_back, passport, passport_card, identification_card, residence_card, work_permit, selfie, selfie_video, selfie_left, selfie_right, proof_of_address, or incorporation_certificate. */
     public var type: String?
     /** The media type; one of image/jpeg, image/png, application/pdf, application/json, or video/mp4. */
     public var contentType: String?

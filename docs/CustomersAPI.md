@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 Get Customer
 
-Retrieves a customer.  Required scope: **customers:read**
+Retrieves a customer.  Required scope: **customers:read** Optional scope: **customers:pii:read**.
 
 ### Example
 ```swift
@@ -75,7 +75,7 @@ Retrieves a customer.  Required scope: **customers:read**
 import CybridApiBankSwift
 
 let customerGuid = "customerGuid_example" // String | Identifier for the customer.
-let includePii = true // Bool | Include PII in the response. (optional)
+let includePii = true // Bool | Include PII in the response (requires **customers:pii:read** scope). (optional)
 
 // Get Customer
 CustomersAPI.getCustomer(customerGuid: customerGuid, includePii: includePii) { (response, error) in
@@ -95,7 +95,7 @@ CustomersAPI.getCustomer(customerGuid: customerGuid, includePii: includePii) { (
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customerGuid** | **String** | Identifier for the customer. | 
- **includePii** | **Bool** | Include PII in the response. | [optional] 
+ **includePii** | **Bool** | Include PII in the response (requires **customers:pii:read** scope). | [optional] 
 
 ### Return type
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 Get customers list
 
-Retrieves a listing of customers.  Required scope: **customers:read**
+Retrieves a listing of customers. Records are sorted by creation date in descending order.  Required scope: **customers:read**
 
 ### Example
 ```swift

@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 List Accounts
 
-Retrieves a list of accounts.  Required scope: **accounts:read**
+Retrieves a list of accounts. Records are sorted by creation date in descending order.  Required scope: **accounts:read**
 
 ### Example
 ```swift

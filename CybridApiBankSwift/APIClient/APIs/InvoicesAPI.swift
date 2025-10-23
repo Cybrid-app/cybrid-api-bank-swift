@@ -207,7 +207,7 @@ open class InvoicesAPI {
     /**
      List Invoices
      - GET /api/invoices
-     - Retrieves a list of invoices.  Required scope: **invoices:read**
+     - Retrieves a list of invoices. Records are sorted by creation date in descending order.  Required scope: **invoices:read**
      - BASIC:
        - type: http
        - name: BearerAuth

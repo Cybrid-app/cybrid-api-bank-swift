@@ -151,7 +151,7 @@ open class TransfersAPI {
     /**
      Get transfers list
      - GET /api/transfers
-     - Retrieves a listing of transfers.  Required scope: **transfers:read**
+     - Retrieves a listing of transfers. Records are sorted by creation date in descending order.  Required scope: **transfers:read**
      - BASIC:
        - type: http
        - name: BearerAuth

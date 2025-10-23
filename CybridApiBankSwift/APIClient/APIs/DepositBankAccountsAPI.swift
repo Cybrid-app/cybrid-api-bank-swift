@@ -145,7 +145,7 @@ open class DepositBankAccountsAPI {
     /**
      List Deposit Bank Accounts
      - GET /api/deposit_bank_accounts
-     - Retrieves a list of deposit bank accounts.  Required scope: **deposit_bank_accounts:read**
+     - Retrieves a list of deposit bank accounts. Records are sorted by creation date in descending order.  Required scope: **deposit_bank_accounts:read**
      - BASIC:
        - type: http
        - name: BearerAuth
