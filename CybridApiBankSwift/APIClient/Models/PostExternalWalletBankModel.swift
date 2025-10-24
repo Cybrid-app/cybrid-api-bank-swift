@@ -13,6 +13,10 @@ import AnyCodable
 /** Request body for external wallet creation. */
 public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case forceReview = "force_review"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Name of the external wallet. */
     public var name: String
     /** The customer identifier. */
@@ -25,14 +29,17 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var address: String
     /** The blockchain tag to use when transferring crypto to the wallet. */
     public var tag: String?
+    /** The optional expected behaviour to simulate. Only applicable wallets under sandbox banks. */
+    public var expectedBehaviours: [ExpectedBehavioursBankModel]?
 
-    public init(name: String, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, address: String, tag: String? = nil) {
+    public init(name: String, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, address: String, tag: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil) {
         self.name = name
         self.customerGuid = customerGuid
         self.counterpartyGuid = counterpartyGuid
         self.asset = asset
         self.address = address
         self.tag = tag
+        self.expectedBehaviours = expectedBehaviours
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -42,6 +49,7 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         case asset
         case address
         case tag
+        case expectedBehaviours = "expected_behaviours"
     }
 
     // Encodable protocol methods
@@ -54,6 +62,7 @@ public struct PostExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(asset, forKey: .asset)
         try container.encode(address, forKey: .address)
         try container.encodeIfPresent(tag, forKey: .tag)
+        try container.encodeIfPresent(expectedBehaviours, forKey: .expectedBehaviours)
     }
 }
 
