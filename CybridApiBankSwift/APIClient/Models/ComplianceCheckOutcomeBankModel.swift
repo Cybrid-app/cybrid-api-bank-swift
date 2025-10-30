@@ -13,6 +13,7 @@ import AnyCodable
 public enum ComplianceCheckOutcomeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case passed = "passed"
     case failed = "failed"
+    case insufficient = "insufficient"
     case inconclusive = "inconclusive"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
