@@ -50,8 +50,10 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var networkFeeLiabilityAmount: Int?
     /** The fiat asset the network_fee_liability_amount is denominated in. Only present on `crypto` transfers that have successfully completed. */
     public var networkFeeLiabilityAmountAsset: String?
-    /** The hash of the blockchain transaction */
+    /** The hash of the blockchain transaction (deprecated: use identifiers array) */
     public var txnHash: String?
+    /** Array of identifiers associated with this transfer (transaction hash, wire reference numbers) */
+    public var identifiers: [TransferIdentifiersInnerBankModel]?
     /** The guid of the related transfer. Only present on return type transfers. */
     public var referenceTransferGuid: String?
     public var sourceAccount: TransferSourceAccountBankModel?
@@ -78,7 +80,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     /** Transfer entries associated with the batch transfer */
     public var entries: [TransferEntryBankModel]?
 
-    public init(guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, returnCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, sourceParticipants: [TransferParticipantBankModel]? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, destinationParticipants: [TransferParticipantBankModel]? = nil, depositAddressGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, holdDetails: TransferHoldDetailsBankModel? = nil, transferDetails: String? = nil, paymentRail: String? = nil, externalId: String? = nil, labels: [String]? = nil, entries: [TransferEntryBankModel]? = nil) {
+    public init(guid: String? = nil, transferType: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, quoteGuid: String? = nil, externalBankAccountGuid: String? = nil, asset: String? = nil, side: String? = nil, state: String? = nil, failureCode: String? = nil, returnCode: String? = nil, amount: Int? = nil, estimatedAmount: Int? = nil, fee: Int? = nil, estimatedNetworkFee: Int? = nil, networkFee: Int? = nil, networkFeeAsset: String? = nil, networkFeeLiabilityAmount: Int? = nil, networkFeeLiabilityAmountAsset: String? = nil, txnHash: String? = nil, identifiers: [TransferIdentifiersInnerBankModel]? = nil, referenceTransferGuid: String? = nil, sourceAccount: TransferSourceAccountBankModel? = nil, sourceParticipants: [TransferParticipantBankModel]? = nil, destinationAccount: TransferDestinationAccountBankModel? = nil, destinationParticipants: [TransferParticipantBankModel]? = nil, depositAddressGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, holdDetails: TransferHoldDetailsBankModel? = nil, transferDetails: String? = nil, paymentRail: String? = nil, externalId: String? = nil, labels: [String]? = nil, entries: [TransferEntryBankModel]? = nil) {
         self.guid = guid
         self.transferType = transferType
         self.bankGuid = bankGuid
@@ -99,6 +101,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         self.networkFeeLiabilityAmount = networkFeeLiabilityAmount
         self.networkFeeLiabilityAmountAsset = networkFeeLiabilityAmountAsset
         self.txnHash = txnHash
+        self.identifiers = identifiers
         self.referenceTransferGuid = referenceTransferGuid
         self.sourceAccount = sourceAccount
         self.sourceParticipants = sourceParticipants
@@ -136,6 +139,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         case networkFeeLiabilityAmount = "network_fee_liability_amount"
         case networkFeeLiabilityAmountAsset = "network_fee_liability_amount_asset"
         case txnHash = "txn_hash"
+        case identifiers
         case referenceTransferGuid = "reference_transfer_guid"
         case sourceAccount = "source_account"
         case sourceParticipants = "source_participants"
@@ -176,6 +180,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(networkFeeLiabilityAmount, forKey: .networkFeeLiabilityAmount)
         try container.encodeIfPresent(networkFeeLiabilityAmountAsset, forKey: .networkFeeLiabilityAmountAsset)
         try container.encodeIfPresent(txnHash, forKey: .txnHash)
+        try container.encodeIfPresent(identifiers, forKey: .identifiers)
         try container.encodeIfPresent(referenceTransferGuid, forKey: .referenceTransferGuid)
         try container.encodeIfPresent(sourceAccount, forKey: .sourceAccount)
         try container.encodeIfPresent(sourceParticipants, forKey: .sourceParticipants)
