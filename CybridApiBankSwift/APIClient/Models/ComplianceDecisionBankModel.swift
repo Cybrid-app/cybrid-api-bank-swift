@@ -18,17 +18,21 @@ public struct ComplianceDecisionBankModel: Codable, JSONEncodable, Hashable {
     public var state: String
     /** The reason codes explaining the outcome. */
     public var failureCodes: [String]?
+    /** ISO8601 datetime the compliance decision is expired. */
+    public var expiredAt: Date?
 
-    public init(type: String, state: String, failureCodes: [String]? = nil) {
+    public init(type: String, state: String, failureCodes: [String]? = nil, expiredAt: Date? = nil) {
         self.type = type
         self.state = state
         self.failureCodes = failureCodes
+        self.expiredAt = expiredAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case state
         case failureCodes = "failure_codes"
+        case expiredAt = "expired_at"
     }
 
     // Encodable protocol methods
@@ -38,6 +42,7 @@ public struct ComplianceDecisionBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(state, forKey: .state)
         try container.encodeIfPresent(failureCodes, forKey: .failureCodes)
+        try container.encodeIfPresent(expiredAt, forKey: .expiredAt)
     }
 }
 
