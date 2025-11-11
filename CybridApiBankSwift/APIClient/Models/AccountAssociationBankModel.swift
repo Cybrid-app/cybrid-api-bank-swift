@@ -17,6 +17,8 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
     public var guid: String
     /** The type of transfer account; one of trading or external_bank_account. */
     public var type: String
+    /** The account's organization identifier. */
+    public var organizationGuid: String?
     /** The account's bank identifier. */
     public var bankGuid: String?
     /** The account's customer identifier. */
@@ -32,9 +34,10 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
     /** The executed amount in base units transferred from or to the account. */
     public var executedAmount: Int?
 
-    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, requestedAmount: Int? = nil, quotedAmount: Int? = nil, executedAmount: Int? = nil) {
+    public init(guid: String, type: String, organizationGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, requestedAmount: Int? = nil, quotedAmount: Int? = nil, executedAmount: Int? = nil) {
         self.guid = guid
         self.type = type
+        self.organizationGuid = organizationGuid
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.counterpartyGuid = counterpartyGuid
@@ -47,6 +50,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case type
+        case organizationGuid = "organization_guid"
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case counterpartyGuid = "counterparty_guid"
@@ -62,6 +66,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(guid, forKey: .guid)
         try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(organizationGuid, forKey: .organizationGuid)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
