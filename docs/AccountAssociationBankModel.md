@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the transfer account. | 
 **type** | **String** | The type of transfer account; one of trading or external_bank_account. | 
+**organizationGuid** | **String** | The account&#39;s organization identifier. | [optional] 
 **bankGuid** | **String** | The account&#39;s bank identifier. | [optional] 
 **customerGuid** | **String** | The account&#39;s customer identifier. | [optional] 
 **counterpartyGuid** | **String** | The account&#39;s counterparty identifier. | [optional] 
