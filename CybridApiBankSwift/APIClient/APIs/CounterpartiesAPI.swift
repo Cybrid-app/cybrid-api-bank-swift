@@ -130,12 +130,13 @@ open class CounterpartiesAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list counterparties for. (optional)
      - parameter guid: (query) Comma separated counterparty_guids to list counterparties for. (optional)
      - parameter label: (query) Comma separated labels to list counterparties for. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **counterparties:pii:read** scope). (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listCounterparties(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CounterpartyListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listCounterpartiesWithRequestBuilder(page: page, perPage: perPage, type: type, bankGuid: bankGuid, customerGuid: customerGuid, guid: guid, label: label).execute(apiResponseQueue) { result in
+    open class func listCounterparties(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, includePii: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CounterpartyListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listCounterpartiesWithRequestBuilder(page: page, perPage: perPage, type: type, bankGuid: bankGuid, customerGuid: customerGuid, guid: guid, label: label, includePii: includePii).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -148,7 +149,7 @@ open class CounterpartiesAPI {
     /**
      Get counterparties list
      - GET /api/counterparties
-     - Retrieves a listing of counterparties. Records are sorted by creation date in descending order.  Required scope: **counterparties:read**
+     - Retrieves a listing of counterparties. Records are sorted by creation date in descending order.  Required scope: **counterparties:read** Optional scope: **counterparties:pii:read**.
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -162,9 +163,10 @@ open class CounterpartiesAPI {
      - parameter customerGuid: (query) Comma separated customer_guids to list counterparties for. (optional)
      - parameter guid: (query) Comma separated counterparty_guids to list counterparties for. (optional)
      - parameter label: (query) Comma separated labels to list counterparties for. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **counterparties:pii:read** scope). (optional)
      - returns: RequestBuilder<CounterpartyListBankModel> 
      */
-    open class func listCounterpartiesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil) -> RequestBuilder<CounterpartyListBankModel> {
+    open class func listCounterpartiesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, guid: String? = nil, label: String? = nil, includePii: Bool? = nil) -> RequestBuilder<CounterpartyListBankModel> {
         let localVariablePath = "/api/counterparties"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -178,6 +180,7 @@ open class CounterpartiesAPI {
             "customer_guid": customerGuid?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
             "label": label?.encodeToJSON(),
+            "include_pii": includePii?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

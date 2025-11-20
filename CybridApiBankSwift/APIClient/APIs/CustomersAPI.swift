@@ -129,12 +129,13 @@ open class CustomersAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list customers for. (optional)
      - parameter guid: (query) Comma separated customer_guids to list customers for. (optional)
      - parameter label: (query) Comma separated labels to list customers for. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **customers:pii:read** scope). (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listCustomersWithRequestBuilder(page: page, perPage: perPage, type: type, bankGuid: bankGuid, guid: guid, label: label).execute(apiResponseQueue) { result in
+    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil, includePii: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CustomerListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listCustomersWithRequestBuilder(page: page, perPage: perPage, type: type, bankGuid: bankGuid, guid: guid, label: label, includePii: includePii).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -147,7 +148,7 @@ open class CustomersAPI {
     /**
      Get customers list
      - GET /api/customers
-     - Retrieves a listing of customers. Records are sorted by creation date in descending order.  Required scope: **customers:read**
+     - Retrieves a listing of customers. Records are sorted by creation date in descending order.  Required scope: **customers:read** Optional scope: **customers:pii:read**.
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -160,9 +161,10 @@ open class CustomersAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list customers for. (optional)
      - parameter guid: (query) Comma separated customer_guids to list customers for. (optional)
      - parameter label: (query) Comma separated labels to list customers for. (optional)
+     - parameter includePii: (query) Include PII in the response (requires **customers:pii:read** scope). (optional)
      - returns: RequestBuilder<CustomerListBankModel> 
      */
-    open class func listCustomersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil) -> RequestBuilder<CustomerListBankModel> {
+    open class func listCustomersWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil, includePii: Bool? = nil) -> RequestBuilder<CustomerListBankModel> {
         let localVariablePath = "/api/customers"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -175,6 +177,7 @@ open class CustomersAPI {
             "bank_guid": bankGuid?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
             "label": label?.encodeToJSON(),
+            "include_pii": includePii?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

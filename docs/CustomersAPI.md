@@ -114,12 +114,12 @@ Name | Type | Description  | Notes
 
 # **listCustomers**
 ```swift
-    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil, completion: @escaping (_ data: CustomerListBankModel?, _ error: Error?) -> Void)
+    open class func listCustomers(page: Int? = nil, perPage: Int? = nil, type: String? = nil, bankGuid: String? = nil, guid: String? = nil, label: String? = nil, includePii: Bool? = nil, completion: @escaping (_ data: CustomerListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get customers list
 
-Retrieves a listing of customers. Records are sorted by creation date in descending order.  Required scope: **customers:read**
+Retrieves a listing of customers. Records are sorted by creation date in descending order.  Required scope: **customers:read** Optional scope: **customers:pii:read**.
 
 ### Example
 ```swift
@@ -132,9 +132,10 @@ let type = "type_example" // String | Comma separated types to list customers fo
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list customers for. (optional)
 let guid = "guid_example" // String | Comma separated customer_guids to list customers for. (optional)
 let label = "label_example" // String | Comma separated labels to list customers for. (optional)
+let includePii = true // Bool | Include PII in the response (requires **customers:pii:read** scope). (optional)
 
 // Get customers list
-CustomersAPI.listCustomers(page: page, perPage: perPage, type: type, bankGuid: bankGuid, guid: guid, label: label) { (response, error) in
+CustomersAPI.listCustomers(page: page, perPage: perPage, type: type, bankGuid: bankGuid, guid: guid, label: label, includePii: includePii) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -156,6 +157,7 @@ Name | Type | Description  | Notes
  **bankGuid** | **String** | Comma separated bank_guids to list customers for. | [optional] 
  **guid** | **String** | Comma separated customer_guids to list customers for. | [optional] 
  **label** | **String** | Comma separated labels to list customers for. | [optional] 
+ **includePii** | **Bool** | Include PII in the response (requires **customers:pii:read** scope). | [optional] 
 
 ### Return type
 
