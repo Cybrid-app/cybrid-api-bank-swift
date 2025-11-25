@@ -30,7 +30,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var side: String?
     /** The state of the transfer; one of storing, pending, holding, reviewing, completed, or failed. */
     public var state: String?
-    /** The failure code for failed transfers; one of non_sufficient_funds, refresh_required, party_name_invalid, payment_rail_invalid, compliance_rejection, cancelled, reversed, limit_exceeded, network_fee_too_low, amount_too_low, internal_error, invalid_address, invalid_destination, customer_action_required, or external_vendor_error. */
+    /** The failure code for failed transfers; one of non_sufficient_funds, refresh_required, party_name_invalid, payment_rail_invalid, compliance_rejection, cancelled, reversed, limit_exceeded, network_fee_too_low, amount_too_low, internal_error, invalid_address, invalid_destination, customer_action_required, external_vendor_error, or payment_request_expired. */
     public var failureCode: String?
     /** The return code for reversed transfers */
     public var returnCode: String?
@@ -71,7 +71,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     public var holdDetails: TransferHoldDetailsBankModel?
     /** The raw details on the transfer from the bank. */
     public var transferDetails: String?
-    /** The rail the payment was done on. One of: ach, eft, wire, rtp */
+    /** The rail the payment was done on. One of: ach, eft, wire, rtp, etransfer */
     public var paymentRail: String?
     /** The external identifier for the transfer. */
     public var externalId: String?
