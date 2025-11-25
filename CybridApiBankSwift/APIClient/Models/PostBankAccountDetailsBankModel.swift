@@ -43,6 +43,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case pix = "PIX"
         case coelsa = "COELSA"
         case pse = "PSE"
+        case etransfer = "ETRANSFER"
         case unspecified = "UNSPECIFIED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

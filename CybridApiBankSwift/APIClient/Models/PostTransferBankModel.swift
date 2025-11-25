@@ -27,6 +27,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case eft = "eft"
         case wire = "wire"
         case rtp = "rtp"
+        case etransfer = "etransfer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -37,7 +38,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var quoteGuid: String
     /** The type of transfer. */
     public var transferType: TransferTypeBankModel
-    /** The customer's 'plaid' or 'plaid_processor_token' external bank account's identifier. Required when transfer_type is funding or transfer_type is instant_funding. */
+    /** The customer's 'plaid', 'plaid_processor_token', or 'raw_routing_details' external bank account's identifier. Required for ACH, EFT, WIRE, and RTP payment rails. Not used for e-transfer rail. Required when transfer_type is instant_funding. Optional when transfer_type is funding. */
     public var externalBankAccountGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the customer or bank has multiple fiat accounts. Optional when transfer_type is funding. */
     public var fiatAccountGuid: String?

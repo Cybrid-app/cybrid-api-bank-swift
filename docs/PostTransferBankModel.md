@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **quoteGuid** | **String** | The associated quote&#39;s identifier. | 
 **transferType** | **String** | The type of transfer. | 
-**externalBankAccountGuid** | **String** | The customer&#39;s &#39;plaid&#39; or &#39;plaid_processor_token&#39; external bank account&#39;s identifier. Required when transfer_type is funding or transfer_type is instant_funding. | [optional] 
+**externalBankAccountGuid** | **String** | The customer&#39;s &#39;plaid&#39;, &#39;plaid_processor_token&#39;, or &#39;raw_routing_details&#39; external bank account&#39;s identifier. Required for ACH, EFT, WIRE, and RTP payment rails. Not used for e-transfer rail. Required when transfer_type is instant_funding. Optional when transfer_type is funding. | [optional] 
 **fiatAccountGuid** | **String** | The identifier for the fiat account to use for the transfer. Required if the customer or bank has multiple fiat accounts. Optional when transfer_type is funding. | [optional] 
 **sendAsDepositBankAccountGuid** | **String** | The deposit bank account&#39;s identifier. Only valid for withdrawals. The deposit bank account must be owned by the customer or bank initiating the transfer. Optional when transfer_type is funding. | [optional] 
 **paymentRail** | **String** | The desired payment rail to initiate the transfer for. Optional when transfer_type is funding. | [optional] 
