@@ -47,6 +47,11 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case unspecified = "UNSPECIFIED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum AccountTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case checking = "checking"
+        case savings = "savings"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The type of bank code. */
     public var bankCodeType: BankCodeTypeBankModel
     /** The bank code. */
@@ -57,13 +62,16 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var accountIdentifierType: AccountIdentifierTypeBankModel?
     /** The payment rail used for the account. */
     public var paymentRail: PaymentRailBankModel
+    /** The type of account. Required when payment_rail is PSE. */
+    public var accountType: AccountTypeBankModel?
 
-    public init(bankCodeType: BankCodeTypeBankModel, bankCode: String? = nil, accountIdentifier: String, accountIdentifierType: AccountIdentifierTypeBankModel? = nil, paymentRail: PaymentRailBankModel) {
+    public init(bankCodeType: BankCodeTypeBankModel, bankCode: String? = nil, accountIdentifier: String, accountIdentifierType: AccountIdentifierTypeBankModel? = nil, paymentRail: PaymentRailBankModel, accountType: AccountTypeBankModel? = nil) {
         self.bankCodeType = bankCodeType
         self.bankCode = bankCode
         self.accountIdentifier = accountIdentifier
         self.accountIdentifierType = accountIdentifierType
         self.paymentRail = paymentRail
+        self.accountType = accountType
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -72,6 +80,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case accountIdentifier = "account_identifier"
         case accountIdentifierType = "account_identifier_type"
         case paymentRail = "payment_rail"
+        case accountType = "account_type"
     }
 
     // Encodable protocol methods
@@ -83,6 +92,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         try container.encode(accountIdentifier, forKey: .accountIdentifier)
         try container.encodeIfPresent(accountIdentifierType, forKey: .accountIdentifierType)
         try container.encode(paymentRail, forKey: .paymentRail)
+        try container.encodeIfPresent(accountType, forKey: .accountType)
     }
 }
 
