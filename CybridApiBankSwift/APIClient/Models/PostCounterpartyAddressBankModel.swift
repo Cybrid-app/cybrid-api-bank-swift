@@ -14,11 +14,11 @@ import AnyCodable
 public struct PostCounterpartyAddressBankModel: Codable, JSONEncodable, Hashable {
 
     /** The first line of the address. */
-    public var street: String
+    public var street: String?
     /** The optional second line of the address. */
     public var street2: String?
     /** The city of the address. */
-    public var city: String
+    public var city: String?
     /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. */
     public var subdivision: String?
     /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. */
@@ -26,7 +26,7 @@ public struct PostCounterpartyAddressBankModel: Codable, JSONEncodable, Hashable
     /** The ISO 3166 country 2-Alpha country code of the address. */
     public var countryCode: String
 
-    public init(street: String, street2: String? = nil, city: String, subdivision: String? = nil, postalCode: String? = nil, countryCode: String) {
+    public init(street: String? = nil, street2: String? = nil, city: String? = nil, subdivision: String? = nil, postalCode: String? = nil, countryCode: String) {
         self.street = street
         self.street2 = street2
         self.city = city
@@ -48,9 +48,9 @@ public struct PostCounterpartyAddressBankModel: Codable, JSONEncodable, Hashable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(street, forKey: .street)
+        try container.encodeIfPresent(street, forKey: .street)
         try container.encodeIfPresent(street2, forKey: .street2)
-        try container.encode(city, forKey: .city)
+        try container.encodeIfPresent(city, forKey: .city)
         try container.encodeIfPresent(subdivision, forKey: .subdivision)
         try container.encodeIfPresent(postalCode, forKey: .postalCode)
         try container.encode(countryCode, forKey: .countryCode)
