@@ -114,4 +114,96 @@ open class ExecutionsAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Get executions list
+     
+     - parameter page: (query) The page index to retrieve. (optional)
+     - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter guid: (query) Comma separated execution_guids to list executions for. (optional)
+     - parameter planGuid: (query) Comma separated plan_guids to list executions for. (optional)
+     - parameter bankGuid: (query) Comma separated bank_guids to list executions for. (optional)
+     - parameter customerGuid: (query) Comma separated customer_guids to list executions for. (optional)
+     - parameter type: (query) Comma separated types to list executions for. (optional)
+     - parameter state: (query) Comma separated states to list executions for. (optional)
+     - parameter sourceAccountGuid: (query) Comma separated source account guids to list executions for. (optional)
+     - parameter destinationAccountGuid: (query) Comma separated destination account guids to list executions for. (optional)
+     - parameter createdAtGte: (query) Created at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter createdAtLt: (query) Created at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter updatedAtGte: (query) Updated at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter updatedAtLt: (query) Updated at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func listExecutions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, planGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExecutionListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listExecutionsWithRequestBuilder(page: page, perPage: perPage, guid: guid, planGuid: planGuid, bankGuid: bankGuid, customerGuid: customerGuid, type: type, state: state, sourceAccountGuid: sourceAccountGuid, destinationAccountGuid: destinationAccountGuid, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get executions list
+     - GET /api/executions
+     - Retrieves a listing of executions. Records are sorted by creation date in descending order.  Required scope: **executions:read**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter page: (query) The page index to retrieve. (optional)
+     - parameter perPage: (query) The number of entities per page to return. (optional)
+     - parameter guid: (query) Comma separated execution_guids to list executions for. (optional)
+     - parameter planGuid: (query) Comma separated plan_guids to list executions for. (optional)
+     - parameter bankGuid: (query) Comma separated bank_guids to list executions for. (optional)
+     - parameter customerGuid: (query) Comma separated customer_guids to list executions for. (optional)
+     - parameter type: (query) Comma separated types to list executions for. (optional)
+     - parameter state: (query) Comma separated states to list executions for. (optional)
+     - parameter sourceAccountGuid: (query) Comma separated source account guids to list executions for. (optional)
+     - parameter destinationAccountGuid: (query) Comma separated destination account guids to list executions for. (optional)
+     - parameter createdAtGte: (query) Created at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter createdAtLt: (query) Created at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter updatedAtGte: (query) Updated at start date-time inclusive lower bound, ISO8601. (optional)
+     - parameter updatedAtLt: (query) Updated at end date-time exclusive upper bound, ISO8601. (optional)
+     - returns: RequestBuilder<ExecutionListBankModel> 
+     */
+    open class func listExecutionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, planGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil) -> RequestBuilder<ExecutionListBankModel> {
+        let localVariablePath = "/api/executions"
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "page": page?.encodeToJSON(),
+            "per_page": perPage?.encodeToJSON(),
+            "guid": guid?.encodeToJSON(),
+            "plan_guid": planGuid?.encodeToJSON(),
+            "bank_guid": bankGuid?.encodeToJSON(),
+            "customer_guid": customerGuid?.encodeToJSON(),
+            "type": type?.encodeToJSON(),
+            "state": state?.encodeToJSON(),
+            "source_account_guid": sourceAccountGuid?.encodeToJSON(),
+            "destination_account_guid": destinationAccountGuid?.encodeToJSON(),
+            "created_at_gte": createdAtGte?.encodeToJSON(),
+            "created_at_lt": createdAtLt?.encodeToJSON(),
+            "updated_at_gte": updatedAtGte?.encodeToJSON(),
+            "updated_at_lt": updatedAtLt?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ExecutionListBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
