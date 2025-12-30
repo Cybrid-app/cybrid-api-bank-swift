@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createPlan**](PlansAPI.md#createplan) | **POST** /api/plans | Create Plan
 [**getPlan**](PlansAPI.md#getplan) | **GET** /api/plans/{plan_guid} | Get Plan
+[**listPlans**](PlansAPI.md#listplans) | **GET** /api/plans | Get plans list
 
 
 # **createPlan**
@@ -96,6 +97,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PlanBankModel**](PlanBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listPlans**
+```swift
+    open class func listPlans(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, completion: @escaping (_ data: PlanListBankModel?, _ error: Error?) -> Void)
+```
+
+Get plans list
+
+Retrieves a listing of plans. Records are sorted by creation date in descending order.  Required scope: **plans:read**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let page = 987 // Int | The page index to retrieve. (optional)
+let perPage = 987 // Int | The number of entities per page to return. (optional)
+let guid = "guid_example" // String | Comma separated plan_guids to list plans for. (optional)
+let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list plans for. (optional)
+let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list plans for. (optional)
+let type = "type_example" // String | Comma separated types to list plans for. (optional)
+let state = "state_example" // String | Comma separated states to list plans for. (optional)
+let sourceAccountGuid = "sourceAccountGuid_example" // String | Comma separated source account guids to list plans for. (optional)
+let destinationAccountGuid = "destinationAccountGuid_example" // String | Comma separated destination account guids to list plans for. (optional)
+let createdAtGte = "createdAtGte_example" // String | Created at start date-time inclusive lower bound, ISO8601. (optional)
+let createdAtLt = "createdAtLt_example" // String | Created at end date-time exclusive upper bound, ISO8601. (optional)
+let updatedAtGte = "updatedAtGte_example" // String | Updated at start date-time inclusive lower bound, ISO8601. (optional)
+let updatedAtLt = "updatedAtLt_example" // String | Updated at end date-time exclusive upper bound, ISO8601. (optional)
+
+// Get plans list
+PlansAPI.listPlans(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, type: type, state: state, sourceAccountGuid: sourceAccountGuid, destinationAccountGuid: destinationAccountGuid, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **Int** | The page index to retrieve. | [optional] 
+ **perPage** | **Int** | The number of entities per page to return. | [optional] 
+ **guid** | **String** | Comma separated plan_guids to list plans for. | [optional] 
+ **bankGuid** | **String** | Comma separated bank_guids to list plans for. | [optional] 
+ **customerGuid** | **String** | Comma separated customer_guids to list plans for. | [optional] 
+ **type** | **String** | Comma separated types to list plans for. | [optional] 
+ **state** | **String** | Comma separated states to list plans for. | [optional] 
+ **sourceAccountGuid** | **String** | Comma separated source account guids to list plans for. | [optional] 
+ **destinationAccountGuid** | **String** | Comma separated destination account guids to list plans for. | [optional] 
+ **createdAtGte** | **String** | Created at start date-time inclusive lower bound, ISO8601. | [optional] 
+ **createdAtLt** | **String** | Created at end date-time exclusive upper bound, ISO8601. | [optional] 
+ **updatedAtGte** | **String** | Updated at start date-time inclusive lower bound, ISO8601. | [optional] 
+ **updatedAtLt** | **String** | Updated at end date-time exclusive upper bound, ISO8601. | [optional] 
+
+### Return type
+
+[**PlanListBankModel**](PlanListBankModel.md)
 
 ### Authorization
 
