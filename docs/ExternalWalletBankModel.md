@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **tag** | **String** | The blockchain tag to use when transferring crypto to the wallet. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
-**state** | **String** | The state of the external wallet; one of storing, pending, failed, completed, deleting, or deleted. | [optional] 
+**state** | **String** | The state of the external wallet; one of storing, pending, reviewing, failed, completed, deleting, or deleted. | [optional] 
 **failureCode** | **String** | The failure code of an external wallet (if any) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

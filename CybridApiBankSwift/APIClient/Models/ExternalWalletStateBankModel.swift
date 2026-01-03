@@ -13,6 +13,7 @@ import AnyCodable
 public enum ExternalWalletStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case storing = "storing"
     case pending = "pending"
+    case reviewing = "reviewing"
     case failed = "failed"
     case completed = "completed"
     case deleting = "deleting"
