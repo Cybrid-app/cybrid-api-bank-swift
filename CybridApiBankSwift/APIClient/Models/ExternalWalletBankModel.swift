@@ -34,7 +34,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
-    /** The state of the external wallet; one of storing, pending, failed, completed, deleting, or deleted. */
+    /** The state of the external wallet; one of storing, pending, reviewing, failed, completed, deleting, or deleted. */
     public var state: String?
     /** The failure code of an external wallet (if any) */
     public var failureCode: String?
