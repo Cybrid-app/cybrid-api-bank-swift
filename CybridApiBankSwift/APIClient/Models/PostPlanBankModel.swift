@@ -17,6 +17,43 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case remittance = "remittance"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum PurposeOfTransactionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case computerServices = "computer_services"
+        case familySupport = "family_support"
+        case education = "education"
+        case gift = "gift"
+        case charitableDonation = "charitable_donation"
+        case medicalTreatment = "medical_treatment"
+        case maintenanceExpenses = "maintenance_expenses"
+        case travel = "travel"
+        case hotelAccommodation = "hotel_accommodation"
+        case smallValueRemittance = "small_value_remittance"
+        case liberalizedRemittance = "liberalized_remittance"
+        case personalTransfer = "personal_transfer"
+        case loanPayment = "loan_payment"
+        case taxPayment = "tax_payment"
+        case constructionExpenses = "construction_expenses"
+        case advertisingExpenses = "advertising_expenses"
+        case advisoryFees = "advisory_fees"
+        case businessInsurance = "business_insurance"
+        case insuranceClaims = "insurance_claims"
+        case deliveryFees = "delivery_fees"
+        case serviceCharges = "service_charges"
+        case officeExpenses = "office_expenses"
+        case propertyPurchase = "property_purchase"
+        case propertyRental = "property_rental"
+        case royaltyFees = "royalty_fees"
+        case sharesInvestment = "shares_investment"
+        case fundInvestment = "fund_investment"
+        case billPayment = "bill_payment"
+        case transportationFees = "transportation_fees"
+        case salaryPayment = "salary_payment"
+        case rewardPayment = "reward_payment"
+        case influencerPayment = "influencer_payment"
+        case otherFees = "other_fees"
+        case other = "other"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The type of product the plan is for. */
     public var type: TypeBankModel
     /** The unique identifier for the bank. */
@@ -26,14 +63,17 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     public var sourceAccount: PostPlanSourceAccountBankModel
     public var destinationAccount: PostPlanDestinationAccountBankModel
     public var travelRuleInfo: PostPlanTravelRuleInfoBankModel?
+    /** The purpose of transaction for the plan. */
+    public var purposeOfTransaction: PurposeOfTransactionBankModel?
 
-    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil) {
+    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil) {
         self.type = type
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.sourceAccount = sourceAccount
         self.destinationAccount = destinationAccount
         self.travelRuleInfo = travelRuleInfo
+        self.purposeOfTransaction = purposeOfTransaction
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -43,6 +83,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case sourceAccount = "source_account"
         case destinationAccount = "destination_account"
         case travelRuleInfo = "travel_rule_info"
+        case purposeOfTransaction = "purpose_of_transaction"
     }
 
     // Encodable protocol methods
@@ -55,6 +96,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(sourceAccount, forKey: .sourceAccount)
         try container.encode(destinationAccount, forKey: .destinationAccount)
         try container.encodeIfPresent(travelRuleInfo, forKey: .travelRuleInfo)
+        try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
     }
 }
 
