@@ -23,7 +23,7 @@ Creates a plan.  ## Create a plan  Plans can be created for a Bank or a Customer
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postPlanBankModel = PostPlan(type: "type_example", bankGuid: "bankGuid_example", customerGuid: "customerGuid_example", sourceAccount: PostPlan_source_account(guid: "guid_example", amount: 123), destinationAccount: PostPlan_destination_account(guid: "guid_example", amount: 123), travelRuleInfo: PostPlan_travel_rule_info(ultimateOriginatingPartyGuid: "ultimateOriginatingPartyGuid_example", ultimateReceivingPartyGuid: "ultimateReceivingPartyGuid_example")) // PostPlanBankModel | 
+let postPlanBankModel = PostPlan(type: "type_example", bankGuid: "bankGuid_example", customerGuid: "customerGuid_example", sourceAccount: PostPlan_source_account(guid: "guid_example", amount: 123), destinationAccount: PostPlan_destination_account(guid: "guid_example", amount: 123), travelRuleInfo: PostPlan_travel_rule_info(ultimateOriginatingPartyGuid: "ultimateOriginatingPartyGuid_example", ultimateReceivingPartyGuid: "ultimateReceivingPartyGuid_example"), purposeOfTransaction: "purposeOfTransaction_example") // PostPlanBankModel | 
 
 // Create Plan
 PlansAPI.createPlan(postPlanBankModel: postPlanBankModel) { (response, error) in

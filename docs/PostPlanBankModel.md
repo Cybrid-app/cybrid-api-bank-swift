@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **sourceAccount** | [**PostPlanSourceAccountBankModel**](PostPlanSourceAccountBankModel.md) |  | 
 **destinationAccount** | [**PostPlanDestinationAccountBankModel**](PostPlanDestinationAccountBankModel.md) |  | 
 **travelRuleInfo** | [**PostPlanTravelRuleInfoBankModel**](PostPlanTravelRuleInfoBankModel.md) |  | [optional] 
+**purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

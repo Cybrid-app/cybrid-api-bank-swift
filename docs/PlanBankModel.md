@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **stages** | [StageBankModel] | The stages of the plan. | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the plan. | 
 **travelRuleInfo** | [**PlanTravelRuleInfoBankModel**](PlanTravelRuleInfoBankModel.md) |  | 
+**purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
