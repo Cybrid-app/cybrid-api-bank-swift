@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The type of routing number; one of CPA or ABA. */
+    /** The type of routing number; one of CPA, ABA, or IFSC. */
     public var routingNumberType: String
     /** The routing number. */
     public var routingNumber: String
