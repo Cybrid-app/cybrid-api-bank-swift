@@ -14,7 +14,7 @@ public struct IdentityVerificationDocumentBankModel: Codable, JSONEncodable, Has
 
     /** Auto-generated unique identifier for the document. */
     public var guid: String?
-    /** The document type; one of drivers_license, passport, passport_card, residence_card, visa, social_security_number, tax_identification_number, selfie, proof_of_address, formation_document, or employer_identification_number. */
+    /** The document type; one of drivers_license, passport, passport_card, residence_card, visa, social_security_number, tax_identification_number, selfie, proof_of_address, formation_document, employer_identification_number, indigenous_document_number, or work_permit. */
     public var type: String?
     /** Whether the document has been validated. */
     public var validated: Bool?

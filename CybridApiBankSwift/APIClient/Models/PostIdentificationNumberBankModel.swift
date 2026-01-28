@@ -23,6 +23,8 @@ public struct PostIdentificationNumberBankModel: Codable, JSONEncodable, Hashabl
         case taxIdentificationNumber = "tax_identification_number"
         case identificationCard = "identification_card"
         case workPermit = "work_permit"
+        case indigenousDocumentNumber = "indigenous_document_number"
+        case nationalIdentificationNumber = "national_identification_number"
         case employerIdentificationNumber = "employer_identification_number"
         case businessRegistrationNumber = "business_registration_number"
         case unknownDefaultOpenApi = "unknown_default_open_api"

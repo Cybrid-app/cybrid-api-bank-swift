@@ -19,6 +19,7 @@ public enum IdentityVerificationMethodBankModel: String, Codable, CaseIterable, 
     case businessRegistration = "business_registration"
     case attestedIdAndSelfie = "attested_id_and_selfie"
     case attestedBusinessRegistration = "attested_business_registration"
+    case attestedBusinessAssociate = "attested_business_associate"
     case watchlists = "watchlists"
     case attestedOwnership = "attested_ownership"
     case accountOwnership = "account_ownership"
