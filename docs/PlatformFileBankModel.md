@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **organizationGuid** | **String** | The organization identifier. | [optional] 
 **bankGuid** | **String** | The bank identifier. | [optional] 
 **customerGuid** | **String** | The customer identifier. | [optional] 
-**type** | **String** | The file type; one of drivers_license_front, drivers_license_back, passport, passport_card, visa, identification_card, residence_card, work_permit, selfie, selfie_video, selfie_left, selfie_right, utility_bill, proof_of_address, bank_statement, property_tax, tax_document, ein_letter, incorporation_certificate, persona_inquiry_report, or persona_inquiry_export. | [optional] 
+**type** | **String** | The file type; one of drivers_license_front, drivers_license_back, passport, passport_card, visa, identification_card, residence_card, work_permit, indigenous_id_document, selfie, selfie_video, selfie_left, selfie_right, utility_bill, proof_of_address, bank_statement, property_tax, tax_document, ein_letter, incorporation_certificate, persona_inquiry_report, or persona_inquiry_export. | [optional] 
 **contentType** | **String** | The media type; one of image/jpeg, image/png, application/pdf, application/json, or video/mp4. | [optional] 
 **filename** | **String** | The name of the file. | [optional] 
 **completedAt** | **Date** | The ISO8601 datetime the file was completed at. | [optional] 

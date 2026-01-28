@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct IdentificationNumberBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The source of the identification number; one of drivers_license, passport, passport_card, residence_card, visa, social_security_number, tax_identification_number, identification_card, work_permit, employer_identification_number, or business_registration_number. */
+    /** The source of the identification number; one of drivers_license, passport, passport_card, residence_card, visa, social_security_number, tax_identification_number, identification_card, work_permit, indigenous_document_number, national_identification_number, employer_identification_number, or business_registration_number. */
     public var type: String
     /** The ISO 3166 country 2-Alpha country code of the identification number issuer. */
     public var issuingCountryCode: String?

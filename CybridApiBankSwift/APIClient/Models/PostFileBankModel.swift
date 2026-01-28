@@ -22,6 +22,7 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         case identificationCard = "identification_card"
         case residenceCard = "residence_card"
         case workPermit = "work_permit"
+        case indigenousIdDocument = "indigenous_id_document"
         case selfie = "selfie"
         case selfieVideo = "selfie_video"
         case selfieLeft = "selfie_left"
