@@ -20,7 +20,7 @@ public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable 
     }
     /** The account type. To generate deposit bank accounts with their own unique account number set this to \"main\". To generate deposit bank accounts with the same account number as the parent deposit bank account set this to \"sub_account\". This setting will only generate a unique identifier for the deposit bank and will not result in a unique account number being generated. \"sub_account\" is only  available for customer-level deposit bank accounts. */
     public var type: TypeBankModel
-    /** The fiat account guid. */
+    /** The fiat or reserve account guid. */
     public var accountGuid: String
     /** The unique identifier for the customer. */
     public var customerGuid: String?
