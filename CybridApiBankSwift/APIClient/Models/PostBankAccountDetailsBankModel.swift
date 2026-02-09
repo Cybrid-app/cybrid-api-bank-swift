@@ -21,6 +21,8 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case cbuCvu = "CBU_CVU"
         case pse = "PSE"
         case ifsc = "IFSC"
+        case iban = "IBAN"
+        case sbp = "SBP"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum AccountIdentifierTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -46,6 +48,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case pse = "PSE"
         case etransfer = "ETRANSFER"
         case ifsc = "IFSC"
+        case sbp = "SBP"
         case unspecified = "UNSPECIFIED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
