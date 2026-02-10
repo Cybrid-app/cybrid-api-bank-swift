@@ -13,6 +13,43 @@ import AnyCodable
 /**  */
 public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum PurposeOfTransactionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case computerServices = "computer_services"
+        case familySupport = "family_support"
+        case education = "education"
+        case gift = "gift"
+        case charitableDonation = "charitable_donation"
+        case medicalTreatment = "medical_treatment"
+        case maintenanceExpenses = "maintenance_expenses"
+        case travel = "travel"
+        case hotelAccommodation = "hotel_accommodation"
+        case smallValueRemittance = "small_value_remittance"
+        case liberalizedRemittance = "liberalized_remittance"
+        case personalTransfer = "personal_transfer"
+        case loanPayment = "loan_payment"
+        case taxPayment = "tax_payment"
+        case constructionExpenses = "construction_expenses"
+        case advertisingExpenses = "advertising_expenses"
+        case advisoryFees = "advisory_fees"
+        case businessInsurance = "business_insurance"
+        case insuranceClaims = "insurance_claims"
+        case deliveryFees = "delivery_fees"
+        case serviceCharges = "service_charges"
+        case officeExpenses = "office_expenses"
+        case propertyPurchase = "property_purchase"
+        case propertyRental = "property_rental"
+        case royaltyFees = "royalty_fees"
+        case sharesInvestment = "shares_investment"
+        case fundInvestment = "fund_investment"
+        case billPayment = "bill_payment"
+        case transportationFees = "transportation_fees"
+        case salaryPayment = "salary_payment"
+        case rewardPayment = "reward_payment"
+        case influencerPayment = "influencer_payment"
+        case otherFees = "other_fees"
+        case other = "other"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the quote. */
     public var guid: String
     /** The type of product the plan is for; one of remittance. */
@@ -38,8 +75,10 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     /** The fees associated with the execution. */
     public var fees: [FeeAssociationBankModel]
     public var travelRuleInfo: ExecutionTravelRuleInfoBankModel
+    /** The purpose of transaction for the execution. */
+    public var purposeOfTransaction: PurposeOfTransactionBankModel?
 
-    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], travelRuleInfo: ExecutionTravelRuleInfoBankModel) {
+    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.planGuid = planGuid
@@ -54,6 +93,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         self.stages = stages
         self.fees = fees
         self.travelRuleInfo = travelRuleInfo
+        self.purposeOfTransaction = purposeOfTransaction
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -71,6 +111,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         case stages
         case fees
         case travelRuleInfo = "travel_rule_info"
+        case purposeOfTransaction = "purpose_of_transaction"
     }
 
     // Encodable protocol methods
@@ -91,6 +132,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(stages, forKey: .stages)
         try container.encode(fees, forKey: .fees)
         try container.encode(travelRuleInfo, forKey: .travelRuleInfo)
+        try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
     }
 }
 

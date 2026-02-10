@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **stages** | [StageBankModel] | The stages of the execution. | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the execution. | 
 **travelRuleInfo** | [**ExecutionTravelRuleInfoBankModel**](ExecutionTravelRuleInfoBankModel.md) |  | 
+**purposeOfTransaction** | **String** | The purpose of transaction for the execution. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
