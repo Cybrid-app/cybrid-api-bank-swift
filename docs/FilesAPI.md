@@ -23,7 +23,7 @@ Creates a file.  #### This feature is currently in preview mode and is not yet a
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postFileBankModel = PostFile(type: "type_example", customerGuid: "customerGuid_example", filename: "filename_example", contentType: "contentType_example", data: "data_example") // PostFileBankModel | 
+let postFileBankModel = PostFile(type: "type_example", customerGuid: "customerGuid_example", filename: "filename_example", contentType: "contentType_example", data: "data_example", metadata: PostFile_metadata(part: "part_example")) // PostFileBankModel | 
 
 // Create File
 FilesAPI.createFile(postFileBankModel: postFileBankModel) { (response, error) in

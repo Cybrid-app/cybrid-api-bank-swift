@@ -16,6 +16,7 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case driversLicenseFront = "drivers_license_front"
         case driversLicenseBack = "drivers_license_back"
+        case driversLicense = "drivers_license"
         case passport = "passport"
         case passportCard = "passport_card"
         case visa = "visa"
@@ -56,13 +57,15 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
     public var contentType: ContentTypeBankModel
     /** Base64 encoded file content */
     public var data: String?
+    public var metadata: PostFileMetadataBankModel?
 
-    public init(type: TypeBankModel, customerGuid: String, filename: String, contentType: ContentTypeBankModel, data: String? = nil) {
+    public init(type: TypeBankModel, customerGuid: String, filename: String, contentType: ContentTypeBankModel, data: String? = nil, metadata: PostFileMetadataBankModel? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.filename = filename
         self.contentType = contentType
         self.data = data
+        self.metadata = metadata
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -71,6 +74,7 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         case filename
         case contentType = "content_type"
         case data
+        case metadata
     }
 
     // Encodable protocol methods
@@ -82,6 +86,7 @@ public struct PostFileBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(filename, forKey: .filename)
         try container.encode(contentType, forKey: .contentType)
         try container.encodeIfPresent(data, forKey: .data)
+        try container.encodeIfPresent(metadata, forKey: .metadata)
     }
 }
 
