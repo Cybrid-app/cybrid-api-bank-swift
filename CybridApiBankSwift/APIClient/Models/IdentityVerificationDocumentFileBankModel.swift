@@ -20,12 +20,14 @@ public struct IdentityVerificationDocumentFileBankModel: Codable, JSONEncodable,
     public var contentType: String?
     /** The name of the file. */
     public var filename: String?
+    public var metadata: IdentityVerificationDocumentFileMetadataBankModel?
 
-    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, filename: String? = nil) {
+    public init(guid: String? = nil, type: String? = nil, contentType: String? = nil, filename: String? = nil, metadata: IdentityVerificationDocumentFileMetadataBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.contentType = contentType
         self.filename = filename
+        self.metadata = metadata
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -33,6 +35,7 @@ public struct IdentityVerificationDocumentFileBankModel: Codable, JSONEncodable,
         case type
         case contentType = "content_type"
         case filename
+        case metadata
     }
 
     // Encodable protocol methods
@@ -43,6 +46,7 @@ public struct IdentityVerificationDocumentFileBankModel: Codable, JSONEncodable,
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(contentType, forKey: .contentType)
         try container.encodeIfPresent(filename, forKey: .filename)
+        try container.encodeIfPresent(metadata, forKey: .metadata)
     }
 }
 
