@@ -10,16 +10,16 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The customer&#39;s name. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is bank_account and method is attested_ownership. */
+/** The customer&#39;s name. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is bank_account and method is attested_ownership. Optional when type is kyc and method is watchlists. */
 public struct PostIdentityVerificationNameBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The customer's first name. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is bank_account and method is attested_ownership. */
+    /** The customer's first name. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is kyc and method is watchlists or type is bank_account and method is attested_ownership. */
     public var first: String?
-    /** The customer's middle name. Optional when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is bank_account and method is attested_ownership. */
+    /** The customer's middle name. Optional when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, type is kyc and method is watchlists, or type is bank_account and method is attested_ownership. */
     public var middle: String?
-    /** The customer's last name. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is bank_account and method is attested_ownership. */
+    /** The customer's last name. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is kyc and method is watchlists or type is bank_account and method is attested_ownership. */
     public var last: String?
-    /** The customer's full name. Required when type is kyc and method is attested_business_registration or type is bank_account and method is attested_ownership. Optional when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
+    /** The customer's full name. Required when type is kyc and method is attested_business_registration or type is bank_account and method is attested_ownership. Optional when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is watchlists. */
     public var full: String?
 
     public init(first: String? = nil, middle: String? = nil, last: String? = nil, full: String? = nil) {
