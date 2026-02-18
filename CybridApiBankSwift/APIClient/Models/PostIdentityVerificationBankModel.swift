@@ -60,7 +60,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var dateOfBirth: Date?
     /** The customer's identification numbers. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
-    /** The aliases of the customer. Optional when type is kyc and method is attested_business_registration. */
+    /** The aliases of the customer. Optional when type is kyc and method is attested_business_registration or type is kyc and method is watchlists. */
     public var aliases: [PostIdentityVerificationAliasesInnerBankModel]?
     /** The customer's phone number. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is bank_account and method is attested_ownership. */
     public var phoneNumber: String?

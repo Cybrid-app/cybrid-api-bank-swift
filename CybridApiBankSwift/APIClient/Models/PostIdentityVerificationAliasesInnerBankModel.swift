@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct PostIdentityVerificationAliasesInnerBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The customer's full name. Required when type is kyc and method is attested_business_registration. */
+    /** The customer's full name. Required when type is kyc and method is attested_business_registration or type is kyc and method is watchlists. */
     public var full: String?
 
     public init(full: String? = nil) {
