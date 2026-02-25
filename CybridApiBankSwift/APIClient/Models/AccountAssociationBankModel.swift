@@ -15,7 +15,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the transfer account. */
     public var guid: String
-    /** The type of transfer account; one of trading or external_bank_account. */
+    /** The type of transfer account; one of trading, fiat, external_bank_account, or external_wallet. */
     public var type: String
     /** The account's organization identifier. */
     public var organizationGuid: String?
