@@ -22,7 +22,7 @@ public struct PostAccountBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The account type. */
     public var type: TypeBankModel
-    /** TThe customer identifier associated with the account. */
+    /** The customer identifier associated with the account. */
     public var customerGuid: String?
     /** The asset code. */
     public var asset: String
