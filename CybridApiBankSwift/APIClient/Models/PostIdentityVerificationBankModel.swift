@@ -76,6 +76,13 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]?
     /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
     public var supportingFileGuids: [String]?
+    public var registeredAddress: PostIdentityVerificationRegisteredAddressBankModel?
+    /** The industry the business operates in. Required for attested business registration V3. e.g. 'Crypto / Digital Assets / Blockchain', 'Education', 'Gaming', 'Healthcare / Hospitality', 'Lending / Investments', 'Retail / E-Commerce', etc. Optional when type is kyc and method is attested_business_registration. */
+    public var businessIndustry: String?
+    /** The source of business funds. Required for attested business registration V3. e.g. 'Funds from individual customers', 'Funds from business customers', 'Funds from both individual and business customers', etc. Optional when type is kyc and method is attested_business_registration. */
+    public var businessFundsSource: String?
+    /** The destination of business funds. Required for attested business registration V3. e.g. 'To your business account (bank or wallet)', 'To vendors or suppliers', 'To employees or contractors', 'To sellers or merchants', 'Bulk payments or payouts', etc. Optional when type is kyc and method is attested_business_registration. */
+    public var businessFundsDestination: String?
     /** The customer's occupation. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie. */
     public var occupation: String?
     /** Whether biometrics have been verified Required when type is kyc and method is attested_business_associate. */
@@ -83,7 +90,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     /** The external bank account's identifier. Required when type is bank_account. */
     public var externalBankAccountGuid: String?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, requireTaxId: Bool? = false, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, aliases: [PostIdentityVerificationAliasesInnerBankModel]? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, directorCustomerGuids: [String]? = nil, ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]? = nil, supportingFileGuids: [String]? = nil, occupation: String? = nil, biometricsVerified: Bool? = nil, externalBankAccountGuid: String? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, requireTaxId: Bool? = false, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, aliases: [PostIdentityVerificationAliasesInnerBankModel]? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, directorCustomerGuids: [String]? = nil, ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]? = nil, supportingFileGuids: [String]? = nil, registeredAddress: PostIdentityVerificationRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, occupation: String? = nil, biometricsVerified: Bool? = nil, externalBankAccountGuid: String? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.expectedBehaviours = expectedBehaviours
@@ -103,6 +110,10 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         self.directorCustomerGuids = directorCustomerGuids
         self.ultimateBeneficialOwners = ultimateBeneficialOwners
         self.supportingFileGuids = supportingFileGuids
+        self.registeredAddress = registeredAddress
+        self.businessIndustry = businessIndustry
+        self.businessFundsSource = businessFundsSource
+        self.businessFundsDestination = businessFundsDestination
         self.occupation = occupation
         self.biometricsVerified = biometricsVerified
         self.externalBankAccountGuid = externalBankAccountGuid
@@ -128,6 +139,10 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case directorCustomerGuids = "director_customer_guids"
         case ultimateBeneficialOwners = "ultimate_beneficial_owners"
         case supportingFileGuids = "supporting_file_guids"
+        case registeredAddress = "registered_address"
+        case businessIndustry = "business_industry"
+        case businessFundsSource = "business_funds_source"
+        case businessFundsDestination = "business_funds_destination"
         case occupation
         case biometricsVerified = "biometrics_verified"
         case externalBankAccountGuid = "external_bank_account_guid"
@@ -156,6 +171,10 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         try container.encodeIfPresent(directorCustomerGuids, forKey: .directorCustomerGuids)
         try container.encodeIfPresent(ultimateBeneficialOwners, forKey: .ultimateBeneficialOwners)
         try container.encodeIfPresent(supportingFileGuids, forKey: .supportingFileGuids)
+        try container.encodeIfPresent(registeredAddress, forKey: .registeredAddress)
+        try container.encodeIfPresent(businessIndustry, forKey: .businessIndustry)
+        try container.encodeIfPresent(businessFundsSource, forKey: .businessFundsSource)
+        try container.encodeIfPresent(businessFundsDestination, forKey: .businessFundsDestination)
         try container.encodeIfPresent(occupation, forKey: .occupation)
         try container.encodeIfPresent(biometricsVerified, forKey: .biometricsVerified)
         try container.encodeIfPresent(externalBankAccountGuid, forKey: .externalBankAccountGuid)
