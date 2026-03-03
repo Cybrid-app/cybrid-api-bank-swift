@@ -29,10 +29,17 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     public var website: String?
     /** The attested nature of business. */
     public var natureOfBusiness: String?
+    public var registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel?
+    /** The attested business industry. */
+    public var businessIndustry: String?
+    /** The attested business funds source. */
+    public var businessFundsSource: String?
+    /** The attested business funds destination. */
+    public var businessFundsDestination: String?
     /** The attested identification numbers. */
     public var identificationNumbers: [IdentificationNumberBankModel]?
 
-    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
+    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
         self.name = name
         self.aliases = aliases
         self.address = address
@@ -42,6 +49,10 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         self.occupation = occupation
         self.website = website
         self.natureOfBusiness = natureOfBusiness
+        self.registeredAddress = registeredAddress
+        self.businessIndustry = businessIndustry
+        self.businessFundsSource = businessFundsSource
+        self.businessFundsDestination = businessFundsDestination
         self.identificationNumbers = identificationNumbers
     }
 
@@ -55,6 +66,10 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         case occupation
         case website
         case natureOfBusiness = "nature_of_business"
+        case registeredAddress = "registered_address"
+        case businessIndustry = "business_industry"
+        case businessFundsSource = "business_funds_source"
+        case businessFundsDestination = "business_funds_destination"
         case identificationNumbers = "identification_numbers"
     }
 
@@ -71,6 +86,10 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         try container.encodeIfPresent(occupation, forKey: .occupation)
         try container.encodeIfPresent(website, forKey: .website)
         try container.encodeIfPresent(natureOfBusiness, forKey: .natureOfBusiness)
+        try container.encodeIfPresent(registeredAddress, forKey: .registeredAddress)
+        try container.encodeIfPresent(businessIndustry, forKey: .businessIndustry)
+        try container.encodeIfPresent(businessFundsSource, forKey: .businessFundsSource)
+        try container.encodeIfPresent(businessFundsDestination, forKey: .businessFundsDestination)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
     }
 }
