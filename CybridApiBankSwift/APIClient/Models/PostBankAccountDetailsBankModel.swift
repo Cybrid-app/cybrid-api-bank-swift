@@ -13,21 +13,6 @@ import AnyCodable
 /** Bank account details. */
 public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable {
 
-    public enum BankCodeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case cpa = "CPA"
-        case aba = "ABA"
-        case clabe = "CLABE"
-        case pix = "PIX"
-        case cbuCvu = "CBU_CVU"
-        case pse = "PSE"
-        case ifsc = "IFSC"
-        case iban = "IBAN"
-        case sbp = "SBP"
-        case beftn = "BEFTN"
-        case swiftBic = "SWIFT_BIC"
-        case cbn = "CBN"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     public enum AccountIdentifierTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case clabe = "CLABE"
         case phoneNumber = "PHONE_NUMBER"
@@ -54,7 +39,27 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case sbp = "SBP"
         case beftn = "BEFTN"
         case ngbank = "NGBANK"
+        case easyPaisa = "EASY_PAISA"
+        case finja = "FINJA"
+        case jazzCash = "JAZZ_CASH"
+        case nayaPay = "NAYA_PAY"
+        case sadaPay = "SADA_PAY"
         case unspecified = "UNSPECIFIED"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    public enum BankCodeTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case cpa = "CPA"
+        case aba = "ABA"
+        case clabe = "CLABE"
+        case pix = "PIX"
+        case cbuCvu = "CBU_CVU"
+        case pse = "PSE"
+        case ifsc = "IFSC"
+        case iban = "IBAN"
+        case sbp = "SBP"
+        case beftn = "BEFTN"
+        case swiftBic = "SWIFT_BIC"
+        case cbn = "CBN"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum AccountTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -62,34 +67,34 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case savings = "savings"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The type of bank code. */
-    public var bankCodeType: BankCodeTypeBankModel
     /** The bank code. */
     public var bankCode: String?
     /** The account number or unique identifier for the account. */
     public var accountIdentifier: String
-    /** The type of account identifier. */
+    /** The type of account identifier. Must be PHONE_NUMBER for mobile wallet rails. Required when payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, or payment_rail is SADA_PAY. */
     public var accountIdentifierType: AccountIdentifierTypeBankModel?
     /** The payment rail used for the account. */
     public var paymentRail: PaymentRailBankModel
+    /** The type of bank code. Required when payment_rail is EFT, payment_rail is ACH, payment_rail is RTP, payment_rail is WIRE, payment_rail is SPEI, payment_rail is PIX, payment_rail is COELSA, payment_rail is PSE, payment_rail is ETRANSFER, payment_rail is IFSC, payment_rail is SBP, payment_rail is BEFTN, payment_rail is NGBANK, or payment_rail is UNSPECIFIED. */
+    public var bankCodeType: BankCodeTypeBankModel?
     /** The type of account. Required when payment_rail is PSE. */
     public var accountType: AccountTypeBankModel?
 
-    public init(bankCodeType: BankCodeTypeBankModel, bankCode: String? = nil, accountIdentifier: String, accountIdentifierType: AccountIdentifierTypeBankModel? = nil, paymentRail: PaymentRailBankModel, accountType: AccountTypeBankModel? = nil) {
-        self.bankCodeType = bankCodeType
+    public init(bankCode: String? = nil, accountIdentifier: String, accountIdentifierType: AccountIdentifierTypeBankModel? = nil, paymentRail: PaymentRailBankModel, bankCodeType: BankCodeTypeBankModel? = nil, accountType: AccountTypeBankModel? = nil) {
         self.bankCode = bankCode
         self.accountIdentifier = accountIdentifier
         self.accountIdentifierType = accountIdentifierType
         self.paymentRail = paymentRail
+        self.bankCodeType = bankCodeType
         self.accountType = accountType
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case bankCodeType = "bank_code_type"
         case bankCode = "bank_code"
         case accountIdentifier = "account_identifier"
         case accountIdentifierType = "account_identifier_type"
         case paymentRail = "payment_rail"
+        case bankCodeType = "bank_code_type"
         case accountType = "account_type"
     }
 
@@ -97,11 +102,11 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(bankCodeType, forKey: .bankCodeType)
         try container.encodeIfPresent(bankCode, forKey: .bankCode)
         try container.encode(accountIdentifier, forKey: .accountIdentifier)
         try container.encodeIfPresent(accountIdentifierType, forKey: .accountIdentifierType)
         try container.encode(paymentRail, forKey: .paymentRail)
+        try container.encodeIfPresent(bankCodeType, forKey: .bankCodeType)
         try container.encodeIfPresent(accountType, forKey: .accountType)
     }
 }
