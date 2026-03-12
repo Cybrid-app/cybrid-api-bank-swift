@@ -20,6 +20,7 @@ public struct PostBankBankModel: Codable, JSONEncodable, Hashable {
     public enum FeaturesBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case attestationIdentityRecords = "attestation_identity_records"
         case attestationIdentityRecordsV2 = "attestation_identity_records_v2"
+        case attestationIdentityRecordsV3 = "attestation_identity_records_v3"
         case kycIdentityVerifications = "kyc_identity_verifications"
         case businessCustomers = "business_customers"
         case individualCustomers = "individual_customers"
