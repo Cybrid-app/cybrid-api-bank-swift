@@ -14,6 +14,7 @@ public enum BankFeatureBankModel: String, Codable, CaseIterable, CaseIterableDef
     case kycIdentityVerifications = "kyc_identity_verifications"
     case attestationIdentityRecords = "attestation_identity_records"
     case attestationIdentityRecordsV2 = "attestation_identity_records_v2"
+    case attestationIdentityRecordsV3 = "attestation_identity_records_v3"
     case rawRoutingDetails = "raw_routing_details"
     case individualCustomers = "individual_customers"
     case businessCustomers = "business_customers"
