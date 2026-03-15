@@ -10,11 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for persona session creation. */
 public struct PostPersonaSessionBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The unique identifier for the Persona inquiry. */
+    /** The ID of the Persona inquiry to create a session for */
     public var personaInquiryId: String
-    /** The unique identifier for the identity verification. */
+    /** The GUID of the identity verification associated with the session */
     public var identityVerificationGuid: String
 
     public init(personaInquiryId: String, identityVerificationGuid: String) {
