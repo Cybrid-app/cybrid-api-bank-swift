@@ -28,5 +28,8 @@ public enum TransferFailureCodeBankModel: String, Codable, CaseIterable, CaseIte
     case externalVendorError = "external_vendor_error"
     case paymentRequestExpired = "payment_request_expired"
     case returnRiskExceeded = "return_risk_exceeded"
+    case dailyLimitExceeded = "daily_limit_exceeded"
+    case weeklyLimitExceeded = "weekly_limit_exceeded"
+    case monthlyLimitExceeded = "monthly_limit_exceeded"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

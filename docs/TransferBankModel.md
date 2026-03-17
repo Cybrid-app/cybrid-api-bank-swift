@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **asset** | **String** | The asset the transfer is related to, e.g., USD. | [optional] 
 **side** | **String** | The direction of the quote; one of deposit or withdrawal. | [optional] 
 **state** | **String** | The state of the transfer; one of storing, pending, holding, reviewing, completed, or failed. | [optional] 
-**failureCode** | **String** | The failure code for failed transfers; one of non_sufficient_funds, refresh_required, party_name_invalid, payment_rail_invalid, compliance_rejection, cancelled, reversed, limit_exceeded, network_fee_too_low, amount_too_low, internal_error, invalid_address, invalid_destination, customer_action_required, external_vendor_error, payment_request_expired, or return_risk_exceeded. | [optional] 
+**failureCode** | **String** | The failure code for failed transfers; one of non_sufficient_funds, refresh_required, party_name_invalid, payment_rail_invalid, compliance_rejection, cancelled, reversed, limit_exceeded, network_fee_too_low, amount_too_low, internal_error, invalid_address, invalid_destination, customer_action_required, external_vendor_error, payment_request_expired, return_risk_exceeded, daily_limit_exceeded, weekly_limit_exceeded, or monthly_limit_exceeded. | [optional] 
 **returnCode** | **String** | The return code for reversed transfers | [optional] 
 **amount** | **Int** | The actual amount in base units of the asset. | [optional] 
 **estimatedAmount** | **Int** | The estimated amount in base units of the asset. | [optional] 
