@@ -7,7 +7,7 @@ targets:
     sources: [CybridApiBankSwift/APIClient]
     info:
       path: ./Info.plist
-      version: 0.128.34
+      version: 0.128.35
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
