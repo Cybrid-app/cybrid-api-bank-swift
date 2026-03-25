@@ -10,7 +10,6 @@ import Foundation
 import AnyCodable
 #endif
 
-/**  */
 public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
 
     public enum PurposeOfTransactionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {

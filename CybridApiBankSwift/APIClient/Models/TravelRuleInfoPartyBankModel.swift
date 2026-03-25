@@ -10,7 +10,6 @@ import Foundation
 import AnyCodable
 #endif
 
-/**  */
 public struct TravelRuleInfoPartyBankModel: Codable, JSONEncodable, Hashable {
 
     /** The type of entity; one of bank, customer, or counterparty. */

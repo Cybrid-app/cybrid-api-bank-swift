@@ -10,7 +10,6 @@ import Foundation
 import AnyCodable
 #endif
 
-/**  */
 public struct FeeAssociationBankModel: Codable, JSONEncodable, Hashable {
 
     /** The type of fee; one of platform, network, or bank. */
