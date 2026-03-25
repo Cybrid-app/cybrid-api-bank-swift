@@ -10,7 +10,6 @@ import Foundation
 import AnyCodable
 #endif
 
-/**  */
 public struct StageBankModel: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier for the stage. */

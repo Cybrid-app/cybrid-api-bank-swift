@@ -10,7 +10,6 @@ import Foundation
 import AnyCodable
 #endif
 
-/**  */
 public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the transfer account. */
