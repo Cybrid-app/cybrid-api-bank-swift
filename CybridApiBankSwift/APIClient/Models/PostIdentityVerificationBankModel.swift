@@ -36,13 +36,14 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case attestedIdAndSelfie = "attested_id_and_selfie"
         case attestedBusinessRegistration = "attested_business_registration"
         case attestedBusinessAssociate = "attested_business_associate"
+        case attestedIdAndDatabase = "attested_id_and_database"
         case attestedOwnership = "attested_ownership"
         case accountOwnership = "account_ownership"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The type of identity verification. */
     public var type: TypeBankModel
-    /** The customer's identifier. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
+    /** The customer's identifier. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
     public var customerGuid: String?
     /** The optional expected behaviour to simulate. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
@@ -56,15 +57,15 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var requireTaxId: Bool? = false
     public var name: PostIdentityVerificationNameBankModel?
     public var address: PostIdentityVerificationAddressBankModel?
-    /** The customer's date of birth. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
+    /** The customer's date of birth. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
     public var dateOfBirth: Date?
-    /** The customer's identification numbers. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
+    /** The customer's identification numbers. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
     /** The aliases of the customer. Optional when type is kyc and method is attested_business_registration or type is kyc and method is watchlists. */
     public var aliases: [PostIdentityVerificationAliasesInnerBankModel]?
-    /** The customer's phone number. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is bank_account and method is attested_ownership. */
+    /** The customer's phone number. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. Optional when type is bank_account and method is attested_ownership. */
     public var phoneNumber: String?
-    /** The customer's email address. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. Optional when type is bank_account and method is attested_ownership. */
+    /** The customer's email address. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. Optional when type is bank_account and method is attested_ownership. */
     public var emailAddress: String?
     /** The customer's website. Required when type is kyc and method is attested_business_registration. */
     public var website: String?
@@ -74,7 +75,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var directorCustomerGuids: [String]?
     /** The ultimate beneficial owners of the business with 10% or more ownership Required when type is kyc and method is attested_business_registration. */
     public var ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]?
-    /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, or type is kyc and method is attested_business_associate. */
+    /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
     public var supportingFileGuids: [String]?
     public var registeredAddress: PostIdentityVerificationRegisteredAddressBankModel?
     /** The industry the business operates in. Required for attested business registration V3. e.g. 'Crypto / Digital Assets / Blockchain', 'Education', 'Gaming', 'Healthcare / Hospitality', 'Lending / Investments', 'Retail / E-Commerce', etc. Optional when type is kyc and method is attested_business_registration. */
@@ -85,7 +86,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var businessFundsDestination: String?
     /** The customer's occupation. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie. */
     public var occupation: String?
-    /** Whether biometrics have been verified Required when type is kyc and method is attested_business_associate. */
+    /** Whether biometrics have been verified Required when type is kyc and method is attested_business_associate or type is kyc and method is attested_id_and_database. */
     public var biometricsVerified: Bool?
     /** The external bank account's identifier. Required when type is bank_account. */
     public var externalBankAccountGuid: String?
