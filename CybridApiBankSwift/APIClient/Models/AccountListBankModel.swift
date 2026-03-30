@@ -18,7 +18,6 @@ public struct AccountListBankModel: Codable, JSONEncodable, Hashable {
     public var page: Int
     /** The number of entities per page to return. */
     public var perPage: Int
-    /** Array of account entities */
     public var objects: [AccountBankModel]
 
     public init(total: Int, page: Int, perPage: Int, objects: [AccountBankModel]) {

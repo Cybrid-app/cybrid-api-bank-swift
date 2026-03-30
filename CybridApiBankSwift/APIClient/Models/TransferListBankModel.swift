@@ -18,7 +18,6 @@ public struct TransferListBankModel: Codable, JSONEncodable, Hashable {
     public var page: Int
     /** The number of entities per page to return. */
     public var perPage: Int
-    /** Array of trade entities */
     public var objects: [TransferBankModel]
 
     public init(total: Int, page: Int, perPage: Int, objects: [TransferBankModel]) {
