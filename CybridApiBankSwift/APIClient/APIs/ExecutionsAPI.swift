@@ -34,7 +34,7 @@ open class ExecutionsAPI {
     /**
      Create Execution
      - POST /api/executions
-     - Creates an execution.  ## Create a plan execution  | State | Description | |-------|-------------| | storing | The Platform is storing the execution details in our private store | | executing | The Platform is executing the plan | | completed | The Platform has successfully completed the plan execution | | failed | The Platform was not able to successfully complete the plan execution |    Required scope: **executions:execute**
+     - Creates an execution.  ## Create a plan execution  | State | Description | |-------|-------------| | storing | The Platform is storing the execution details in our private store | | executing | The Platform is executing the plan | | completed | The Platform has successfully completed the plan execution | | failed | The Platform was not able to successfully complete the plan execution |  ## Failure codes  | Code | Description | |------|-------------| | invalid_counterparty | The payout failed due to an invalid or rejected counterparty | | invalid_destination_account | The payout failed due to an invalid, closed, or blocked destination account |    Required scope: **executions:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
