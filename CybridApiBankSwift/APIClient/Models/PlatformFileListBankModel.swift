@@ -18,7 +18,6 @@ public struct PlatformFileListBankModel: Codable, JSONEncodable, Hashable {
     public var page: Int
     /** The number of entities per page to return. */
     public var perPage: Int
-    /** Array of file entities */
     public var objects: [PlatformFileBankModel]
 
     public init(total: Int, page: Int, perPage: Int, objects: [PlatformFileBankModel]) {

@@ -18,7 +18,6 @@ public struct WorkflowsListBankModel: Codable, JSONEncodable, Hashable {
     public var page: Int
     /** The number of entities per page to return. */
     public var perPage: Int
-    /** Array of workflow entities */
     public var objects: [WorkflowBankModel]
 
     public init(total: Int, page: Int, perPage: Int, objects: [WorkflowBankModel]) {
