@@ -17,5 +17,6 @@ public enum QuoteTypeBankModel: String, Codable, CaseIterable, CaseIterableDefau
     case cryptoTransfer = "crypto_transfer"
     case interAccount = "inter_account"
     case lightningTransfer = "lightning_transfer"
+    case bookTransfer = "book_transfer"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
