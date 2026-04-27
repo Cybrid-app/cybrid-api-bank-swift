@@ -30,6 +30,8 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     /** The amount of funds that are in the account, in base units of the asset. */
     public var platformBalance: String?
+    /** The minimum balance for no-hold ACH pulls, in base units of the account asset. Only returned for reserve accounts. */
+    public var minimumBalanceFundingPull: String?
     /** The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. */
     public var platformAvailable: String?
     /** The state of the account; one of storing or created. */
@@ -37,7 +39,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the account. */
     public var labels: [String]?
 
-    public init(type: String? = nil, guid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, platformAvailable: String? = nil, state: String? = nil, labels: [String]? = nil) {
+    public init(type: String? = nil, guid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, platformBalance: String? = nil, minimumBalanceFundingPull: String? = nil, platformAvailable: String? = nil, state: String? = nil, labels: [String]? = nil) {
         self.type = type
         self.guid = guid
         self.createdAt = createdAt
@@ -47,6 +49,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.platformBalance = platformBalance
+        self.minimumBalanceFundingPull = minimumBalanceFundingPull
         self.platformAvailable = platformAvailable
         self.state = state
         self.labels = labels
@@ -62,6 +65,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case platformBalance = "platform_balance"
+        case minimumBalanceFundingPull = "minimum_balance_funding_pull"
         case platformAvailable = "platform_available"
         case state
         case labels
@@ -80,6 +84,7 @@ public struct AccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(platformBalance, forKey: .platformBalance)
+        try container.encodeIfPresent(minimumBalanceFundingPull, forKey: .minimumBalanceFundingPull)
         try container.encodeIfPresent(platformAvailable, forKey: .platformAvailable)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(labels, forKey: .labels)
