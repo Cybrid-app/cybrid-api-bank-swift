@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **bankGuid** | **String** | The bank identifier associated with the account. | [optional] 
 **customerGuid** | **String** | The customer identifier associated with the account. | [optional] 
 **platformBalance** | **Int** | The amount of funds that are in the account, in base units of the asset. | [optional] 
+**minimumBalanceFundingPull** | **Int** | The minimum balance for no-hold ACH pulls, in base units of the account asset. Only returned for reserve accounts. | [optional] 
 **platformAvailable** | **Int** | The amount of funds that are in the account, in base units of the asset, that are available for use on the platform. | [optional] 
 **state** | **String** | The state of the account; one of storing or created. | [optional] 
 **labels** | **[String]** | The labels associated with the account. | [optional] 
