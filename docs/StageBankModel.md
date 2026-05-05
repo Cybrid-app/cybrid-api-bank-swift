@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **type** | **String** | The type of stage; one of payout. | 
 **state** | **String** | The state of the stage; one of storing, planning, planned, executing, completed, or failed. | 
 **failureCode** | **String** | The failure code for failed stages. | [optional] 
+**identifiers** | [StageIdentifierBankModel] | Provider-issued identifiers associated with this stage. Always present, possibly empty. | 
+**links** | [StageLinkBankModel] | Provider-issued links associated with this stage. Always present, possibly empty. | 
 **createdAt** | **Date** | The ISO8601 datetime the stage was created at. | 
 **updatedAt** | **Date** | The ISO8601 datetime the stage was last updated at. | 
 **sourceAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 

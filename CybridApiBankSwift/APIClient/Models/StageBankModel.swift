@@ -20,6 +20,10 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     public var state: String
     /** The failure code for failed stages. */
     public var failureCode: String?
+    /** Provider-issued identifiers associated with this stage. Always present, possibly empty. */
+    public var identifiers: [StageIdentifierBankModel]
+    /** Provider-issued links associated with this stage. Always present, possibly empty. */
+    public var links: [StageLinkBankModel]
     /** The ISO8601 datetime the stage was created at. */
     public var createdAt: Date
     /** The ISO8601 datetime the stage was last updated at. */
@@ -29,11 +33,13 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     /** The fees associated with the stage. */
     public var fees: [FeeAssociationBankModel]
 
-    public init(guid: String, type: String, state: String, failureCode: String? = nil, createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel]) {
+    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel]) {
         self.guid = guid
         self.type = type
         self.state = state
         self.failureCode = failureCode
+        self.identifiers = identifiers
+        self.links = links
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.sourceAccount = sourceAccount
@@ -46,6 +52,8 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         case type
         case state
         case failureCode = "failure_code"
+        case identifiers
+        case links
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case sourceAccount = "source_account"
@@ -61,6 +69,8 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
+        try container.encode(identifiers, forKey: .identifiers)
+        try container.encode(links, forKey: .links)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(sourceAccount, forKey: .sourceAccount)
