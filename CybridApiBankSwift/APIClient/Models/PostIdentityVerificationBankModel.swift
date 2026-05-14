@@ -73,7 +73,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var natureOfBusiness: String?
     /** The customer guids of the directors of the business Required when type is kyc and method is attested_business_registration. */
     public var directorCustomerGuids: [String]?
-    /** The ultimate beneficial owners of the business with 10% or more ownership Required when type is kyc and method is attested_business_registration. */
+    /** The ultimate beneficial owners of the business with 25% or more ownership. Required for attested business registration V2, optional for V3. Optional when type is kyc and method is attested_business_registration. */
     public var ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]?
     /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
     public var supportingFileGuids: [String]?
