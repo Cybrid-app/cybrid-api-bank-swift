@@ -65,8 +65,10 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: PostPlanTravelRuleInfoBankModel?
     /** The purpose of transaction for the plan. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
+    /** Supporting documents to attach to the plan. Only valid for remittance plans; requests that include this field on other plan types are rejected. Optional when type is remittance. */
+    public var supportingDocuments: [PostSupportingDocumentBankModel]?
 
-    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil) {
+    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil) {
         self.type = type
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -74,6 +76,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         self.destinationAccount = destinationAccount
         self.travelRuleInfo = travelRuleInfo
         self.purposeOfTransaction = purposeOfTransaction
+        self.supportingDocuments = supportingDocuments
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -84,6 +87,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case destinationAccount = "destination_account"
         case travelRuleInfo = "travel_rule_info"
         case purposeOfTransaction = "purpose_of_transaction"
+        case supportingDocuments = "supporting_documents"
     }
 
     // Encodable protocol methods
@@ -97,6 +101,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(destinationAccount, forKey: .destinationAccount)
         try container.encodeIfPresent(travelRuleInfo, forKey: .travelRuleInfo)
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
+        try container.encodeIfPresent(supportingDocuments, forKey: .supportingDocuments)
     }
 }
 

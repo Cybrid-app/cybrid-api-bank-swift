@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **destinationAccount** | [**PostPlanDestinationAccountBankModel**](PostPlanDestinationAccountBankModel.md) |  | 
 **travelRuleInfo** | [**PostPlanTravelRuleInfoBankModel**](PostPlanTravelRuleInfoBankModel.md) |  | [optional] 
 **purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
+**supportingDocuments** | [PostSupportingDocumentBankModel] | Supporting documents to attach to the plan. Only valid for remittance plans; requests that include this field on other plan types are rejected. Optional when type is remittance. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
