@@ -29,6 +29,14 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case sell = "sell"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case ach = "ach"
+        case eft = "eft"
+        case wire = "wire"
+        case rtp = "rtp"
+        case etransfer = "etransfer"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The type of product the quote is for. */
     public var productType: ProductTypeBankModel? = .trading
     /** The unique identifier for the bank. */
@@ -49,6 +57,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var side: SideBankModel?
     /** The unique identifier for the destination account. Used to determine routing-specific fees for EFT withdrawals. Required when product_type is inter_account. Optional when product_type is funding. */
     public var destinationAccountGuid: String?
+    /** The payment rail the resulting transfer will execute on. Required when the downstream transfer will be an e-transfer withdrawal. Optional when product_type is funding. */
+    public var paymentRail: PaymentRailBankModel?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported.  Required when product_type is trading. */
     public var symbol: String?
     /** Destination accounts for batch transactions on UTXO-based blockchains. A single destination account is required for Base blockchain assets. Optional when product_type is crypto_transfer. */
@@ -58,7 +68,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The source account's identifier. Required when product_type is inter_account. */
     public var sourceAccountGuid: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, asset: String? = nil, networkAddress: String? = nil, fees: [PostFeeBankModel]? = nil, side: SideBankModel? = nil, destinationAccountGuid: String? = nil, symbol: String? = nil, destinationAccounts: [PostQuoteEntryBankModel]? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, asset: String? = nil, networkAddress: String? = nil, fees: [PostFeeBankModel]? = nil, side: SideBankModel? = nil, destinationAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, symbol: String? = nil, destinationAccounts: [PostQuoteEntryBankModel]? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -69,6 +79,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         self.fees = fees
         self.side = side
         self.destinationAccountGuid = destinationAccountGuid
+        self.paymentRail = paymentRail
         self.symbol = symbol
         self.destinationAccounts = destinationAccounts
         self.referenceTradeGuid = referenceTradeGuid
@@ -86,6 +97,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case fees
         case side
         case destinationAccountGuid = "destination_account_guid"
+        case paymentRail = "payment_rail"
         case symbol
         case destinationAccounts = "destination_accounts"
         case referenceTradeGuid = "reference_trade_guid"
@@ -106,6 +118,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fees, forKey: .fees)
         try container.encodeIfPresent(side, forKey: .side)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
+        try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
         try container.encodeIfPresent(symbol, forKey: .symbol)
         try container.encodeIfPresent(destinationAccounts, forKey: .destinationAccounts)
         try container.encodeIfPresent(referenceTradeGuid, forKey: .referenceTradeGuid)
