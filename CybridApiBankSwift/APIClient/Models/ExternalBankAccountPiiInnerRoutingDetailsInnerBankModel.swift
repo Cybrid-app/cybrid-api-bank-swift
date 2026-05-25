@@ -12,19 +12,48 @@ import AnyCodable
 
 public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case eft = "EFT"
+        case ach = "ACH"
+        case rtp = "RTP"
+        case wire = "WIRE"
+        case spei = "SPEI"
+        case pix = "PIX"
+        case coelsa = "COELSA"
+        case pse = "PSE"
+        case etransfer = "ETRANSFER"
+        case ifsc = "IFSC"
+        case sbp = "SBP"
+        case beftn = "BEFTN"
+        case ngbank = "NGBANK"
+        case lbtr = "LBTR"
+        case easyPaisa = "EASY_PAISA"
+        case finja = "FINJA"
+        case jazzCash = "JAZZ_CASH"
+        case nayaPay = "NAYA_PAY"
+        case sadaPay = "SADA_PAY"
+        case kebank = "KEBANK"
+        case mpesa = "MPESA"
+        case unspecified = "UNSPECIFIED"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The type of routing number; one of CPA, ABA, or IFSC. */
     public var routingNumberType: String
     /** The routing number. */
     public var routingNumber: String
+    /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, SBP, BEFTN, NGBANK, LBTR, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, MPESA, or UNSPECIFIED. Null for accounts that did not specify a rail. */
+    public var paymentRail: PaymentRailBankModel?
 
-    public init(routingNumberType: String, routingNumber: String) {
+    public init(routingNumberType: String, routingNumber: String, paymentRail: PaymentRailBankModel? = nil) {
         self.routingNumberType = routingNumberType
         self.routingNumber = routingNumber
+        self.paymentRail = paymentRail
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case routingNumberType = "routing_number_type"
         case routingNumber = "routing_number"
+        case paymentRail = "payment_rail"
     }
 
     // Encodable protocol methods
@@ -33,6 +62,7 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(routingNumberType, forKey: .routingNumberType)
         try container.encode(routingNumber, forKey: .routingNumber)
+        try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
     }
 }
 
