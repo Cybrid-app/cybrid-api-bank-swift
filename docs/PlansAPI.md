@@ -23,7 +23,7 @@ Creates a plan.  ## Create a plan  Plans can be created for a Bank or a Customer
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postPlanBankModel = PostPlan(type: "type_example", bankGuid: "bankGuid_example", customerGuid: "customerGuid_example", sourceAccount: PostPlan_source_account(guid: "guid_example", amount: 123), destinationAccount: PostPlan_destination_account(guid: "guid_example", amount: 123), travelRuleInfo: PostPlan_travel_rule_info(ultimateOriginatingPartyGuid: "ultimateOriginatingPartyGuid_example", ultimateReceivingPartyGuid: "ultimateReceivingPartyGuid_example"), purposeOfTransaction: "purposeOfTransaction_example", supportingDocuments: [PostSupportingDocument(type: "type_example", fileGuids: ["fileGuids_example"])]) // PostPlanBankModel | 
+let postPlanBankModel = PostPlan(type: "type_example", bankGuid: "bankGuid_example", customerGuid: "customerGuid_example", sourceAccount: PostPlan_source_account(guid: "guid_example", amount: 123), destinationAccount: PostPlan_destination_account(guid: "guid_example", amount: 123), travelRuleInfo: PostPlan_travel_rule_info(ultimateOriginatingPartyGuid: "ultimateOriginatingPartyGuid_example", ultimateReceivingPartyGuid: "ultimateReceivingPartyGuid_example"), purposeOfTransaction: "purposeOfTransaction_example", labels: ["labels_example"], supportingDocuments: [PostSupportingDocument(type: "type_example", fileGuids: ["fileGuids_example"])]) // PostPlanBankModel | 
 
 // Create Plan
 PlansAPI.createPlan(postPlanBankModel: postPlanBankModel) { (response, error) in
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listPlans**
 ```swift
-    open class func listPlans(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, completion: @escaping (_ data: PlanListBankModel?, _ error: Error?) -> Void)
+    open class func listPlans(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, label: String? = nil, completion: @escaping (_ data: PlanListBankModel?, _ error: Error?) -> Void)
 ```
 
 Get plans list
@@ -136,9 +136,10 @@ let createdAtGte = "createdAtGte_example" // String | Created at start date-time
 let createdAtLt = "createdAtLt_example" // String | Created at end date-time exclusive upper bound, ISO8601. (optional)
 let updatedAtGte = "updatedAtGte_example" // String | Updated at start date-time inclusive lower bound, ISO8601. (optional)
 let updatedAtLt = "updatedAtLt_example" // String | Updated at end date-time exclusive upper bound, ISO8601. (optional)
+let label = "label_example" // String | Comma separated labels to list plans for. (optional)
 
 // Get plans list
-PlansAPI.listPlans(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, type: type, state: state, sourceAccountGuid: sourceAccountGuid, destinationAccountGuid: destinationAccountGuid, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt) { (response, error) in
+PlansAPI.listPlans(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, type: type, state: state, sourceAccountGuid: sourceAccountGuid, destinationAccountGuid: destinationAccountGuid, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt, label: label) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -167,6 +168,7 @@ Name | Type | Description  | Notes
  **createdAtLt** | **String** | Created at end date-time exclusive upper bound, ISO8601. | [optional] 
  **updatedAtGte** | **String** | Updated at start date-time inclusive lower bound, ISO8601. | [optional] 
  **updatedAtLt** | **String** | Updated at end date-time exclusive upper bound, ISO8601. | [optional] 
+ **label** | **String** | Comma separated labels to list plans for. | [optional] 
 
 ### Return type
 
