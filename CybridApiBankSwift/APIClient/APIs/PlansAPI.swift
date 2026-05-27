@@ -131,12 +131,13 @@ open class PlansAPI {
      - parameter createdAtLt: (query) Created at end date-time exclusive upper bound, ISO8601. (optional)
      - parameter updatedAtGte: (query) Updated at start date-time inclusive lower bound, ISO8601. (optional)
      - parameter updatedAtLt: (query) Updated at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter label: (query) Comma separated labels to list plans for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listPlans(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlanListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listPlansWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, type: type, state: state, sourceAccountGuid: sourceAccountGuid, destinationAccountGuid: destinationAccountGuid, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt).execute(apiResponseQueue) { result in
+    open class func listPlans(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlanListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listPlansWithRequestBuilder(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, type: type, state: state, sourceAccountGuid: sourceAccountGuid, destinationAccountGuid: destinationAccountGuid, createdAtGte: createdAtGte, createdAtLt: createdAtLt, updatedAtGte: updatedAtGte, updatedAtLt: updatedAtLt, label: label).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -169,9 +170,10 @@ open class PlansAPI {
      - parameter createdAtLt: (query) Created at end date-time exclusive upper bound, ISO8601. (optional)
      - parameter updatedAtGte: (query) Updated at start date-time inclusive lower bound, ISO8601. (optional)
      - parameter updatedAtLt: (query) Updated at end date-time exclusive upper bound, ISO8601. (optional)
+     - parameter label: (query) Comma separated labels to list plans for. (optional)
      - returns: RequestBuilder<PlanListBankModel> 
      */
-    open class func listPlansWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil) -> RequestBuilder<PlanListBankModel> {
+    open class func listPlansWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, type: String? = nil, state: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, updatedAtGte: String? = nil, updatedAtLt: String? = nil, label: String? = nil) -> RequestBuilder<PlanListBankModel> {
         let localVariablePath = "/api/plans"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -191,6 +193,7 @@ open class PlansAPI {
             "created_at_lt": createdAtLt?.encodeToJSON(),
             "updated_at_gte": updatedAtGte?.encodeToJSON(),
             "updated_at_lt": updatedAtLt?.encodeToJSON(),
+            "label": label?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -78,8 +78,10 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
     /** Supporting documents attached to the plan. */
     public var supportingDocuments: [SupportingDocumentBankModel]?
+    /** The labels associated with the plan. */
+    public var labels: [String]?
 
-    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, expiresAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], travelRuleInfo: PlanTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil) {
+    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, expiresAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], travelRuleInfo: PlanTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -96,6 +98,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         self.travelRuleInfo = travelRuleInfo
         self.purposeOfTransaction = purposeOfTransaction
         self.supportingDocuments = supportingDocuments
+        self.labels = labels
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -115,6 +118,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         case travelRuleInfo = "travel_rule_info"
         case purposeOfTransaction = "purpose_of_transaction"
         case supportingDocuments = "supporting_documents"
+        case labels
     }
 
     // Encodable protocol methods
@@ -137,6 +141,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(travelRuleInfo, forKey: .travelRuleInfo)
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
         try container.encodeIfPresent(supportingDocuments, forKey: .supportingDocuments)
+        try container.encodeIfPresent(labels, forKey: .labels)
     }
 }
 
