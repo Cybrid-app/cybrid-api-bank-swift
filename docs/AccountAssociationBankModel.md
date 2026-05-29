@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **requestedAmount** | **Int** | The requested amount in base units intended to transfer from or to the account. | [optional] 
 **quotedAmount** | **Int** | The quoted amount in base units to transfer from or to the account. | [optional] 
 **executedAmount** | **Int** | The executed amount in base units transferred from or to the account. | [optional] 
+**paymentRail** | **String** | The desired payment rail to use to initiate a fiat transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

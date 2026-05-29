@@ -13,19 +13,31 @@ import AnyCodable
 /** Destination account */
 public struct PostPlanDestinationAccountBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case ach = "ach"
+        case eft = "eft"
+        case wire = "wire"
+        case rtp = "rtp"
+        case etransfer = "etransfer"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The destination account's identifier. */
     public var guid: String
     /** The amount to be delivered in base units of the source account currency */
     public var amount: String?
+    /** The desired payment rail to use to initiate a fiat transfer to the destination account. */
+    public var paymentRail: PaymentRailBankModel?
 
-    public init(guid: String, amount: String? = nil) {
+    public init(guid: String, amount: String? = nil, paymentRail: PaymentRailBankModel? = nil) {
         self.guid = guid
         self.amount = amount
+        self.paymentRail = paymentRail
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case amount
+        case paymentRail = "payment_rail"
     }
 
     // Encodable protocol methods
@@ -34,6 +46,7 @@ public struct PostPlanDestinationAccountBankModel: Codable, JSONEncodable, Hasha
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(guid, forKey: .guid)
         try container.encodeIfPresent(amount, forKey: .amount)
+        try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
     }
 }
 
