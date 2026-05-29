@@ -63,7 +63,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date
-    /** The state of the execution; one of storing, executing, completed, or failed. */
+    /** The state of the execution; one of storing, executing, completed, failed, or reviewing. */
     public var state: String
     /** The failure code for failed executions. */
     public var failureCode: String?

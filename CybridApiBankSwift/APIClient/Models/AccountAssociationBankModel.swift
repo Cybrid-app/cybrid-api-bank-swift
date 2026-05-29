@@ -12,6 +12,14 @@ import AnyCodable
 
 public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case ach = "ach"
+        case eft = "eft"
+        case wire = "wire"
+        case rtp = "rtp"
+        case etransfer = "etransfer"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the transfer account. */
     public var guid: String
     /** The type of transfer account; one of trading, fiat, external_bank_account, or external_wallet. */
@@ -32,8 +40,10 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
     public var quotedAmount: Int?
     /** The executed amount in base units transferred from or to the account. */
     public var executedAmount: Int?
+    /** The desired payment rail to use to initiate a fiat transfer. */
+    public var paymentRail: PaymentRailBankModel?
 
-    public init(guid: String, type: String, organizationGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, requestedAmount: Int? = nil, quotedAmount: Int? = nil, executedAmount: Int? = nil) {
+    public init(guid: String, type: String, organizationGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, requestedAmount: Int? = nil, quotedAmount: Int? = nil, executedAmount: Int? = nil, paymentRail: PaymentRailBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.organizationGuid = organizationGuid
@@ -44,6 +54,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         self.requestedAmount = requestedAmount
         self.quotedAmount = quotedAmount
         self.executedAmount = executedAmount
+        self.paymentRail = paymentRail
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -57,6 +68,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         case requestedAmount = "requested_amount"
         case quotedAmount = "quoted_amount"
         case executedAmount = "executed_amount"
+        case paymentRail = "payment_rail"
     }
 
     // Encodable protocol methods
@@ -73,6 +85,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(requestedAmount, forKey: .requestedAmount)
         try container.encodeIfPresent(quotedAmount, forKey: .quotedAmount)
         try container.encodeIfPresent(executedAmount, forKey: .executedAmount)
+        try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
     }
 }
 
