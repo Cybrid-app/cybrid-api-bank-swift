@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **destinationAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **stages** | [StageBankModel] | The stages of the execution. | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the execution. | 
+**holds** | [HoldDetailBankModel] | The holds placed on the execution. | [optional] 
 **travelRuleInfo** | [**ExecutionTravelRuleInfoBankModel**](ExecutionTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the execution. | [optional] 
 
