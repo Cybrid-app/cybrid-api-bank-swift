@@ -16,14 +16,10 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     public var guid: String
     /** The type of stage; one of payout. */
     public var type: String
-    /** The state of the stage; one of storing, planning, planned, executing, holding, completed, or failed. */
+    /** The state of the stage; one of storing, planning, planned, executing, completed, or failed. */
     public var state: String
     /** The failure code for failed stages. */
     public var failureCode: String?
-    /** The ISO8601 datetime when the stage entered the hold state, if applicable. */
-    public var holdStartedAt: Date?
-    /** The approximate time (in seconds) that the stage will be held for, if applicable. */
-    public var holdDuration: Int?
     /** Provider-issued identifiers associated with this stage. Always present, possibly empty. */
     public var identifiers: [StageIdentifierBankModel]
     /** Provider-issued links associated with this stage. Always present, possibly empty. */
@@ -37,13 +33,11 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     /** The fees associated with the stage. */
     public var fees: [FeeAssociationBankModel]
 
-    public init(guid: String, type: String, state: String, failureCode: String? = nil, holdStartedAt: Date? = nil, holdDuration: Int? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel]) {
+    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel]) {
         self.guid = guid
         self.type = type
         self.state = state
         self.failureCode = failureCode
-        self.holdStartedAt = holdStartedAt
-        self.holdDuration = holdDuration
         self.identifiers = identifiers
         self.links = links
         self.createdAt = createdAt
@@ -58,8 +52,6 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         case type
         case state
         case failureCode = "failure_code"
-        case holdStartedAt = "hold_started_at"
-        case holdDuration = "hold_duration"
         case identifiers
         case links
         case createdAt = "created_at"
@@ -77,8 +69,6 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
-        try container.encodeIfPresent(holdStartedAt, forKey: .holdStartedAt)
-        try container.encodeIfPresent(holdDuration, forKey: .holdDuration)
         try container.encode(identifiers, forKey: .identifiers)
         try container.encode(links, forKey: .links)
         try container.encode(createdAt, forKey: .createdAt)
