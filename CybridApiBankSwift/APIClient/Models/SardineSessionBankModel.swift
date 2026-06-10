@@ -18,17 +18,21 @@ public struct SardineSessionBankModel: Codable, JSONEncodable, Hashable {
     public var sardineSessionKey: String
     /** The unique identifier for the customer. */
     public var customerGuid: String
+    /** The expiration datetime of the session key. Null if the session key does not expire. */
+    public var expiresAt: Date?
 
-    public init(guid: String, sardineSessionKey: String, customerGuid: String) {
+    public init(guid: String, sardineSessionKey: String, customerGuid: String, expiresAt: Date? = nil) {
         self.guid = guid
         self.sardineSessionKey = sardineSessionKey
         self.customerGuid = customerGuid
+        self.expiresAt = expiresAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case sardineSessionKey = "sardine_session_key"
         case customerGuid = "customer_guid"
+        case expiresAt = "expires_at"
     }
 
     // Encodable protocol methods
@@ -38,6 +42,7 @@ public struct SardineSessionBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(guid, forKey: .guid)
         try container.encode(sardineSessionKey, forKey: .sardineSessionKey)
         try container.encode(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
     }
 }
 
