@@ -67,7 +67,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var phoneNumber: String?
     /** The customer's email address. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. Optional when type is bank_account and method is attested_ownership. */
     public var emailAddress: String?
-    /** The customer's website. Required when type is kyc and method is attested_business_registration. */
+    /** The customer's website. Required for attested business registration V2, optional for V3. Optional when type is kyc and method is attested_business_registration. */
     public var website: String?
     /** The customer's nature of business. Required when type is kyc and method is attested_business_registration. */
     public var natureOfBusiness: String?
