@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | The unique identifier for the stage. | 
-**type** | **String** | The type of stage; one of payout. | 
+**type** | **String** | The type of stage; one of payout, deposit, or trade. | 
 **state** | **String** | The state of the stage; one of storing, planning, planned, executing, completed, or failed. | 
 **failureCode** | **String** | The failure code for failed stages. | [optional] 
 **identifiers** | [StageIdentifierBankModel] | Provider-issued identifiers associated with this stage. Always present, possibly empty. | 

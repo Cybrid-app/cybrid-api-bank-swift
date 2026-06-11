@@ -14,7 +14,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier for the stage. */
     public var guid: String
-    /** The type of stage; one of payout. */
+    /** The type of stage; one of payout, deposit, or trade. */
     public var type: String
     /** The state of the stage; one of storing, planning, planned, executing, completed, or failed. */
     public var state: String
