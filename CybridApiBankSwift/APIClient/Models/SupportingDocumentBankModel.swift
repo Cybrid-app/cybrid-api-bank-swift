@@ -14,11 +14,16 @@ public struct SupportingDocumentBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case invoice = "invoice"
+        case purchaseOrder = "purchase_order"
+        case deliverySlip = "delivery_slip"
+        case contract = "contract"
+        case billOfLading = "bill_of_lading"
+        case others = "others"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the document. */
     public var guid: String
-    /** The kind of supporting document; one of invoice. */
+    /** The kind of supporting document; one of invoice, purchase_order, delivery_slip, contract, bill_of_lading, or others. */
     public var type: TypeBankModel
     /** The files backing this document. */
     public var files: [SupportingDocumentFileBankModel]
