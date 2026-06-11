@@ -15,6 +15,11 @@ public struct PostSupportingDocumentBankModel: Codable, JSONEncodable, Hashable 
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case invoice = "invoice"
+        case purchaseOrder = "purchase_order"
+        case deliverySlip = "delivery_slip"
+        case contract = "contract"
+        case billOfLading = "bill_of_lading"
+        case others = "others"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The kind of supporting document. */
