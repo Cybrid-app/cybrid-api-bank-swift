@@ -47,6 +47,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         case influencerPayment = "influencer_payment"
         case otherFees = "other_fees"
         case other = "other"
+        case exportedGoods = "exported_goods"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the quote. */

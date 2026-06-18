@@ -23,7 +23,7 @@ Creates an execution.  ## Create a plan execution  | State | Description | |----
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postExecutionBankModel = PostExecution(planGuid: "planGuid_example") // PostExecutionBankModel | 
+let postExecutionBankModel = PostExecution(planGuid: "planGuid_example", sardineSessionGuid: "sardineSessionGuid_example") // PostExecutionBankModel | 
 
 // Create Execution
 ExecutionsAPI.createExecution(postExecutionBankModel: postExecutionBankModel) { (response, error) in

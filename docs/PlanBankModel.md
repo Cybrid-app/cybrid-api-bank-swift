@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **fees** | [FeeAssociationBankModel] | The fees associated with the plan. | 
 **travelRuleInfo** | [**PlanTravelRuleInfoBankModel**](PlanTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
-**supportingDocuments** | [SupportingDocumentBankModel] | Supporting documents attached to the plan. | [optional] 
+**supportingDocuments** | [SupportingDocumentBankModel] | Supporting documents attached to the plan. Optional when type is remittance. | [optional] 
 **labels** | **[String]** | The labels associated with the plan. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

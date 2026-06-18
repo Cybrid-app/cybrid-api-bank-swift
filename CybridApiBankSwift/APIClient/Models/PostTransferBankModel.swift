@@ -56,6 +56,8 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var sourceParticipants: [PostTransferParticipantBankModel]?
     /** The destination participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
     public var destinationParticipants: [PostTransferParticipantBankModel]?
+    /** The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the transfer screening. Optional when transfer_type is funding or transfer_type is instant_funding. */
+    public var sardineSessionGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
     public var bankFiatAccountGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the customer has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
@@ -75,7 +77,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, securityQuestion: String? = nil, securityAnswer: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, securityQuestion: String? = nil, securityAnswer: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, sardineSessionGuid: String? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.externalBankAccountGuid = externalBankAccountGuid
@@ -87,6 +89,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         self.securityAnswer = securityAnswer
         self.sourceParticipants = sourceParticipants
         self.destinationParticipants = destinationParticipants
+        self.sardineSessionGuid = sardineSessionGuid
         self.bankFiatAccountGuid = bankFiatAccountGuid
         self.customerFiatAccountGuid = customerFiatAccountGuid
         self.sourceAccountGuid = sourceAccountGuid
@@ -110,6 +113,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case securityAnswer = "security_answer"
         case sourceParticipants = "source_participants"
         case destinationParticipants = "destination_participants"
+        case sardineSessionGuid = "sardine_session_guid"
         case bankFiatAccountGuid = "bank_fiat_account_guid"
         case customerFiatAccountGuid = "customer_fiat_account_guid"
         case sourceAccountGuid = "source_account_guid"
@@ -136,6 +140,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(securityAnswer, forKey: .securityAnswer)
         try container.encodeIfPresent(sourceParticipants, forKey: .sourceParticipants)
         try container.encodeIfPresent(destinationParticipants, forKey: .destinationParticipants)
+        try container.encodeIfPresent(sardineSessionGuid, forKey: .sardineSessionGuid)
         try container.encodeIfPresent(bankFiatAccountGuid, forKey: .bankFiatAccountGuid)
         try container.encodeIfPresent(customerFiatAccountGuid, forKey: .customerFiatAccountGuid)
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)

@@ -47,6 +47,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         case influencerPayment = "influencer_payment"
         case otherFees = "other_fees"
         case other = "other"
+        case exportedGoods = "exported_goods"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the entity. */
@@ -76,7 +77,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: PlanTravelRuleInfoBankModel
     /** The purpose of transaction for the plan. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
-    /** Supporting documents attached to the plan. */
+    /** Supporting documents attached to the plan. Optional when type is remittance. */
     public var supportingDocuments: [SupportingDocumentBankModel]?
     /** The labels associated with the plan. */
     public var labels: [String]?

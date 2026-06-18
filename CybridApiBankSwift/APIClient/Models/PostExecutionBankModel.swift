@@ -15,13 +15,17 @@ public struct PostExecutionBankModel: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier for the plan. */
     public var planGuid: String
+    /** The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the execution screening. */
+    public var sardineSessionGuid: String?
 
-    public init(planGuid: String) {
+    public init(planGuid: String, sardineSessionGuid: String? = nil) {
         self.planGuid = planGuid
+        self.sardineSessionGuid = sardineSessionGuid
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case planGuid = "plan_guid"
+        case sardineSessionGuid = "sardine_session_guid"
     }
 
     // Encodable protocol methods
@@ -29,6 +33,7 @@ public struct PostExecutionBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(planGuid, forKey: .planGuid)
+        try container.encodeIfPresent(sardineSessionGuid, forKey: .sardineSessionGuid)
     }
 }
 
