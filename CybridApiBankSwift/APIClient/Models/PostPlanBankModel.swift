@@ -52,6 +52,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case influencerPayment = "influencer_payment"
         case otherFees = "other_fees"
         case other = "other"
+        case exportedGoods = "exported_goods"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The type of product the plan is for. */
@@ -67,7 +68,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
     /** The labels associated with the plan. */
     public var labels: [String]?
-    /** Supporting documents to attach to the plan. Only valid for remittance plans; requests that include this field on other plan types are rejected. Optional when type is remittance. */
+    /** Supporting documents to attach to the plan. Optional when type is remittance. */
     public var supportingDocuments: [PostSupportingDocumentBankModel]?
 
     public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, labels: [String]? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil) {

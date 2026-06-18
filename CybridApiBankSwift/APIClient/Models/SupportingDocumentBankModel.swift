@@ -27,17 +27,21 @@ public struct SupportingDocumentBankModel: Codable, JSONEncodable, Hashable {
     public var type: TypeBankModel
     /** The files backing this document. */
     public var files: [SupportingDocumentFileBankModel]
+    /** A reference number identifying this document (e.g. an invoice number). */
+    public var documentReferenceNumber: String?
 
-    public init(guid: String, type: TypeBankModel, files: [SupportingDocumentFileBankModel]) {
+    public init(guid: String, type: TypeBankModel, files: [SupportingDocumentFileBankModel], documentReferenceNumber: String? = nil) {
         self.guid = guid
         self.type = type
         self.files = files
+        self.documentReferenceNumber = documentReferenceNumber
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case type
         case files
+        case documentReferenceNumber = "document_reference_number"
     }
 
     // Encodable protocol methods
@@ -47,6 +51,7 @@ public struct SupportingDocumentBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(guid, forKey: .guid)
         try container.encode(type, forKey: .type)
         try container.encode(files, forKey: .files)
+        try container.encodeIfPresent(documentReferenceNumber, forKey: .documentReferenceNumber)
     }
 }
 
