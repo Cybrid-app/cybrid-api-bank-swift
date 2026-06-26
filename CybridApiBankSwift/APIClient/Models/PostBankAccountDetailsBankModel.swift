@@ -51,6 +51,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case mpesa = "MPESA"
         case cnbank = "CNBANK"
         case fps = "FPS"
+        case alipay = "ALIPAY"
         case unspecified = "UNSPECIFIED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
@@ -79,7 +80,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var bankCode: String?
     /** The account number or unique identifier for the account. */
     public var accountIdentifier: String
-    /** The type of account identifier. Must be PHONE_NUMBER for mobile wallet rails. Required when payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, payment_rail is SADA_PAY, or payment_rail is MPESA. */
+    /** The type of account identifier. Must be PHONE_NUMBER for mobile wallet rails. Required when payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, payment_rail is SADA_PAY, payment_rail is MPESA, or payment_rail is ALIPAY. */
     public var accountIdentifierType: AccountIdentifierTypeBankModel?
     /** The payment rail used for the account. */
     public var paymentRail: PaymentRailBankModel
