@@ -59,7 +59,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var address: PostIdentityVerificationAddressBankModel?
     /** The customer's date of birth. Required when type is kyc and method is attested, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
     public var dateOfBirth: Date?
-    /** The customer's identification numbers. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
+    /** The customer's identification numbers. Required when type is kyc and method is attested, type is kyc and method is attested_business_registration, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. Optional when type is kyc and method is attested_id_and_selfie. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
     /** The aliases of the customer. Optional when type is kyc and method is attested_business_registration or type is kyc and method is watchlists. */
     public var aliases: [PostIdentityVerificationAliasesInnerBankModel]?
@@ -75,7 +75,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var directorCustomerGuids: [String]?
     /** The ultimate beneficial owners of the business with 25% or more ownership. Required for attested business registration V2, optional for V3. Optional when type is kyc and method is attested_business_registration. */
     public var ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]?
-    /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
+    /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. Optional when type is kyc and method is attested_id_and_selfie. */
     public var supportingFileGuids: [String]?
     public var registeredAddress: PostIdentityVerificationRegisteredAddressBankModel?
     /** The industry the business operates in. Required for attested business registration V3. e.g. 'Crypto / Digital Assets / Blockchain', 'Education', 'Gaming', 'Healthcare / Hospitality', 'Lending / Investments', 'Retail / E-Commerce', etc. Optional when type is kyc and method is attested_business_registration. */
