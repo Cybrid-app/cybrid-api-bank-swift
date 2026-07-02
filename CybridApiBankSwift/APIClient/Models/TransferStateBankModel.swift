@@ -17,5 +17,6 @@ public enum TransferStateBankModel: String, Codable, CaseIterable, CaseIterableD
     case reviewing = "reviewing"
     case completed = "completed"
     case failed = "failed"
+    case cancelling = "cancelling"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
