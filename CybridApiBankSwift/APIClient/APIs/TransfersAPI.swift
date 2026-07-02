@@ -13,6 +13,61 @@ import AnyCodable
 open class TransfersAPI {
 
     /**
+     Cancel Transfer
+     
+     - parameter transferGuid: (path) Identifier for the transfer. 
+     - parameter acceptVersion: (header) API version; must be 2026-04-01 or later for this operation. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func cancelTransfer(transferGuid: String, acceptVersion: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return cancelTransferWithRequestBuilder(transferGuid: transferGuid, acceptVersion: acceptVersion).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Cancel Transfer
+     - DELETE /api/transfers/{transfer_guid}
+     - Initiates cancellation of an eligible funding transfer.  Required scope: **transfers:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter transferGuid: (path) Identifier for the transfer. 
+     - parameter acceptVersion: (header) API version; must be 2026-04-01 or later for this operation. 
+     - returns: RequestBuilder<TransferBankModel> 
+     */
+    open class func cancelTransferWithRequestBuilder(transferGuid: String, acceptVersion: String) -> RequestBuilder<TransferBankModel> {
+        var localVariablePath = "/api/transfers/{transfer_guid}"
+        let transferGuidPreEscape = "\(APIHelper.mapValueToPathItem(transferGuid))"
+        let transferGuidPostEscape = transferGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{transfer_guid}", with: transferGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Accept-Version": acceptVersion.encodeToJSON(),
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TransferBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create Transfer
      
      - parameter postTransferBankModel: (body)  

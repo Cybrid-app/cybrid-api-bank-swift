@@ -4,11 +4,64 @@ All URIs are relative to *https://bank.sandbox.cybrid.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**cancelTransfer**](TransfersAPI.md#canceltransfer) | **DELETE** /api/transfers/{transfer_guid} | Cancel Transfer
 [**createTransfer**](TransfersAPI.md#createtransfer) | **POST** /api/transfers | Create Transfer
 [**getTransfer**](TransfersAPI.md#gettransfer) | **GET** /api/transfers/{transfer_guid} | Get Transfer
 [**listTransfers**](TransfersAPI.md#listtransfers) | **GET** /api/transfers | Get transfers list
 [**updateTransfer**](TransfersAPI.md#updatetransfer) | **PATCH** /api/transfers/{transfer_guid} | Patch Transfer
 
+
+# **cancelTransfer**
+```swift
+    open class func cancelTransfer(transferGuid: String, acceptVersion: String, completion: @escaping (_ data: TransferBankModel?, _ error: Error?) -> Void)
+```
+
+Cancel Transfer
+
+Initiates cancellation of an eligible funding transfer.  Required scope: **transfers:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let transferGuid = "transferGuid_example" // String | Identifier for the transfer.
+let acceptVersion = "acceptVersion_example" // String | API version; must be 2026-04-01 or later for this operation.
+
+// Cancel Transfer
+TransfersAPI.cancelTransfer(transferGuid: transferGuid, acceptVersion: acceptVersion) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transferGuid** | **String** | Identifier for the transfer. | 
+ **acceptVersion** | **String** | API version; must be 2026-04-01 or later for this operation. | 
+
+### Return type
+
+[**TransferBankModel**](TransferBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createTransfer**
 ```swift
