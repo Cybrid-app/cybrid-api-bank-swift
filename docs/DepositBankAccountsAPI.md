@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listDepositBankAccounts**
 ```swift
-    open class func listDepositBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, uniqueMemoId: String? = nil, type: String? = nil, parentDepositBankAccountGuid: String? = nil, completion: @escaping (_ data: DepositBankAccountListBankModel?, _ error: Error?) -> Void)
+    open class func listDepositBankAccounts(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, uniqueMemoId: String? = nil, type: String? = nil, state: String? = nil, parentDepositBankAccountGuid: String? = nil, completion: @escaping (_ data: DepositBankAccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Deposit Bank Accounts
@@ -131,10 +131,11 @@ let customerGuid = "customerGuid_example" // String | Comma separated customer_g
 let label = "label_example" // String | Comma separated labels to list deposit bank accounts for. (optional)
 let uniqueMemoId = "uniqueMemoId_example" // String | Comma separated unique memo ids to list deposit bank accounts for. (optional)
 let type = "type_example" // String | Comma separated types to list deposit bank accounts for. (optional)
+let state = "state_example" // String | Comma separated states to list deposit bank accounts for. (optional)
 let parentDepositBankAccountGuid = "parentDepositBankAccountGuid_example" // String | Comma separated guids for parent accounts to list deposit bank accounts for. (optional)
 
 // List Deposit Bank Accounts
-DepositBankAccountsAPI.listDepositBankAccounts(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, label: label, uniqueMemoId: uniqueMemoId, type: type, parentDepositBankAccountGuid: parentDepositBankAccountGuid) { (response, error) in
+DepositBankAccountsAPI.listDepositBankAccounts(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, label: label, uniqueMemoId: uniqueMemoId, type: type, state: state, parentDepositBankAccountGuid: parentDepositBankAccountGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -158,6 +159,7 @@ Name | Type | Description  | Notes
  **label** | **String** | Comma separated labels to list deposit bank accounts for. | [optional] 
  **uniqueMemoId** | **String** | Comma separated unique memo ids to list deposit bank accounts for. | [optional] 
  **type** | **String** | Comma separated types to list deposit bank accounts for. | [optional] 
+ **state** | **String** | Comma separated states to list deposit bank accounts for. | [optional] 
  **parentDepositBankAccountGuid** | **String** | Comma separated guids for parent accounts to list deposit bank accounts for. | [optional] 
 
 ### Return type
