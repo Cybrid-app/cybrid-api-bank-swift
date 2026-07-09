@@ -30,9 +30,9 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var deletedAt: Date?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
-    /** The state of the address; one of storing or created. */
+    /** The state of the deposit bank account; one of storing, created, deleting, or deleted. */
     public var state: String?
-    /** The unique memo identifier for the address. This is used to identify the recipient when sending funds to the account. This value MUST be included in all wire transfers to this account. */
+    /** The unique memo identifier for the deposit bank account. This is used to identify the recipient when sending funds to the account. This value MUST be included in all wire transfers to this account. */
     public var uniqueMemoId: String?
     /** The name of the account holder. */
     public var counterpartyName: String?

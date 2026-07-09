@@ -13,5 +13,7 @@ import AnyCodable
 public enum DepositBankAccountStateBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case storing = "storing"
     case created = "created"
+    case deleting = "deleting"
+    case deleted = "deleted"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
