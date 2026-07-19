@@ -63,6 +63,59 @@ open class DepositBankAccountsAPI {
     }
 
     /**
+     Delete Deposit Bank Account
+     
+     - parameter depositBankAccountGuid: (path) Identifier for the deposit bank account. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func deleteDepositBankAccount(depositBankAccountGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositBankAccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return deleteDepositBankAccountWithRequestBuilder(depositBankAccountGuid: depositBankAccountGuid).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Delete Deposit Bank Account
+     - DELETE /api/deposit_bank_accounts/{deposit_bank_account_guid}
+     - Deletes a deposit bank account.  ## State  | State | Description | |-------|-------------| | deleting | The Platform is deleting the deposit bank account and closing the associated provider account | | deleted | The Platform has deleted the deposit bank account |    Required scope: **deposit_bank_accounts:execute**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter depositBankAccountGuid: (path) Identifier for the deposit bank account. 
+     - returns: RequestBuilder<DepositBankAccountBankModel> 
+     */
+    open class func deleteDepositBankAccountWithRequestBuilder(depositBankAccountGuid: String) -> RequestBuilder<DepositBankAccountBankModel> {
+        var localVariablePath = "/api/deposit_bank_accounts/{deposit_bank_account_guid}"
+        let depositBankAccountGuidPreEscape = "\(APIHelper.mapValueToPathItem(depositBankAccountGuid))"
+        let depositBankAccountGuidPostEscape = depositBankAccountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{deposit_bank_account_guid}", with: depositBankAccountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DepositBankAccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Deposit Bank Account
      
      - parameter depositBankAccountGuid: (path) Identifier for the deposit bank account. 
