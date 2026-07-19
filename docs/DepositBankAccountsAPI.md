@@ -5,6 +5,7 @@ All URIs are relative to *https://bank.sandbox.cybrid.app*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createDepositBankAccount**](DepositBankAccountsAPI.md#createdepositbankaccount) | **POST** /api/deposit_bank_accounts | Create Deposit Bank Account
+[**deleteDepositBankAccount**](DepositBankAccountsAPI.md#deletedepositbankaccount) | **DELETE** /api/deposit_bank_accounts/{deposit_bank_account_guid} | Delete Deposit Bank Account
 [**getDepositBankAccount**](DepositBankAccountsAPI.md#getdepositbankaccount) | **GET** /api/deposit_bank_accounts/{deposit_bank_account_guid} | Get Deposit Bank Account
 [**listDepositBankAccounts**](DepositBankAccountsAPI.md#listdepositbankaccounts) | **GET** /api/deposit_bank_accounts | List Deposit Bank Accounts
 
@@ -55,6 +56,56 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteDepositBankAccount**
+```swift
+    open class func deleteDepositBankAccount(depositBankAccountGuid: String, completion: @escaping (_ data: DepositBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Delete Deposit Bank Account
+
+Deletes a deposit bank account.  ## State  | State | Description | |-------|-------------| | deleting | The Platform is deleting the deposit bank account and closing the associated provider account | | deleted | The Platform has deleted the deposit bank account |    Required scope: **deposit_bank_accounts:execute**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let depositBankAccountGuid = "depositBankAccountGuid_example" // String | Identifier for the deposit bank account.
+
+// Delete Deposit Bank Account
+DepositBankAccountsAPI.deleteDepositBankAccount(depositBankAccountGuid: depositBankAccountGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depositBankAccountGuid** | **String** | Identifier for the deposit bank account. | 
+
+### Return type
+
+[**DepositBankAccountBankModel**](DepositBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -18,17 +18,21 @@ public struct IdentificationNumberBankModel: Codable, JSONEncodable, Hashable {
     public var issuingCountryCode: String?
     /** The identification number. */
     public var identificationNumber: String
+    /** The ISO 3166-2 subdivision code of the identification number issuer. */
+    public var issuingSubdivision: String?
 
-    public init(type: String, issuingCountryCode: String?, identificationNumber: String) {
+    public init(type: String, issuingCountryCode: String?, identificationNumber: String, issuingSubdivision: String? = nil) {
         self.type = type
         self.issuingCountryCode = issuingCountryCode
         self.identificationNumber = identificationNumber
+        self.issuingSubdivision = issuingSubdivision
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case issuingCountryCode = "issuing_country_code"
         case identificationNumber = "identification_number"
+        case issuingSubdivision = "issuing_subdivision"
     }
 
     // Encodable protocol methods
@@ -38,6 +42,7 @@ public struct IdentificationNumberBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(issuingCountryCode, forKey: .issuingCountryCode)
         try container.encode(identificationNumber, forKey: .identificationNumber)
+        try container.encodeIfPresent(issuingSubdivision, forKey: .issuingSubdivision)
     }
 }
 
