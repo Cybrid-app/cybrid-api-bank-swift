@@ -56,7 +56,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     }
     /** Auto-generated unique identifier for the entity. */
     public var guid: String
-    /** The type of product the plan is for; one of remittance. */
+    /** The type of product the plan is for; one of remittance, deposit_return, or withdrawal_return. */
     public var type: String
     /** The unique identifier for the bank. */
     public var bankGuid: String?
@@ -66,8 +66,8 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date
-    /** ISO8601 datetime the plan will expire at. */
-    public var expiresAt: Date
+    /** ISO8601 datetime the plan will expire at. Null for return plans, which do not expire. */
+    public var expiresAt: Date?
     /** The state of the plan; one of storing, planning, completed, or failed. */
     public var state: String
     /** The failure code for failed plans. */
@@ -86,7 +86,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the plan. */
     public var labels: [String]?
 
-    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, expiresAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], travelRuleInfo: PlanTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, expiresAt: Date?, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], travelRuleInfo: PlanTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid

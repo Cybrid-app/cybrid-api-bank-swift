@@ -56,7 +56,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     }
     /** Auto-generated unique identifier for the quote. */
     public var guid: String
-    /** The type of product the plan is for; one of remittance. */
+    /** The type of product the plan is for; one of remittance, deposit_return, or withdrawal_return. */
     public var type: String
     /** The unique identifier for the plan. */
     public var planGuid: String
@@ -83,8 +83,10 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: ExecutionTravelRuleInfoBankModel
     /** The purpose of transaction for the execution. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
+    /** Objects this return execution references (the returned execution and stage). Optional when type is deposit_return or type is withdrawal_return. */
+    public var references: [PlanReferenceBankModel]?
 
-    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil) {
+    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, references: [PlanReferenceBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.planGuid = planGuid
@@ -101,6 +103,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         self.holds = holds
         self.travelRuleInfo = travelRuleInfo
         self.purposeOfTransaction = purposeOfTransaction
+        self.references = references
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -120,6 +123,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         case holds
         case travelRuleInfo = "travel_rule_info"
         case purposeOfTransaction = "purpose_of_transaction"
+        case references
     }
 
     // Encodable protocol methods
@@ -142,6 +146,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(holds, forKey: .holds)
         try container.encode(travelRuleInfo, forKey: .travelRuleInfo)
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
+        try container.encodeIfPresent(references, forKey: .references)
     }
 }
 

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the quote. | 
-**type** | **String** | The type of product the plan is for; one of remittance. | 
+**type** | **String** | The type of product the plan is for; one of remittance, deposit_return, or withdrawal_return. | 
 **planGuid** | **String** | The unique identifier for the plan. | 
 **bankGuid** | **String** | The unique identifier for the bank. | [optional] 
 **customerGuid** | **String** | The unique identifier for the customer. | [optional] 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **holds** | [HoldDetailBankModel] | The holds placed on the execution. | [optional] 
 **travelRuleInfo** | [**ExecutionTravelRuleInfoBankModel**](ExecutionTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the execution. | [optional] 
+**references** | [PlanReferenceBankModel] | Objects this return execution references (the returned execution and stage). Optional when type is deposit_return or type is withdrawal_return. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
