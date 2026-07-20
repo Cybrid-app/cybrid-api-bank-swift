@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | The unique identifier for the stage. | 
-**type** | **String** | The type of stage; one of payout, deposit, or trade. | 
+**type** | **String** | The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, or withdrawal_return. | 
 **state** | **String** | The state of the stage; one of storing, planning, planned, executing, completed, or failed. | 
 **failureCode** | **String** | The failure code for failed stages. | [optional] 
 **identifiers** | [StageIdentifierBankModel] | Provider-issued identifiers associated with this stage. Always present, possibly empty. | 
@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **sourceAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **destinationAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the stage. | 
+**depositReturnDetails** | [**ReturnDetailsBankModel**](ReturnDetailsBankModel.md) |  | [optional] 
+**withdrawalReturnDetails** | [**ReturnDetailsBankModel**](ReturnDetailsBankModel.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

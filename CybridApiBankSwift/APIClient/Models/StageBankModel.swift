@@ -14,7 +14,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier for the stage. */
     public var guid: String
-    /** The type of stage; one of payout, deposit, or trade. */
+    /** The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, or withdrawal_return. */
     public var type: String
     /** The state of the stage; one of storing, planning, planned, executing, completed, or failed. */
     public var state: String
@@ -32,8 +32,10 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     public var destinationAccount: AccountAssociationBankModel
     /** The fees associated with the stage. */
     public var fees: [FeeAssociationBankModel]
+    public var depositReturnDetails: ReturnDetailsBankModel?
+    public var withdrawalReturnDetails: ReturnDetailsBankModel?
 
-    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel]) {
+    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.state = state
@@ -45,6 +47,8 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         self.sourceAccount = sourceAccount
         self.destinationAccount = destinationAccount
         self.fees = fees
+        self.depositReturnDetails = depositReturnDetails
+        self.withdrawalReturnDetails = withdrawalReturnDetails
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -59,6 +63,8 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         case sourceAccount = "source_account"
         case destinationAccount = "destination_account"
         case fees
+        case depositReturnDetails = "deposit_return_details"
+        case withdrawalReturnDetails = "withdrawal_return_details"
     }
 
     // Encodable protocol methods
@@ -76,6 +82,8 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(sourceAccount, forKey: .sourceAccount)
         try container.encode(destinationAccount, forKey: .destinationAccount)
         try container.encode(fees, forKey: .fees)
+        try container.encodeIfPresent(depositReturnDetails, forKey: .depositReturnDetails)
+        try container.encodeIfPresent(withdrawalReturnDetails, forKey: .withdrawalReturnDetails)
     }
 }
 
