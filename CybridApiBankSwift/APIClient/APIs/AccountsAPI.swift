@@ -66,12 +66,13 @@ open class AccountsAPI {
      Get Account
      
      - parameter accountGuid: (path) Identifier for the account. 
+     - parameter includeBalances: (query) Whether to include account balances in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getAccount(accountGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getAccountWithRequestBuilder(accountGuid: accountGuid).execute(apiResponseQueue) { result in
+    open class func getAccount(accountGuid: String, includeBalances: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getAccountWithRequestBuilder(accountGuid: accountGuid, includeBalances: includeBalances).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -92,9 +93,10 @@ open class AccountsAPI {
        - type: oauth2
        - name: oauth2
      - parameter accountGuid: (path) Identifier for the account. 
+     - parameter includeBalances: (query) Whether to include account balances in the response. (optional)
      - returns: RequestBuilder<AccountBankModel> 
      */
-    open class func getAccountWithRequestBuilder(accountGuid: String) -> RequestBuilder<AccountBankModel> {
+    open class func getAccountWithRequestBuilder(accountGuid: String, includeBalances: Bool? = nil) -> RequestBuilder<AccountBankModel> {
         var localVariablePath = "/api/accounts/{account_guid}"
         let accountGuidPreEscape = "\(APIHelper.mapValueToPathItem(accountGuid))"
         let accountGuidPostEscape = accountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -102,7 +104,10 @@ open class AccountsAPI {
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include_balances": includeBalances?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -126,12 +131,13 @@ open class AccountsAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list accounts for. (optional)
      - parameter label: (query) Comma separated labels to list accounts for. (optional)
+     - parameter includeBalances: (query) Whether to include account balances in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listAccountsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label).execute(apiResponseQueue) { result in
+    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, includeBalances: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listAccountsWithRequestBuilder(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label, includeBalances: includeBalances).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -159,9 +165,10 @@ open class AccountsAPI {
      - parameter bankGuid: (query) Comma separated bank_guids to list accounts for. (optional)
      - parameter customerGuid: (query) Comma separated customer_guids to list accounts for. (optional)
      - parameter label: (query) Comma separated labels to list accounts for. (optional)
+     - parameter includeBalances: (query) Whether to include account balances in the response. (optional)
      - returns: RequestBuilder<AccountListBankModel> 
      */
-    open class func listAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil) -> RequestBuilder<AccountListBankModel> {
+    open class func listAccountsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, includeBalances: Bool? = nil) -> RequestBuilder<AccountListBankModel> {
         let localVariablePath = "/api/accounts"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -176,6 +183,7 @@ open class AccountsAPI {
             "bank_guid": bankGuid?.encodeToJSON(),
             "customer_guid": customerGuid?.encodeToJSON(),
             "label": label?.encodeToJSON(),
+            "include_balances": includeBalances?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -187,5 +195,60 @@ open class AccountsAPI {
         let localVariableRequestBuilder: RequestBuilder<AccountListBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Patch Account
+     
+     - parameter accountGuid: (path) Identifier for the account. 
+     - parameter patchAccountBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateAccount(accountGuid: String, patchAccountBankModel: PatchAccountBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateAccountWithRequestBuilder(accountGuid: accountGuid, patchAccountBankModel: patchAccountBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Account
+     - PATCH /api/accounts/{account_guid}
+     - Updates an account.  Required scope: **accounts:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter accountGuid: (path) Identifier for the account. 
+     - parameter patchAccountBankModel: (body)  
+     - returns: RequestBuilder<AccountBankModel> 
+     */
+    open class func updateAccountWithRequestBuilder(accountGuid: String, patchAccountBankModel: PatchAccountBankModel) -> RequestBuilder<AccountBankModel> {
+        var localVariablePath = "/api/accounts/{account_guid}"
+        let accountGuidPreEscape = "\(APIHelper.mapValueToPathItem(accountGuid))"
+        let accountGuidPostEscape = accountGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{account_guid}", with: accountGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchAccountBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AccountBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 }
