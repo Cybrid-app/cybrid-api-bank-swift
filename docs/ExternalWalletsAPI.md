@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteExternalWallet**](ExternalWalletsAPI.md#deleteexternalwallet) | **DELETE** /api/external_wallets/{external_wallet_guid} | Delete External Wallet
 [**getExternalWallet**](ExternalWalletsAPI.md#getexternalwallet) | **GET** /api/external_wallets/{external_wallet_guid} | Get External Wallet
 [**listExternalWallets**](ExternalWalletsAPI.md#listexternalwallets) | **GET** /api/external_wallets | Get external wallets list
+[**updateExternalWallet**](ExternalWalletsAPI.md#updateexternalwallet) | **PATCH** /api/external_wallets/{external_wallet_guid} | Patch External Wallet
 
 
 # **createExternalWallet**
@@ -222,6 +223,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateExternalWallet**
+```swift
+    open class func updateExternalWallet(externalWalletGuid: String, patchExternalWalletBankModel: PatchExternalWalletBankModel, completion: @escaping (_ data: ExternalWalletBankModel?, _ error: Error?) -> Void)
+```
+
+Patch External Wallet
+
+Updates an external_wallet.  Required scope: **external_wallets:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let externalWalletGuid = "externalWalletGuid_example" // String | Identifier for the external_wallet.
+let patchExternalWalletBankModel = PatchExternalWallet(name: "name_example") // PatchExternalWalletBankModel | 
+
+// Patch External Wallet
+ExternalWalletsAPI.updateExternalWallet(externalWalletGuid: externalWalletGuid, patchExternalWalletBankModel: patchExternalWalletBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalWalletGuid** | **String** | Identifier for the external_wallet. | 
+ **patchExternalWalletBankModel** | [**PatchExternalWalletBankModel**](PatchExternalWalletBankModel.md) |  | 
+
+### Return type
+
+[**ExternalWalletBankModel**](ExternalWalletBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
