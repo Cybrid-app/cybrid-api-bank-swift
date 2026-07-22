@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createAccount**](AccountsAPI.md#createaccount) | **POST** /api/accounts | Create Account
 [**getAccount**](AccountsAPI.md#getaccount) | **GET** /api/accounts/{account_guid} | Get Account
 [**listAccounts**](AccountsAPI.md#listaccounts) | **GET** /api/accounts | List Accounts
+[**updateAccount**](AccountsAPI.md#updateaccount) | **PATCH** /api/accounts/{account_guid} | Patch Account
 
 
 # **createAccount**
@@ -61,7 +62,7 @@ Name | Type | Description  | Notes
 
 # **getAccount**
 ```swift
-    open class func getAccount(accountGuid: String, completion: @escaping (_ data: AccountBankModel?, _ error: Error?) -> Void)
+    open class func getAccount(accountGuid: String, includeBalances: Bool? = nil, completion: @escaping (_ data: AccountBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Account
@@ -74,9 +75,10 @@ Retrieves an account.  Required scope: **accounts:read**
 import CybridApiBankSwift
 
 let accountGuid = "accountGuid_example" // String | Identifier for the account.
+let includeBalances = true // Bool | Whether to include account balances in the response. (optional)
 
 // Get Account
-AccountsAPI.getAccount(accountGuid: accountGuid) { (response, error) in
+AccountsAPI.getAccount(accountGuid: accountGuid, includeBalances: includeBalances) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -93,6 +95,7 @@ AccountsAPI.getAccount(accountGuid: accountGuid) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountGuid** | **String** | Identifier for the account. | 
+ **includeBalances** | **Bool** | Whether to include account balances in the response. | [optional] 
 
 ### Return type
 
@@ -111,7 +114,7 @@ Name | Type | Description  | Notes
 
 # **listAccounts**
 ```swift
-    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
+    open class func listAccounts(page: Int? = nil, perPage: Int? = nil, owner: String? = nil, guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, label: String? = nil, includeBalances: Bool? = nil, completion: @escaping (_ data: AccountListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Accounts
@@ -131,9 +134,10 @@ let type = "type_example" // String | Comma separated account_types to list acco
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list accounts for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list accounts for. (optional)
 let label = "label_example" // String | Comma separated labels to list accounts for. (optional)
+let includeBalances = true // Bool | Whether to include account balances in the response. (optional)
 
 // List Accounts
-AccountsAPI.listAccounts(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label) { (response, error) in
+AccountsAPI.listAccounts(page: page, perPage: perPage, owner: owner, guid: guid, type: type, bankGuid: bankGuid, customerGuid: customerGuid, label: label, includeBalances: includeBalances) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -157,6 +161,7 @@ Name | Type | Description  | Notes
  **bankGuid** | **String** | Comma separated bank_guids to list accounts for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list accounts for. | [optional] 
  **label** | **String** | Comma separated labels to list accounts for. | [optional] 
+ **includeBalances** | **Bool** | Whether to include account balances in the response. | [optional] 
 
 ### Return type
 
@@ -169,6 +174,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateAccount**
+```swift
+    open class func updateAccount(accountGuid: String, patchAccountBankModel: PatchAccountBankModel, completion: @escaping (_ data: AccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Account
+
+Updates an account.  Required scope: **accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let accountGuid = "accountGuid_example" // String | Identifier for the account.
+let patchAccountBankModel = PatchAccount(name: "name_example") // PatchAccountBankModel | 
+
+// Patch Account
+AccountsAPI.updateAccount(accountGuid: accountGuid, patchAccountBankModel: patchAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountGuid** | **String** | Identifier for the account. | 
+ **patchAccountBankModel** | [**PatchAccountBankModel**](PatchAccountBankModel.md) |  | 
+
+### Return type
+
+[**AccountBankModel**](AccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
