@@ -246,7 +246,7 @@ Patch an external bank account.  Required scope: **external_bank_accounts:write*
 import CybridApiBankSwift
 
 let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Identifier for the external bank account.
-let patchExternalBankAccountBankModel = PatchExternalBankAccount(state: "state_example") // PatchExternalBankAccountBankModel | 
+let patchExternalBankAccountBankModel = PatchExternalBankAccount(state: "state_example", name: "name_example") // PatchExternalBankAccountBankModel | 
 
 // Patch ExternalBankAccount
 ExternalBankAccountsAPI.patchExternalBankAccount(externalBankAccountGuid: externalBankAccountGuid, patchExternalBankAccountBankModel: patchExternalBankAccountBankModel) { (response, error) in

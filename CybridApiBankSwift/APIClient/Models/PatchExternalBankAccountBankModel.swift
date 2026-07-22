@@ -19,21 +19,26 @@ public struct PatchExternalBankAccountBankModel: Codable, JSONEncodable, Hashabl
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The state of the external bank account. If set to \"completed,\" the returned state of the external bank account will be either \"completed\", if the bank account has been verified, or \"unverified\" if the bank account has not been verified. */
-    public var state: StateBankModel
+    public var state: StateBankModel?
+    /** The name of the external bank account. */
+    public var name: String?
 
-    public init(state: StateBankModel) {
+    public init(state: StateBankModel? = nil, name: String? = nil) {
         self.state = state
+        self.name = name
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case state
+        case name
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(state, forKey: .state)
+        try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(name, forKey: .name)
     }
 }
 

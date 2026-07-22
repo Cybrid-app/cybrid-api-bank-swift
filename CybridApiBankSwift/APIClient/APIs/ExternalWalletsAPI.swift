@@ -244,4 +244,59 @@ open class ExternalWalletsAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch External Wallet
+     
+     - parameter externalWalletGuid: (path) Identifier for the external_wallet. 
+     - parameter patchExternalWalletBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateExternalWallet(externalWalletGuid: String, patchExternalWalletBankModel: PatchExternalWalletBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ExternalWalletBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateExternalWalletWithRequestBuilder(externalWalletGuid: externalWalletGuid, patchExternalWalletBankModel: patchExternalWalletBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch External Wallet
+     - PATCH /api/external_wallets/{external_wallet_guid}
+     - Updates an external_wallet.  Required scope: **external_wallets:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter externalWalletGuid: (path) Identifier for the external_wallet. 
+     - parameter patchExternalWalletBankModel: (body)  
+     - returns: RequestBuilder<ExternalWalletBankModel> 
+     */
+    open class func updateExternalWalletWithRequestBuilder(externalWalletGuid: String, patchExternalWalletBankModel: PatchExternalWalletBankModel) -> RequestBuilder<ExternalWalletBankModel> {
+        var localVariablePath = "/api/external_wallets/{external_wallet_guid}"
+        let externalWalletGuidPreEscape = "\(APIHelper.mapValueToPathItem(externalWalletGuid))"
+        let externalWalletGuidPostEscape = externalWalletGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{external_wallet_guid}", with: externalWalletGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchExternalWalletBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ExternalWalletBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
