@@ -29,6 +29,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case eft = "EFT"
         case ach = "ACH"
         case rtp = "RTP"
+        case fednow = "FEDNOW"
         case wire = "WIRE"
         case spei = "SPEI"
         case pix = "PIX"
@@ -84,7 +85,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var accountIdentifierType: AccountIdentifierTypeBankModel?
     /** The payment rail used for the account. */
     public var paymentRail: PaymentRailBankModel
-    /** The type of bank code. Required when payment_rail is EFT, payment_rail is ACH, payment_rail is RTP, payment_rail is WIRE, payment_rail is SPEI, payment_rail is PIX, payment_rail is COELSA, payment_rail is PSE, payment_rail is ETRANSFER, payment_rail is IFSC, payment_rail is SBP, payment_rail is BEFTN, payment_rail is NGBANK, payment_rail is LBTR, payment_rail is SEPA, payment_rail is KEBANK, payment_rail is HKBANK, payment_rail is CNBANK, payment_rail is FPS, or payment_rail is UNSPECIFIED. */
+    /** The type of bank code. Required when payment_rail is EFT, payment_rail is ACH, payment_rail is RTP, payment_rail is FEDNOW, payment_rail is WIRE, payment_rail is SPEI, payment_rail is PIX, payment_rail is COELSA, payment_rail is PSE, payment_rail is ETRANSFER, payment_rail is IFSC, payment_rail is SBP, payment_rail is BEFTN, payment_rail is NGBANK, payment_rail is LBTR, payment_rail is SEPA, payment_rail is KEBANK, payment_rail is HKBANK, payment_rail is CNBANK, payment_rail is FPS, or payment_rail is UNSPECIFIED. */
     public var bankCodeType: BankCodeTypeBankModel?
     /** The type of account. Required when payment_rail is PSE or payment_rail is LBTR. Optional when payment_rail is ACH. */
     public var accountType: AccountTypeBankModel?

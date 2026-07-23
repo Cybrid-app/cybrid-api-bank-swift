@@ -16,6 +16,7 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
         case eft = "EFT"
         case ach = "ACH"
         case rtp = "RTP"
+        case fednow = "FEDNOW"
         case wire = "WIRE"
         case spei = "SPEI"
         case pix = "PIX"
@@ -46,7 +47,7 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
     public var routingNumberType: String
     /** The routing number. */
     public var routingNumber: String
-    /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, SBP, BEFTN, NGBANK, LBTR, SEPA, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, HKBANK, MPESA, CNBANK, FPS, ALIPAY, or UNSPECIFIED. Null for accounts that did not specify a rail. */
+    /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, FEDNOW, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, SBP, BEFTN, NGBANK, LBTR, SEPA, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, HKBANK, MPESA, CNBANK, FPS, ALIPAY, or UNSPECIFIED. Null for accounts that did not specify a rail. */
     public var paymentRail: PaymentRailBankModel?
 
     public init(routingNumberType: String, routingNumber: String, paymentRail: PaymentRailBankModel? = nil) {
