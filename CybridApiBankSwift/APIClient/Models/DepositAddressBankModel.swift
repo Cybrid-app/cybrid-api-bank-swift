@@ -14,6 +14,8 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
+    /** The name of the deposit address. */
+    public var name: String?
     /** The address' bank identifier. */
     public var bankGuid: String?
     /** The address' customer identifier. */
@@ -37,8 +39,9 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: String? = nil, address: String? = nil, format: String? = nil, tag: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, name: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, asset: String? = nil, state: String? = nil, address: String? = nil, format: String? = nil, tag: String? = nil, labels: [String]? = nil) {
         self.guid = guid
+        self.name = name
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.accountGuid = accountGuid
@@ -54,6 +57,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case name
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
         case accountGuid = "account_guid"
@@ -72,6 +76,7 @@ public struct DepositAddressBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(accountGuid, forKey: .accountGuid)

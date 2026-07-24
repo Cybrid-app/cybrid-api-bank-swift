@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the identity verification. | [optional] 
+**name** | **String** | The name of the deposit bank account. | [optional] 
 **type** | **String** | The account type; one of main or sub_account. | [optional] 
 **bankGuid** | **String** | The address&#39; bank identifier. | [optional] 
 **customerGuid** | **String** | The address&#39; customer identifier. | [optional] 

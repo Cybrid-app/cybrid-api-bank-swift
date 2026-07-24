@@ -14,6 +14,8 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the identity verification. */
     public var guid: String?
+    /** The name of the deposit bank account. */
+    public var name: String?
     /** The account type; one of main or sub_account. */
     public var type: String?
     /** The address' bank identifier. */
@@ -46,8 +48,9 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, name: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
         self.guid = guid
+        self.name = name
         self.type = type
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -68,6 +71,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case name
         case type
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
@@ -91,6 +95,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(guid, forKey: .guid)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)

@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**name** | **String** | The name of the deposit address. | [optional] 
 **accountGuid** | **String** | The trading account guid. | 
 **labels** | **[String]** | The labels associated with the address. | [optional] 
 

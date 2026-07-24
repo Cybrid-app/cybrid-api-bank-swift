@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteDepositBankAccount**](DepositBankAccountsAPI.md#deletedepositbankaccount) | **DELETE** /api/deposit_bank_accounts/{deposit_bank_account_guid} | Delete Deposit Bank Account
 [**getDepositBankAccount**](DepositBankAccountsAPI.md#getdepositbankaccount) | **GET** /api/deposit_bank_accounts/{deposit_bank_account_guid} | Get Deposit Bank Account
 [**listDepositBankAccounts**](DepositBankAccountsAPI.md#listdepositbankaccounts) | **GET** /api/deposit_bank_accounts | List Deposit Bank Accounts
+[**updateDepositBankAccount**](DepositBankAccountsAPI.md#updatedepositbankaccount) | **PATCH** /api/deposit_bank_accounts/{deposit_bank_account_guid} | Patch Deposit Bank Account
 
 
 # **createDepositBankAccount**
@@ -24,7 +25,7 @@ Creates a deposit bank account.  ## State  | State | Description | |-------|----
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postDepositBankAccountBankModel = PostDepositBankAccount(type: "type_example", accountGuid: "accountGuid_example", customerGuid: "customerGuid_example", parentDepositBankAccountGuid: "parentDepositBankAccountGuid_example", labels: ["labels_example"]) // PostDepositBankAccountBankModel | 
+let postDepositBankAccountBankModel = PostDepositBankAccount(name: "name_example", type: "type_example", accountGuid: "accountGuid_example", customerGuid: "customerGuid_example", parentDepositBankAccountGuid: "parentDepositBankAccountGuid_example", labels: ["labels_example"]) // PostDepositBankAccountBankModel | 
 
 // Create Deposit Bank Account
 DepositBankAccountsAPI.createDepositBankAccount(postDepositBankAccountBankModel: postDepositBankAccountBankModel) { (response, error) in
@@ -224,6 +225,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateDepositBankAccount**
+```swift
+    open class func updateDepositBankAccount(depositBankAccountGuid: String, patchDepositBankAccountBankModel: PatchDepositBankAccountBankModel, completion: @escaping (_ data: DepositBankAccountBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Deposit Bank Account
+
+Updates a deposit bank account.  Required scope: **deposit_bank_accounts:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let depositBankAccountGuid = "depositBankAccountGuid_example" // String | Identifier for the deposit bank account.
+let patchDepositBankAccountBankModel = PatchDepositBankAccount(name: "name_example") // PatchDepositBankAccountBankModel | 
+
+// Patch Deposit Bank Account
+DepositBankAccountsAPI.updateDepositBankAccount(depositBankAccountGuid: depositBankAccountGuid, patchDepositBankAccountBankModel: patchDepositBankAccountBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depositBankAccountGuid** | **String** | Identifier for the deposit bank account. | 
+ **patchDepositBankAccountBankModel** | [**PatchDepositBankAccountBankModel**](PatchDepositBankAccountBankModel.md) |  | 
+
+### Return type
+
+[**DepositBankAccountBankModel**](DepositBankAccountBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
