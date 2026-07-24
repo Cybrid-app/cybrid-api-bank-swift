@@ -182,4 +182,59 @@ open class DepositAddressesAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch Deposit Address
+     
+     - parameter depositAddressGuid: (path) Identifier for the deposit address. 
+     - parameter patchDepositAddressBankModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateDepositAddress(depositAddressGuid: String, patchDepositAddressBankModel: PatchDepositAddressBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DepositAddressBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateDepositAddressWithRequestBuilder(depositAddressGuid: depositAddressGuid, patchDepositAddressBankModel: patchDepositAddressBankModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch Deposit Address
+     - PATCH /api/deposit_addresses/{deposit_address_guid}
+     - Updates a deposit address.  Required scope: **deposit_addresses:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter depositAddressGuid: (path) Identifier for the deposit address. 
+     - parameter patchDepositAddressBankModel: (body)  
+     - returns: RequestBuilder<DepositAddressBankModel> 
+     */
+    open class func updateDepositAddressWithRequestBuilder(depositAddressGuid: String, patchDepositAddressBankModel: PatchDepositAddressBankModel) -> RequestBuilder<DepositAddressBankModel> {
+        var localVariablePath = "/api/deposit_addresses/{deposit_address_guid}"
+        let depositAddressGuidPreEscape = "\(APIHelper.mapValueToPathItem(depositAddressGuid))"
+        let depositAddressGuidPostEscape = depositAddressGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{deposit_address_guid}", with: depositAddressGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchDepositAddressBankModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DepositAddressBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }

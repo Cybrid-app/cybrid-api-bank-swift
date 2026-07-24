@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createDepositAddress**](DepositAddressesAPI.md#createdepositaddress) | **POST** /api/deposit_addresses | Create Deposit Address
 [**getDepositAddress**](DepositAddressesAPI.md#getdepositaddress) | **GET** /api/deposit_addresses/{deposit_address_guid} | Get Deposit Address
 [**listDepositAddresses**](DepositAddressesAPI.md#listdepositaddresses) | **GET** /api/deposit_addresses | List Deposit Addresses
+[**updateDepositAddress**](DepositAddressesAPI.md#updatedepositaddress) | **PATCH** /api/deposit_addresses/{deposit_address_guid} | Patch Deposit Address
 
 
 # **createDepositAddress**
@@ -23,7 +24,7 @@ Creates a deposit address.  ## State  | State | Description | |-------|---------
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiBankSwift
 
-let postDepositAddressBankModel = PostDepositAddress(accountGuid: "accountGuid_example", labels: ["labels_example"]) // PostDepositAddressBankModel | 
+let postDepositAddressBankModel = PostDepositAddress(name: "name_example", accountGuid: "accountGuid_example", labels: ["labels_example"]) // PostDepositAddressBankModel | 
 
 // Create Deposit Address
 DepositAddressesAPI.createDepositAddress(postDepositAddressBankModel: postDepositAddressBankModel) { (response, error) in
@@ -165,6 +166,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateDepositAddress**
+```swift
+    open class func updateDepositAddress(depositAddressGuid: String, patchDepositAddressBankModel: PatchDepositAddressBankModel, completion: @escaping (_ data: DepositAddressBankModel?, _ error: Error?) -> Void)
+```
+
+Patch Deposit Address
+
+Updates a deposit address.  Required scope: **deposit_addresses:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiBankSwift
+
+let depositAddressGuid = "depositAddressGuid_example" // String | Identifier for the deposit address.
+let patchDepositAddressBankModel = PatchDepositAddress(name: "name_example") // PatchDepositAddressBankModel | 
+
+// Patch Deposit Address
+DepositAddressesAPI.updateDepositAddress(depositAddressGuid: depositAddressGuid, patchDepositAddressBankModel: patchDepositAddressBankModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depositAddressGuid** | **String** | Identifier for the deposit address. | 
+ **patchDepositAddressBankModel** | [**PatchDepositAddressBankModel**](PatchDepositAddressBankModel.md) |  | 
+
+### Return type
+
+[**DepositAddressBankModel**](DepositAddressBankModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

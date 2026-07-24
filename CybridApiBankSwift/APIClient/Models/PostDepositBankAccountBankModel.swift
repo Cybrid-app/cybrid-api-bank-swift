@@ -18,6 +18,8 @@ public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable 
         case subAccount = "sub_account"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    /** The name of the deposit bank account. */
+    public var name: String?
     /** The account type. To generate deposit bank accounts with their own unique account number set this to \"main\". To generate deposit bank accounts with the same account number as the parent deposit bank account set this to \"sub_account\". This setting will only generate a unique identifier for the deposit bank and will not result in a unique account number being generated. \"sub_account\" is only  available for customer-level deposit bank accounts. */
     public var type: TypeBankModel
     /** The fiat or reserve account guid. */
@@ -29,7 +31,8 @@ public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable 
     /** The labels associated with the bank account. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, accountGuid: String, customerGuid: String? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(name: String? = nil, type: TypeBankModel, accountGuid: String, customerGuid: String? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
+        self.name = name
         self.type = type
         self.accountGuid = accountGuid
         self.customerGuid = customerGuid
@@ -38,6 +41,7 @@ public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable 
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case name
         case type
         case accountGuid = "account_guid"
         case customerGuid = "customer_guid"
@@ -49,6 +53,7 @@ public struct PostDepositBankAccountBankModel: Codable, JSONEncodable, Hashable 
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encode(type, forKey: .type)
         try container.encode(accountGuid, forKey: .accountGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
