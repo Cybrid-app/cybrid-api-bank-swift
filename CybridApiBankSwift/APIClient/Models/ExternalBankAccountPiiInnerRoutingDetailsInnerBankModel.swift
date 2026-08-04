@@ -43,23 +43,32 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
         case unspecified = "UNSPECIFIED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum AccountDesignationBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case nre = "NRE"
+        case nro = "NRO"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The type of routing number; one of CPA, ABA, or IFSC. */
     public var routingNumberType: String
     /** The routing number. */
     public var routingNumber: String
     /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, FEDNOW, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, SBP, BEFTN, NGBANK, LBTR, SEPA, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, HKBANK, MPESA, CNBANK, FPS, ALIPAY, or UNSPECIFIED. Null for accounts that did not specify a rail. */
     public var paymentRail: PaymentRailBankModel?
+    /** Account designation for India IFSC accounts; one of NRE or NRO. Null for non-IFSC accounts. */
+    public var accountDesignation: AccountDesignationBankModel?
 
-    public init(routingNumberType: String, routingNumber: String, paymentRail: PaymentRailBankModel? = nil) {
+    public init(routingNumberType: String, routingNumber: String, paymentRail: PaymentRailBankModel? = nil, accountDesignation: AccountDesignationBankModel? = nil) {
         self.routingNumberType = routingNumberType
         self.routingNumber = routingNumber
         self.paymentRail = paymentRail
+        self.accountDesignation = accountDesignation
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case routingNumberType = "routing_number_type"
         case routingNumber = "routing_number"
         case paymentRail = "payment_rail"
+        case accountDesignation = "account_designation"
     }
 
     // Encodable protocol methods
@@ -69,6 +78,7 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
         try container.encode(routingNumberType, forKey: .routingNumberType)
         try container.encode(routingNumber, forKey: .routingNumber)
         try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
+        try container.encodeIfPresent(accountDesignation, forKey: .accountDesignation)
     }
 }
 
