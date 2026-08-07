@@ -14,6 +14,8 @@ public struct FeeAssociationBankModel: Codable, JSONEncodable, Hashable {
 
     /** The type of fee; one of platform, network, or bank. */
     public var type: String
+    /** The identifier of the stage the fee belongs to. */
+    public var stageGuid: String?
     /** The asset the fee is denominated in, e.g., USD. */
     public var asset: String
     /** The quoted amount in base units for the fee. */
@@ -21,8 +23,9 @@ public struct FeeAssociationBankModel: Codable, JSONEncodable, Hashable {
     /** The executed amount in base units for the fee. */
     public var executedAmount: Int?
 
-    public init(type: String, asset: String, quotedAmount: Int, executedAmount: Int? = nil) {
+    public init(type: String, stageGuid: String? = nil, asset: String, quotedAmount: Int, executedAmount: Int? = nil) {
         self.type = type
+        self.stageGuid = stageGuid
         self.asset = asset
         self.quotedAmount = quotedAmount
         self.executedAmount = executedAmount
@@ -30,6 +33,7 @@ public struct FeeAssociationBankModel: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
+        case stageGuid = "stage_guid"
         case asset
         case quotedAmount = "quoted_amount"
         case executedAmount = "executed_amount"
@@ -40,6 +44,7 @@ public struct FeeAssociationBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(stageGuid, forKey: .stageGuid)
         try container.encode(asset, forKey: .asset)
         try container.encode(quotedAmount, forKey: .quotedAmount)
         try container.encodeIfPresent(executedAmount, forKey: .executedAmount)

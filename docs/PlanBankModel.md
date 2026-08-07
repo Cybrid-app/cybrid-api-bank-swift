@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **destinationAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **stages** | [StageBankModel] | The stages of the plan. | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the plan. | 
+**effectiveRate** | [**EffectiveRateBankModel**](EffectiveRateBankModel.md) |  | [optional] 
 **travelRuleInfo** | [**PlanTravelRuleInfoBankModel**](PlanTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
 **supportingDocuments** | [SupportingDocumentBankModel] | Supporting documents attached to the plan. Optional when type is remittance. | [optional] 
