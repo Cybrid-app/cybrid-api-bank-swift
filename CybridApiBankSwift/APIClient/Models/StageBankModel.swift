@@ -32,10 +32,11 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     public var destinationAccount: AccountAssociationBankModel
     /** The fees associated with the stage. */
     public var fees: [FeeAssociationBankModel]
+    public var effectiveRate: EffectiveRateBankModel?
     public var depositReturnDetails: ReturnDetailsBankModel?
     public var withdrawalReturnDetails: ReturnDetailsBankModel?
 
-    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil) {
+    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.state = state
@@ -47,6 +48,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         self.sourceAccount = sourceAccount
         self.destinationAccount = destinationAccount
         self.fees = fees
+        self.effectiveRate = effectiveRate
         self.depositReturnDetails = depositReturnDetails
         self.withdrawalReturnDetails = withdrawalReturnDetails
     }
@@ -63,6 +65,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         case sourceAccount = "source_account"
         case destinationAccount = "destination_account"
         case fees
+        case effectiveRate = "effective_rate"
         case depositReturnDetails = "deposit_return_details"
         case withdrawalReturnDetails = "withdrawal_return_details"
     }
@@ -82,6 +85,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(sourceAccount, forKey: .sourceAccount)
         try container.encode(destinationAccount, forKey: .destinationAccount)
         try container.encode(fees, forKey: .fees)
+        try container.encodeIfPresent(effectiveRate, forKey: .effectiveRate)
         try container.encodeIfPresent(depositReturnDetails, forKey: .depositReturnDetails)
         try container.encodeIfPresent(withdrawalReturnDetails, forKey: .withdrawalReturnDetails)
     }

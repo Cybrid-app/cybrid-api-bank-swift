@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **sourceAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **destinationAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the stage. | 
+**effectiveRate** | [**EffectiveRateBankModel**](EffectiveRateBankModel.md) |  | [optional] 
 **depositReturnDetails** | [**ReturnDetailsBankModel**](ReturnDetailsBankModel.md) |  | [optional] 
 **withdrawalReturnDetails** | [**ReturnDetailsBankModel**](ReturnDetailsBankModel.md) |  | [optional] 
 

@@ -78,6 +78,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var stages: [StageBankModel]
     /** The fees associated with the execution. */
     public var fees: [FeeAssociationBankModel]
+    public var effectiveRate: EffectiveRateBankModel?
     /** The holds placed on the execution. */
     public var holds: [HoldDetailBankModel]?
     public var travelRuleInfo: ExecutionTravelRuleInfoBankModel
@@ -88,7 +89,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the execution. */
     public var labels: [String]?
 
-    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, references: [PlanReferenceBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, references: [PlanReferenceBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.planGuid = planGuid
@@ -102,6 +103,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         self.destinationAccount = destinationAccount
         self.stages = stages
         self.fees = fees
+        self.effectiveRate = effectiveRate
         self.holds = holds
         self.travelRuleInfo = travelRuleInfo
         self.purposeOfTransaction = purposeOfTransaction
@@ -123,6 +125,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         case destinationAccount = "destination_account"
         case stages
         case fees
+        case effectiveRate = "effective_rate"
         case holds
         case travelRuleInfo = "travel_rule_info"
         case purposeOfTransaction = "purpose_of_transaction"
@@ -147,6 +150,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         try container.encode(destinationAccount, forKey: .destinationAccount)
         try container.encode(stages, forKey: .stages)
         try container.encode(fees, forKey: .fees)
+        try container.encodeIfPresent(effectiveRate, forKey: .effectiveRate)
         try container.encodeIfPresent(holds, forKey: .holds)
         try container.encode(travelRuleInfo, forKey: .travelRuleInfo)
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
