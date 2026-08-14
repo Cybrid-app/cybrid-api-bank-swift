@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **businessFundsSource** | **String** | The source of business funds. Required for attested business registration V3. e.g. &#39;Funds from individual customers&#39;, &#39;Funds from business customers&#39;, &#39;Funds from both individual and business customers&#39;, etc. Optional when type is kyc and method is attested_business_registration. | [optional] 
 **businessFundsDestination** | **String** | The destination of business funds. Required for attested business registration V3. e.g. &#39;To your business account (bank or wallet)&#39;, &#39;To vendors or suppliers&#39;, &#39;To employees or contractors&#39;, &#39;To sellers or merchants&#39;, &#39;Bulk payments or payouts&#39;, etc. Optional when type is kyc and method is attested_business_registration. | [optional] 
 **occupation** | **String** | The customer&#39;s occupation. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie. | [optional] 
+**citizenship** | **String** | The customer&#39;s citizenship country code. Required when type is kyc and method is attested_business_associate. | [optional] 
 **biometricsVerified** | **Bool** | Whether biometrics have been verified Required when type is kyc and method is attested_business_associate or type is kyc and method is attested_id_and_database. | [optional] 
 **externalBankAccountGuid** | **String** | The external bank account&#39;s identifier. Required when type is bank_account. | [optional] 
 

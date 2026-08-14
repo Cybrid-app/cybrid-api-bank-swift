@@ -25,6 +25,8 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     public var emailAddress: String?
     /** The attested occupation. */
     public var occupation: String?
+    /** The ISO 3166 country 2-Alpha country code of the customer's citizenship. */
+    public var citizenship: String?
     /** The attested website. */
     public var website: String?
     /** The attested nature of business. */
@@ -39,7 +41,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     /** The attested identification numbers. */
     public var identificationNumbers: [IdentificationNumberBankModel]?
 
-    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
+    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, citizenship: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
         self.name = name
         self.aliases = aliases
         self.address = address
@@ -47,6 +49,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
         self.occupation = occupation
+        self.citizenship = citizenship
         self.website = website
         self.natureOfBusiness = natureOfBusiness
         self.registeredAddress = registeredAddress
@@ -64,6 +67,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
         case occupation
+        case citizenship
         case website
         case natureOfBusiness = "nature_of_business"
         case registeredAddress = "registered_address"
@@ -84,6 +88,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(occupation, forKey: .occupation)
+        try container.encodeIfPresent(citizenship, forKey: .citizenship)
         try container.encodeIfPresent(website, forKey: .website)
         try container.encodeIfPresent(natureOfBusiness, forKey: .natureOfBusiness)
         try container.encodeIfPresent(registeredAddress, forKey: .registeredAddress)
