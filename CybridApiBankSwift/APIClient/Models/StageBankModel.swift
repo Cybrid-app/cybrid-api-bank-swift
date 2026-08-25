@@ -14,7 +14,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier for the stage. */
     public var guid: String
-    /** The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, or withdrawal_return. */
+    /** The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, withdrawal_return, or payout_return. */
     public var type: String
     /** The state of the stage; one of storing, planning, planned, executing, completed, or failed. */
     public var state: String
@@ -35,8 +35,9 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     public var effectiveRate: EffectiveRateBankModel?
     public var depositReturnDetails: ReturnDetailsBankModel?
     public var withdrawalReturnDetails: ReturnDetailsBankModel?
+    public var payoutReturnDetails: PayoutReturnDetailsBankModel?
 
-    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil) {
+    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil, payoutReturnDetails: PayoutReturnDetailsBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.state = state
@@ -51,6 +52,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         self.effectiveRate = effectiveRate
         self.depositReturnDetails = depositReturnDetails
         self.withdrawalReturnDetails = withdrawalReturnDetails
+        self.payoutReturnDetails = payoutReturnDetails
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -68,6 +70,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         case effectiveRate = "effective_rate"
         case depositReturnDetails = "deposit_return_details"
         case withdrawalReturnDetails = "withdrawal_return_details"
+        case payoutReturnDetails = "payout_return_details"
     }
 
     // Encodable protocol methods
@@ -88,6 +91,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(effectiveRate, forKey: .effectiveRate)
         try container.encodeIfPresent(depositReturnDetails, forKey: .depositReturnDetails)
         try container.encodeIfPresent(withdrawalReturnDetails, forKey: .withdrawalReturnDetails)
+        try container.encodeIfPresent(payoutReturnDetails, forKey: .payoutReturnDetails)
     }
 }
 

@@ -13,6 +13,11 @@ import AnyCodable
 /** The personally identifiable information associated with the identity verification. */
 public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum BusinessTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case entity = "entity"
+        case soleProprietor = "sole_proprietor"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public var name: IdentityVerificationWithDetailsPiiNameBankModel?
     /** The business attested aliases. */
     public var aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]?
@@ -38,10 +43,14 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     public var businessFundsSource: String?
     /** The attested business funds destination. */
     public var businessFundsDestination: String?
+    /** The attested business type. */
+    public var businessType: BusinessTypeBankModel?
+    /** The attested business incorporation date. */
+    public var businessIncorporationDate: Date?
     /** The attested identification numbers. */
     public var identificationNumbers: [IdentificationNumberBankModel]?
 
-    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, citizenship: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
+    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, citizenship: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, businessType: BusinessTypeBankModel? = nil, businessIncorporationDate: Date? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
         self.name = name
         self.aliases = aliases
         self.address = address
@@ -56,6 +65,8 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         self.businessIndustry = businessIndustry
         self.businessFundsSource = businessFundsSource
         self.businessFundsDestination = businessFundsDestination
+        self.businessType = businessType
+        self.businessIncorporationDate = businessIncorporationDate
         self.identificationNumbers = identificationNumbers
     }
 
@@ -74,6 +85,8 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         case businessIndustry = "business_industry"
         case businessFundsSource = "business_funds_source"
         case businessFundsDestination = "business_funds_destination"
+        case businessType = "business_type"
+        case businessIncorporationDate = "business_incorporation_date"
         case identificationNumbers = "identification_numbers"
     }
 
@@ -95,6 +108,8 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         try container.encodeIfPresent(businessIndustry, forKey: .businessIndustry)
         try container.encodeIfPresent(businessFundsSource, forKey: .businessFundsSource)
         try container.encodeIfPresent(businessFundsDestination, forKey: .businessFundsDestination)
+        try container.encodeIfPresent(businessType, forKey: .businessType)
+        try container.encodeIfPresent(businessIncorporationDate, forKey: .businessIncorporationDate)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
     }
 }
