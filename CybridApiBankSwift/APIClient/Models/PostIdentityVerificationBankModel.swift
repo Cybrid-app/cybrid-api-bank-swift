@@ -41,6 +41,28 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case accountOwnership = "account_ownership"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum BusinessIndustryBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case cryptoDigitalAssetsBlockchain = "crypto_digital_assets_blockchain"
+        case education = "education"
+        case gaming = "gaming"
+        case healthcareHospitality = "healthcare_hospitality"
+        case lendingInvestments = "lending_investments"
+        case logisticsManufacturingTransportation = "logistics_manufacturing_transportation"
+        case moneyServicesPaymentsRemittance = "money_services_payments_remittance"
+        case consultingLegalAccounting = "consulting_legal_accounting"
+        case realEstatePropertyManagement = "real_estate_property_management"
+        case retailEcommerce = "retail_ecommerce"
+        case socialMediaContentCreatorInfluencer = "social_media_content_creator_influencer"
+        case technologySoftwareSaas = "technology_software_saas"
+        case wholesaleDistribution = "wholesale_distribution"
+        case other = "other"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    public enum BusinessTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case entity = "entity"
+        case soleProprietor = "sole_proprietor"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The type of identity verification. */
     public var type: TypeBankModel
     /** The customer's identifier. Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. */
@@ -78,12 +100,16 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     /** File guids supporting the verification Required when type is kyc and method is attested_business_registration, type is kyc and method is attested_business_associate, or type is kyc and method is attested_id_and_database. Optional when type is kyc and method is attested_id_and_selfie. */
     public var supportingFileGuids: [String]?
     public var registeredAddress: PostIdentityVerificationRegisteredAddressBankModel?
-    /** The industry the business operates in. Required for attested business registration V3. e.g. 'Crypto / Digital Assets / Blockchain', 'Education', 'Gaming', 'Healthcare / Hospitality', 'Lending / Investments', 'Retail / E-Commerce', etc. Optional when type is kyc and method is attested_business_registration. */
-    public var businessIndustry: String?
+    /** The industry the business operates in. Required for attested business registration V3. Optional when type is kyc and method is attested_business_registration. */
+    public var businessIndustry: BusinessIndustryBankModel?
     /** The source of business funds. Required for attested business registration V3. e.g. 'Funds from individual customers', 'Funds from business customers', 'Funds from both individual and business customers', etc. Optional when type is kyc and method is attested_business_registration. */
     public var businessFundsSource: String?
     /** The destination of business funds. Required for attested business registration V3. e.g. 'To your business account (bank or wallet)', 'To vendors or suppliers', 'To employees or contractors', 'To sellers or merchants', 'Bulk payments or payouts', etc. Optional when type is kyc and method is attested_business_registration. */
     public var businessFundsDestination: String?
+    /** The type of business. Defaults to 'entity' for V3. Optional when type is kyc and method is attested_business_registration. */
+    public var businessType: BusinessTypeBankModel?
+    /** The date the business was incorporated. Required for attested business registration V3. Optional when type is kyc and method is attested_business_registration. */
+    public var businessIncorporationDate: Date?
     /** The customer's occupation. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie. */
     public var occupation: String?
     /** The customer's citizenship country code. Required when type is kyc and method is attested_business_associate. */
@@ -93,7 +119,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     /** The external bank account's identifier. Required when type is bank_account. */
     public var externalBankAccountGuid: String?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, requireTaxId: Bool? = false, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, aliases: [PostIdentityVerificationAliasesInnerBankModel]? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, directorCustomerGuids: [String]? = nil, ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]? = nil, supportingFileGuids: [String]? = nil, registeredAddress: PostIdentityVerificationRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, occupation: String? = nil, citizenship: String? = nil, biometricsVerified: Bool? = nil, externalBankAccountGuid: String? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, method: MethodBankModel? = nil, counterpartyGuid: String? = nil, countryCode: String? = nil, requireTaxId: Bool? = false, name: PostIdentityVerificationNameBankModel? = nil, address: PostIdentityVerificationAddressBankModel? = nil, dateOfBirth: Date? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, aliases: [PostIdentityVerificationAliasesInnerBankModel]? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, directorCustomerGuids: [String]? = nil, ultimateBeneficialOwners: [PostUltimateBeneficialOwnerBankModel]? = nil, supportingFileGuids: [String]? = nil, registeredAddress: PostIdentityVerificationRegisteredAddressBankModel? = nil, businessIndustry: BusinessIndustryBankModel? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, businessType: BusinessTypeBankModel? = nil, businessIncorporationDate: Date? = nil, occupation: String? = nil, citizenship: String? = nil, biometricsVerified: Bool? = nil, externalBankAccountGuid: String? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.expectedBehaviours = expectedBehaviours
@@ -117,6 +143,8 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         self.businessIndustry = businessIndustry
         self.businessFundsSource = businessFundsSource
         self.businessFundsDestination = businessFundsDestination
+        self.businessType = businessType
+        self.businessIncorporationDate = businessIncorporationDate
         self.occupation = occupation
         self.citizenship = citizenship
         self.biometricsVerified = biometricsVerified
@@ -147,6 +175,8 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case businessIndustry = "business_industry"
         case businessFundsSource = "business_funds_source"
         case businessFundsDestination = "business_funds_destination"
+        case businessType = "business_type"
+        case businessIncorporationDate = "business_incorporation_date"
         case occupation
         case citizenship
         case biometricsVerified = "biometrics_verified"
@@ -180,6 +210,8 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         try container.encodeIfPresent(businessIndustry, forKey: .businessIndustry)
         try container.encodeIfPresent(businessFundsSource, forKey: .businessFundsSource)
         try container.encodeIfPresent(businessFundsDestination, forKey: .businessFundsDestination)
+        try container.encodeIfPresent(businessType, forKey: .businessType)
+        try container.encodeIfPresent(businessIncorporationDate, forKey: .businessIncorporationDate)
         try container.encodeIfPresent(occupation, forKey: .occupation)
         try container.encodeIfPresent(citizenship, forKey: .citizenship)
         try container.encodeIfPresent(biometricsVerified, forKey: .biometricsVerified)

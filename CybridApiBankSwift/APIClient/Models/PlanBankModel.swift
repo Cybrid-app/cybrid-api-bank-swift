@@ -56,7 +56,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     }
     /** Auto-generated unique identifier for the entity. */
     public var guid: String
-    /** The type of product the plan is for; one of remittance, deposit_return, or withdrawal_return. */
+    /** The type of product the plan is for; one of remittance, invoice_pay, deposit_return, withdrawal_return, or payout_return. */
     public var type: String
     /** The unique identifier for the bank. */
     public var bankGuid: String?
@@ -82,7 +82,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: PlanTravelRuleInfoBankModel
     /** The purpose of transaction for the plan. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
-    /** Supporting documents attached to the plan. Optional when type is remittance. */
+    /** Supporting documents attached to the plan. Optional when type is remittance or type is invoice_pay. */
     public var supportingDocuments: [SupportingDocumentBankModel]?
     /** The labels associated with the plan. */
     public var labels: [String]?

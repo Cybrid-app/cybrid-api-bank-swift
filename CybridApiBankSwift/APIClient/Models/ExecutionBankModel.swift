@@ -56,7 +56,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     }
     /** Auto-generated unique identifier for the quote. */
     public var guid: String
-    /** The type of product the plan is for; one of remittance, deposit_return, or withdrawal_return. */
+    /** The type of product the plan is for; one of remittance, invoice_pay, deposit_return, withdrawal_return, or payout_return. */
     public var type: String
     /** The unique identifier for the plan. */
     public var planGuid: String
@@ -84,7 +84,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: ExecutionTravelRuleInfoBankModel
     /** The purpose of transaction for the execution. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
-    /** Objects this return execution references (the returned execution and stage). Optional when type is deposit_return or type is withdrawal_return. */
+    /** Objects this return execution references (the returned execution and stage). Optional when type is deposit_return, type is withdrawal_return, or type is payout_return. */
     public var references: [PlanReferenceBankModel]?
     /** The labels associated with the execution. */
     public var labels: [String]?

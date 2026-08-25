@@ -15,6 +15,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case remittance = "remittance"
+        case invoicePay = "invoice_pay"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PurposeOfTransactionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -72,7 +73,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
     /** The labels associated with the plan. */
     public var labels: [String]?
-    /** Supporting documents to attach to the plan. Optional when type is remittance. */
+    /** Supporting documents to attach to the plan. Optional when type is remittance or type is invoice_pay. */
     public var supportingDocuments: [PostSupportingDocumentBankModel]?
 
     public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, labels: [String]? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil) {

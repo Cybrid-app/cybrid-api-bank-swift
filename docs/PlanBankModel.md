@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the entity. | 
-**type** | **String** | The type of product the plan is for; one of remittance, deposit_return, or withdrawal_return. | 
+**type** | **String** | The type of product the plan is for; one of remittance, invoice_pay, deposit_return, withdrawal_return, or payout_return. | 
 **bankGuid** | **String** | The unique identifier for the bank. | [optional] 
 **customerGuid** | **String** | The unique identifier for the customer. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **effectiveRate** | [**EffectiveRateBankModel**](EffectiveRateBankModel.md) |  | [optional] 
 **travelRuleInfo** | [**PlanTravelRuleInfoBankModel**](PlanTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
-**supportingDocuments** | [SupportingDocumentBankModel] | Supporting documents attached to the plan. Optional when type is remittance. | [optional] 
+**supportingDocuments** | [SupportingDocumentBankModel] | Supporting documents attached to the plan. Optional when type is remittance or type is invoice_pay. | [optional] 
 **labels** | **[String]** | The labels associated with the plan. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

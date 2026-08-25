@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **businessIndustry** | **String** | The attested business industry. | [optional] 
 **businessFundsSource** | **String** | The attested business funds source. | [optional] 
 **businessFundsDestination** | **String** | The attested business funds destination. | [optional] 
+**businessType** | **String** | The attested business type. | [optional] 
+**businessIncorporationDate** | **Date** | The attested business incorporation date. | [optional] 
 **identificationNumbers** | [IdentificationNumberBankModel] | The attested identification numbers. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -21,5 +21,6 @@ public enum BankFeatureBankModel: String, Codable, CaseIterable, CaseIterableDef
     case counterpartyExternalAccounts = "counterparty_external_accounts"
     case businessCustomerRawRoutingDetails = "business_customer_raw_routing_details"
     case individualCustomerRawRoutingDetails = "individual_customer_raw_routing_details"
+    case destinationParticipantCorrections = "destination_participant_corrections"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
