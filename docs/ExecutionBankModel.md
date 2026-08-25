@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the quote. | 
-**type** | **String** | The type of product the plan is for; one of remittance, invoice_pay, deposit_return, withdrawal_return, or payout_return. | 
+**type** | **String** | The type of product the plan is for; one of remittance, disbursement, invoice_pay, deposit_return, withdrawal_return, or payout_return. | 
 **planGuid** | **String** | The unique identifier for the plan. | 
 **bankGuid** | **String** | The unique identifier for the bank. | [optional] 
 **customerGuid** | **String** | The unique identifier for the customer. | [optional] 
