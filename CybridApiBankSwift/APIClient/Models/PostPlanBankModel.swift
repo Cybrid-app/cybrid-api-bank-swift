@@ -15,6 +15,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case remittance = "remittance"
+        case billPay = "bill_pay"
         case disbursement = "disbursement"
         case invoicePay = "invoice_pay"
         case unknownDefaultOpenApi = "unknown_default_open_api"
