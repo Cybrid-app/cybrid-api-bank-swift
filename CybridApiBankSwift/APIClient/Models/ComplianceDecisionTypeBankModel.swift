@@ -22,6 +22,7 @@ public enum ComplianceDecisionTypeBankModel: String, Codable, CaseIterable, Case
     case personGovIdAttested = "person_gov_id_attested"
     case personAuthenticationAttested = "person_authentication_attested"
     case personWatchlistsAttested = "person_watchlists_attested"
+    case personBankAuthentication = "person_bank_authentication"
     case personWatchlists = "person_watchlists"
     case personVerification = "person_verification"
     case personAuthentication = "person_authentication"
