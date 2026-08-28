@@ -20,5 +20,6 @@ public enum TradeFailureCodeBankModel: String, Codable, CaseIterable, CaseIterab
     case dailyLimitExceeded = "daily_limit_exceeded"
     case weeklyLimitExceeded = "weekly_limit_exceeded"
     case monthlyLimitExceeded = "monthly_limit_exceeded"
+    case lifetimeLimitExceeded = "lifetime_limit_exceeded"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
