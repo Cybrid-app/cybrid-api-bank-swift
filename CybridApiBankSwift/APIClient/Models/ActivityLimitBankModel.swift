@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct ActivityLimitBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The type of the limit; one of rolling, daily, weekly, or monthly. */
+    /** The type of the limit; one of rolling, daily, weekly, monthly, or lifetime. */
     public var type: String?
     /** The name of the limit. */
     public var name: String?
