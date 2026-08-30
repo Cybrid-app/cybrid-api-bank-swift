@@ -12,11 +12,17 @@ import AnyCodable
 
 public enum QuoteTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case trading = "trading"
-    case tradingExit = "trading_exit"
     case funding = "funding"
+    case bookTransfer = "book_transfer"
     case cryptoTransfer = "crypto_transfer"
+    case fundingReturn = "funding_return"
+    case tradingLiquidation = "trading_liquidation"
+    case cryptoTransferReturn = "crypto_transfer_return"
+    case lossRecoveryTransfer = "loss_recovery_transfer"
     case interAccount = "inter_account"
     case lightningTransfer = "lightning_transfer"
-    case bookTransfer = "book_transfer"
+    case tradingExit = "trading_exit"
+    case lossCoverageTransfer = "loss_coverage_transfer"
+    case lossReclaimTransfer = "loss_reclaim_transfer"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
