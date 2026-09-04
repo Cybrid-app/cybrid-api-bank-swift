@@ -24,6 +24,7 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
         case pse = "PSE"
         case etransfer = "ETRANSFER"
         case ifsc = "IFSC"
+        case upi = "UPI"
         case sbp = "SBP"
         case beftn = "BEFTN"
         case ngbank = "NGBANK"
@@ -52,9 +53,9 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
     public var routingNumberType: String
     /** The routing number. */
     public var routingNumber: String
-    /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, FEDNOW, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, SBP, BEFTN, NGBANK, LBTR, SEPA, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, HKBANK, MPESA, CNBANK, FPS, ALIPAY, or UNSPECIFIED. Null for accounts that did not specify a rail. */
+    /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, FEDNOW, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, UPI, SBP, BEFTN, NGBANK, LBTR, SEPA, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, HKBANK, MPESA, CNBANK, FPS, ALIPAY, or UNSPECIFIED. Null for accounts that did not specify a rail. */
     public var paymentRail: PaymentRailBankModel?
-    /** Account designation for India IFSC accounts; one of NRE or NRO. Null for non-IFSC accounts. */
+    /** Account designation for India IFSC and UPI accounts; one of NRE or NRO. Null for non-India accounts. */
     public var accountDesignation: AccountDesignationBankModel?
 
     public init(routingNumberType: String, routingNumber: String, paymentRail: PaymentRailBankModel? = nil, accountDesignation: AccountDesignationBankModel? = nil) {
