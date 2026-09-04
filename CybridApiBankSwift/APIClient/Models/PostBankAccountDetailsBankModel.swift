@@ -23,6 +23,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case random = "RANDOM"
         case cpf = "CPF"
         case cnpj = "CNPJ"
+        case vpa = "VPA"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -37,6 +38,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
         case pse = "PSE"
         case etransfer = "ETRANSFER"
         case ifsc = "IFSC"
+        case upi = "UPI"
         case sbp = "SBP"
         case beftn = "BEFTN"
         case ngbank = "NGBANK"
@@ -86,7 +88,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var bankCode: String?
     /** The account number or unique identifier for the account. */
     public var accountIdentifier: String
-    /** The type of account identifier. Must be PHONE_NUMBER for mobile wallet rails. Required when payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, payment_rail is SADA_PAY, payment_rail is MPESA, or payment_rail is ALIPAY. */
+    /** The type of account identifier. Must be VPA for UPI rails and PHONE_NUMBER for mobile wallet rails. Required when payment_rail is UPI, payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, payment_rail is SADA_PAY, payment_rail is MPESA, or payment_rail is ALIPAY. */
     public var accountIdentifierType: AccountIdentifierTypeBankModel?
     /** The payment rail used for the account. */
     public var paymentRail: PaymentRailBankModel
@@ -94,7 +96,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var bankCodeType: BankCodeTypeBankModel?
     /** The type of account. Required when payment_rail is PSE or payment_rail is LBTR. Optional when payment_rail is ACH or payment_rail is WIRE. */
     public var accountType: AccountTypeBankModel?
-    /** Account designation for India IFSC accounts (NRE or NRO). Defaults to NRE when omitted. Optional when payment_rail is IFSC. */
+    /** Account designation for India IFSC and UPI accounts (NRE or NRO). Defaults to NRE when omitted. Optional when payment_rail is IFSC or payment_rail is UPI. */
     public var accountDesignation: AccountDesignationBankModel?
 
     public init(bankCode: String? = nil, accountIdentifier: String, accountIdentifierType: AccountIdentifierTypeBankModel? = nil, paymentRail: PaymentRailBankModel, bankCodeType: BankCodeTypeBankModel? = nil, accountType: AccountTypeBankModel? = nil, accountDesignation: AccountDesignationBankModel? = nil) {
