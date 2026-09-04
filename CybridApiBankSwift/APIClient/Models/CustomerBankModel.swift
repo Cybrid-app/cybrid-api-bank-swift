@@ -36,6 +36,8 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     public var phoneNumber: String?
     /** The customer's email address. Only available for GET operations when 'include_pii' is set. */
     public var emailAddress: String?
+    /** The ISO 3166 country 2-Alpha country code of the customer's citizenship. Only available for GET operations when 'include_pii' is set. */
+    public var citizenship: String?
     /** The labels associated with the customer. */
     public var labels: [String]?
     /** The compliance decisions associated with the customer. */
@@ -45,7 +47,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
     /** The asset limits associated with the customer. */
     public var activityLimits: [ActivityLimitBankModel]?
 
-    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil, activityLimits: [ActivityLimitBankModel]? = nil) {
+    public init(guid: String? = nil, bankGuid: String? = nil, type: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CustomerNameBankModel? = nil, address: CustomerAddressBankModel? = nil, aliases: [CustomerAliasesInnerBankModel]? = nil, website: String? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, citizenship: String? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil, activityLimits: [ActivityLimitBankModel]? = nil) {
         self.guid = guid
         self.bankGuid = bankGuid
         self.type = type
@@ -59,6 +61,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         self.dateOfBirth = dateOfBirth
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
+        self.citizenship = citizenship
         self.labels = labels
         self.complianceDecisions = complianceDecisions
         self.identificationNumbers = identificationNumbers
@@ -79,6 +82,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         case dateOfBirth = "date_of_birth"
         case phoneNumber = "phone_number"
         case emailAddress = "email_address"
+        case citizenship
         case labels
         case complianceDecisions = "compliance_decisions"
         case identificationNumbers = "identification_numbers"
@@ -102,6 +106,7 @@ public struct CustomerBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
+        try container.encodeIfPresent(citizenship, forKey: .citizenship)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)

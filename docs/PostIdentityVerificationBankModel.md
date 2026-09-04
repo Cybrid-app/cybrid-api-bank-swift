@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **businessType** | **String** | The type of business. Defaults to &#39;entity&#39; for V3. Optional when type is kyc and method is attested_business_registration. | [optional] 
 **businessIncorporationDate** | **Date** | The date the business was incorporated. Required for attested business registration V3. Optional when type is kyc and method is attested_business_registration. | [optional] 
 **occupation** | **String** | The customer&#39;s occupation. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie. | [optional] 
-**citizenship** | **String** | The customer&#39;s citizenship country code. Required when type is kyc and method is attested_business_associate. | [optional] 
+**citizenship** | **String** | The customer&#39;s citizenship country code. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_id_and_database, or type is kyc and method is attested_database. | [optional] 
 **biometricsVerified** | **Bool** | Whether biometrics have been verified Required when type is kyc and method is attested_business_associate or type is kyc and method is attested_id_and_database. | [optional] 
 **externalBankAccountGuid** | **String** | The external bank account&#39;s identifier. Required when type is bank_account. | [optional] 
 

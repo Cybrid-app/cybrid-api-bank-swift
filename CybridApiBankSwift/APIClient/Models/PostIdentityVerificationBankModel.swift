@@ -113,7 +113,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var businessIncorporationDate: Date?
     /** The customer's occupation. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie. */
     public var occupation: String?
-    /** The customer's citizenship country code. Required when type is kyc and method is attested_business_associate. */
+    /** The customer's citizenship country code. Required when type is kyc and method is attested_business_associate. Optional when type is kyc and method is attested_id_and_selfie, type is kyc and method is attested_id_and_database, or type is kyc and method is attested_database. */
     public var citizenship: String?
     /** Whether biometrics have been verified Required when type is kyc and method is attested_business_associate or type is kyc and method is attested_id_and_database. */
     public var biometricsVerified: Bool?
