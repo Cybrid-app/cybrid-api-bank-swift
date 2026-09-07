@@ -18,6 +18,9 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case billPay = "bill_pay"
         case disbursement = "disbursement"
         case invoicePay = "invoice_pay"
+        case deposit = "deposit"
+        case withdrawal = "withdrawal"
+        case conversion = "conversion"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PurposeOfTransactionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
