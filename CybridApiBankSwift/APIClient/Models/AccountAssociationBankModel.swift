@@ -42,8 +42,10 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
     public var executedAmount: Int?
     /** The desired payment rail to use to initiate a fiat transfer. */
     public var paymentRail: PaymentRailBankModel?
+    /** Whether this account was explicitly requested by the caller as an intermediate account. */
+    public var intermediateRequested: Bool?
 
-    public init(guid: String, type: String, organizationGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, requestedAmount: Int? = nil, quotedAmount: Int? = nil, executedAmount: Int? = nil, paymentRail: PaymentRailBankModel? = nil) {
+    public init(guid: String, type: String, organizationGuid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, asset: String, requestedAmount: Int? = nil, quotedAmount: Int? = nil, executedAmount: Int? = nil, paymentRail: PaymentRailBankModel? = nil, intermediateRequested: Bool? = nil) {
         self.guid = guid
         self.type = type
         self.organizationGuid = organizationGuid
@@ -55,6 +57,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         self.quotedAmount = quotedAmount
         self.executedAmount = executedAmount
         self.paymentRail = paymentRail
+        self.intermediateRequested = intermediateRequested
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -69,6 +72,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         case quotedAmount = "quoted_amount"
         case executedAmount = "executed_amount"
         case paymentRail = "payment_rail"
+        case intermediateRequested = "intermediate_requested"
     }
 
     // Encodable protocol methods
@@ -86,6 +90,7 @@ public struct AccountAssociationBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(quotedAmount, forKey: .quotedAmount)
         try container.encodeIfPresent(executedAmount, forKey: .executedAmount)
         try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
+        try container.encodeIfPresent(intermediateRequested, forKey: .intermediateRequested)
     }
 }
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **customerGuid** | **String** | The unique identifier for the customer. | [optional] 
 **sourceAccount** | [**PostPlanSourceAccountBankModel**](PostPlanSourceAccountBankModel.md) |  | 
 **destinationAccount** | [**PostPlanDestinationAccountBankModel**](PostPlanDestinationAccountBankModel.md) |  | 
+**intermediateAccounts** | [PostPlanIntermediateAccountsInnerBankModel] | Accounts to disambiguate a multi-stage plan when more than one account of the same asset is eligible for a stage. | [optional] 
 **travelRuleInfo** | [**PostPlanTravelRuleInfoBankModel**](PostPlanTravelRuleInfoBankModel.md) |  | [optional] 
 **purposeOfTransaction** | **String** | The purpose of transaction for the plan. | [optional] 
 **labels** | **[String]** | The labels associated with the plan. | [optional] 

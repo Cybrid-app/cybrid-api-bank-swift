@@ -74,6 +74,8 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     public var failureCode: String?
     public var sourceAccount: AccountAssociationBankModel
     public var destinationAccount: AccountAssociationBankModel
+    /** Intermediate accounts explicitly requested by the caller that were actually used to disambiguate the plan. */
+    public var intermediateAccounts: [IntermediateAccountBankModel]?
     /** The stages of the plan. */
     public var stages: [StageBankModel]
     /** The fees associated with the plan. */
@@ -87,7 +89,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the plan. */
     public var labels: [String]?
 
-    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, expiresAt: Date?, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, travelRuleInfo: PlanTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String, type: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, expiresAt: Date?, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, intermediateAccounts: [IntermediateAccountBankModel]? = nil, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, travelRuleInfo: PlanTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -99,6 +101,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         self.failureCode = failureCode
         self.sourceAccount = sourceAccount
         self.destinationAccount = destinationAccount
+        self.intermediateAccounts = intermediateAccounts
         self.stages = stages
         self.fees = fees
         self.effectiveRate = effectiveRate
@@ -120,6 +123,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         case failureCode = "failure_code"
         case sourceAccount = "source_account"
         case destinationAccount = "destination_account"
+        case intermediateAccounts = "intermediate_accounts"
         case stages
         case fees
         case effectiveRate = "effective_rate"
@@ -144,6 +148,7 @@ public struct PlanBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encode(sourceAccount, forKey: .sourceAccount)
         try container.encode(destinationAccount, forKey: .destinationAccount)
+        try container.encodeIfPresent(intermediateAccounts, forKey: .intermediateAccounts)
         try container.encode(stages, forKey: .stages)
         try container.encode(fees, forKey: .fees)
         try container.encodeIfPresent(effectiveRate, forKey: .effectiveRate)
