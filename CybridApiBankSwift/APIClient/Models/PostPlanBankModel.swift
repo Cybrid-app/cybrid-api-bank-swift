@@ -73,6 +73,8 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     public var customerGuid: String?
     public var sourceAccount: PostPlanSourceAccountBankModel
     public var destinationAccount: PostPlanDestinationAccountBankModel
+    /** Accounts to disambiguate a multi-stage plan when more than one account of the same asset is eligible for a stage. */
+    public var intermediateAccounts: [PostPlanIntermediateAccountsInnerBankModel]?
     public var travelRuleInfo: PostPlanTravelRuleInfoBankModel?
     /** The purpose of transaction for the plan. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
@@ -81,12 +83,13 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     /** Supporting documents to attach to the plan. Optional when type is remittance or type is invoice_pay. */
     public var supportingDocuments: [PostSupportingDocumentBankModel]?
 
-    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, labels: [String]? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil) {
+    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, intermediateAccounts: [PostPlanIntermediateAccountsInnerBankModel]? = nil, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, labels: [String]? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil) {
         self.type = type
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.sourceAccount = sourceAccount
         self.destinationAccount = destinationAccount
+        self.intermediateAccounts = intermediateAccounts
         self.travelRuleInfo = travelRuleInfo
         self.purposeOfTransaction = purposeOfTransaction
         self.labels = labels
@@ -99,6 +102,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case customerGuid = "customer_guid"
         case sourceAccount = "source_account"
         case destinationAccount = "destination_account"
+        case intermediateAccounts = "intermediate_accounts"
         case travelRuleInfo = "travel_rule_info"
         case purposeOfTransaction = "purpose_of_transaction"
         case labels
@@ -114,6 +118,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
         try container.encode(sourceAccount, forKey: .sourceAccount)
         try container.encode(destinationAccount, forKey: .destinationAccount)
+        try container.encodeIfPresent(intermediateAccounts, forKey: .intermediateAccounts)
         try container.encodeIfPresent(travelRuleInfo, forKey: .travelRuleInfo)
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
         try container.encodeIfPresent(labels, forKey: .labels)

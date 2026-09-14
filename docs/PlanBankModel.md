@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **failureCode** | **String** | The failure code for failed plans. | [optional] 
 **sourceAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **destinationAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
+**intermediateAccounts** | [IntermediateAccountBankModel] | Intermediate accounts explicitly requested by the caller that were actually used to disambiguate the plan. | [optional] 
 **stages** | [StageBankModel] | The stages of the plan. | 
 **fees** | [FeeAssociationBankModel] | The fees associated with the plan. | 
 **effectiveRate** | [**EffectiveRateBankModel**](EffectiveRateBankModel.md) |  | [optional] 
