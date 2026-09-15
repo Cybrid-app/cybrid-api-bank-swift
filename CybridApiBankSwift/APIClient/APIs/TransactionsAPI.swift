@@ -24,6 +24,8 @@ open class TransactionsAPI {
      List Transactions
      
      - parameter accountGuid: (query)  
+     - parameter bankGuid: (query) Comma separated bank_guids the account must belong to. (optional)
+     - parameter customerGuid: (query) Comma separated customer_guids the account must belong to. (optional)
      - parameter cursor: (query)  (optional)
      - parameter perPage: (query)  (optional)
      - parameter direction: (query)  (optional)
@@ -34,8 +36,8 @@ open class TransactionsAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listTransactions(accountGuid: String, cursor: String? = nil, perPage: Int? = nil, direction: DirectionBankModel_listTransactions? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, includeBalances: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransactionListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listTransactionsWithRequestBuilder(accountGuid: accountGuid, cursor: cursor, perPage: perPage, direction: direction, createdAtGte: createdAtGte, createdAtLt: createdAtLt, includeBalances: includeBalances).execute(apiResponseQueue) { result in
+    open class func listTransactions(accountGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, cursor: String? = nil, perPage: Int? = nil, direction: DirectionBankModel_listTransactions? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, includeBalances: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransactionListBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listTransactionsWithRequestBuilder(accountGuid: accountGuid, bankGuid: bankGuid, customerGuid: customerGuid, cursor: cursor, perPage: perPage, direction: direction, createdAtGte: createdAtGte, createdAtLt: createdAtLt, includeBalances: includeBalances).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -56,6 +58,8 @@ open class TransactionsAPI {
        - type: oauth2
        - name: oauth2
      - parameter accountGuid: (query)  
+     - parameter bankGuid: (query) Comma separated bank_guids the account must belong to. (optional)
+     - parameter customerGuid: (query) Comma separated customer_guids the account must belong to. (optional)
      - parameter cursor: (query)  (optional)
      - parameter perPage: (query)  (optional)
      - parameter direction: (query)  (optional)
@@ -64,7 +68,7 @@ open class TransactionsAPI {
      - parameter includeBalances: (query) Include the running posted balance on the account as of each transaction. (optional)
      - returns: RequestBuilder<TransactionListBankModel> 
      */
-    open class func listTransactionsWithRequestBuilder(accountGuid: String, cursor: String? = nil, perPage: Int? = nil, direction: DirectionBankModel_listTransactions? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, includeBalances: Bool? = nil) -> RequestBuilder<TransactionListBankModel> {
+    open class func listTransactionsWithRequestBuilder(accountGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, cursor: String? = nil, perPage: Int? = nil, direction: DirectionBankModel_listTransactions? = nil, createdAtGte: String? = nil, createdAtLt: String? = nil, includeBalances: Bool? = nil) -> RequestBuilder<TransactionListBankModel> {
         let localVariablePath = "/api/transactions"
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -72,6 +76,8 @@ open class TransactionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "account_guid": accountGuid.encodeToJSON(),
+            "bank_guid": bankGuid?.encodeToJSON(),
+            "customer_guid": customerGuid?.encodeToJSON(),
             "cursor": cursor?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
             "direction": direction?.encodeToJSON(),
