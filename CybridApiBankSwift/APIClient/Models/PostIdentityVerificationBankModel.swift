@@ -38,6 +38,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
         case attestedBusinessAssociate = "attested_business_associate"
         case attestedIdAndDatabase = "attested_id_and_database"
         case attestedDatabase = "attested_database"
+        case database = "database"
         case attestedOwnership = "attested_ownership"
         case accountOwnership = "account_ownership"
         case unknownDefaultOpenApi = "unknown_default_open_api"
@@ -74,7 +75,7 @@ public struct PostIdentityVerificationBankModel: Codable, JSONEncodable, Hashabl
     public var method: MethodBankModel?
     /** The counterparty's identifier. Required when type is counterparty. */
     public var counterpartyGuid: String?
-    /** The ISO 3166 country 2-Alpha country the customer is being verified in. If not present, will default to the Bank's configured country code. Optional when type is kyc and method is id_and_selfie, type is kyc and method is tax_id_and_selfie, or type is kyc and method is business_registration. */
+    /** The ISO 3166 country 2-Alpha country the customer is being verified in. If not present, will default to the Bank's configured country code. Optional when type is kyc and method is id_and_selfie, type is kyc and method is tax_id_and_selfie, type is kyc and method is business_registration, or type is kyc and method is database. */
     public var countryCode: String?
     /** Whether the collection of the tax id is required during identity verification. This will default to SSN in USA and SIN in Canada. It's not used elsewhere. Optional when type is kyc and method is id_and_selfie. */
     public var requireTaxId: Bool? = false
