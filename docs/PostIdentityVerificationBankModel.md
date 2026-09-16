@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **expectedBehaviours** | **[String]** | The optional expected behaviour to simulate. | [optional] 
 **method** | **String** | The identity verification method. Required when type is counterparty, type is kyc, or type is bank_account. | [optional] 
 **counterpartyGuid** | **String** | The counterparty&#39;s identifier. Required when type is counterparty. | [optional] 
-**countryCode** | **String** | The ISO 3166 country 2-Alpha country the customer is being verified in. If not present, will default to the Bank&#39;s configured country code. Optional when type is kyc and method is id_and_selfie, type is kyc and method is tax_id_and_selfie, or type is kyc and method is business_registration. | [optional] 
+**countryCode** | **String** | The ISO 3166 country 2-Alpha country the customer is being verified in. If not present, will default to the Bank&#39;s configured country code. Optional when type is kyc and method is id_and_selfie, type is kyc and method is tax_id_and_selfie, type is kyc and method is business_registration, or type is kyc and method is database. | [optional] 
 **requireTaxId** | **Bool** | Whether the collection of the tax id is required during identity verification. This will default to SSN in USA and SIN in Canada. It&#39;s not used elsewhere. Optional when type is kyc and method is id_and_selfie. | [optional] [default to false]
 **name** | [**PostIdentityVerificationNameBankModel**](PostIdentityVerificationNameBankModel.md) |  | [optional] 
 **address** | [**PostIdentityVerificationAddressBankModel**](PostIdentityVerificationAddressBankModel.md) |  | [optional] 
