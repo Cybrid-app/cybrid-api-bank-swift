@@ -18,5 +18,7 @@ public enum ExternalBankAccountStateBankModel: String, Codable, CaseIterable, Ca
     case unverified = "unverified"
     case deleting = "deleting"
     case deleted = "deleted"
+    case pending = "pending"
+    case reviewing = "reviewing"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

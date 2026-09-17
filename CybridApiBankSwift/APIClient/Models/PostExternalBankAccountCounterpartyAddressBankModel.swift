@@ -10,20 +10,20 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The counterparty&#39;s address on their checking account. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
+/** The account holder&#39;s address. Required when account_kind is raw_routing_details. */
 public struct PostExternalBankAccountCounterpartyAddressBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The first line of the address. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The first line of the address. Required when account_kind is raw_routing_details. */
     public var street: String?
-    /** The optional second line of the address. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The optional second line of the address. Optional when account_kind is raw_routing_details. */
     public var street2: String?
-    /** The city of the address. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The city of the address. Required when account_kind is raw_routing_details. */
     public var city: String?
-    /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The ISO 3166-2 subdivision code of the address. Applicable only for countries that use subnational states, provinces, lands, oblasts or regions. Optional when account_kind is raw_routing_details. */
     public var subdivision: String?
-    /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The postal, zip or post code of the address. Applicable only for countries that use postal, zip or post codes. Optional when account_kind is raw_routing_details. */
     public var postalCode: String?
-    /** The ISO 3166 country 2-Alpha country code of the address. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The ISO 3166 country 2-Alpha country code of the address. Required when account_kind is raw_routing_details. */
     public var countryCode: String?
 
     public init(street: String? = nil, street2: String? = nil, city: String? = nil, subdivision: String? = nil, postalCode: String? = nil, countryCode: String? = nil) {

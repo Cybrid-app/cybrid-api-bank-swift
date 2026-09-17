@@ -13,11 +13,12 @@ Name | Type | Description | Notes
 **plaidInstitutionId** | **String** | Plaid&#39;s institution ID for the account&#39;s institution. Required when account_kind is plaid_processor_token. | [optional] 
 **plaidAccountMask** | **String** | The account mask for the account. Required when account_kind is plaid_processor_token. | [optional] 
 **plaidAccountName** | **String** | The name of the account. Required when account_kind is plaid_processor_token. | [optional] 
+**expectedBehaviours** | **[String]** | Sandbox only: deterministically simulate the holder-name-match outcome instead of aligning the owner&#39;s KYC/KYB data with the linked account. Ignored for account kinds whose plan runs no holder-name match. | [optional] 
 **counterpartyGuid** | **String** | The counterparty identifier. Optional when account_kind is raw_routing_details. | [optional] 
 **counterpartyBankAccountDetails** | [PostBankAccountDetailsBankModel] | The counterparty&#39;s checking bank account information. Required when account_kind is raw_routing_details. | [optional] 
 **counterpartyName** | [**PostExternalBankAccountCounterpartyNameBankModel**](PostExternalBankAccountCounterpartyNameBankModel.md) |  | [optional] 
 **counterpartyAddress** | [**PostExternalBankAccountCounterpartyAddressBankModel**](PostExternalBankAccountCounterpartyAddressBankModel.md) |  | [optional] 
-**counterpartyEmailAddress** | **String** | The counterparty&#39;s email address on their checking account. Optional when account_kind is raw_routing_details and counterparty_guid is not present. | [optional] 
+**counterpartyEmailAddress** | **String** | The account holder&#39;s email address. Optional when account_kind is raw_routing_details. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
