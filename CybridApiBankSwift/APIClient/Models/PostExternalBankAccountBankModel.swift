@@ -10,13 +10,18 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Request body for external bank account creation. */
+/** Request body for external bank account creation. The owner (the counterparty, or the customer when there is no counterparty) must already have a verified identity -- KYC for an individual, KYB for a business -- before an external bank account can be onboarded for them; the create is refused otherwise. Banks that verify individuals non-documentarily are the exception: an individual customer whose attested personal details have passed may onboard an account before verification completes, because the account is what authenticates them. &#39;plaid_processor_token&#39; is not supported for this onboarding version. */
 public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
 
     public enum AccountKindBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case plaid = "plaid"
         case plaidProcessorToken = "plaid_processor_token"
         case rawRoutingDetails = "raw_routing_details"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    public enum ExpectedBehavioursBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case passedImmediately = "passed_immediately"
+        case failedImmediately = "failed_immediately"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The name of the account. */
@@ -39,16 +44,18 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var plaidAccountMask: String?
     /** The name of the account. Required when account_kind is plaid_processor_token. */
     public var plaidAccountName: String?
+    /** Sandbox only: deterministically simulate the holder-name-match outcome instead of aligning the owner's KYC/KYB data with the linked account. Ignored for account kinds whose plan runs no holder-name match. */
+    public var expectedBehaviours: [ExpectedBehavioursBankModel]?
     /** The counterparty identifier. Optional when account_kind is raw_routing_details. */
     public var counterpartyGuid: String?
     /** The counterparty's checking bank account information. Required when account_kind is raw_routing_details. */
     public var counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]?
     public var counterpartyName: PostExternalBankAccountCounterpartyNameBankModel?
     public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
-    /** The counterparty's email address on their checking account. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
+    /** The account holder's email address. Optional when account_kind is raw_routing_details. */
     public var counterpartyEmailAddress: String?
 
-    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String? = nil, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, counterpartyGuid: String? = nil, counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
+    public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String? = nil, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, counterpartyGuid: String? = nil, counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {
         self.name = name
         self.accountKind = accountKind
         self.customerGuid = customerGuid
@@ -59,6 +66,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         self.plaidInstitutionId = plaidInstitutionId
         self.plaidAccountMask = plaidAccountMask
         self.plaidAccountName = plaidAccountName
+        self.expectedBehaviours = expectedBehaviours
         self.counterpartyGuid = counterpartyGuid
         self.counterpartyBankAccountDetails = counterpartyBankAccountDetails
         self.counterpartyName = counterpartyName
@@ -77,6 +85,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         case plaidInstitutionId = "plaid_institution_id"
         case plaidAccountMask = "plaid_account_mask"
         case plaidAccountName = "plaid_account_name"
+        case expectedBehaviours = "expected_behaviours"
         case counterpartyGuid = "counterparty_guid"
         case counterpartyBankAccountDetails = "counterparty_bank_account_details"
         case counterpartyName = "counterparty_name"
@@ -98,6 +107,7 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
         try container.encodeIfPresent(plaidInstitutionId, forKey: .plaidInstitutionId)
         try container.encodeIfPresent(plaidAccountMask, forKey: .plaidAccountMask)
         try container.encodeIfPresent(plaidAccountName, forKey: .plaidAccountName)
+        try container.encodeIfPresent(expectedBehaviours, forKey: .expectedBehaviours)
         try container.encodeIfPresent(counterpartyGuid, forKey: .counterpartyGuid)
         try container.encodeIfPresent(counterpartyBankAccountDetails, forKey: .counterpartyBankAccountDetails)
         try container.encodeIfPresent(counterpartyName, forKey: .counterpartyName)
