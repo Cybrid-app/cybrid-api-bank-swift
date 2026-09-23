@@ -38,9 +38,9 @@ public struct ExternalBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var plaidAccountMask: String?
     /** The name for the account. */
     public var plaidAccountName: String?
-    /** The state of the external bank account; one of storing, completed, failed, refresh_required, unverified, deleting, deleted, pending, or reviewing. */
+    /** The state of the external bank account; one of storing, completed, failed, refresh_required, unverified, deleting, deleted, pending, reviewing, or expired. */
     public var state: String?
-    /** The failure code for failed transfers. */
+    /** The failure code for the failed external bank account. */
     public var failureCode: String?
     /** The timestamp that the balance information was last updated at. */
     public var balanceUpdatedAt: Date?
