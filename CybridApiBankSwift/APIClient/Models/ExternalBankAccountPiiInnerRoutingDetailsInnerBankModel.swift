@@ -49,16 +49,16 @@ public struct ExternalBankAccountPiiInnerRoutingDetailsInnerBankModel: Codable, 
         case nro = "NRO"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The type of routing number; one of CPA, ABA, or IFSC. */
-    public var routingNumberType: String
-    /** The routing number. */
-    public var routingNumber: String
+    /** The type of routing number; one of CPA, ABA, or IFSC. Null for an identifier-only account, such as an Interac e-Transfer email or phone number. */
+    public var routingNumberType: String?
+    /** The routing number. Null for an identifier-only account, such as an Interac e-Transfer email or phone number. */
+    public var routingNumber: String?
     /** The payment rail this routing entry is configured for; one of EFT, ACH, RTP, FEDNOW, WIRE, SPEI, PIX, COELSA, PSE, ETRANSFER, IFSC, UPI, SBP, BEFTN, NGBANK, LBTR, SEPA, EASY_PAISA, FINJA, JAZZ_CASH, NAYA_PAY, SADA_PAY, KEBANK, HKBANK, MPESA, CNBANK, FPS, ALIPAY, or UNSPECIFIED. Null for accounts that did not specify a rail. */
     public var paymentRail: PaymentRailBankModel?
     /** Account designation for India IFSC and UPI accounts; one of NRE or NRO. Null for non-India accounts. */
     public var accountDesignation: AccountDesignationBankModel?
 
-    public init(routingNumberType: String, routingNumber: String, paymentRail: PaymentRailBankModel? = nil, accountDesignation: AccountDesignationBankModel? = nil) {
+    public init(routingNumberType: String?, routingNumber: String?, paymentRail: PaymentRailBankModel? = nil, accountDesignation: AccountDesignationBankModel? = nil) {
         self.routingNumberType = routingNumberType
         self.routingNumber = routingNumber
         self.paymentRail = paymentRail
