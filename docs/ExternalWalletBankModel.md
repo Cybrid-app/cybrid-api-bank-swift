@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **tag** | **String** | The blockchain tag to use when transferring crypto to the wallet. | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
+**usableAt** | **Date** | ISO8601 datetime from which the destination can be used for a withdrawal. Null when no minimum age applies. | [optional] 
 **state** | **String** | The state of the external wallet; one of storing, pending, reviewing, failed, completed, deleting, or deleted. | [optional] 
 **failureCode** | **String** | The failure code of an external wallet (if any) | [optional] 
 
