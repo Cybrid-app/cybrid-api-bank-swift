@@ -34,12 +34,14 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
+    /** ISO8601 datetime from which the destination can be used for a withdrawal. Null when no minimum age applies. */
+    public var usableAt: Date?
     /** The state of the external wallet; one of storing, pending, reviewing, failed, completed, deleting, or deleted. */
     public var state: String?
     /** The failure code of an external wallet (if any) */
     public var failureCode: String?
 
-    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, failureCode: String? = nil) {
+    public init(guid: String? = nil, name: String? = nil, asset: String? = nil, environment: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, address: String? = nil, tag: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, usableAt: Date? = nil, state: String? = nil, failureCode: String? = nil) {
         self.guid = guid
         self.name = name
         self.asset = asset
@@ -51,6 +53,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         self.tag = tag
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.usableAt = usableAt
         self.state = state
         self.failureCode = failureCode
     }
@@ -67,6 +70,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         case tag
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case usableAt = "usable_at"
         case state
         case failureCode = "failure_code"
     }
@@ -86,6 +90,7 @@ public struct ExternalWalletBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(tag, forKey: .tag)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(usableAt, forKey: .usableAt)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
     }
