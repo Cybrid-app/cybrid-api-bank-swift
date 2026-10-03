@@ -15,19 +15,23 @@ public struct TransferHoldDetailsBankModel: Codable, JSONEncodable, Hashable {
 
     /** The list of hold types that are applicable for the transfer; one of administrative or non_administrative. */
     public var applicableTypes: [String]?
+    /** The kind of hold; one of settlement or cool_off. A settlement hold keeps landed deposit funds unavailable; a cool_off hold delays a withdrawal before it reaches the provider. Null when no hold applies. */
+    public var kind: String?
     /** The approximate time (in seconds) that the transfer will be held for. */
     public var duration: Int?
     /** ISO8601 datetime the transfer hold was started at. */
     public var startedAt: Date?
 
-    public init(applicableTypes: [String]? = nil, duration: Int? = nil, startedAt: Date? = nil) {
+    public init(applicableTypes: [String]? = nil, kind: String? = nil, duration: Int? = nil, startedAt: Date? = nil) {
         self.applicableTypes = applicableTypes
+        self.kind = kind
         self.duration = duration
         self.startedAt = startedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case applicableTypes = "applicable_types"
+        case kind
         case duration
         case startedAt = "started_at"
     }
@@ -37,6 +41,7 @@ public struct TransferHoldDetailsBankModel: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(applicableTypes, forKey: .applicableTypes)
+        try container.encodeIfPresent(kind, forKey: .kind)
         try container.encodeIfPresent(duration, forKey: .duration)
         try container.encodeIfPresent(startedAt, forKey: .startedAt)
     }

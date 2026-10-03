@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Cancel Transfer
 
-Initiates cancellation of an eligible funding transfer.  Required scope: **transfers:execute**
+Initiates cancellation of an eligible funding or crypto transfer.  Required scope: **transfers:execute**
 
 ### Example
 ```swift

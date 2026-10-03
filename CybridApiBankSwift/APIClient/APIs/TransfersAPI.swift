@@ -35,7 +35,7 @@ open class TransfersAPI {
     /**
      Cancel Transfer
      - DELETE /api/transfers/{transfer_guid}
-     - Initiates cancellation of an eligible funding transfer.  Required scope: **transfers:execute**
+     - Initiates cancellation of an eligible funding or crypto transfer.  Required scope: **transfers:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
