@@ -4,60 +4,9 @@ All URIs are relative to *https://bank.sandbox.cybrid.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createPaymentInstruction**](PaymentInstructionsAPI.md#createpaymentinstruction) | **POST** /api/payment_instructions | Create Payment Instruction
 [**getPaymentInstruction**](PaymentInstructionsAPI.md#getpaymentinstruction) | **GET** /api/payment_instructions/{payment_instruction_guid} | Get Payment Instruction
 [**listPaymentInstructions**](PaymentInstructionsAPI.md#listpaymentinstructions) | **GET** /api/payment_instructions | List Payment Instructions
 
-
-# **createPaymentInstruction**
-```swift
-    open class func createPaymentInstruction(postPaymentInstructionBankModel: PostPaymentInstructionBankModel, completion: @escaping (_ data: PaymentInstructionBankModel?, _ error: Error?) -> Void)
-```
-
-Create Payment Instruction
-
-Creates a payment instruction.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the payment instruction details in our private store | | created | The Platform has created the payment instruction | | expired | The PaymentInstruction is no longer valid |    Required scope: **invoices:write**
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import CybridApiBankSwift
-
-let postPaymentInstructionBankModel = PostPaymentInstruction(invoiceGuid: "invoiceGuid_example", expectedBehaviour: "expectedBehaviour_example") // PostPaymentInstructionBankModel | 
-
-// Create Payment Instruction
-PaymentInstructionsAPI.createPaymentInstruction(postPaymentInstructionBankModel: postPaymentInstructionBankModel) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **postPaymentInstructionBankModel** | [**PostPaymentInstructionBankModel**](PostPaymentInstructionBankModel.md) |  | 
-
-### Return type
-
-[**PaymentInstructionBankModel**](PaymentInstructionBankModel.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getPaymentInstruction**
 ```swift

@@ -13,56 +13,6 @@ import AnyCodable
 open class PaymentInstructionsAPI {
 
     /**
-     Create Payment Instruction
-     
-     - parameter postPaymentInstructionBankModel: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func createPaymentInstruction(postPaymentInstructionBankModel: PostPaymentInstructionBankModel, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PaymentInstructionBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return createPaymentInstructionWithRequestBuilder(postPaymentInstructionBankModel: postPaymentInstructionBankModel).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Create Payment Instruction
-     - POST /api/payment_instructions
-     - Creates a payment instruction.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the payment instruction details in our private store | | created | The Platform has created the payment instruction | | expired | The PaymentInstruction is no longer valid |    Required scope: **invoices:write**
-     - BASIC:
-       - type: http
-       - name: BearerAuth
-     - OAuth:
-       - type: oauth2
-       - name: oauth2
-     - parameter postPaymentInstructionBankModel: (body)  
-     - returns: RequestBuilder<PaymentInstructionBankModel> 
-     */
-    open class func createPaymentInstructionWithRequestBuilder(postPaymentInstructionBankModel: PostPaymentInstructionBankModel) -> RequestBuilder<PaymentInstructionBankModel> {
-        let localVariablePath = "/api/payment_instructions"
-        let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postPaymentInstructionBankModel)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<PaymentInstructionBankModel>.Type = CybridApiBankSwiftAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Get Payment Instruction
      
      - parameter paymentInstructionGuid: (path) Identifier for the payment instruction. 

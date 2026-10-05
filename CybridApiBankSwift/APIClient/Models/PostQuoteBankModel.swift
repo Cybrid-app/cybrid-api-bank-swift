@@ -19,7 +19,6 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case bookTransfer = "book_transfer"
         case cryptoTransfer = "crypto_transfer"
         case interAccount = "inter_account"
-        case lightningTransfer = "lightning_transfer"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum SideBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -47,14 +46,12 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var receiveAmount: String?
     /** The amount to be delivered in base units of the currency: currency is \"counter_asset\" for buy and \"asset\" for sell for trade quotes. */
     public var deliverAmount: String?
-    /** The asset code the quote was requested for. Required when product_type is lightning_transfer, product_type is book_transfer, product_type is funding, product_type is crypto_transfer, or product_type is inter_account. */
+    /** The asset code the quote was requested for. Required when product_type is book_transfer, product_type is funding, product_type is crypto_transfer, or product_type is inter_account. */
     public var asset: String?
-    /** The network address to pay the invoice to. Required when product_type is lightning_transfer. */
-    public var networkAddress: String?
-    /** The custom fees associated with the quote Optional when product_type is lightning_transfer, product_type is funding, product_type is trading, product_type is crypto_transfer, or product_type is trading_exit. */
-    public var fees: [PostFeeBankModel]?
     /** The direction for trade quotes: either 'buy' or 'sell'. The direction for funding quotes: either 'deposit' or 'withdrawal'. The direction for crypto transfer quotes: 'withdrawal'. Book transfers do not require a side. They are all 'deposit's.  Required when product_type is funding, product_type is trading, or product_type is crypto_transfer. */
     public var side: SideBankModel?
+    /** The custom fees associated with the quote Optional when product_type is funding, product_type is trading, product_type is crypto_transfer, or product_type is trading_exit. */
+    public var fees: [PostFeeBankModel]?
     /** The unique identifier for the destination account. Used to determine routing-specific fees for EFT withdrawals. Required when product_type is inter_account. Optional when product_type is funding. */
     public var destinationAccountGuid: String?
     /** The payment rail the resulting transfer will execute on. Required when the downstream transfer will be an e-transfer withdrawal. Optional when product_type is funding. */
@@ -68,16 +65,15 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     /** The source account's identifier. Required when product_type is inter_account. */
     public var sourceAccountGuid: String?
 
-    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, asset: String? = nil, networkAddress: String? = nil, fees: [PostFeeBankModel]? = nil, side: SideBankModel? = nil, destinationAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, symbol: String? = nil, destinationAccounts: [PostQuoteEntryBankModel]? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil) {
+    public init(productType: ProductTypeBankModel? = .trading, bankGuid: String? = nil, customerGuid: String? = nil, receiveAmount: String? = nil, deliverAmount: String? = nil, asset: String? = nil, side: SideBankModel? = nil, fees: [PostFeeBankModel]? = nil, destinationAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, symbol: String? = nil, destinationAccounts: [PostQuoteEntryBankModel]? = nil, referenceTradeGuid: String? = nil, sourceAccountGuid: String? = nil) {
         self.productType = productType
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
         self.receiveAmount = receiveAmount
         self.deliverAmount = deliverAmount
         self.asset = asset
-        self.networkAddress = networkAddress
-        self.fees = fees
         self.side = side
+        self.fees = fees
         self.destinationAccountGuid = destinationAccountGuid
         self.paymentRail = paymentRail
         self.symbol = symbol
@@ -93,9 +89,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         case receiveAmount = "receive_amount"
         case deliverAmount = "deliver_amount"
         case asset
-        case networkAddress = "network_address"
-        case fees
         case side
+        case fees
         case destinationAccountGuid = "destination_account_guid"
         case paymentRail = "payment_rail"
         case symbol
@@ -114,9 +109,8 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(receiveAmount, forKey: .receiveAmount)
         try container.encodeIfPresent(deliverAmount, forKey: .deliverAmount)
         try container.encodeIfPresent(asset, forKey: .asset)
-        try container.encodeIfPresent(networkAddress, forKey: .networkAddress)
-        try container.encodeIfPresent(fees, forKey: .fees)
         try container.encodeIfPresent(side, forKey: .side)
+        try container.encodeIfPresent(fees, forKey: .fees)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
         try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
         try container.encodeIfPresent(symbol, forKey: .symbol)

@@ -19,7 +19,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case crypto = "crypto"
         case instantFunding = "instant_funding"
         case interAccount = "inter_account"
-        case lightning = "lightning"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum PaymentRailBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
@@ -52,15 +51,15 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var securityQuestion: String?
     /** The security answer the recipient must provide to claim an Interac E-Transfer. Only accepted for e-transfer rail withdrawals; must be paired with security_question. Optional when transfer_type is funding. */
     public var securityAnswer: String?
-    /** The source participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
+    /** The source participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, or transfer_type is crypto. */
     public var sourceParticipants: [PostTransferParticipantBankModel]?
-    /** The destination participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, transfer_type is crypto, or transfer_type is lightning. */
+    /** The destination participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, or transfer_type is crypto. */
     public var destinationParticipants: [PostTransferParticipantBankModel]?
     /** The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the transfer screening. Optional when transfer_type is funding or transfer_type is instant_funding. */
     public var sardineSessionGuid: String?
-    /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
+    /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding. */
     public var bankFiatAccountGuid: String?
-    /** The identifier for the fiat account to use for the transfer. Required if the customer has multiple fiat accounts. Optional when transfer_type is instant_funding or transfer_type is lightning. */
+    /** The identifier for the fiat account to use for the transfer. Required if the customer has multiple fiat accounts. Optional when transfer_type is instant_funding. */
     public var customerFiatAccountGuid: String?
     /** The source account's identifier. Required when transfer_type is book or transfer_type is inter_account. */
     public var sourceAccountGuid: String?
@@ -68,16 +67,12 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var destinationAccountGuid: String?
     /** The customer's external wallet's identifier. Optional when transfer_type is crypto. */
     public var externalWalletGuid: String?
-    /** The customer's identifier. Required when transfer_type is lightning. */
-    public var customerGuid: String?
-    /** The network fee account's identifier. Required for network fee transfers. Must be the identifier for the customer's or bank's fiat or trading account. For customer's to pay the network fees, include the customer's fiat or trading account guid. For bank's to pay the network fees, include the bank's fiat or trading account guid. Required when transfer_type is lightning. */
-    public var networkFeeAccountGuid: String?
     /** The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding and instant_funding transfers. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
     /** The labels associated with the transfer. */
     public var labels: [String]?
 
-    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, securityQuestion: String? = nil, securityAnswer: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, sardineSessionGuid: String? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, customerGuid: String? = nil, networkFeeAccountGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, labels: [String]? = nil) {
+    public init(quoteGuid: String, transferType: TransferTypeBankModel, externalBankAccountGuid: String? = nil, fiatAccountGuid: String? = nil, sendAsDepositBankAccountGuid: String? = nil, paymentRail: PaymentRailBankModel? = nil, beneficiaryMemo: String? = nil, securityQuestion: String? = nil, securityAnswer: String? = nil, sourceParticipants: [PostTransferParticipantBankModel]? = nil, destinationParticipants: [PostTransferParticipantBankModel]? = nil, sardineSessionGuid: String? = nil, bankFiatAccountGuid: String? = nil, customerFiatAccountGuid: String? = nil, sourceAccountGuid: String? = nil, destinationAccountGuid: String? = nil, externalWalletGuid: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, labels: [String]? = nil) {
         self.quoteGuid = quoteGuid
         self.transferType = transferType
         self.externalBankAccountGuid = externalBankAccountGuid
@@ -95,8 +90,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         self.sourceAccountGuid = sourceAccountGuid
         self.destinationAccountGuid = destinationAccountGuid
         self.externalWalletGuid = externalWalletGuid
-        self.customerGuid = customerGuid
-        self.networkFeeAccountGuid = networkFeeAccountGuid
         self.expectedBehaviours = expectedBehaviours
         self.labels = labels
     }
@@ -119,8 +112,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         case sourceAccountGuid = "source_account_guid"
         case destinationAccountGuid = "destination_account_guid"
         case externalWalletGuid = "external_wallet_guid"
-        case customerGuid = "customer_guid"
-        case networkFeeAccountGuid = "network_fee_account_guid"
         case expectedBehaviours = "expected_behaviours"
         case labels
     }
@@ -146,8 +137,6 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(sourceAccountGuid, forKey: .sourceAccountGuid)
         try container.encodeIfPresent(destinationAccountGuid, forKey: .destinationAccountGuid)
         try container.encodeIfPresent(externalWalletGuid, forKey: .externalWalletGuid)
-        try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
-        try container.encodeIfPresent(networkFeeAccountGuid, forKey: .networkFeeAccountGuid)
         try container.encodeIfPresent(expectedBehaviours, forKey: .expectedBehaviours)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
