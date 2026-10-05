@@ -71,7 +71,7 @@ public struct TransferBankModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
     public var holdDetails: TransferHoldDetailsBankModel?
-    /** The raw details on the transfer from the bank. */
+    /** The raw details on the transfer from the bank. Returned only by the get transfer endpoint when include_pii is true, which requires the **transfers:pii:read** scope. */
     public var transferDetails: String?
     /** The rail the payment was done on. One of: ach, eft, wire, rtp, etransfer */
     public var paymentRail: String?

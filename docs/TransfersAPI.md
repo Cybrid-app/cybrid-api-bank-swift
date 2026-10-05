@@ -115,12 +115,12 @@ Name | Type | Description  | Notes
 
 # **getTransfer**
 ```swift
-    open class func getTransfer(transferGuid: String, completion: @escaping (_ data: TransferBankModel?, _ error: Error?) -> Void)
+    open class func getTransfer(transferGuid: String, includePii: Bool? = nil, completion: @escaping (_ data: TransferBankModel?, _ error: Error?) -> Void)
 ```
 
 Get Transfer
 
-Retrieves a transfer.  Required scope: **transfers:read**
+Retrieves a transfer.  Required scope: **transfers:read** Optional scope: **transfers:pii:read**.
 
 ### Example
 ```swift
@@ -128,9 +128,10 @@ Retrieves a transfer.  Required scope: **transfers:read**
 import CybridApiBankSwift
 
 let transferGuid = "transferGuid_example" // String | Identifier for the transfer.
+let includePii = true // Bool | Include PII in the response (requires **transfers:pii:read** scope). (optional)
 
 // Get Transfer
-TransfersAPI.getTransfer(transferGuid: transferGuid) { (response, error) in
+TransfersAPI.getTransfer(transferGuid: transferGuid, includePii: includePii) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -147,6 +148,7 @@ TransfersAPI.getTransfer(transferGuid: transferGuid) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferGuid** | **String** | Identifier for the transfer. | 
+ **includePii** | **Bool** | Include PII in the response (requires **transfers:pii:read** scope). | [optional] 
 
 ### Return type
 
