@@ -121,12 +121,13 @@ open class TransfersAPI {
      Get Transfer
      
      - parameter transferGuid: (path) Identifier for the transfer. 
+     - parameter includePii: (query) Include PII in the response (requires **transfers:pii:read** scope). (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getTransfer(transferGuid: String, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferBankModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getTransferWithRequestBuilder(transferGuid: transferGuid).execute(apiResponseQueue) { result in
+    open class func getTransfer(transferGuid: String, includePii: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiBankSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TransferBankModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getTransferWithRequestBuilder(transferGuid: transferGuid, includePii: includePii).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -139,7 +140,7 @@ open class TransfersAPI {
     /**
      Get Transfer
      - GET /api/transfers/{transfer_guid}
-     - Retrieves a transfer.  Required scope: **transfers:read**
+     - Retrieves a transfer.  Required scope: **transfers:read** Optional scope: **transfers:pii:read**.
      - BASIC:
        - type: http
        - name: BearerAuth
@@ -147,9 +148,10 @@ open class TransfersAPI {
        - type: oauth2
        - name: oauth2
      - parameter transferGuid: (path) Identifier for the transfer. 
+     - parameter includePii: (query) Include PII in the response (requires **transfers:pii:read** scope). (optional)
      - returns: RequestBuilder<TransferBankModel> 
      */
-    open class func getTransferWithRequestBuilder(transferGuid: String) -> RequestBuilder<TransferBankModel> {
+    open class func getTransferWithRequestBuilder(transferGuid: String, includePii: Bool? = nil) -> RequestBuilder<TransferBankModel> {
         var localVariablePath = "/api/transfers/{transfer_guid}"
         let transferGuidPreEscape = "\(APIHelper.mapValueToPathItem(transferGuid))"
         let transferGuidPostEscape = transferGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -157,7 +159,10 @@ open class TransfersAPI {
         let localVariableURLString = CybridApiBankSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include_pii": includePii?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
