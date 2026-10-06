@@ -27,17 +27,25 @@ public struct PostPlanDestinationAccountBankModel: Codable, JSONEncodable, Hasha
     public var amount: String?
     /** The desired payment rail to use to initiate a fiat transfer to the destination account. */
     public var paymentRail: PaymentRailBankModel?
+    /** The security question for an Interac e-Transfer withdrawal or conversion. Only accepted for an e-transfer rail destination; must be paired with security_answer. */
+    public var securityQuestion: String?
+    /** The security answer the recipient must provide to claim an Interac e-Transfer. Only accepted for an e-transfer rail destination; must be paired with security_question. */
+    public var securityAnswer: String?
 
-    public init(guid: String, amount: String? = nil, paymentRail: PaymentRailBankModel? = nil) {
+    public init(guid: String, amount: String? = nil, paymentRail: PaymentRailBankModel? = nil, securityQuestion: String? = nil, securityAnswer: String? = nil) {
         self.guid = guid
         self.amount = amount
         self.paymentRail = paymentRail
+        self.securityQuestion = securityQuestion
+        self.securityAnswer = securityAnswer
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case amount
         case paymentRail = "payment_rail"
+        case securityQuestion = "security_question"
+        case securityAnswer = "security_answer"
     }
 
     // Encodable protocol methods
@@ -47,6 +55,8 @@ public struct PostPlanDestinationAccountBankModel: Codable, JSONEncodable, Hasha
         try container.encode(guid, forKey: .guid)
         try container.encodeIfPresent(amount, forKey: .amount)
         try container.encodeIfPresent(paymentRail, forKey: .paymentRail)
+        try container.encodeIfPresent(securityQuestion, forKey: .securityQuestion)
+        try container.encodeIfPresent(securityAnswer, forKey: .securityAnswer)
     }
 }
 
