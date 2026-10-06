@@ -55,7 +55,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var sourceParticipants: [PostTransferParticipantBankModel]?
     /** The destination participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, or transfer_type is crypto. */
     public var destinationParticipants: [PostTransferParticipantBankModel]?
-    /** The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the transfer screening. Optional when transfer_type is funding or transfer_type is instant_funding. */
+    /** The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the transfer screening. Optional when transfer_type is funding, transfer_type is instant_funding, or transfer_type is crypto. */
     public var sardineSessionGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding. */
     public var bankFiatAccountGuid: String?
@@ -67,7 +67,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var destinationAccountGuid: String?
     /** The customer's external wallet's identifier. Optional when transfer_type is crypto. */
     public var externalWalletGuid: String?
-    /** The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding and instant_funding transfers. */
+    /** The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding, instant_funding and crypto transfers. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
     /** The labels associated with the transfer. */
     public var labels: [String]?

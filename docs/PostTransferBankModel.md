@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 **securityAnswer** | **String** | The security answer the recipient must provide to claim an Interac E-Transfer. Only accepted for e-transfer rail withdrawals; must be paired with security_question. Optional when transfer_type is funding. | [optional] 
 **sourceParticipants** | [PostTransferParticipantBankModel] | The source participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, or transfer_type is crypto. | [optional] 
 **destinationParticipants** | [PostTransferParticipantBankModel] | The destination participants for the transfer. Required when transfer_type is funding, transfer_type is instant_funding, transfer_type is book, or transfer_type is crypto. | [optional] 
-**sardineSessionGuid** | **String** | The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the transfer screening. Optional when transfer_type is funding or transfer_type is instant_funding. | [optional] 
+**sardineSessionGuid** | **String** | The GUID of a previously created Sardine session. Used to correlate device signals from the Sardine SDK with the transfer screening. Optional when transfer_type is funding, transfer_type is instant_funding, or transfer_type is crypto. | [optional] 
 **bankFiatAccountGuid** | **String** | The identifier for the fiat account to use for the transfer. Required if the bank has multiple fiat accounts. Optional when transfer_type is instant_funding. | [optional] 
 **customerFiatAccountGuid** | **String** | The identifier for the fiat account to use for the transfer. Required if the customer has multiple fiat accounts. Optional when transfer_type is instant_funding. | [optional] 
 **sourceAccountGuid** | **String** | The source account&#39;s identifier. Required when transfer_type is book or transfer_type is inter_account. | [optional] 
 **destinationAccountGuid** | **String** | The destination account&#39;s identifier. Required when transfer_type is book or transfer_type is inter_account. | [optional] 
 **externalWalletGuid** | **String** | The customer&#39;s external wallet&#39;s identifier. Optional when transfer_type is crypto. | [optional] 
-**expectedBehaviours** | **[String]** | The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding and instant_funding transfers. | [optional] 
+**expectedBehaviours** | **[String]** | The optional expected behaviour to simulate. Only applicable for transfers under sandbox banks. The force_review behaviour will force the transfer to be reviewed for funding, instant_funding and crypto transfers. | [optional] 
 **labels** | **[String]** | The labels associated with the transfer. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
