@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **guid** | **String** | The unique identifier for the stage. | 
 **type** | **String** | The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, withdrawal_return, or payout_return. | 
 **state** | **String** | The state of the stage; one of storing, planning, planned, executing, completed, or failed. | 
-**failureCode** | **String** | The failure code for failed stages. | [optional] 
+**failureCode** | **String** | The failure code for failed stages. Failures without a documented code are reported as internal_error. | [optional] 
 **identifiers** | [StageIdentifierBankModel] | Provider-issued identifiers associated with this stage. Always present, possibly empty. | 
 **links** | [StageLinkBankModel] | Provider-issued links associated with this stage. Always present, possibly empty. | 
 **createdAt** | **Date** | The ISO8601 datetime the stage was created at. | 

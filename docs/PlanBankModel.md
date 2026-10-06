@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | 
 **expiresAt** | **Date** | ISO8601 datetime the plan will expire at. Null for return plans, which do not expire. | 
 **state** | **String** | The state of the plan; one of storing, planning, completed, or failed. | 
-**failureCode** | **String** | The failure code for failed plans. | [optional] 
+**failureCode** | **String** | The failure code for failed plans. Failures without a documented code are reported as internal_error. | [optional] 
 **sourceAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **destinationAccount** | [**AccountAssociationBankModel**](AccountAssociationBankModel.md) |  | 
 **intermediateAccounts** | [IntermediateAccountBankModel] | Intermediate accounts explicitly requested by the caller that were actually used to disambiguate the plan. | [optional] 

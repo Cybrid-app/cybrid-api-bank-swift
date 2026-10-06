@@ -12,6 +12,40 @@ import AnyCodable
 
 public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum FailureCodeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case nonSufficientFunds = "non_sufficient_funds"
+        case refreshRequired = "refresh_required"
+        case partyNameInvalid = "party_name_invalid"
+        case paymentRailInvalid = "payment_rail_invalid"
+        case complianceRejection = "compliance_rejection"
+        case cancelled = "cancelled"
+        case reversed = "reversed"
+        case limitExceeded = "limit_exceeded"
+        case dailyLimitExceeded = "daily_limit_exceeded"
+        case weeklyLimitExceeded = "weekly_limit_exceeded"
+        case monthlyLimitExceeded = "monthly_limit_exceeded"
+        case lifetimeLimitExceeded = "lifetime_limit_exceeded"
+        case networkFeeTooLow = "network_fee_too_low"
+        case amountTooLow = "amount_too_low"
+        case internalError = "internal_error"
+        case invalidAddress = "invalid_address"
+        case invalidDestination = "invalid_destination"
+        case customerActionRequired = "customer_action_required"
+        case externalVendorError = "external_vendor_error"
+        case paymentRequestExpired = "payment_request_expired"
+        case returnRiskExceeded = "return_risk_exceeded"
+        case customerContactInfoMissing = "customer_contact_info_missing"
+        case recipientCancelled = "recipient_cancelled"
+        case unsupported = "unsupported"
+        case expiredQuote = "expired_quote"
+        case marketVolatility = "market_volatility"
+        case notFilled = "not_filled"
+        case noQuote = "no_quote"
+        case invalidQuoteAmount = "invalid_quote_amount"
+        case insufficientSourceAmount = "insufficient_source_amount"
+        case insufficientDestinationAmount = "insufficient_destination_amount"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum PurposeOfTransactionBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case computerServices = "computer_services"
         case familySupport = "family_support"
@@ -70,8 +104,8 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date
     /** The state of the execution; one of storing, executing, completed, failed, or reviewing. */
     public var state: String
-    /** The failure code for failed executions. */
-    public var failureCode: String?
+    /** The failure code for failed executions. Failures without a documented code are reported as internal_error. */
+    public var failureCode: FailureCodeBankModel?
     public var sourceAccount: AccountAssociationBankModel
     public var destinationAccount: AccountAssociationBankModel
     /** Intermediate accounts explicitly requested by the caller that were actually used to disambiguate the plan. */
@@ -91,7 +125,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the execution. */
     public var labels: [String]?
 
-    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: String? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, intermediateAccounts: [IntermediateAccountBankModel]? = nil, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, references: [PlanReferenceBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: FailureCodeBankModel? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, intermediateAccounts: [IntermediateAccountBankModel]? = nil, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, references: [PlanReferenceBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.planGuid = planGuid

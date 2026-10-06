@@ -12,14 +12,48 @@ import AnyCodable
 
 public struct StageBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum FailureCodeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case nonSufficientFunds = "non_sufficient_funds"
+        case refreshRequired = "refresh_required"
+        case partyNameInvalid = "party_name_invalid"
+        case paymentRailInvalid = "payment_rail_invalid"
+        case complianceRejection = "compliance_rejection"
+        case cancelled = "cancelled"
+        case reversed = "reversed"
+        case limitExceeded = "limit_exceeded"
+        case dailyLimitExceeded = "daily_limit_exceeded"
+        case weeklyLimitExceeded = "weekly_limit_exceeded"
+        case monthlyLimitExceeded = "monthly_limit_exceeded"
+        case lifetimeLimitExceeded = "lifetime_limit_exceeded"
+        case networkFeeTooLow = "network_fee_too_low"
+        case amountTooLow = "amount_too_low"
+        case internalError = "internal_error"
+        case invalidAddress = "invalid_address"
+        case invalidDestination = "invalid_destination"
+        case customerActionRequired = "customer_action_required"
+        case externalVendorError = "external_vendor_error"
+        case paymentRequestExpired = "payment_request_expired"
+        case returnRiskExceeded = "return_risk_exceeded"
+        case customerContactInfoMissing = "customer_contact_info_missing"
+        case recipientCancelled = "recipient_cancelled"
+        case unsupported = "unsupported"
+        case expiredQuote = "expired_quote"
+        case marketVolatility = "market_volatility"
+        case notFilled = "not_filled"
+        case noQuote = "no_quote"
+        case invalidQuoteAmount = "invalid_quote_amount"
+        case insufficientSourceAmount = "insufficient_source_amount"
+        case insufficientDestinationAmount = "insufficient_destination_amount"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The unique identifier for the stage. */
     public var guid: String
     /** The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, withdrawal_return, or payout_return. */
     public var type: String
     /** The state of the stage; one of storing, planning, planned, executing, completed, or failed. */
     public var state: String
-    /** The failure code for failed stages. */
-    public var failureCode: String?
+    /** The failure code for failed stages. Failures without a documented code are reported as internal_error. */
+    public var failureCode: FailureCodeBankModel?
     /** Provider-issued identifiers associated with this stage. Always present, possibly empty. */
     public var identifiers: [StageIdentifierBankModel]
     /** Provider-issued links associated with this stage. Always present, possibly empty. */
@@ -37,7 +71,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     public var withdrawalReturnDetails: ReturnDetailsBankModel?
     public var payoutReturnDetails: PayoutReturnDetailsBankModel?
 
-    public init(guid: String, type: String, state: String, failureCode: String? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil, payoutReturnDetails: PayoutReturnDetailsBankModel? = nil) {
+    public init(guid: String, type: String, state: String, failureCode: FailureCodeBankModel? = nil, identifiers: [StageIdentifierBankModel], links: [StageLinkBankModel], createdAt: Date, updatedAt: Date, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, depositReturnDetails: ReturnDetailsBankModel? = nil, withdrawalReturnDetails: ReturnDetailsBankModel? = nil, payoutReturnDetails: PayoutReturnDetailsBankModel? = nil) {
         self.guid = guid
         self.type = type
         self.state = state
