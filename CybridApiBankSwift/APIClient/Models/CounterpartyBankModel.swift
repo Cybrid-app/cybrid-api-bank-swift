@@ -12,6 +12,11 @@ import AnyCodable
 
 public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum CustomerRelationshipBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case _self = "self"
+        case thirdParty = "third_party"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** Auto-generated unique identifier for the counterparty. */
     public var guid: String?
     /** The counterparty type; one of business or individual. */
@@ -20,6 +25,8 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var bankGuid: String?
     /** Auto-generated unique identifier for the counterparty's customer. */
     public var customerGuid: String?
+    /** The counterparty's relationship to the owning customer. */
+    public var customerRelationship: CustomerRelationshipBankModel?
     /** ISO8601 datetime the record was created at. */
     public var createdAt: Date?
     /** ISO8601 datetime the record was last updated at. */
@@ -37,11 +44,12 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
     /** The compliance decisions associated with the counterparty. */
     public var complianceDecisions: [ComplianceDecisionBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, customerRelationship: CustomerRelationshipBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
+        self.customerRelationship = customerRelationship
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.state = state
@@ -58,6 +66,7 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case type
         case bankGuid = "bank_guid"
         case customerGuid = "customer_guid"
+        case customerRelationship = "customer_relationship"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case state
@@ -77,6 +86,7 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(customerRelationship, forKey: .customerRelationship)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(state, forKey: .state)
