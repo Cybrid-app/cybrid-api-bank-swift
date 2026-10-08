@@ -18,10 +18,17 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case individual = "individual"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum CustomerRelationshipBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case _self = "self"
+        case thirdParty = "third_party"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The counterparty's type. */
     public var type: TypeBankModel
     /** The owning customer's identifier. */
     public var customerGuid: String?
+    /** The counterparty's relationship to the owning customer. */
+    public var customerRelationship: CustomerRelationshipBankModel?
     public var address: PostCounterpartyAddressBankModel
     public var name: PostCounterpartyNameBankModel?
     /** The aliases of the counterparty. Optional when type is business. */
@@ -35,9 +42,10 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the counterparty. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, address: PostCounterpartyAddressBankModel, name: PostCounterpartyNameBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, customerRelationship: CustomerRelationshipBankModel? = nil, address: PostCounterpartyAddressBankModel, name: PostCounterpartyNameBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, labels: [String]? = nil) {
         self.type = type
         self.customerGuid = customerGuid
+        self.customerRelationship = customerRelationship
         self.address = address
         self.name = name
         self.aliases = aliases
@@ -50,6 +58,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case customerGuid = "customer_guid"
+        case customerRelationship = "customer_relationship"
         case address
         case name
         case aliases
@@ -65,6 +74,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(customerGuid, forKey: .customerGuid)
+        try container.encodeIfPresent(customerRelationship, forKey: .customerRelationship)
         try container.encode(address, forKey: .address)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(aliases, forKey: .aliases)

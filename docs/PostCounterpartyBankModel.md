@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The counterparty&#39;s type. | 
 **customerGuid** | **String** | The owning customer&#39;s identifier. | [optional] 
+**customerRelationship** | **String** | The counterparty&#39;s relationship to the owning customer. | [optional] 
 **address** | [**PostCounterpartyAddressBankModel**](PostCounterpartyAddressBankModel.md) |  | 
 **name** | [**PostCounterpartyNameBankModel**](PostCounterpartyNameBankModel.md) |  | [optional] 
 **aliases** | [PostCounterpartyAliasesInnerBankModel] | The aliases of the counterparty. Optional when type is business. | [optional] 
