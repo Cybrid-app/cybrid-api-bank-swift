@@ -37,7 +37,7 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var quoteGuid: String
     /** The type of transfer. */
     public var transferType: TransferTypeBankModel
-    /** The customer's 'plaid', 'plaid_processor_token', or 'raw_routing_details' external bank account's identifier. Required for ACH, EFT, WIRE, and RTP payment rails. For the e-transfer rail, this is the counterparty's 'raw_routing_details' external bank account to request the funds from; omit it for a gateway-only deposit. Required when transfer_type is instant_funding. Optional when transfer_type is funding. */
+    /** The customer's 'plaid', 'plaid_processor_token', or 'raw_routing_details' external bank account's identifier. Required for ACH, EFT, WIRE, and RTP payment rails. For the e-transfer rail, this is the 'raw_routing_details' external bank account to request the funds from on a deposit, or to send them to on a withdrawal; omit it for a gateway-only transfer. Required when transfer_type is instant_funding. Optional when transfer_type is funding. */
     public var externalBankAccountGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the customer or bank has multiple fiat accounts. Optional when transfer_type is funding. */
     public var fiatAccountGuid: String?
