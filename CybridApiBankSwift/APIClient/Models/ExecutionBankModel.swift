@@ -36,6 +36,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         case returnRiskExceeded = "return_risk_exceeded"
         case customerContactInfoMissing = "customer_contact_info_missing"
         case recipientCancelled = "recipient_cancelled"
+        case invalidSecurityQuestion = "invalid_security_question"
         case unsupported = "unsupported"
         case expiredQuote = "expired_quote"
         case marketVolatility = "market_volatility"
