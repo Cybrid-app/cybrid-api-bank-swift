@@ -16,14 +16,17 @@ public struct SardineSessionBankModel: Codable, JSONEncodable, Hashable {
     public var guid: String
     /** The session key to initialize the Sardine SDK with. */
     public var sardineSessionKey: String
+    /** The client id to initialize the Sardine SDK with. */
+    public var sardineClientId: String
     /** The unique identifier for the customer. */
     public var customerGuid: String
     /** The expiration datetime of the session key. Null if the session key does not expire. */
     public var expiresAt: Date?
 
-    public init(guid: String, sardineSessionKey: String, customerGuid: String, expiresAt: Date? = nil) {
+    public init(guid: String, sardineSessionKey: String, sardineClientId: String, customerGuid: String, expiresAt: Date? = nil) {
         self.guid = guid
         self.sardineSessionKey = sardineSessionKey
+        self.sardineClientId = sardineClientId
         self.customerGuid = customerGuid
         self.expiresAt = expiresAt
     }
@@ -31,6 +34,7 @@ public struct SardineSessionBankModel: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
         case sardineSessionKey = "sardine_session_key"
+        case sardineClientId = "sardine_client_id"
         case customerGuid = "customer_guid"
         case expiresAt = "expires_at"
     }
@@ -41,6 +45,7 @@ public struct SardineSessionBankModel: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(guid, forKey: .guid)
         try container.encode(sardineSessionKey, forKey: .sardineSessionKey)
+        try container.encode(sardineClientId, forKey: .sardineClientId)
         try container.encode(customerGuid, forKey: .customerGuid)
         try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
     }

@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **guid** | **String** | Auto-generated unique identifier for the sardine session key. | 
 **sardineSessionKey** | **String** | The session key to initialize the Sardine SDK with. | 
+**sardineClientId** | **String** | The client id to initialize the Sardine SDK with. | 
 **customerGuid** | **String** | The unique identifier for the customer. | 
 **expiresAt** | **Date** | The expiration datetime of the session key. Null if the session key does not expire. | [optional] 
 
