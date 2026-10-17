@@ -54,7 +54,7 @@ public struct PostQuoteBankModel: Codable, JSONEncodable, Hashable {
     public var fees: [PostFeeBankModel]?
     /** The unique identifier for the destination account. Used to determine routing-specific fees for EFT withdrawals. Required when product_type is inter_account. Optional when product_type is funding. */
     public var destinationAccountGuid: String?
-    /** The payment rail the resulting transfer will execute on. Required when the downstream transfer will be an e-transfer withdrawal. Optional when product_type is funding. */
+    /** The payment rail the resulting transfer will execute on, used for pricing. Required when the downstream transfer will be an etransfer withdrawal. Optional when product_type is funding. */
     public var paymentRail: PaymentRailBankModel?
     /** Symbol the quote is being requested for. Format is \"asset-counter_asset\" in uppercase. See the Symbols API for a complete list of cryptocurrencies supported.  Required when product_type is trading. */
     public var symbol: String?
