@@ -41,9 +41,9 @@ public struct PostTransferBankModel: Codable, JSONEncodable, Hashable {
     public var externalBankAccountGuid: String?
     /** The identifier for the fiat account to use for the transfer. Required if the customer or bank has multiple fiat accounts. Optional when transfer_type is funding. */
     public var fiatAccountGuid: String?
-    /** The deposit bank account's identifier. Only valid for withdrawals. The deposit bank account must be owned by the customer or bank initiating the transfer. When deposit bank account enforcement is on for the bank, a withdrawal resolves it automatically to the main deposit bank account and, if supplied, it must match. When omitted, an Interac e-Transfer withdrawal resolves it to the fiat account's main deposit bank account, as a deposit resolves its receiving account. Optional when transfer_type is funding. */
+    /** The deposit bank account's identifier. Only valid for withdrawals. The deposit bank account must be owned by the customer or bank initiating the transfer. When deposit bank account enforcement is on for the bank, a withdrawal resolves it automatically to the main deposit bank account and, if supplied, it must match. When omitted, a withdrawal resolves it to the fiat account's main deposit bank account where one is available on the payout's provider. Optional when transfer_type is funding. */
     public var sendAsDepositBankAccountGuid: String?
-    /** The desired payment rail to initiate the transfer for. Optional when transfer_type is funding. */
+    /** The desired payment rail to initiate the transfer for. If omitted, the quote's payment_rail is used, else the default for the bank's country. Must match the quote's payment_rail when both are given. Optional when transfer_type is funding. */
     public var paymentRail: PaymentRailBankModel?
     /** The memo to send to the counterparty. Optional when transfer_type is funding. */
     public var beneficiaryMemo: String?
