@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 # **listIdentityVerifications**
 ```swift
-    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, state: String? = nil, type: String? = nil, method: String? = nil, completion: @escaping (_ data: IdentityVerificationListBankModel?, _ error: Error?) -> Void)
+    open class func listIdentityVerifications(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, counterpartyGuid: String? = nil, externalBankAccountGuid: String? = nil, state: String? = nil, type: String? = nil, method: String? = nil, completion: @escaping (_ data: IdentityVerificationListBankModel?, _ error: Error?) -> Void)
 ```
 
 List Identity Verifications
@@ -131,12 +131,13 @@ let guid = "guid_example" // String | Comma separated guids to list identity ver
 let bankGuid = "bankGuid_example" // String | Comma separated bank_guids to list identity verifications for. (optional)
 let customerGuid = "customerGuid_example" // String | Comma separated customer_guids to list identity verifications for. (optional)
 let counterpartyGuid = "counterpartyGuid_example" // String | Comma separated counterparty_guids to list identity verifications for. (optional)
+let externalBankAccountGuid = "externalBankAccountGuid_example" // String | Comma separated external_bank_account_guids to list identity verifications for. (optional)
 let state = "state_example" // String | Comma separated states to list identity verifications for. (optional)
 let type = "type_example" // String | Comma separated types to list identity verifications for. (optional)
 let method = "method_example" // String | Comma separated methods to list identity verifications for. (optional)
 
 // List Identity Verifications
-IdentityVerificationsAPI.listIdentityVerifications(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, counterpartyGuid: counterpartyGuid, state: state, type: type, method: method) { (response, error) in
+IdentityVerificationsAPI.listIdentityVerifications(page: page, perPage: perPage, guid: guid, bankGuid: bankGuid, customerGuid: customerGuid, counterpartyGuid: counterpartyGuid, externalBankAccountGuid: externalBankAccountGuid, state: state, type: type, method: method) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -158,6 +159,7 @@ Name | Type | Description  | Notes
  **bankGuid** | **String** | Comma separated bank_guids to list identity verifications for. | [optional] 
  **customerGuid** | **String** | Comma separated customer_guids to list identity verifications for. | [optional] 
  **counterpartyGuid** | **String** | Comma separated counterparty_guids to list identity verifications for. | [optional] 
+ **externalBankAccountGuid** | **String** | Comma separated external_bank_account_guids to list identity verifications for. | [optional] 
  **state** | **String** | Comma separated states to list identity verifications for. | [optional] 
  **type** | **String** | Comma separated types to list identity verifications for. | [optional] 
  **method** | **String** | Comma separated methods to list identity verifications for. | [optional] 
