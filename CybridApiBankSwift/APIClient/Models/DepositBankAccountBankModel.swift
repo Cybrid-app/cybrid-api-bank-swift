@@ -32,8 +32,10 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     public var deletedAt: Date?
     /** The asset the transfer is related to, e.g., USD. */
     public var asset: String?
-    /** The state of the deposit bank account; one of storing, created, deleting, or deleted. */
+    /** The state of the deposit bank account; one of storing, created, deleting, deleted, reviewing, failed, or expired. */
     public var state: String?
+    /** The failure code for the failed deposit bank account; one of compliance_rejection. */
+    public var failureCode: String?
     /** The unique memo identifier for the deposit bank account. This is used to identify the recipient when sending funds to the account. This value MUST be included in all wire transfers to this account. */
     public var uniqueMemoId: String?
     /** The name of the account holder. */
@@ -48,7 +50,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
     /** The labels associated with the address. */
     public var labels: [String]?
 
-    public init(guid: String? = nil, name: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date? = nil, asset: String? = nil, state: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
+    public init(guid: String? = nil, name: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, accountGuid: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date? = nil, asset: String? = nil, state: String? = nil, failureCode: String? = nil, uniqueMemoId: String? = nil, counterpartyName: String? = nil, counterpartyAddress: DepositBankAccountCounterpartyAddressBankModel? = nil, accountDetails: [DepositBankAccountAccountDetailsInnerBankModel]? = nil, routingDetails: [DepositBankAccountRoutingDetailsInnerBankModel]? = nil, parentDepositBankAccountGuid: String? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.name = name
         self.type = type
@@ -60,6 +62,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         self.deletedAt = deletedAt
         self.asset = asset
         self.state = state
+        self.failureCode = failureCode
         self.uniqueMemoId = uniqueMemoId
         self.counterpartyName = counterpartyName
         self.counterpartyAddress = counterpartyAddress
@@ -81,6 +84,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         case deletedAt = "deleted_at"
         case asset
         case state
+        case failureCode = "failure_code"
         case uniqueMemoId = "unique_memo_id"
         case counterpartyName = "counterparty_name"
         case counterpartyAddress = "counterparty_address"
@@ -105,6 +109,7 @@ public struct DepositBankAccountBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(deletedAt, forKey: .deletedAt)
         try container.encodeIfPresent(asset, forKey: .asset)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(uniqueMemoId, forKey: .uniqueMemoId)
         try container.encodeIfPresent(counterpartyName, forKey: .counterpartyName)
         try container.encodeIfPresent(counterpartyAddress, forKey: .counterpartyAddress)

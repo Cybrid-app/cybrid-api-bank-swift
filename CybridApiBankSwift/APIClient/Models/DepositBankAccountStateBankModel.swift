@@ -15,5 +15,8 @@ public enum DepositBankAccountStateBankModel: String, Codable, CaseIterable, Cas
     case created = "created"
     case deleting = "deleting"
     case deleted = "deleted"
+    case reviewing = "reviewing"
+    case failed = "failed"
+    case expired = "expired"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
