@@ -15,9 +15,10 @@ public struct PlanReferenceBankModel: Codable, JSONEncodable, Hashable {
     public enum TypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case execution = "returned_execution"
         case stage = "returned_stage"
+        case byExecution = "returned_by_execution"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** The type of object being referenced; one of returned_execution or returned_stage. */
+    /** The type of object being referenced; one of returned_execution, returned_stage, or returned_by_execution. */
     public var type: TypeBankModel
     /** The guid of the referenced object. */
     public var guid: String

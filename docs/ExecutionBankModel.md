@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **holds** | [HoldDetailBankModel] | The holds placed on the execution. | [optional] 
 **travelRuleInfo** | [**ExecutionTravelRuleInfoBankModel**](ExecutionTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the execution. | [optional] 
-**references** | [PlanReferenceBankModel] | Objects this return execution references (the returned execution and stage). Optional when type is deposit_return, type is withdrawal_return, or type is payout_return. | [optional] 
+**references** | [PlanReferenceBankModel] | Objects this execution references. A return execution references the returned execution and stage; a returned execution references the return execution(s) that returned it. | [optional] 
 **labels** | **[String]** | The labels associated with the execution. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

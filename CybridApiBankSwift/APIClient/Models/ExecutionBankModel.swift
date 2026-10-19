@@ -121,7 +121,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: ExecutionTravelRuleInfoBankModel
     /** The purpose of transaction for the execution. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
-    /** Objects this return execution references (the returned execution and stage). Optional when type is deposit_return, type is withdrawal_return, or type is payout_return. */
+    /** Objects this execution references. A return execution references the returned execution and stage; a returned execution references the return execution(s) that returned it. */
     public var references: [PlanReferenceBankModel]?
     /** The labels associated with the execution. */
     public var labels: [String]?
