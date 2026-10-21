@@ -82,8 +82,10 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
     public var labels: [String]?
     /** Supporting documents to attach to the plan. Optional when type is remittance or type is invoice_pay. */
     public var supportingDocuments: [PostSupportingDocumentBankModel]?
+    /** Custom fees charged on the bank side of the plan, replacing the bank's configured pricing for it; Cybrid's platform fee still applies. Omit to use the configured pricing, or send an empty array to charge no bank fee. A fixed fee is denominated in the source account asset, which can be a cryptocurrency for payout-family plans. Not available to customers. */
+    public var fees: [PostFeeBankModel]?
 
-    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, intermediateAccounts: [PostPlanIntermediateAccountsInnerBankModel]? = nil, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, labels: [String]? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil) {
+    public init(type: TypeBankModel, bankGuid: String? = nil, customerGuid: String? = nil, sourceAccount: PostPlanSourceAccountBankModel, destinationAccount: PostPlanDestinationAccountBankModel, intermediateAccounts: [PostPlanIntermediateAccountsInnerBankModel]? = nil, travelRuleInfo: PostPlanTravelRuleInfoBankModel? = nil, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, labels: [String]? = nil, supportingDocuments: [PostSupportingDocumentBankModel]? = nil, fees: [PostFeeBankModel]? = nil) {
         self.type = type
         self.bankGuid = bankGuid
         self.customerGuid = customerGuid
@@ -94,6 +96,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         self.purposeOfTransaction = purposeOfTransaction
         self.labels = labels
         self.supportingDocuments = supportingDocuments
+        self.fees = fees
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -107,6 +110,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         case purposeOfTransaction = "purpose_of_transaction"
         case labels
         case supportingDocuments = "supporting_documents"
+        case fees
     }
 
     // Encodable protocol methods
@@ -123,6 +127,7 @@ public struct PostPlanBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(supportingDocuments, forKey: .supportingDocuments)
+        try container.encodeIfPresent(fees, forKey: .fees)
     }
 }
 
