@@ -39,12 +39,18 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var aliases: [CounterpartyAliasesInnerBankModel]?
     /** The counterparty's DOB. Only available for GET operations when 'include_pii' is set. */
     public var dateOfBirth: Date?
+    /** The counterparty's phone number. Only available for GET operations when 'include_pii' is set. */
+    public var phoneNumber: String?
+    /** The counterparty's email address. Only available for GET operations when 'include_pii' is set. */
+    public var emailAddress: String?
+    /** The counterparty's identification numbers. Only available for GET operations when 'include_pii' is set. */
+    public var identificationNumbers: [IdentificationNumberBankModel]?
     /** The labels associated with the counterparty. */
     public var labels: [String]?
     /** The compliance decisions associated with the counterparty. */
     public var complianceDecisions: [ComplianceDecisionBankModel]?
 
-    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, customerRelationship: CustomerRelationshipBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
+    public init(guid: String? = nil, type: String? = nil, bankGuid: String? = nil, customerGuid: String? = nil, customerRelationship: CustomerRelationshipBankModel? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, state: String? = nil, name: CounterpartyNameBankModel? = nil, address: CounterpartyAddressBankModel? = nil, aliases: [CounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil, labels: [String]? = nil, complianceDecisions: [ComplianceDecisionBankModel]? = nil) {
         self.guid = guid
         self.type = type
         self.bankGuid = bankGuid
@@ -57,6 +63,9 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         self.address = address
         self.aliases = aliases
         self.dateOfBirth = dateOfBirth
+        self.phoneNumber = phoneNumber
+        self.emailAddress = emailAddress
+        self.identificationNumbers = identificationNumbers
         self.labels = labels
         self.complianceDecisions = complianceDecisions
     }
@@ -74,6 +83,9 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case address
         case aliases
         case dateOfBirth = "date_of_birth"
+        case phoneNumber = "phone_number"
+        case emailAddress = "email_address"
+        case identificationNumbers = "identification_numbers"
         case labels
         case complianceDecisions = "compliance_decisions"
     }
@@ -94,6 +106,9 @@ public struct CounterpartyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(address, forKey: .address)
         try container.encodeIfPresent(aliases, forKey: .aliases)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
+        try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+        try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
+        try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(complianceDecisions, forKey: .complianceDecisions)
     }

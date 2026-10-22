@@ -15,6 +15,9 @@ Name | Type | Description | Notes
 **address** | [**CounterpartyAddressBankModel**](CounterpartyAddressBankModel.md) |  | [optional] 
 **aliases** | [CounterpartyAliasesInnerBankModel] | The counterparty&#39;s aliases. Only available for GET operations when &#39;include_pii&#39; is set. | [optional] 
 **dateOfBirth** | **Date** | The counterparty&#39;s DOB. Only available for GET operations when &#39;include_pii&#39; is set. | [optional] 
+**phoneNumber** | **String** | The counterparty&#39;s phone number. Only available for GET operations when &#39;include_pii&#39; is set. | [optional] 
+**emailAddress** | **String** | The counterparty&#39;s email address. Only available for GET operations when &#39;include_pii&#39; is set. | [optional] 
+**identificationNumbers** | [IdentificationNumberBankModel] | The counterparty&#39;s identification numbers. Only available for GET operations when &#39;include_pii&#39; is set. | [optional] 
 **labels** | **[String]** | The labels associated with the counterparty. | [optional] 
 **complianceDecisions** | [ComplianceDecisionBankModel] | The compliance decisions associated with the counterparty. | [optional] 
 
