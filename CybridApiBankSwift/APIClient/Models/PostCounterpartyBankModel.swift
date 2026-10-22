@@ -37,12 +37,14 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
     public var dateOfBirth: Date?
     /** The counterparty's email address. */
     public var emailAddress: String?
+    /** The counterparty's phone number. */
+    public var phoneNumber: String?
     /** The counterparty's identification numbers. */
     public var identificationNumbers: [PostIdentificationNumberBankModel]?
     /** The labels associated with the counterparty. */
     public var labels: [String]?
 
-    public init(type: TypeBankModel, customerGuid: String? = nil, customerRelationship: CustomerRelationshipBankModel? = nil, address: PostCounterpartyAddressBankModel, name: PostCounterpartyNameBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, emailAddress: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, labels: [String]? = nil) {
+    public init(type: TypeBankModel, customerGuid: String? = nil, customerRelationship: CustomerRelationshipBankModel? = nil, address: PostCounterpartyAddressBankModel, name: PostCounterpartyNameBankModel? = nil, aliases: [PostCounterpartyAliasesInnerBankModel]? = nil, dateOfBirth: Date? = nil, emailAddress: String? = nil, phoneNumber: String? = nil, identificationNumbers: [PostIdentificationNumberBankModel]? = nil, labels: [String]? = nil) {
         self.type = type
         self.customerGuid = customerGuid
         self.customerRelationship = customerRelationship
@@ -51,6 +53,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         self.aliases = aliases
         self.dateOfBirth = dateOfBirth
         self.emailAddress = emailAddress
+        self.phoneNumber = phoneNumber
         self.identificationNumbers = identificationNumbers
         self.labels = labels
     }
@@ -64,6 +67,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         case aliases
         case dateOfBirth = "date_of_birth"
         case emailAddress = "email_address"
+        case phoneNumber = "phone_number"
         case identificationNumbers = "identification_numbers"
         case labels
     }
@@ -80,6 +84,7 @@ public struct PostCounterpartyBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(aliases, forKey: .aliases)
         try container.encodeIfPresent(dateOfBirth, forKey: .dateOfBirth)
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
+        try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(identificationNumbers, forKey: .identificationNumbers)
         try container.encodeIfPresent(labels, forKey: .labels)
     }

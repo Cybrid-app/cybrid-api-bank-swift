@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **aliases** | [PostCounterpartyAliasesInnerBankModel] | The aliases of the counterparty. Optional when type is business. | [optional] 
 **dateOfBirth** | **Date** | The counterparty&#39;s date of birth. Optional when type is individual. | [optional] 
 **emailAddress** | **String** | The counterparty&#39;s email address. | [optional] 
+**phoneNumber** | **String** | The counterparty&#39;s phone number. | [optional] 
 **identificationNumbers** | [PostIdentificationNumberBankModel] | The counterparty&#39;s identification numbers. | [optional] 
 **labels** | **[String]** | The labels associated with the counterparty. | [optional] 
 
