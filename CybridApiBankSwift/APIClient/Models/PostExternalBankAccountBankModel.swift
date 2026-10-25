@@ -44,15 +44,15 @@ public struct PostExternalBankAccountBankModel: Codable, JSONEncodable, Hashable
     public var plaidAccountMask: String?
     /** The name of the account. Required when account_kind is plaid_processor_token. */
     public var plaidAccountName: String?
-    /** Sandbox only: deterministically simulate the holder-name-match outcome instead of aligning the owner's KYC/KYB data with the linked account. Ignored for account kinds whose plan runs no holder-name match. */
+    /** Sandbox only: deterministically simulate the holder-name-match outcome instead of aligning the owner's KYC/KYB data with the linked account. Ignored for account kinds whose plan runs no holder-name match, including every counterparty account. Outside sandbox it is rejected with a 400 for every owner. */
     public var expectedBehaviours: [ExpectedBehavioursBankModel]?
-    /** The counterparty identifier. Optional when account_kind is raw_routing_details. */
+    /** The counterparty identifier. When supplied, the account is onboarded under the counterparty's verified identity: counterparty_name, counterparty_address and counterparty_email_address must be omitted (400 if sent). Ownership is implied to be the counterparty's, so no holder-name match runs and expected_behaviours is ignored. Optional when account_kind is raw_routing_details. */
     public var counterpartyGuid: String?
     /** The counterparty's checking bank account information. Required when account_kind is raw_routing_details. */
     public var counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]?
     public var counterpartyName: PostExternalBankAccountCounterpartyNameBankModel?
     public var counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel?
-    /** The account holder's email address. Optional when account_kind is raw_routing_details. */
+    /** The account holder's email address. Must be omitted when counterparty_guid is supplied (400). Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var counterpartyEmailAddress: String?
 
     public init(name: String, accountKind: AccountKindBankModel, customerGuid: String? = nil, asset: String? = nil, plaidPublicToken: String? = nil, plaidAccountId: String? = nil, plaidProcessorToken: String? = nil, plaidInstitutionId: String? = nil, plaidAccountMask: String? = nil, plaidAccountName: String? = nil, expectedBehaviours: [ExpectedBehavioursBankModel]? = nil, counterpartyGuid: String? = nil, counterpartyBankAccountDetails: [PostBankAccountDetailsBankModel]? = nil, counterpartyName: PostExternalBankAccountCounterpartyNameBankModel? = nil, counterpartyAddress: PostExternalBankAccountCounterpartyAddressBankModel? = nil, counterpartyEmailAddress: String? = nil) {

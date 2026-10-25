@@ -10,16 +10,16 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The account holder&#39;s name. Required when account_kind is raw_routing_details. */
+/** The account holder&#39;s name. Required for customer- or bank-owned accounts; must be omitted when counterparty_guid is supplied (400), because a counterparty account is onboarded under the counterparty&#39;s verified identity. Required when account_kind is raw_routing_details and counterparty_guid is not present. */
 public struct PostExternalBankAccountCounterpartyNameBankModel: Codable, JSONEncodable, Hashable {
 
-    /** The holder's first name; used for individuals. Optional when account_kind is raw_routing_details. */
+    /** The holder's first name; used for individuals. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var first: String?
-    /** The holder's middle name; used for individuals. Optional when account_kind is raw_routing_details. */
+    /** The holder's middle name; used for individuals. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var middle: String?
-    /** The holder's last name; used for individuals. Optional when account_kind is raw_routing_details. */
+    /** The holder's last name; used for individuals. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var last: String?
-    /** The holder's full name; used for businesses. Optional when account_kind is raw_routing_details. */
+    /** The holder's full name; used for businesses. Optional when account_kind is raw_routing_details and counterparty_guid is not present. */
     public var full: String?
 
     public init(first: String? = nil, middle: String? = nil, last: String? = nil, full: String? = nil) {
