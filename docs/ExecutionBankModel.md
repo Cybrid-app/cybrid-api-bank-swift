@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **holds** | [HoldDetailBankModel] | The holds placed on the execution. | [optional] 
 **travelRuleInfo** | [**ExecutionTravelRuleInfoBankModel**](ExecutionTravelRuleInfoBankModel.md) |  | 
 **purposeOfTransaction** | **String** | The purpose of transaction for the execution. | [optional] 
+**supportingDocuments** | [SupportingDocumentBankModel] | Supporting documents attached to the execution&#39;s plan. Optional when type is remittance or type is invoice_pay. | [optional] 
 **references** | [PlanReferenceBankModel] | Objects this execution references. A return execution references the returned execution and stage; a returned execution references the return execution(s) that returned it. | [optional] 
 **labels** | **[String]** | The labels associated with the execution. | [optional] 
 

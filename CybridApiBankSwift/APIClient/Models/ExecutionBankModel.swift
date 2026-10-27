@@ -121,12 +121,14 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
     public var travelRuleInfo: ExecutionTravelRuleInfoBankModel
     /** The purpose of transaction for the execution. */
     public var purposeOfTransaction: PurposeOfTransactionBankModel?
+    /** Supporting documents attached to the execution's plan. Optional when type is remittance or type is invoice_pay. */
+    public var supportingDocuments: [SupportingDocumentBankModel]?
     /** Objects this execution references. A return execution references the returned execution and stage; a returned execution references the return execution(s) that returned it. */
     public var references: [PlanReferenceBankModel]?
     /** The labels associated with the execution. */
     public var labels: [String]?
 
-    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: FailureCodeBankModel? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, intermediateAccounts: [IntermediateAccountBankModel]? = nil, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, references: [PlanReferenceBankModel]? = nil, labels: [String]? = nil) {
+    public init(guid: String, type: String, planGuid: String, bankGuid: String? = nil, customerGuid: String? = nil, createdAt: Date, updatedAt: Date, state: String, failureCode: FailureCodeBankModel? = nil, sourceAccount: AccountAssociationBankModel, destinationAccount: AccountAssociationBankModel, intermediateAccounts: [IntermediateAccountBankModel]? = nil, stages: [StageBankModel], fees: [FeeAssociationBankModel], effectiveRate: EffectiveRateBankModel? = nil, holds: [HoldDetailBankModel]? = nil, travelRuleInfo: ExecutionTravelRuleInfoBankModel, purposeOfTransaction: PurposeOfTransactionBankModel? = nil, supportingDocuments: [SupportingDocumentBankModel]? = nil, references: [PlanReferenceBankModel]? = nil, labels: [String]? = nil) {
         self.guid = guid
         self.type = type
         self.planGuid = planGuid
@@ -145,6 +147,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         self.holds = holds
         self.travelRuleInfo = travelRuleInfo
         self.purposeOfTransaction = purposeOfTransaction
+        self.supportingDocuments = supportingDocuments
         self.references = references
         self.labels = labels
     }
@@ -168,6 +171,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         case holds
         case travelRuleInfo = "travel_rule_info"
         case purposeOfTransaction = "purpose_of_transaction"
+        case supportingDocuments = "supporting_documents"
         case references
         case labels
     }
@@ -194,6 +198,7 @@ public struct ExecutionBankModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(holds, forKey: .holds)
         try container.encode(travelRuleInfo, forKey: .travelRuleInfo)
         try container.encodeIfPresent(purposeOfTransaction, forKey: .purposeOfTransaction)
+        try container.encodeIfPresent(supportingDocuments, forKey: .supportingDocuments)
         try container.encodeIfPresent(references, forKey: .references)
         try container.encodeIfPresent(labels, forKey: .labels)
     }
