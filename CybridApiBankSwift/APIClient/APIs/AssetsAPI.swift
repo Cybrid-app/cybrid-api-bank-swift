@@ -36,7 +36,13 @@ open class AssetsAPI {
     /**
      Get assets list
      - GET /api/assets
-     - Retrieves a listing of assets.
+     - Retrieves a listing of assets. Requires a valid access token; no scope is required.
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter code: (query) Comma separated codes to list assets for. (optional)

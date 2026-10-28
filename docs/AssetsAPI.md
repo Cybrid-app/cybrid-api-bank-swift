@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Get assets list
 
-Retrieves a listing of assets.
+Retrieves a listing of assets. Requires a valid access token; no scope is required.
 
 ### Example
 ```swift
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
