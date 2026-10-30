@@ -35,5 +35,6 @@ public enum TransferFailureCodeBankModel: String, Codable, CaseIterable, CaseIte
     case customerContactInfoMissing = "customer_contact_info_missing"
     case recipientCancelled = "recipient_cancelled"
     case invalidSecurityQuestion = "invalid_security_question"
+    case duplicateTransaction = "duplicate_transaction"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
