@@ -166,7 +166,7 @@ Add the package to your `Package.swift`, or in Xcode via File > Add Package Depe
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Cybrid-app/cybrid-api-bank-swift", .upToNextMinor(from: "0.129.1548")),
+    .package(url: "https://github.com/Cybrid-app/cybrid-api-bank-swift", .upToNextMinor(from: "0.129.1549")),
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
