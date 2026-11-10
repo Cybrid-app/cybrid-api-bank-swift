@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Get assets list
 
-Retrieves a listing of assets. Requires a valid access token; no scope is required.
+Retrieves a listing of assets.  Requires a valid access token; no scope is required.
 
 ### Example
 ```swift

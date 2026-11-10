@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Create Deposit Bank Account
 
-Creates a deposit bank account.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the deposit bank account details in our private store | | created | The Platform has created the deposit bank account |    Required scope: **deposit_bank_accounts:execute**
+Creates a deposit bank account.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the deposit bank account details in our private store | | created | The Platform has created the deposit bank account |  Required scope: **deposit_bank_accounts:execute**
 
 ### Example
 ```swift
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 Delete Deposit Bank Account
 
-Deletes a deposit bank account.  ## State  | State | Description | |-------|-------------| | deleting | The Platform is deleting the deposit bank account and closing the associated provider account | | deleted | The Platform has deleted the deposit bank account |    Required scope: **deposit_bank_accounts:execute**
+Deletes a deposit bank account.  ## State  | State | Description | |-------|-------------| | deleting | The Platform is deleting the deposit bank account and closing the associated provider account | | deleted | The Platform has deleted the deposit bank account |  Required scope: **deposit_bank_accounts:execute**
 
 ### Example
 ```swift

@@ -36,7 +36,7 @@ open class AssetsAPI {
     /**
      Get assets list
      - GET /api/assets
-     - Retrieves a listing of assets. Requires a valid access token; no scope is required.
+     - Retrieves a listing of assets.  Requires a valid access token; no scope is required.
      - BASIC:
        - type: http
        - name: BearerAuth
