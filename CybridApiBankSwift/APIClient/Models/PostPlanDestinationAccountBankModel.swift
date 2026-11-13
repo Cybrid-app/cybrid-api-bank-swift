@@ -27,9 +27,9 @@ public struct PostPlanDestinationAccountBankModel: Codable, JSONEncodable, Hasha
     public var amount: String?
     /** The desired payment rail to use to initiate a fiat transfer to the destination account. */
     public var paymentRail: PaymentRailBankModel?
-    /** The security question for an Interac e-Transfer withdrawal or conversion. Only accepted for an e-transfer rail destination; must be paired with security_answer. */
+    /** The security question for an Interac e-Transfer. Accepted for withdrawal, conversion, disbursement, invoice_pay, bill_pay and V2 remittance plans to an e-transfer rail destination; ignored when the recipient has Autodeposit; must be paired with security_answer. */
     public var securityQuestion: String?
-    /** The security answer the recipient must provide to claim an Interac e-Transfer. Only accepted for an e-transfer rail destination; must be paired with security_question. */
+    /** The security answer the recipient must provide to claim an Interac e-Transfer. Accepted for withdrawal, conversion, disbursement, invoice_pay, bill_pay and V2 remittance plans to an e-transfer rail destination; ignored when the recipient has Autodeposit; must be paired with security_question. */
     public var securityAnswer: String?
 
     public init(guid: String, amount: String? = nil, paymentRail: PaymentRailBankModel? = nil, securityQuestion: String? = nil, securityAnswer: String? = nil) {
