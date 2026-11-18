@@ -82,6 +82,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public enum AccountDesignationBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case nre = "NRE"
         case nro = "NRO"
+        case residentIndividual = "RESIDENT_INDIVIDUAL"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The bank code. */
@@ -96,7 +97,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var bankCodeType: BankCodeTypeBankModel?
     /** The type of account. Required when payment_rail is PSE or payment_rail is LBTR. Optional when payment_rail is ACH or payment_rail is WIRE. */
     public var accountType: AccountTypeBankModel?
-    /** Account designation for India IFSC and UPI accounts (NRE or NRO). Defaults to NRE when omitted. Optional when payment_rail is IFSC or payment_rail is UPI. */
+    /** Account designation for India IFSC and UPI accounts (NRE, NRO, or RESIDENT_INDIVIDUAL). Defaults to NRE when omitted. Optional when payment_rail is IFSC or payment_rail is UPI. */
     public var accountDesignation: AccountDesignationBankModel?
 
     public init(bankCode: String? = nil, accountIdentifier: String, accountIdentifierType: AccountIdentifierTypeBankModel? = nil, paymentRail: PaymentRailBankModel, bankCodeType: BankCodeTypeBankModel? = nil, accountType: AccountTypeBankModel? = nil, accountDesignation: AccountDesignationBankModel? = nil) {
