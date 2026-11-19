@@ -13,6 +13,19 @@ import AnyCodable
 /** The personally identifiable information associated with the identity verification. */
 public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodable, Hashable {
 
+    public enum SourceOfFundsBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case salaryWages = "salary_wages"
+        case savings = "savings"
+        case investmentEarnings = "investment_earnings"
+        case pensionRetirementFunds = "pension_retirement_funds"
+        case governmentBenefits = "government_benefits"
+        case inheritanceTrustFund = "inheritance_trust_fund"
+        case loanProceeds = "loan_proceeds"
+        case saleOfProperty = "sale_of_property"
+        case businessProfits = "business_profits"
+        case spousalIncome = "spousal_income"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum BusinessTypeBankModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case entity = "entity"
         case soleProprietor = "sole_proprietor"
@@ -32,6 +45,8 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     public var occupation: String?
     /** The ISO 3166 country 2-Alpha country code of the customer's citizenship. */
     public var citizenship: String?
+    /** The customer's source of funds. */
+    public var sourceOfFunds: SourceOfFundsBankModel?
     /** The attested website. */
     public var website: String?
     /** The attested nature of business. */
@@ -50,7 +65,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
     /** The attested identification numbers. */
     public var identificationNumbers: [IdentificationNumberBankModel]?
 
-    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, citizenship: String? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, businessType: BusinessTypeBankModel? = nil, businessIncorporationDate: Date? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
+    public init(name: IdentityVerificationWithDetailsPiiNameBankModel? = nil, aliases: [IdentityVerificationWithDetailsPiiAliasesInnerBankModel]? = nil, address: IdentityVerificationWithDetailsPiiAddressBankModel? = nil, dateOfBirth: Date? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, occupation: String? = nil, citizenship: String? = nil, sourceOfFunds: SourceOfFundsBankModel? = nil, website: String? = nil, natureOfBusiness: String? = nil, registeredAddress: IdentityVerificationWithDetailsPiiRegisteredAddressBankModel? = nil, businessIndustry: String? = nil, businessFundsSource: String? = nil, businessFundsDestination: String? = nil, businessType: BusinessTypeBankModel? = nil, businessIncorporationDate: Date? = nil, identificationNumbers: [IdentificationNumberBankModel]? = nil) {
         self.name = name
         self.aliases = aliases
         self.address = address
@@ -59,6 +74,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         self.emailAddress = emailAddress
         self.occupation = occupation
         self.citizenship = citizenship
+        self.sourceOfFunds = sourceOfFunds
         self.website = website
         self.natureOfBusiness = natureOfBusiness
         self.registeredAddress = registeredAddress
@@ -79,6 +95,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         case emailAddress = "email_address"
         case occupation
         case citizenship
+        case sourceOfFunds = "source_of_funds"
         case website
         case natureOfBusiness = "nature_of_business"
         case registeredAddress = "registered_address"
@@ -102,6 +119,7 @@ public struct IdentityVerificationWithDetailsPiiBankModel: Codable, JSONEncodabl
         try container.encodeIfPresent(emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(occupation, forKey: .occupation)
         try container.encodeIfPresent(citizenship, forKey: .citizenship)
+        try container.encodeIfPresent(sourceOfFunds, forKey: .sourceOfFunds)
         try container.encodeIfPresent(website, forKey: .website)
         try container.encodeIfPresent(natureOfBusiness, forKey: .natureOfBusiness)
         try container.encodeIfPresent(registeredAddress, forKey: .registeredAddress)

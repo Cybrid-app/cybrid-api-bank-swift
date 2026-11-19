@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **emailAddress** | **String** | The attested email address. | [optional] 
 **occupation** | **String** | The attested occupation. | [optional] 
 **citizenship** | **String** | The ISO 3166 country 2-Alpha country code of the customer&#39;s citizenship. | [optional] 
+**sourceOfFunds** | **String** | The customer&#39;s source of funds. | [optional] 
 **website** | **String** | The attested website. | [optional] 
 **natureOfBusiness** | **String** | The attested nature of business. | [optional] 
 **registeredAddress** | [**IdentityVerificationWithDetailsPiiRegisteredAddressBankModel**](IdentityVerificationWithDetailsPiiRegisteredAddressBankModel.md) |  | [optional] 
