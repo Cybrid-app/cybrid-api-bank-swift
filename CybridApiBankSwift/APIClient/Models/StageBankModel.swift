@@ -50,7 +50,7 @@ public struct StageBankModel: Codable, JSONEncodable, Hashable {
     }
     /** The unique identifier for the stage. */
     public var guid: String
-    /** The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, withdrawal_return, or payout_return. */
+    /** The type of stage; one of payout, deposit, withdrawal, trade, deposit_return, loss_recovery, withdrawal_return, payout_return, book_transfer, or account_transfer. */
     public var type: String
     /** The state of the stage; one of storing, planning, planned, executing, completed, or failed. */
     public var state: String
