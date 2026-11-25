@@ -89,7 +89,7 @@ public struct PostBankAccountDetailsBankModel: Codable, JSONEncodable, Hashable 
     public var bankCode: String?
     /** The account number or unique identifier for the account. */
     public var accountIdentifier: String
-    /** The type of account identifier. Must be VPA for UPI rails, EMAIL or PHONE_NUMBER for Interac e-Transfer rails, and PHONE_NUMBER for mobile wallet rails. Required when payment_rail is UPI, payment_rail is ETRANSFER, payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, payment_rail is SADA_PAY, payment_rail is MPESA, or payment_rail is ALIPAY. */
+    /** The type of account identifier. Must be VPA for UPI rails, CPF, CNPJ, PHONE_NUMBER, EMAIL, or RANDOM for PIX rails, EMAIL or PHONE_NUMBER for Interac e-Transfer rails, and PHONE_NUMBER for mobile wallet rails. Required when payment_rail is UPI, payment_rail is PIX, payment_rail is ETRANSFER, payment_rail is EASY_PAISA, payment_rail is FINJA, payment_rail is JAZZ_CASH, payment_rail is NAYA_PAY, payment_rail is SADA_PAY, payment_rail is MPESA, or payment_rail is ALIPAY. */
     public var accountIdentifierType: AccountIdentifierTypeBankModel?
     /** The payment rail used for the account. */
     public var paymentRail: PaymentRailBankModel
