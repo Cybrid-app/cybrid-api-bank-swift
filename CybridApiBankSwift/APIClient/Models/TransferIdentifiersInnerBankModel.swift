@@ -17,9 +17,11 @@ public struct TransferIdentifiersInnerBankModel: Codable, JSONEncodable, Hashabl
         case imad = "imad"
         case omad = "omad"
         case gatewayUrl = "gateway_url"
+        case traceNumber = "trace_number"
+        case uetr = "uetr"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    /** Type of identifier (txn_hash, imad, omad, gateway_url) */
+    /** Type of identifier (txn_hash, imad, omad, gateway_url, trace_number, uetr) */
     public var type: TypeBankModel?
     /** The identifier value */
     public var value: String?
